@@ -4,6 +4,8 @@ import json
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 from src.drift.feature_drift import compute_drift
