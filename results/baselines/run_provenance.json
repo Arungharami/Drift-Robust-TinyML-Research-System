@@ -1,0 +1,13 @@
+{
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+  "archive_sha256": "91e8f466f202e7a093d657673ce47311c3e90416f7df3057966058961c351fe4",
+  "manifest_hash": "a37771086930a83b0cef44a2cff6a8e09ffeec0402adfc248187011aa480fda6",
+  "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+  "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+  "environment": "results/reproducibility/environment.json",
+  "python": "3.11.9",
+  "scikit_learn": "1.9.0",
+  "timestamp_utc": "2026-08-10T03:18:11.025981+00:00",
+  "seed": 42,
+  "status": "COMPLETED"
+}

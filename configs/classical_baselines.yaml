@@ -1,0 +1,39 @@
+seed: 42
+class_order: [1, 2, 3, 4, 5, 6]
+models:
+  MODEL-C1:
+    name: Logistic Regression
+    solver: lbfgs
+    C: 1.0
+    max_iter: 2000
+    class_weight: null
+  MODEL-C2:
+    name: Random Forest
+    n_estimators: 200
+    max_depth: null
+    min_samples_leaf: 1
+    n_jobs: -1
+  MODEL-C3:
+    name: RBF-SVM
+    C: 10.0
+    gamma: scale
+    probability: true
+    max_iter: 20000
+  MODEL-C4:
+    name: MLP Classifier
+    hidden_layer_sizes: [64, 32]
+    activation: relu
+    learning_rate_init: 0.001
+    alpha: 0.0001
+    max_iter: 500
+    early_stopping: true
+    validation_fraction: 0.15
+    n_iter_no_change: 25
+iid_diagnostic:
+  test_size: 0.20
+  stratified: true
+feature_importance:
+  reference_model: MODEL-C2
+  evaluation_batch: 2
+  method: permutation_importance_macro_f1
+  repeats: 5
