@@ -1,0 +1,32 @@
+[
+  {
+    "id": "table_3_fixed_origin_baselines",
+    "markdown_path": "results/tables/table_3_fixed_origin_baselines.md",
+    "csv_path": "results/tables/table_3_fixed_origin_baselines.csv"
+  },
+  {
+    "id": "table_4_per_batch_performance",
+    "markdown_path": "results/tables/table_4_per_batch_performance.md",
+    "csv_path": "results/tables/table_4_per_batch_performance.csv"
+  },
+  {
+    "id": "table_5_class_performance",
+    "markdown_path": "results/tables/table_5_class_performance.md",
+    "csv_path": "results/tables/table_5_class_performance.csv"
+  },
+  {
+    "id": "table_6_expanding_window",
+    "markdown_path": "results/tables/table_6_expanding_window.md",
+    "csv_path": "results/tables/table_6_expanding_window.csv"
+  },
+  {
+    "id": "table_7_iid_diagnostic",
+    "markdown_path": "results/tables/table_7_iid_diagnostic.md",
+    "csv_path": "results/tables/table_7_iid_diagnostic.csv"
+  },
+  {
+    "id": "table_8_model_complexity",
+    "markdown_path": "results/tables/table_8_model_complexity.md",
+    "csv_path": "results/tables/table_8_model_complexity.csv"
+  }
+]

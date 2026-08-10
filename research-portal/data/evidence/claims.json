@@ -1,0 +1,93 @@
+[
+  {
+    "claim_id": "C001",
+    "candidate_claim": "The independently acquired dataset passed structural validation",
+    "experiment_id": "DATA-AUDIT-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "",
+    "metric": "validation",
+    "result_artifact": "results/reproducibility/dataset_validation.json",
+    "figure": "",
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C002",
+    "candidate_claim": "Raw features have measured distribution differences relative to batch 1",
+    "experiment_id": "DRIFT-FIXED-B1-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "417dcd405cba12578e24dd1739efc7a98d1bfc302b3e5eaf77aedb227523ff21",
+    "config_hash": "c8fb6a612ee6f2949d41bbd0eee9a92d96724298e5097ddc8a076fda356bec23",
+    "metric": "normalized_wasserstein",
+    "result_artifact": "results/drift/feature_drift_by_batch.csv",
+    "figure": "2-5",
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C003",
+    "candidate_claim": "All evaluated classical models have lower B10 than B2 accuracy",
+    "experiment_id": "BASE-FIXED-C1-001\u2013C4-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+    "metric": "accuracy",
+    "result_artifact": "results/baselines/fixed_origin_summary.csv",
+    "figure": "9",
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C004",
+    "candidate_claim": "Expanding-window retraining improves mean accuracy for all evaluated models",
+    "experiment_id": "BASE-EXPAND-C1-001\u2013C4-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+    "metric": "accuracy_change",
+    "result_artifact": "results/baselines/expanding_vs_fixed.csv",
+    "figure": "11",
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C005",
+    "candidate_claim": "IID diagnostic accuracy exceeds mean fixed-origin future accuracy for all evaluated models",
+    "experiment_id": "BASE-IID-C1-001\u2013C4-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+    "metric": "accuracy_gap",
+    "result_artifact": "results/baselines/iid_generalization_gap.csv",
+    "figure": "12",
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C006",
+    "candidate_claim": "Global drift has a consistent statistically supported association with performance",
+    "experiment_id": "BASE-FIXED-C1-001\u2013C4-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+    "metric": "Spearman",
+    "result_artifact": "results/baselines/drift_performance_correlations.csv",
+    "figure": "13",
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "status": "UNSUPPORTED"
+  },
+  {
+    "claim_id": "C007",
+    "candidate_claim": "Some batch-2 predictive features combine above-median importance with below-median drift",
+    "experiment_id": "BASE-FIXED-C2-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "",
+    "config_hash": "482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389",
+    "metric": "permutation_importance_macro_f1",
+    "result_artifact": "results/baselines/feature_drift_vs_importance.csv",
+    "figure": "14",
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "status": "SUPPORTED"
+  }
+]
