@@ -18,3 +18,16 @@ jobs:
               with p.open(encoding='utf-8') as f: yaml.safe_load(f)
           for p in pathlib.Path('notebooks').glob('*.ipynb'): nbformat.read(p, as_version=4)
           PY
+      - name: Validate VS Code tasks/extensions JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for p in pathlib.Path('.vscode').glob('*.json'):
+              json.loads(p.read_text(encoding='utf-8'))
+          PY
+      - name: Shell syntax check (scripts/colab, no execution — no real Colab session is started)
+        run: |
+          for f in scripts/colab/*.sh; do
+            echo "bash -n $f"
+            bash -n "$f"
+          done

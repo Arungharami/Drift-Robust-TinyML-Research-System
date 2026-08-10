@@ -34,9 +34,13 @@ Generated data and results are ignored by Git; manifests and result tables are r
 
 See [research protocol](docs/RESEARCH_PROTOCOL.md), [reproducibility guide](docs/REPRODUCIBILITY.md), and [Colab guide](docs/COLAB_GUIDE.md). Notebooks 00 and 01 orchestrate reusable code in `src/`; they do not contain hidden analysis logic.
 
-## Colab and VS Code
+## Google Colab Development
 
-Open a notebook, choose **Select Kernel → Colab → Auto Connect**, then run notebook 00 before other notebooks. Actual Colab execution is reported only when kernel evidence exists. Private clone instructions use a Colab Secret named `GITHUB_TOKEN` without printing or persisting it.
+**Interactive (Mode A):** open a notebook, choose **Select Kernel → Colab → Auto Connect**, then run notebook 00 before other notebooks. Actual Colab execution is reported only when kernel evidence exists. Private clone instructions use a Colab Secret named `GITHUB_TOKEN` without printing or persisting it.
+
+**CLI automation (Mode B, evidence-grade):** `scripts/colab/` drives named Colab sessions (`drift-tinyml-cpu` / `drift-tinyml-gpu`) from **WSL2 Ubuntu** via the real `google-colab-cli`, orchestrated through VS Code tasks (`Ctrl+Shift+P` → `Tasks: Run Task` → `Colab: ...`). Core reproduction — Notebook 00 → 01 (hard dataset gate) → 02 on real Colab — runs via the **`Colab: Run Core Reproduction`** task (or `scripts/colab/run_core_repro.sh` inside WSL2). Every run gets a `RUN_ID` and `run_manifest.json`; results land under `runs/<RUN_ID>/` locally and `results/reproducibility/` (logs, dataset-vs-Colab baseline comparison, environment manifest).
+
+Full workflow (all three modes, WSL2 setup, secrets policy): [`docs/COLAB_CLI_VSCODE_WORKFLOW.md`](docs/COLAB_CLI_VSCODE_WORKFLOW.md). Current verified CLI/WSL2/session/gate state: [`results/reproducibility/COLAB_STATUS.md`](results/reproducibility/COLAB_STATUS.md) — treat anything not recorded there as `NOT_EXECUTED`.
 
 ## Scientific integrity
 
