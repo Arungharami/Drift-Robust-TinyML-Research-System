@@ -5,23 +5,25 @@ real Google Colab CLI control plane. It is updated only after a real check/run, 
 assumption. Stale completed state must never masquerade as current — if a step below has not
 been re-verified since the WSL2/CLI environment last changed, treat it as unknown, not passing.
 
-**Last updated:** 2026-08-10 (second verification pass — WSL2 gate re-checked after user reported running `wsl --install -d Ubuntu`; still not installed)
+**Last updated:** 2026-08-10 (third verification pass — WSL2 engine now present, blocked on the "Virtual Machine Platform" optional component)
 
 ## WSL2 verification log
 
 | Attempt | Result |
 |---|---|
 | 2026-08-10, pass 1 (infrastructure build) | `wsl --status` / `wsl -l -v`: "The Windows Subsystem for Linux is not installed." |
-| 2026-08-10, pass 2 (post user-reported `wsl --install -d Ubuntu`) | Re-ran `wsl --status`, `wsl -l -v`, `wsl --version` — all three still report the same "not installed" stub message. Diagnostics: `wsl.exe` resolves to `C:\WINDOWS\system32\wsl.exe` (the pre-install stub shipped with Windows, which always prints this message until the WSL feature is actually enabled — its presence is not evidence of a completed install). No WSL-related reboot is pending (`...\RebootPending` and `...\WindowsUpdate\Auto Update\RebootRequired` registry keys both absent; the only `PendingFileRenameOperations` entries are unrelated OneDrive updater files). Current shell session is non-elevated (`whoami` = `akg\arun_`, `IsInRole(Administrator) = False`), so `Get-WindowsOptionalFeature` could not be queried to double-check the underlying Windows feature state directly. **Conclusion: `wsl --install -d Ubuntu` has most likely not yet been run to completion as Administrator, or the required restart has not yet happened — this is not a tooling/agent-side failure.** |
+| 2026-08-10, pass 2 (post user-reported `wsl --install -d Ubuntu`) | Same "not installed" stub message on all three checks. Diagnosed as install not yet completed as Administrator, or restart pending. |
+| 2026-08-10, pass 3 (post user follow-up) | `wsl --version` now succeeds: **WSL version 2.7.11.0**, kernel 6.18.33.2-2 — the WSL engine itself is installed. However `wsl --status` reports: *"WSL2 is unable to start since virtualization is not enabled on this machine... enable the 'Virtual Machine Platform' optional component... Enable by running: wsl.exe --install --no-distribution"*. `wsl -l -v` reports: *"Windows Subsystem for Linux has no installed distributions."* Cross-checked with `systeminfo`: all four Hyper-V hardware prerequisites pass — VM Monitor Mode Extensions: Yes, **Virtualization Enabled In Firmware: Yes**, Second Level Address Translation: Yes, Data Execution Prevention Available: Yes. **Conclusion: this is a real hardware-capable machine; the sole remaining blocker is the "Virtual Machine Platform" Windows optional component, a software toggle — no BIOS/firmware trip is required.** No Ubuntu distribution is registered yet either way. |
 
 ## Control plane
 
 | Component | Status | Detail |
 |---|---|---|
-| CLI installed | **NO** | `google-colab-cli` has not been installed anywhere — WSL2 is a prerequisite and is missing. |
+| CLI installed | **NO** | `google-colab-cli` has not been installed anywhere — a working WSL2 distribution is a prerequisite and none is registered yet. |
 | CLI version | N/A | Not installed. |
-| WSL2 | **NOT INSTALLED (re-verified)** | See verification log above. Gate 1 of the reproduction-continuation task explicitly forbids proceeding past this point until Ubuntu can execute bash successfully. |
-| WSL2 distribution | N/A | No distributions registered (`wsl -l -v` fails — WSL2 itself is absent, not just Ubuntu). |
+| WSL2 engine | **INSTALLED** (2.7.11.0) | `wsl --version` succeeds. Not yet usable — see "Virtual Machine Platform" blocker below. |
+| WSL2 usable | **NO — BLOCKED** | `wsl --status`: "WSL2 is unable to start since virtualization is not enabled on this machine" → really means the "Virtual Machine Platform" Windows optional component is off. Firmware/hardware virtualization itself is confirmed enabled (see verification log). Gate 1 of the reproduction-continuation task forbids proceeding past this point until Ubuntu can execute bash successfully. |
+| WSL2 distribution | N/A | No distributions registered (`wsl -l -v`: "has no installed distributions"). |
 | OAuth status | **NOT AUTHENTICATED** | Cannot authenticate without the CLI. |
 | VS Code Colab extension | Configured (recommended) | `google.colab` listed in `.vscode/extensions.json`; installation in the editor itself not verified from this session. |
 | VS Code tasks.json | **CREATED** | `.vscode/tasks.json` has the full lifecycle task set; all Colab tasks will fail until WSL2 exists. |
@@ -91,17 +93,24 @@ None. `runs/` has not been created by any real execution.
 
 ## Next action
 
-**USER ACTION REQUIRED (second request — first attempt did not take effect).**
+**USER ACTION REQUIRED (third request — progress made, one component left).**
 
-1. Open PowerShell **as Administrator** specifically (right-click → "Run as administrator";
-   the taskbar/Start-menu shortcut must show the UAC shield prompt when launched — if no UAC
-   prompt appears, it was not elevated).
-2. Run: `wsl --install -d Ubuntu`
-3. Wait for it to report completion, then **fully restart Windows** (not just sign out) if it
-   asks — this is required even if no reboot-pending flag is currently set, because the WSL
-   optional-component enablement only completes on next boot.
-4. After restart, open a *new* PowerShell window and confirm directly with `wsl --status` and
-   `wsl -l -v` before re-invoking any Colab task — both should list Ubuntu at VERSION 2.
+The WSL2 engine is installed and the hardware/firmware fully supports virtualization. Only the
+"Virtual Machine Platform" Windows optional component remains off. No BIOS/UEFI trip is needed.
+
+1. Open PowerShell **as Administrator** (right-click → "Run as administrator"; confirm the UAC
+   prompt actually appears — if it doesn't, the shell is not elevated and this will silently
+   no-op).
+2. Run: `wsl.exe --install --no-distribution` — this enables "Virtual Machine Platform" (and
+   the WSL optional component if somehow still off) without also trying to fetch a distro.
+3. **Fully restart Windows** — enabling an optional Windows component genuinely requires a
+   reboot to take effect, unlike the previous pass.
+4. After restart, open a *new* PowerShell window (elevation not required for this check) and
+   run `wsl --status` — it should report no virtualization error. Then run
+   `wsl --install -d Ubuntu` to actually fetch and register the Ubuntu distribution, which pass
+   3 confirmed is still missing.
+5. Confirm directly with `wsl -l -v` — Ubuntu should be listed at **VERSION 2** — before
+   re-invoking any Colab task.
 
 Once that's confirmed, resume with `Colab: Bootstrap WSL` → `Colab: Verify CLI` →
 `Colab: Authenticate` → `Colab: Start CPU` → `Colab: Smoke Test` from the VS Code command
