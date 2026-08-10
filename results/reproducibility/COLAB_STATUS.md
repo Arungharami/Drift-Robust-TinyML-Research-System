@@ -5,7 +5,14 @@ real Google Colab CLI control plane. It is updated only after a real check/run, 
 assumption. Stale completed state must never masquerade as current — if a step below has not
 been re-verified since the WSL2/CLI environment last changed, treat it as unknown, not passing.
 
-**Last updated:** 2026-08-10 (infrastructure build pass — no real Colab execution has occurred yet)
+**Last updated:** 2026-08-10 (second verification pass — WSL2 gate re-checked after user reported running `wsl --install -d Ubuntu`; still not installed)
+
+## WSL2 verification log
+
+| Attempt | Result |
+|---|---|
+| 2026-08-10, pass 1 (infrastructure build) | `wsl --status` / `wsl -l -v`: "The Windows Subsystem for Linux is not installed." |
+| 2026-08-10, pass 2 (post user-reported `wsl --install -d Ubuntu`) | Re-ran `wsl --status`, `wsl -l -v`, `wsl --version` — all three still report the same "not installed" stub message. Diagnostics: `wsl.exe` resolves to `C:\WINDOWS\system32\wsl.exe` (the pre-install stub shipped with Windows, which always prints this message until the WSL feature is actually enabled — its presence is not evidence of a completed install). No WSL-related reboot is pending (`...\RebootPending` and `...\WindowsUpdate\Auto Update\RebootRequired` registry keys both absent; the only `PendingFileRenameOperations` entries are unrelated OneDrive updater files). Current shell session is non-elevated (`whoami` = `akg\arun_`, `IsInRole(Administrator) = False`), so `Get-WindowsOptionalFeature` could not be queried to double-check the underlying Windows feature state directly. **Conclusion: `wsl --install -d Ubuntu` has most likely not yet been run to completion as Administrator, or the required restart has not yet happened — this is not a tooling/agent-side failure.** |
 
 ## Control plane
 
@@ -13,7 +20,7 @@ been re-verified since the WSL2/CLI environment last changed, treat it as unknow
 |---|---|---|
 | CLI installed | **NO** | `google-colab-cli` has not been installed anywhere — WSL2 is a prerequisite and is missing. |
 | CLI version | N/A | Not installed. |
-| WSL2 | **NOT INSTALLED** | `wsl --status` reports: "The Windows Subsystem for Linux is not installed. You can install by running 'wsl.exe --install'." (checked 2026-08-10) |
+| WSL2 | **NOT INSTALLED (re-verified)** | See verification log above. Gate 1 of the reproduction-continuation task explicitly forbids proceeding past this point until Ubuntu can execute bash successfully. |
 | WSL2 distribution | N/A | No distributions registered (`wsl -l -v` fails — WSL2 itself is absent, not just Ubuntu). |
 | OAuth status | **NOT AUTHENTICATED** | Cannot authenticate without the CLI. |
 | VS Code Colab extension | Configured (recommended) | `google.colab` listed in `.vscode/extensions.json`; installation in the editor itself not verified from this session. |
@@ -84,13 +91,18 @@ None. `runs/` has not been created by any real execution.
 
 ## Next action
 
-**USER ACTION REQUIRED.** Open an Administrator PowerShell window and run:
+**USER ACTION REQUIRED (second request — first attempt did not take effect).**
 
-```
-wsl --install -d Ubuntu
-```
+1. Open PowerShell **as Administrator** specifically (right-click → "Run as administrator";
+   the taskbar/Start-menu shortcut must show the UAC shield prompt when launched — if no UAC
+   prompt appears, it was not elevated).
+2. Run: `wsl --install -d Ubuntu`
+3. Wait for it to report completion, then **fully restart Windows** (not just sign out) if it
+   asks — this is required even if no reboot-pending flag is currently set, because the WSL
+   optional-component enablement only completes on next boot.
+4. After restart, open a *new* PowerShell window and confirm directly with `wsl --status` and
+   `wsl -l -v` before re-invoking any Colab task — both should list Ubuntu at VERSION 2.
 
-Restart Windows if prompted, then re-run `Colab: Bootstrap WSL` → `Colab: Verify CLI` →
+Once that's confirmed, resume with `Colab: Bootstrap WSL` → `Colab: Verify CLI` →
 `Colab: Authenticate` → `Colab: Start CPU` → `Colab: Smoke Test` from the VS Code command
-palette (`Ctrl+Shift+P` → `Tasks: Run Task`) to populate the rows above with real, verified
-state.
+palette (`Ctrl+Shift+P` → `Tasks: Run Task`).
