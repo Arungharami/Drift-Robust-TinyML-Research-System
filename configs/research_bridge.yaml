@@ -1,0 +1,52 @@
+# Multi-platform research bridge configuration (GitHub / Colab / Hugging Face / Kaggle / Drive).
+# Single source of truth for scripts/bridge/*, src/research_bridge/*, and .vscode/tasks.json.
+# No secrets live here. See docs/RESEARCH_PLATFORM_BRIDGE.md for the full policy.
+
+github:
+  canonical: true   # Absolute rule: GitHub is the only platform allowed to be the source of truth.
+  repository: Arungharami/Drift-Robust-TinyML-Research-System
+  branch: codex/colab-research-system
+
+colab:
+  canonical_compute: true   # Primary cloud compute; see configs/colab.yaml for session control.
+
+huggingface:
+  enabled: true
+  namespace: null   # discovered at runtime from `hf auth whoami`; never hardcoded here
+  dataset_repo: drift-robust-tinyml-research-data
+  model_repo: drift-robust-tinyml-models
+  private_by_default: true
+  redistributes_raw_uci_data: false   # dataset repo carries derived evidence only, never the raw archive
+
+kaggle:
+  enabled: true
+  username: null   # discovered at runtime from an authenticated CLI call; never hardcoded here
+  dataset_slug: drift-robust-tinyml-research-evidence
+  kernel_slug: drift-robust-tinyml-reproduction
+  private_by_default: true
+
+drive:
+  role: large_colab_persistence_only   # never the canonical source of code or results
+  root: /content/drive/MyDrive/Drift-Robust-TinyML-Research-System
+
+# Release bundle include/exclude rules for dist/research_bridge/ (Mission 17).
+release_bundle:
+  output_path: dist/research_bridge
+  include:
+    - results/reproducibility
+    - configs
+    - platforms
+    - docs/RESEARCH_PLATFORM_BRIDGE.md
+    - docs/PLATFORM_PROVENANCE.md
+  exclude_patterns:
+    - ".git"
+    - ".git/*"
+    - "__pycache__"
+    - "*.pyc"
+    - ".env"
+    - "kaggle.json"
+    - "*.pem"
+    - "*.key"
+    - "token.json"
+    - "credentials.json"
+    - "data/raw/*"        # raw UCI archive is never bundled for external platforms by default

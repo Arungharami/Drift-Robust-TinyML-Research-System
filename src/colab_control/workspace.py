@@ -65,6 +65,12 @@ def _cli() -> int:
     parser.add_argument("--config", default=DEFAULT_CONFIG_PATH, type=Path)
     args = parser.parse_args()
 
+    # On Windows, text-mode stdout translates "\n" -> "\r\n" even when redirected to a file;
+    # the bash consumers of this output (prepare_workspace.sh's `tar -T`, build_release_bundle.sh's
+    # `while read`) then see a trailing \r baked into every filename and fail to find the file.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(newline="\n")
+
     config = load_config(args.config)
     include = get_value(config, "colab.workspace_include", [])
     exclude = get_value(config, "colab.workspace_exclude_patterns", [])

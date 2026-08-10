@@ -31,3 +31,11 @@ artifacts/*
 # Secrets
 *.key
 *.pem
+kaggle.json
+.kaggle/
+access_token
+token.json
+credentials.json
+
+# Build output (colab/bridge workspace + release bundles — regenerated, not source)
+dist/

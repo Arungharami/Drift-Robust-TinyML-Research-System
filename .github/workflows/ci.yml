@@ -25,9 +25,18 @@ jobs:
           for p in pathlib.Path('.vscode').glob('*.json'):
               json.loads(p.read_text(encoding='utf-8'))
           PY
-      - name: Shell syntax check (scripts/colab, no execution — no real Colab session is started)
+      - name: Shell syntax check (scripts/colab, scripts/bridge — no execution; no Colab/HF/Kaggle
+          session or upload is ever started in CI)
         run: |
-          for f in scripts/colab/*.sh; do
+          for f in scripts/colab/*.sh scripts/bridge/*.sh; do
             echo "bash -n $f"
             bash -n "$f"
           done
+      - name: Validate research_bridge config and platform metadata JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib, yaml
+          yaml.safe_load(pathlib.Path('configs/research_bridge.yaml').read_text(encoding='utf-8'))
+          for p in pathlib.Path('platforms').rglob('*.json'):
+              json.loads(p.read_text(encoding='utf-8'))
+          PY

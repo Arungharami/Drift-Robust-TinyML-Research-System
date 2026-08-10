@@ -1,0 +1,13 @@
+{
+  "id": "USERNAME_NOT_DISCOVERED/drift-robust-tinyml-reproduction",
+  "title": "Drift-Robust TinyML Reproduction",
+  "code_file": "drift_tinyml_reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}
