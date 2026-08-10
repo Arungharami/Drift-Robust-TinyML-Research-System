@@ -11,6 +11,7 @@ import experimentsJson from "@/data/evidence/experiments.json";
 import baselinesJson from "@/data/evidence/baselines.json";
 import driftJson from "@/data/evidence/drift.json";
 import claimsJson from "@/data/evidence/claims.json";
+import referencesJson from "@/data/evidence/references.json";
 import pipelineJson from "@/data/evidence/pipeline.json";
 import figuresJson from "@/data/evidence/figures.json";
 import tablesJson from "@/data/evidence/tables.json";
@@ -52,6 +53,10 @@ export function getClaims(): ClaimRecord[] {
   return claimsJson as unknown as ClaimRecord[];
 }
 
+export function getReferences(): import("@/components/ReferenceCard").Reference[] {
+  return referencesJson as unknown as import("@/components/ReferenceCard").Reference[];
+}
+
 export function getPipeline(): PipelineStage[] {
   return pipelineJson as unknown as PipelineStage[];
 }
@@ -81,6 +86,13 @@ export function githubBlobUrl(relativePath: string, commit?: string): string {
   const repo = process.env.NEXT_PUBLIC_GITHUB_REPO ?? "Arungharami/Drift-Robust-TinyML-Research-System";
   const ref = commit ?? getProjectStatus().git_commit;
   return `https://github.com/${repo}/blob/${ref}/${relativePath}`;
+}
+
+/** Raw-content GitHub URL (for embedding committed figures) at the exact evidence-export commit. */
+export function githubRawUrl(relativePath: string, commit?: string): string {
+  const repo = process.env.NEXT_PUBLIC_GITHUB_REPO ?? "Arungharami/Drift-Robust-TinyML-Research-System";
+  const ref = commit ?? getProjectStatus().git_commit;
+  return `https://raw.githubusercontent.com/${repo}/${ref}/${relativePath}`;
 }
 
 export function formatNumber(value: string | number | null | undefined, digits = 3): string {

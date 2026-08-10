@@ -151,6 +151,13 @@ def export_claims() -> list[dict[str, Any]]:
     return _read_csv(REPO_ROOT / "paper" / "claim_evidence_matrix.csv")
 
 
+def export_references() -> list[dict[str, Any]]:
+    path = REPO_ROOT / "data" / "literature" / "references.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 # --- pipeline -----------------------------------------------------------------------------------
 
 
@@ -244,6 +251,7 @@ def main() -> int:
     baselines = export_baselines()
     drift = export_drift()
     claims = export_claims()
+    references = export_references()
     pipeline = export_pipeline()
     figures = export_figures()
     tables = export_tables()
@@ -256,6 +264,7 @@ def main() -> int:
     _write("baselines.json", baselines)
     _write("drift.json", drift)
     _write("claims.json", claims)
+    _write("references.json", references)
     _write("pipeline.json", pipeline)
     _write("figures.json", figures)
     _write("tables.json", tables)
