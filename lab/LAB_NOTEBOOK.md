@@ -41,3 +41,18 @@ Entries are append-only. Never delete failed or invalid work.
 - Failure: pandas LaTeX export required undeclared optional package `jinja2`
 - Preserved behavior: scientific outputs and figures completed, but registry promotion did not occur
 - Resolution: use an internal deterministic LaTeX tabular serializer and rerun unchanged experiments
+
+## Checkpoint 2 completed experiments
+
+- Timestamp: `2026-08-10T03:18:11Z`
+- Dataset hash: `dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6`
+- Configuration: `configs/classical_baselines.yaml`; config hash `482cda5017de24d298a279d658ab306b2b5f06f43b5df622e3bc1b5f13fb5389`; seed 42
+- Fixed-origin: `BASE-FIXED-C1-001`, `BASE-FIXED-C2-001`, `BASE-FIXED-C3-001`, `BASE-FIXED-C4-001`
+- Expanding-window: `BASE-EXPAND-C1-001`, `BASE-EXPAND-C2-001`, `BASE-EXPAND-C3-001`, `BASE-EXPAND-C4-001`
+- IID diagnostic: `BASE-IID-C1-001`, `BASE-IID-C2-001`, `BASE-IID-C3-001`, `BASE-IID-C4-001`
+- Status: COMPLETED
+- Runtime: per-fit host durations saved with prediction/complexity evidence; not interpreted as edge latency
+- Results: raw predictions and derived metrics under `results/baselines/`; publication artifacts under `results/figures/` and `results/tables/`
+- Unexpected behavior: three post-computation export/compatibility failures are retained above; frozen scientific configuration was unchanged
+- Limitations: single seed for classical baselines; nine future batches; IID is diagnostic only; permutation importance uses batch 2 as the legal held-out reference
+- Next experiment: checkpoint review before deep learning
