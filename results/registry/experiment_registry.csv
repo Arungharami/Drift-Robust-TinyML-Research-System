@@ -1,0 +1,1 @@
+experiment_id,timestamp,research_question,protocol,model,representation,train_batches,validation_batches,test_batches,seed,dataset_hash,split_hash,config_hash,git_commit,environment,status,metrics_artifact,model_artifact,notes

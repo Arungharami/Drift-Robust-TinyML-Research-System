@@ -1,0 +1,3 @@
+claim_id,candidate_claim,experiment_id,dataset_hash,split_hash,config_hash,metric,result_artifact,figure,git_commit,status
+C001,The independently acquired dataset passed structural validation,DATA-AUDIT-001,,,,validation,results/reproducibility/dataset_validation.json,,,PENDING
+C002,Raw features exhibit measured distribution changes after batch 1,DRIFT-FIXED-B1-001,,,,normalized_wasserstein,results/drift/feature_drift_by_batch.csv,2-5,,PENDING

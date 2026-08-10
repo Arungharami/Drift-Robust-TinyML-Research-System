@@ -1,0 +1,5 @@
+seeds: [7, 42, 123, 2026, 99]
+statuses: [PLANNED, RUNNING, COMPLETED, FAILED, INVALID, NOT_EXECUTED, SUPERSEDED]
+drift:
+  reference_batch: 1
+  metrics: [wasserstein, standardized_mean_shift]

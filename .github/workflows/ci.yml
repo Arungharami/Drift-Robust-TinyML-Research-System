@@ -1,0 +1,20 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: python -m pip install -r requirements.txt
+      - run: python -m compileall -q src
+      - run: pytest -q
+      - name: Validate configs and notebooks
+        run: |
+          python - <<'PY'
+          import pathlib, nbformat, yaml
+          for p in pathlib.Path('configs').glob('*.yaml'):
+              with p.open(encoding='utf-8') as f: yaml.safe_load(f)
+          for p in pathlib.Path('notebooks').glob('*.ipynb'): nbformat.read(p, as_version=4)
+          PY
