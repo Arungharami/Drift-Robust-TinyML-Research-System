@@ -11,7 +11,7 @@ Publication-oriented research software for studying chronological sensor drift i
 
 ## Checkpoint status
 
-Checkpoint 1 implements reproducible environment capture, official dataset acquisition with SHA-256 manifests, validation, chronology-safe splits, an experiment registry, drift metrics, initial figures, notebooks, tests, and CI. Classical/deep models, XAI, quantization experiments, and physical hardware measurements are **NOT_EXECUTED**.
+Checkpoint 1 implements reproducible environment capture, official dataset acquisition with SHA-256 manifests, validation, chronology-safe splits, an experiment registry, drift metrics, initial figures, notebooks, tests, and CI. Checkpoint 2 adds executed fixed-origin classical baselines, expanding-window adaptation, an explicitly diagnostic IID comparison, class-level errors, drift/performance associations, permutation importance, complexity profiles, and prediction-backed publication artifacts. Deep models, XAI, quantization experiments, and physical hardware measurements are **NOT_EXECUTED**.
 
 ## Quick start
 

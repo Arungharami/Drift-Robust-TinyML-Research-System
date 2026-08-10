@@ -21,6 +21,8 @@ data/external/*
 !data/external/.gitkeep
 results/raw/*
 artifacts/*
+!artifacts/models/
+!artifacts/models/*.joblib
 *.pt
 *.pth
 *.h5
