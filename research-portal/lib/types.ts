@@ -147,6 +147,41 @@ export interface EnvironmentEvidence {
   packages: Record<string, string>;
 }
 
+export interface XaiApplicabilityRow {
+  experiment_id: string;
+  model_id: string;
+  method: string;
+  scope: string;
+  status: string;
+  reason: string;
+}
+
+export interface XaiTop3Row {
+  model_id: string;
+  method: string;
+  batch: string;
+  features: string[];
+}
+
+export interface XaiEvidence {
+  evidence_status: EvidenceStatus;
+  experiment_id: string | null;
+  status: string;
+  created_at: string | null;
+  per_model_status: Record<string, { status: string; n_local_samples?: number; n_global_rows?: number; reason?: string }>;
+  applicability_matrix: XaiApplicabilityRow[];
+  n_global_rows: number;
+  n_local_samples: number;
+  n_reduced_rows: number;
+  n_fidelity_prep_rows: number;
+  local_sample_categories: Record<string, number>;
+  top3_by_model_method_batch: XaiTop3Row[];
+  artifact_paths: string[];
+  fidelity_status: EvidenceStatus;
+  stability_status: EvidenceStatus;
+  latency_status: EvidenceStatus;
+}
+
 export interface ProjectStatus {
   project: string;
   repository: string;

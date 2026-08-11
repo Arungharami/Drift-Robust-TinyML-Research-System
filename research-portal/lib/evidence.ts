@@ -12,6 +12,7 @@ import baselinesJson from "@/data/evidence/baselines.json";
 import driftJson from "@/data/evidence/drift.json";
 import claimsJson from "@/data/evidence/claims.json";
 import referencesJson from "@/data/evidence/references.json";
+import xaiJson from "@/data/evidence/xai.json";
 import pipelineJson from "@/data/evidence/pipeline.json";
 import figuresJson from "@/data/evidence/figures.json";
 import tablesJson from "@/data/evidence/tables.json";
@@ -31,6 +32,7 @@ import type {
   PlatformEvidence,
   ProjectStatus,
   TableRecord,
+  XaiEvidence,
 } from "./types";
 
 export function getDataset(): DatasetEvidence {
@@ -55,6 +57,10 @@ export function getClaims(): ClaimRecord[] {
 
 export function getReferences(): import("@/components/ReferenceCard").Reference[] {
   return referencesJson as unknown as import("@/components/ReferenceCard").Reference[];
+}
+
+export function getXai(): XaiEvidence {
+  return xaiJson as unknown as XaiEvidence;
 }
 
 export function getPipeline(): PipelineStage[] {

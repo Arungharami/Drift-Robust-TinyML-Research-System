@@ -102,13 +102,24 @@ stages:
 
   - id: "09"
     name: Resource-aware XAI
-    status: NOT_EXECUTED
-    notebook: null
-    script: null
-    artifact_paths: []
-    git_commit: null
+    status: EXECUTED
+    notebook: notebooks/05_resource_aware_xai.ipynb
+    script: src/xai/run_stage09.py
+    artifact_paths:
+      [artifacts/explanations/EXP-XAI-0001, results/xai/stage09_global_importance.csv,
+       results/xai/stage09_reduced_explanations.csv, results/xai/stage09_local_samples.csv,
+       results/xai/stage09_local_explanations.csv, results/xai/stage09_fidelity_prep.csv,
+       results/xai/stage09_manifest.csv, results/xai/stage09_feature_map.csv]
+    git_commit: a2bfa8a
     depends_on: ["08"]
-    notes: Off-device permutation-importance / coefficient-based explanation strategy planned; not implemented.
+    notes: >-
+      EXP-XAI-0001 (registry rows EXP-XAI-0001-C1..C4). Intrinsic coefficient explanations for
+      MODEL-C1, intrinsic impurity for MODEL-C2, model-agnostic permutation importance
+      (macro-F1) and single-feature-ablation local explanations for all 4 frozen FIXED_ORIGIN
+      models. No retraining; chronological split unchanged. Full applicability matrix in
+      results/xai/stage09_manifest.csv. See docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md.
+      This stage prepares evidence for Stages 10-12 — it does not itself report fidelity,
+      stability, or latency conclusions.
 
   - id: "10"
     name: Fidelity evaluation
