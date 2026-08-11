@@ -1,0 +1,10 @@
+[MODEL-C1] INTRINSIC_COEFFICIENT global: EXECUTED
+[MODEL-C1] PERMUTATION_IMPORTANCE_MACRO_F1 global: EXECUTED (9 batches, 5 repeats)
+[MODEL-C1] local explanations: 54 samples
+[MODEL-C2] INTRINSIC_IMPURITY global: EXECUTED
+[MODEL-C2] PERMUTATION_IMPORTANCE_MACRO_F1 global: EXECUTED (9 batches, 5 repeats)
+[MODEL-C2] local explanations: 53 samples
+[MODEL-C3] PERMUTATION_IMPORTANCE_MACRO_F1 global: EXECUTED (9 batches, 5 repeats)
+[MODEL-C3] local explanations: 54 samples
+[MODEL-C4] PERMUTATION_IMPORTANCE_MACRO_F1 global: EXECUTED (9 batches, 5 repeats)
+[MODEL-C4] local explanations: 59 samples

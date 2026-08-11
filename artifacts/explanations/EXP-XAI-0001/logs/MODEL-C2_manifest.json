@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-08-11T03:28:35Z",
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+  "experiment_id": "EXP-XAI-0001-MODEL-C2",
+  "explainer_methods": [
+    "INTRINSIC_COEFFICIENT",
+    "INTRINSIC_IMPURITY",
+    "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "SINGLE_FEATURE_ABLATION_LOCAL"
+  ],
+  "git_commit": "48160ce8612d1c818cdf69a503bdb99123855e76",
+  "input_artifacts": [
+    "artifacts\\models\\BASE-FIXED-C2-001.joblib",
+    "data/manifests/dataset_manifest.json"
+  ],
+  "model_artifact_sha256": "65b8c9ae4fed9c9e448a6699dbfa22da5b8c889a9ec357ce57230876bbbf9664",
+  "model_id": "MODEL-C2",
+  "notes": "Stage 09 explanations for MODEL-C2, loaded from frozen FIXED_ORIGIN artifact; no retraining.",
+  "output_artifacts": [
+    "artifacts\\explanations\\EXP-XAI-0001\\global\\MODEL-C2",
+    "artifacts\\explanations\\EXP-XAI-0001\\local\\MODEL-C2",
+    "artifacts\\explanations\\EXP-XAI-0001\\reduced\\MODEL-C2"
+  ],
+  "random_seed": 42,
+  "software_versions": {
+    "joblib": "1.5.3",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.0"
+  },
+  "source_model_experiment_id": "BASE-FIXED-C2-001",
+  "split_protocol": "FIXED_ORIGIN",
+  "stage": "09",
+  "status": "EXECUTED"
+}
