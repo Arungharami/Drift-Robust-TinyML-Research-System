@@ -1,0 +1,66 @@
+{
+  "experiment_id": "EXP-XAI-FIDELITY-001",
+  "status": "EXECUTED",
+  "created_at": "2026-08-11T21:04:49.418159+00:00",
+  "reference_source": "BATCH_1_SAVED_SCALER_MEAN",
+  "random_seed": 42,
+  "bootstrap_seed": 1042,
+  "outputs": [
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_fidelity_global.csv",
+      "sha256": "a0370400e81bfbe51e9ba19979702a958fc5d6114cd6006cb0c0cba6143336ec",
+      "rows": 270,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_fidelity_local.csv",
+      "sha256": "7329c862cc38e4908329fcbfc9f3a7ec2f130bb218218b2087b688bc8b0104dd",
+      "rows": 1096,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_fidelity_sensor_groups.csv",
+      "sha256": "bc41cf69bf8e866149091e83c426d60ed88fab4cc49bae29e9f51a0fe9a2e040",
+      "rows": 162,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_fidelity_feature_families.csv",
+      "sha256": "3a2c0b24e329456f3c74cf73402fa4fba44512da46d8ab3696acc41ac77f718c",
+      "rows": 216,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_random_controls.csv",
+      "sha256": "b0da5fec8bece46ca8d1e2f3b42aec38aa7c167c50a2c36b8bf530a304cf353c",
+      "rows": 45840,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_bootstrap_ci.csv",
+      "sha256": "6cfea5f68ac26be86864d5036b5555f37aebac6b0065b246b44c6599f541d3ac",
+      "rows": 688,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_fidelity_summary.csv",
+      "sha256": "34ec1788f82b8850a101e21e38ce73f91c5f9a9e89933df05e95bd360a84751a",
+      "rows": 17,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-FIDELITY-001",
+      "artifact_path": "results/xai/stage10_input_manifest.csv",
+      "sha256": "b07f87b05f8afa464417b7ecd21a376e534dcd484bb87232e93126671688b464",
+      "rows": 11,
+      "status": "EXECUTED"
+    }
+  ]
+}

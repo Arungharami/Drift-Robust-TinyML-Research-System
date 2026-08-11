@@ -1,0 +1,32 @@
+protocol_version: stage10_xai_fidelity_v1
+experiment_id: EXP-XAI-FIDELITY-001
+source_experiment_id: EXP-XAI-0001
+models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+model_artifacts:
+  MODEL-C1: artifacts/models/BASE-FIXED-C1-001.joblib
+  MODEL-C2: artifacts/models/BASE-FIXED-C2-001.joblib
+  MODEL-C3: artifacts/models/BASE-FIXED-C3-001.joblib
+  MODEL-C4: artifacts/models/BASE-FIXED-C4-001.joblib
+chronological_batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+local_sample_batches: [2, 6, 10]
+global_methods:
+  INTRINSIC_COEFFICIENT: [MODEL-C1]
+  INTRINSIC_IMPURITY: [MODEL-C2]
+  PERMUTATION_IMPORTANCE_MACRO_F1: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+local_methods:
+  INTRINSIC_COEFFICIENT: [MODEL-C1]
+  SINGLE_FEATURE_ABLATION_LOCAL: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+top_k_features_global: [1, 3, 5, 10, 20]
+top_k_features_local: [1, 3, 5, 10]
+top_k_sensors: [1, 2, 3]
+reference: {source: saved StandardScaler fitted by source experiment, batch: 1, statistic: training_feature_mean_from_scaler_mean_, future_statistics_forbidden: true}
+random_control: {repetitions: 30, seed: 42}
+bootstrap: {repetitions: 1000, confidence_level: 0.95, seed: 1042, global_unit: matched_random_subset, local_unit: selected_sample}
+aggregation: {primary_global_metric: macro_f1_damage, secondary_metrics: [balanced_accuracy_damage, prediction_disagreement], primary_local_necessity: target_score_drop, primary_local_sufficiency: target_score_retained_ratio, effect_size: paired_mean_difference_and_probability_selected_exceeds_random}
+missing_values: fail
+class_handling: macro metrics use labels present in each chronological batch
+exclusions: [methods marked NOT_APPLICABLE in Stage 09, absent local sample-method pairs, K larger than ranking]
+success_conditions: [all inputs hash, all models load without fitting, applicable combinations produce rows, validation passes]
+failure_conditions: [missing frozen artifact, unavailable saved scaler mean, unsupported method evaluated, future statistic used]
+software_environment: artifacts/explanations/EXP-XAI-0001/environment.json
+expected_outputs: [results/xai/stage10_input_manifest.csv, results/xai/stage10_fidelity_global.csv, results/xai/stage10_fidelity_local.csv, results/xai/stage10_fidelity_sensor_groups.csv, results/xai/stage10_fidelity_feature_families.csv, results/xai/stage10_random_controls.csv, results/xai/stage10_bootstrap_ci.csv, results/xai/stage10_fidelity_summary.csv, results/xai/stage10_manifest.csv]
