@@ -293,6 +293,28 @@ def export_environment() -> dict[str, Any] | None:
     return _read_json(REPO_ROOT / "results" / "reproducibility" / "environment.json")
 
 
+def export_research_intelligence() -> dict[str, Any]:
+    """Copy only generated/registered evidence into cockpit-facing JSON."""
+    registry = REPO_ROOT / "results" / "registry"
+    feature_rows = _read_csv(REPO_ROOT / "research" / "feature_metadata.csv")
+    decisions = _read_csv(REPO_ROOT / "results" / "decisions" / "research_decisions.csv")
+    experiments = _read_csv(registry / "experiments.csv")
+    measurements = _read_csv(registry / "measurements.csv")
+    artifacts = _read_csv(registry / "artifacts.csv")
+    claims = _read_csv(registry / "claims.csv")
+    fixed = _read_csv(REPO_ROOT / "results" / "baselines" / "fixed_origin_metrics.csv")
+    class_perf = _read_csv(REPO_ROOT / "results" / "baselines" / "class_performance_by_batch.csv")
+    return {
+        "evidence_status": "EXECUTED" if experiments and artifacts else "BLOCKED",
+        "registries": {"experiments": experiments, "measurements": measurements, "artifacts": artifacts, "claims": claims, "decisions": decisions},
+        "feature_structure": {"physical_sensors": len({r.get('sensor_id') for r in feature_rows}), "features_per_sensor": 8 if len(feature_rows) == 128 else None, "feature_count": len(feature_rows), "metadata_artifact": "research/feature_metadata.csv"},
+        "failure_rows": fixed,
+        "class_failure_rows": class_perf,
+        "hardware_blocker": "No nRF52840 firmware measurement or PPK2 trace is registered.",
+        "next_experiment": "EXP-XAI-FIDELITY-001",
+    }
+
+
 # --- project status rollup (feeds /api/project-status) ---------------------------------------------
 
 
@@ -327,6 +349,7 @@ def main() -> int:
     platform = export_platform()
     environment = export_environment()
     project_status = export_project_status(pipeline)
+    intelligence = export_research_intelligence()
 
     _write("dataset.json", dataset)
     _write("experiments.json", experiments)
@@ -341,6 +364,7 @@ def main() -> int:
     _write("platform.json", platform)
     _write("environment.json", environment)
     _write("project-status.json", project_status)
+    _write("research-intelligence.json", intelligence)
 
     print(f"\nExported {len(list(OUT_DIR.glob('*.json')))} evidence files to {OUT_DIR.relative_to(REPO_ROOT)}")
     return 0

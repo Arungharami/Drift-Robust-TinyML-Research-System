@@ -24,9 +24,10 @@ UCI Gas Sensor Array Drift Dataset
   -> Vercel research portal -> manuscript
 ```
 
-Everything left of "evidence-selected models" is executed (Checkpoint 1–2). Everything from
-resource-aware XAI onward is `NOT_EXECUTED` — see `configs/pipeline_stages.yaml` for the
-authoritative, version-controlled status of all 23 pipeline stages.
+Everything through Stage 09 resource-aware explanation generation is executed. Fidelity,
+stability, explanation cost, embedded export, and physical-hardware stages remain unexecuted or
+blocked. Generated normalized registries under `results/registry/` are the result-level source of
+truth; `configs/pipeline_stages.yaml` is the stage-level source of truth.
 
 ## Repository structure
 
@@ -66,7 +67,7 @@ Frozen in `configs/chronological_protocol.yaml`. See [research protocol](docs/RE
 
 ## Scientific evidence policy
 
-Every number must be produced by executed code and linked to an artifact. Experiment states are `PLANNED`, `RUNNING`, `COMPLETED`, `FAILED`, `INVALID`, `NOT_EXECUTED`, or `SUPERSEDED`. Synthetic data is limited to unit tests. Physical Flash, SRAM, MCU latency, and PPK2 energy remain `NOT_EXECUTED` until measured on real hardware. The research portal's evidence loader (`research-portal/lib/evidence.ts`) enforces this in the UI: a missing artifact renders as `NOT EXECUTED`, never a placeholder number.
+Every number must be produced by executed code and linked to an artifact. Public evidence states are `MEASURED`, `DERIVED`, `EXECUTED`, `PLANNED`, `BLOCKED`, `FAILED`, and `NOT_APPLICABLE`. Synthetic data is limited to unit tests. Physical Flash, SRAM, MCU latency, and PPK2 energy remain `BLOCKED` until measured on real hardware. The research portal's evidence loader (`research-portal/lib/evidence.ts`) enforces this in the UI: a missing artifact never becomes a placeholder number.
 
 ## Google Colab Development
 

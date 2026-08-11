@@ -193,3 +193,13 @@ export interface ProjectStatus {
   hardware_state: EvidenceStatus;
   paper_state: string;
 }
+
+export interface ResearchIntelligence {
+  evidence_status: EvidenceStatus;
+  registries: { experiments: Record<string, string>[]; measurements: Record<string, string>[]; artifacts: Record<string, string>[]; claims: Record<string, string>[]; decisions: Record<string, string>[] };
+  feature_structure: { physical_sensors: number; features_per_sensor: number | null; feature_count: number; metadata_artifact: string };
+  failure_rows: Record<string, string>[];
+  class_failure_rows: Record<string, string>[];
+  hardware_blocker: string;
+  next_experiment: string;
+}

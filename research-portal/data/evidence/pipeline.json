@@ -229,7 +229,7 @@
   {
     "id": "15",
     "name": "nRF52840 deployment",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -242,7 +242,7 @@
   {
     "id": "16",
     "name": "Flash/SRAM measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -255,7 +255,7 @@
   {
     "id": "17",
     "name": "Physical inference latency",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -268,7 +268,7 @@
   {
     "id": "18",
     "name": "PPK2 energy measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -281,7 +281,7 @@
   {
     "id": "19",
     "name": "Explanation-energy measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -295,7 +295,7 @@
   {
     "id": "20",
     "name": "Pareto analysis",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],

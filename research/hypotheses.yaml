@@ -1,0 +1,12 @@
+schema_version: 1
+hypotheses:
+  - {id: H1, research_question_id: RQ1, statement: "Fixed-origin macro-F1 degrades across future batches as sensor distributions move from Batch 1.", status: PARTIALLY_SUPPORTED}
+  - {id: H2, research_question_id: RQ2, statement: "IID diagnostic evaluation overstates chronological future-batch performance.", status: PARTIALLY_SUPPORTED}
+  - {id: H3, research_question_id: RQ3, statement: "Strictly causal expanding-window adaptation improves future-batch macro-F1 over a frozen origin model.", status: PARTIALLY_SUPPORTED}
+  - {id: H4, research_question_id: RQ4, statement: "A limited subset of sensors and response families accounts for disproportionate drift and error.", status: UNTESTED}
+  - {id: H5, research_question_id: RQ5, statement: "Resource-aware explanations retain predictive behavior under method-appropriate feature deletion and retention tests.", status: UNTESTED}
+  - {id: H6, research_question_id: RQ6, statement: "Explanation rankings are less stable during high-drift periods and for errors.", status: UNTESTED}
+  - {id: H7, research_question_id: RQ7, statement: "Explanation drift provides a reproducible leading signal before major predictive degradation.", status: UNTESTED}
+  - {id: H8, research_question_id: RQ8, statement: "Causally calibrated confidence supports useful selective prediction under drift.", status: UNTESTED}
+  - {id: H9, research_question_id: RQ9, statement: "A deployable quantized candidate retains acceptable chronological performance and calibration.", status: BLOCKED}
+  - {id: H10, research_question_id: RQ10, statement: "At least one candidate is non-dominated across predictive, trust, memory, latency, and physical-energy objectives.", status: BLOCKED}

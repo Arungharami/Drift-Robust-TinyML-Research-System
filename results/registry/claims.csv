@@ -1,0 +1,9 @@
+claim_id,claim_text,status,required_evidence,supporting_artifacts
+C001,The independently acquired dataset passed structural validation,SUPPORTED,validation,results/reproducibility/dataset_validation.json
+C002,Raw features have measured distribution differences relative to batch 1,SUPPORTED,normalized_wasserstein,results/drift/feature_drift_by_batch.csv
+C003,All evaluated classical models have lower B10 than B2 accuracy,SUPPORTED,accuracy,results/baselines/fixed_origin_summary.csv
+C004,Expanding-window retraining improves mean accuracy for all evaluated models,SUPPORTED,accuracy_change,results/baselines/expanding_vs_fixed.csv
+C005,IID diagnostic accuracy exceeds mean fixed-origin future accuracy for all evaluated models,SUPPORTED,accuracy_gap,results/baselines/iid_generalization_gap.csv
+C006,Global drift has a consistent statistically supported association with performance,UNSUPPORTED,Spearman,results/baselines/drift_performance_correlations.csv
+C007,Some batch-2 predictive features combine above-median importance with below-median drift,SUPPORTED,permutation_importance_macro_f1,results/baselines/feature_drift_vs_importance.csv
+C008,"Global permutation-importance (macro-F1) rankings and single-feature-ablation local explanations were generated for all four evidence-selected FIXED_ORIGIN models across all nine evaluation batches, with no unjustified explanation method forced onto an incapable model",SUPPORTED,permutation_importance_macro_f1,results/xai/stage09_global_importance.csv

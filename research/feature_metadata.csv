@@ -1,0 +1,129 @@
+feature_id,sensor_id,feature_family,response_phase,alpha_if_applicable,physical_interpretation,source_column
+F001,S1,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,1
+F002,S1,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,2
+F003,S1,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,3
+F004,S1,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,4
+F005,S1,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,5
+F006,S1,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,6
+F007,S1,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,7
+F008,S1,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,8
+F009,S2,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,9
+F010,S2,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,10
+F011,S2,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,11
+F012,S2,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,12
+F013,S2,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,13
+F014,S2,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,14
+F015,S2,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,15
+F016,S2,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,16
+F017,S3,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,17
+F018,S3,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,18
+F019,S3,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,19
+F020,S3,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,20
+F021,S3,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,21
+F022,S3,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,22
+F023,S3,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,23
+F024,S3,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,24
+F025,S4,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,25
+F026,S4,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,26
+F027,S4,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,27
+F028,S4,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,28
+F029,S4,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,29
+F030,S4,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,30
+F031,S4,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,31
+F032,S4,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,32
+F033,S5,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,33
+F034,S5,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,34
+F035,S5,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,35
+F036,S5,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,36
+F037,S5,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,37
+F038,S5,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,38
+F039,S5,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,39
+F040,S5,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,40
+F041,S6,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,41
+F042,S6,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,42
+F043,S6,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,43
+F044,S6,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,44
+F045,S6,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,45
+F046,S6,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,46
+F047,S6,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,47
+F048,S6,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,48
+F049,S7,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,49
+F050,S7,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,50
+F051,S7,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,51
+F052,S7,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,52
+F053,S7,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,53
+F054,S7,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,54
+F055,S7,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,55
+F056,S7,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,56
+F057,S8,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,57
+F058,S8,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,58
+F059,S8,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,59
+F060,S8,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,60
+F061,S8,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,61
+F062,S8,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,62
+F063,S8,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,63
+F064,S8,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,64
+F065,S9,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,65
+F066,S9,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,66
+F067,S9,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,67
+F068,S9,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,68
+F069,S9,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,69
+F070,S9,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,70
+F071,S9,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,71
+F072,S9,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,72
+F073,S10,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,73
+F074,S10,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,74
+F075,S10,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,75
+F076,S10,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,76
+F077,S10,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,77
+F078,S10,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,78
+F079,S10,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,79
+F080,S10,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,80
+F081,S11,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,81
+F082,S11,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,82
+F083,S11,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,83
+F084,S11,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,84
+F085,S11,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,85
+F086,S11,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,86
+F087,S11,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,87
+F088,S11,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,88
+F089,S12,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,89
+F090,S12,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,90
+F091,S12,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,91
+F092,S12,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,92
+F093,S12,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,93
+F094,S12,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,94
+F095,S12,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,95
+F096,S12,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,96
+F097,S13,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,97
+F098,S13,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,98
+F099,S13,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,99
+F100,S13,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,100
+F101,S13,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,101
+F102,S13,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,102
+F103,S13,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,103
+F104,S13,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,104
+F105,S14,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,105
+F106,S14,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,106
+F107,S14,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,107
+F108,S14,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,108
+F109,S14,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,109
+F110,S14,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,110
+F111,S14,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,111
+F112,S14,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,112
+F113,S15,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,113
+F114,S15,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,114
+F115,S15,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,115
+F116,S15,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,116
+F117,S15,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,117
+F118,S15,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,118
+F119,S15,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,119
+F120,S15,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,120
+F121,S16,steady_state_resistance_change,steady_state,,Absolute resistance change from baseline,121
+F122,S16,normalized_resistance_response,steady_state,,Resistance change normalized to baseline,122
+F123,S16,rising_transient_ema,rising,0.001,Exponential moving average of the rising transient,123
+F124,S16,rising_transient_ema,rising,0.01,Exponential moving average of the rising transient,124
+F125,S16,rising_transient_ema,rising,0.1,Exponential moving average of the rising transient,125
+F126,S16,decaying_transient_ema,decaying,0.001,Exponential moving average of the decaying transient,126
+F127,S16,decaying_transient_ema,decaying,0.01,Exponential moving average of the decaying transient,127
+F128,S16,decaying_transient_ema,decaying,0.1,Exponential moving average of the decaying transient,128
