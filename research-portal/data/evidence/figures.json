@@ -1,0 +1,104 @@
+[
+  {
+    "id": "confusion_matrix_evolution",
+    "svg_path": "results/figures/confusion_matrix_evolution.svg",
+    "png_path": "results/figures/confusion_matrix_evolution.png",
+    "source_csv": "results/figures/sources/confusion_matrix_evolution.csv"
+  },
+  {
+    "id": "dataset_timeline",
+    "svg_path": "results/figures/dataset_timeline.svg",
+    "png_path": "results/figures/dataset_timeline.png",
+    "source_csv": "results/figures/sources/dataset_timeline.csv"
+  },
+  {
+    "id": "feature_batch_drift_heatmap",
+    "svg_path": "results/figures/feature_batch_drift_heatmap.svg",
+    "png_path": "results/figures/feature_batch_drift_heatmap.png",
+    "source_csv": "results/figures/sources/feature_batch_drift_heatmap.csv"
+  },
+  {
+    "id": "figure_10_class_error_heatmap",
+    "svg_path": "results/figures/figure_10_class_error_heatmap.svg",
+    "png_path": "results/figures/figure_10_class_error_heatmap.png",
+    "source_csv": "results/figures/sources/figure_10_class_error_heatmap.csv"
+  },
+  {
+    "id": "figure_11_fixed_vs_expanding",
+    "svg_path": "results/figures/figure_11_fixed_vs_expanding.svg",
+    "png_path": "results/figures/figure_11_fixed_vs_expanding.png",
+    "source_csv": "results/figures/sources/figure_11_fixed_vs_expanding.csv"
+  },
+  {
+    "id": "figure_12_iid_vs_chronological",
+    "svg_path": "results/figures/figure_12_iid_vs_chronological.svg",
+    "png_path": "results/figures/figure_12_iid_vs_chronological.png",
+    "source_csv": "results/figures/sources/figure_12_iid_vs_chronological.csv"
+  },
+  {
+    "id": "figure_13_drift_vs_performance",
+    "svg_path": "results/figures/figure_13_drift_vs_performance.svg",
+    "png_path": "results/figures/figure_13_drift_vs_performance.png",
+    "source_csv": "results/figures/sources/figure_13_drift_vs_performance.csv"
+  },
+  {
+    "id": "figure_14_feature_drift_vs_importance",
+    "svg_path": "results/figures/figure_14_feature_drift_vs_importance.svg",
+    "png_path": "results/figures/figure_14_feature_drift_vs_importance.png",
+    "source_csv": "results/figures/sources/figure_14_feature_drift_vs_importance.csv"
+  },
+  {
+    "id": "figure_15_complexity_comparison",
+    "svg_path": "results/figures/figure_15_complexity_comparison.svg",
+    "png_path": "results/figures/figure_15_complexity_comparison.png",
+    "source_csv": null
+  },
+  {
+    "id": "figure_6_accuracy",
+    "svg_path": "results/figures/figure_6_accuracy.svg",
+    "png_path": "results/figures/figure_6_accuracy.png",
+    "source_csv": "results/figures/sources/figure_6_accuracy.csv"
+  },
+  {
+    "id": "figure_7_macro_f1",
+    "svg_path": "results/figures/figure_7_macro_f1.svg",
+    "png_path": "results/figures/figure_7_macro_f1.png",
+    "source_csv": "results/figures/sources/figure_7_macro_f1.csv"
+  },
+  {
+    "id": "figure_8_balanced_accuracy",
+    "svg_path": "results/figures/figure_8_balanced_accuracy.svg",
+    "png_path": "results/figures/figure_8_balanced_accuracy.png",
+    "source_csv": "results/figures/sources/figure_8_balanced_accuracy.csv"
+  },
+  {
+    "id": "figure_9_degradation",
+    "svg_path": "results/figures/figure_9_degradation.svg",
+    "png_path": "results/figures/figure_9_degradation.png",
+    "source_csv": "results/figures/sources/figure_9_degradation.csv"
+  },
+  {
+    "id": "global_drift_trajectory",
+    "svg_path": "results/figures/global_drift_trajectory.svg",
+    "png_path": "results/figures/global_drift_trajectory.png",
+    "source_csv": "results/figures/sources/global_drift_trajectory.csv"
+  },
+  {
+    "id": "sensor_drift_vs_importance",
+    "svg_path": "results/figures/sensor_drift_vs_importance.svg",
+    "png_path": "results/figures/sensor_drift_vs_importance.png",
+    "source_csv": "results/figures/sources/sensor_drift_vs_importance.csv"
+  },
+  {
+    "id": "top20_drifting_features",
+    "svg_path": "results/figures/top20_drifting_features.svg",
+    "png_path": "results/figures/top20_drifting_features.png",
+    "source_csv": "results/figures/sources/top20_drifting_features.csv"
+  },
+  {
+    "id": "top20_stable_features",
+    "svg_path": "results/figures/top20_stable_features.svg",
+    "png_path": "results/figures/top20_stable_features.png",
+    "source_csv": "results/figures/sources/top20_stable_features.csv"
+  }
+]

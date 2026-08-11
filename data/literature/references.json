@@ -1,0 +1,59 @@
+[
+  {
+    "id": "vergara2012dataset",
+    "authors": "Vergara, A.",
+    "title": "Gas Sensor Array Drift Dataset",
+    "year": 2012,
+    "venue": "UCI Machine Learning Repository",
+    "doi": "10.24432/C5RP6W",
+    "url": "https://doi.org/10.24432/C5RP6W",
+    "topic": "Dataset",
+    "relevance": "Primary dataset for this project. All chronological batches, feature counts, and class labels used on this site are verified against this source.",
+    "notes": "Fetched and verified directly from the UCI dataset page before being cited here."
+  },
+  {
+    "id": "gama2014survey",
+    "authors": "Gama, J., Zliobaite, I., Bifet, A., Pechenizkiy, M., Bouchachia, A.",
+    "title": "A survey on concept drift adaptation",
+    "year": 2014,
+    "venue": "ACM Computing Surveys, 46(4), Article 44",
+    "doi": "10.1145/2523813",
+    "url": "https://doi.org/10.1145/2523813",
+    "topic": "Concept drift",
+    "relevance": "Foundational survey of concept-drift adaptation strategies; frames why this project treats chronological (not IID) evaluation as the primary protocol.",
+    "novelty_threat": "Establishes the general concept-drift vocabulary but does not address electronic-nose sensing, TinyML deployment, or explanation stability — this project's combination remains distinct."
+  },
+  {
+    "id": "lundberg2017shap",
+    "authors": "Lundberg, S. M., Lee, S.-I.",
+    "title": "A Unified Approach to Interpreting Model Predictions",
+    "year": 2017,
+    "venue": "Advances in Neural Information Processing Systems 30 (NeurIPS 2017), pp. 4766-4777",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf",
+    "topic": "Explainability (SHAP)",
+    "relevance": "Reference explainer against which any resource-aware / proxy explanation strategy in this project would be evaluated for fidelity (planned, not yet executed).",
+    "novelty_threat": "SHAP itself is not resource-aware and is not evaluated here for on-device / TinyML deployment cost, drift-stability, or physical energy — this project's resource-aware angle is distinct."
+  },
+  {
+    "id": "ribeiro2016lime",
+    "authors": "Ribeiro, M. T., Singh, S., Guestrin, C.",
+    "title": "\"Why Should I Trust You?\": Explaining the Predictions of Any Classifier",
+    "year": 2016,
+    "venue": "Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD 2016)",
+    "url": "https://ucinlp.github.io/files/papers/lime-naacl16demo.pdf",
+    "topic": "Explainability (LIME)",
+    "relevance": "Alternative local-explanation baseline relevant to the planned fidelity/stability comparison for resource-aware explanations.",
+    "novelty_threat": "Same as SHAP: not evaluated for TinyML resource constraints or drift-stability in the original work."
+  },
+  {
+    "id": "sanchez-iborra2020tinyml",
+    "authors": "Sanchez-Iborra, R., Skarmeta, A. F.",
+    "title": "TinyML-Enabled Frugal Smart Objects: Challenges and Opportunities",
+    "year": 2020,
+    "venue": "IEEE Circuits and Systems Magazine, 20(3), pp. 4-18",
+    "url": "https://portalinvestigacion.um.es/documentos/63b0d80c0f8bcd1826cfe87a?lang=en",
+    "topic": "TinyML",
+    "relevance": "Survey framing for the TinyML deployment constraints (Flash, SRAM, latency, energy) this project targets for the nRF52840 / Cortex-M4F stage.",
+    "novelty_threat": "Surveys general TinyML deployment, not sensor-drift-aware models or on-device explanation cost — this project's drift + XAI + hardware combination is not covered."
+  }
+]
