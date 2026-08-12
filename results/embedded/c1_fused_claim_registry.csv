@@ -1,0 +1,4 @@
+claim_id,future_experiment_id,claim,initial_status,required_evidence
+C-EMBED-C1-FUSED-01,EXP-EMBED-C1-FUSED-EQUIV-001,Raw-input FP32 affine C1 reproduces scores and probabilities within prospectively frozen limits.,UNSUPPORTED,parameter integrity plus score/probability criteria
+C-EMBED-C1-FUSED-02,EXP-EMBED-C1-FUSED-EQUIV-001,Fused FP32 C1 preserves 100% golden and boundary decisions.,UNSUPPORTED,100% golden and boundary agreement
+C-EMBED-C1-FUSED-XAI-01,SEPARATE_AFTER_FUSED_INFERENCE,Baseline-preserving raw-domain C1 local contributions reproduce Stage-09 explanations.,UNSUPPORTED,separate prospective XAI equivalence experiment

@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-EMBED-C1-PREPROC-REPAIR-001",
+  "compiler": "ziglang 0.16.0",
+  "flags": "-O2 -std=c11 -fno-fast-math -ffp-contract=off",
+  "build_command": "C:\\Users\\arun_\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -m ziglang cc -O2 -std=c11 -fno-fast-math -ffp-contract=off -IC:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\experimental\\c1_preprocessing_repair -IC:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1 C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\experimental\\c1_preprocessing_repair\\harness.c C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\experimental\\c1_preprocessing_repair\\repair_candidates.c C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1\\model_c1.c -o C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\experimental\\c1_preprocessing_repair\\c1_repair_host.exe -lm",
+  "scope": "HOST_FP32_REPAIR",
+  "mcu_execution": "NOT_EXECUTED",
+  "timestamp": "2026-08-12T14:43:15.369690+00:00"
+}

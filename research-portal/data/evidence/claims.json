@@ -297,5 +297,31 @@
     "figure": "",
     "git_commit": "7ec127ee565c44260e33746bea1b2ec37cdfb40b",
     "status": "UNSUPPORTED"
+  },
+  {
+    "claim_id": "C-EMBED-C1-REPAIR-01",
+    "candidate_claim": "At least one prospectively defined all-FP32 explicit StandardScaler representation satisfies all frozen C1 criteria.",
+    "experiment_id": "EXP-EMBED-C1-PREPROC-REPAIR-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "2c7c70f2b7f099f68bfa4928fbbb1b841372cca6b899489c17c3293530e75e87",
+    "metric": "all_frozen_mandatory_criteria",
+    "result_artifact": "results/embedded/stage14r_claim_evaluation.csv",
+    "figure": "",
+    "git_commit": "fe7c519709492351a1827ec64516d31df7065fdb",
+    "status": "UNSUPPORTED"
+  },
+  {
+    "claim_id": "C-EMBED-C1-REPAIR-XAI-01",
+    "candidate_claim": "The selected repaired C1 representation preserves local coefficient explanations within frozen criteria.",
+    "experiment_id": "EXP-EMBED-C1-PREPROC-REPAIR-001",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "2c7c70f2b7f099f68bfa4928fbbb1b841372cca6b899489c17c3293530e75e87",
+    "metric": "all_frozen_mandatory_criteria",
+    "result_artifact": "results/embedded/stage14r_claim_evaluation.csv",
+    "figure": "",
+    "git_commit": "fe7c519709492351a1827ec64516d31df7065fdb",
+    "status": "UNSUPPORTED"
   }
 ]

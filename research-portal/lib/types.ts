@@ -30,6 +30,13 @@ export interface EmbeddedEvidence {
   fp32_claims: Record<string, string>[];
   fp32_storage: Record<string, string>[];
   fp32_manifest: Record<string, string>[];
+  c1_repair_summary: Record<string, string>[];
+  c1_repair_selection: Record<string, string>[];
+  c1_repair_claims: Record<string, string>[];
+  c1_fused_gate: Record<string, string> | null;
+  c1_fused_operations: Record<string, string>[];
+  c1_fused_storage: Record<string, string>[];
+  c1_fused_claims: Record<string, string>[];
   statuses: Record<string, string>;
   artifact_paths: string[];
 }

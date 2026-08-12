@@ -439,5 +439,26 @@
     "metrics_artifact": "results/embedded/stage14_summary.json",
     "model_artifact": "embedded/generated/c1|embedded/generated/c4",
     "notes": "Scientific outcome FAILED: both candidates failed frozen preprocessing criteria despite 100% golden and boundary decisions. No quantization or MCU execution."
+  },
+  {
+    "experiment_id": "EXP-EMBED-C1-PREPROC-REPAIR-001",
+    "timestamp": "2026-08-12T14:42:43.860128+00:00",
+    "research_question": "Can prospectively defined all-FP32 explicit StandardScaler arithmetic repair C1 under unchanged equivalence criteria?",
+    "protocol": "FROZEN_STAGE14R_C1_EXPLICIT_PREPROCESSING_REPAIR",
+    "model": "MODEL-C1",
+    "representation": "P0_P1_P2_P3_P4_ALL_FP32_EXPLICIT_STANDARDIZATION",
+    "train_batches": "NONE",
+    "validation_batches": "GOLDEN_AND_BOUNDARY",
+    "test_batches": "2,6,10",
+    "seed": "DETERMINISTIC",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "2c7c70f2b7f099f68bfa4928fbbb1b841372cca6b899489c17c3293530e75e87",
+    "git_commit": "fe7c519709492351a1827ec64516d31df7065fdb",
+    "environment": "results/embedded/stage14r_build_environment.json",
+    "status": "COMPLETED",
+    "metrics_artifact": "results/embedded/stage14r_candidate_summary.csv",
+    "model_artifact": "embedded/experimental/c1_preprocessing_repair",
+    "notes": "Scientific outcome FAILED; no P0-P4 candidate passed universal frozen preprocessing criteria. Stage-14 failure preserved; no C4 modification, quantization, or MCU execution."
   }
 ]

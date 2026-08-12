@@ -119,6 +119,16 @@ def normalized_registries() -> None:
         for r in rows(stage14_manifest):
             path = ROOT / r["artifact_path"]; aid = "ART-" + r["sha256"][:12].upper()
             artifacts[aid] = {"artifact_id": aid, "path": r["artifact_path"], "sha256": r["sha256"], "producer_experiment": "EXP-EMBED-FP32-EQUIV-001", "git_commit": r["git_commit"], "created_at": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()}
+    stage14r_manifest = ROOT / "results/embedded/stage14r_manifest.csv"
+    if stage14r_manifest.exists():
+        for r in rows(stage14r_manifest):
+            path = ROOT / r["artifact_path"]; aid = "ART-" + r["sha256"][:12].upper()
+            artifacts[aid] = {"artifact_id": aid, "path": r["artifact_path"], "sha256": r["sha256"], "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001", "git_commit": git_commit(), "created_at": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()}
+    fused_manifest = ROOT / "results/embedded/c1_fused_protocol_manifest.csv"
+    if fused_manifest.exists():
+        for r in rows(fused_manifest):
+            path = ROOT / r["artifact_path"]; aid = "ART-" + r["sha256"][:12].upper()
+            artifacts[aid] = {"artifact_id": aid, "path": r["artifact_path"], "sha256": r["sha256"], "producer_experiment": "GATE-C1-FUSED-PREPROC-001", "git_commit": git_commit(), "created_at": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()}
     write(REG / "experiments.csv", ["experiment_id", "research_question_id", "hypothesis_id", "stage", "model_id", "protocol", "train_batches", "test_batches", "seed", "dataset_id", "status", "git_commit", "timestamp"], experiments)
     write(REG / "measurements.csv", ["experiment_id", "metric_name", "value", "unit", "ci_low", "ci_high", "n", "model_id", "method", "batch", "k", "measurement_type", "evidence_state", "artifact_id"], measurements)
     write(REG / "artifacts.csv", ["artifact_id", "path", "sha256", "producer_experiment", "git_commit", "created_at"], list(artifacts.values()))

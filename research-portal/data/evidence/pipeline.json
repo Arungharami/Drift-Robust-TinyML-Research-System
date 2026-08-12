@@ -277,6 +277,41 @@
     "notes": "EXP-EMBED-FP32-EQUIV-001 completed with scientific outcome FAILED. C1 and C4 passed score, probability, normalization, golden decision, and boundary decision checks but failed frozen preprocessing criteria. Host-compiled validation only; quantization and MCU work remain unexecuted."
   },
   {
+    "id": "14R",
+    "name": "C1 explicit FP32 preprocessing repair",
+    "status": "FAILED",
+    "notebook": null,
+    "script": "scripts/run_stage14r_c1_repair.py",
+    "artifact_paths": [
+      "results/embedded/stage14r_candidate_summary.csv",
+      "results/embedded/stage14r_error_decomposition.csv",
+      "results/embedded/stage14r_candidate_selection.csv",
+      "results/embedded/stage14r_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14"
+    ],
+    "notes": "EXP-EMBED-C1-PREPROC-REPAIR-001 completed with outcome FAILED. P0 baseline reproduced; P1-P4 all failed unchanged universal preprocessing criteria. C4 remained frozen failed, and quantization, firmware, MCU measurement, and hardware resource claims remain unexecuted."
+  },
+  {
+    "id": "14F-GATE",
+    "name": "C1 fused preprocessing architecture protocol",
+    "status": "PROTOCOL_FROZEN",
+    "notebook": null,
+    "script": "scripts/freeze_c1_fused_protocol.py",
+    "artifact_paths": [
+      "configs/c1_fused_equivalence.yaml",
+      "results/embedded/c1_fused_protocol_manifest.csv",
+      "results/embedded/c1_fused_gate_decision.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14R"
+    ],
+    "notes": "GATE-C1-FUSED-PREPROC-001 frozen. No fused implementation or equivalence output was generated. Future EXP-EMBED-C1-FUSED-EQUIV-001 is authorized separately; quantization and hardware work remain prohibited."
+  },
+  {
     "id": "15",
     "name": "nRF52840 deployment",
     "status": "BLOCKED",

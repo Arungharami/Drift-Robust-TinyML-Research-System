@@ -1,0 +1,2 @@
+gate_id,timestamp,gate_status,performance_experiment_status,future_experiment_id,decision,candidate,xai_scope,quantization,mcu_execution,compiled_flash,mcu_sram,mcu_latency,energy
+GATE-C1-FUSED-PREPROC-001,2026-08-12T14:57:42.129793+00:00,FROZEN,NOT_EXECUTED,EXP-EMBED-C1-FUSED-EQUIV-001,AUTHORIZE EXP-EMBED-C1-FUSED-EQUIV-001,C1-FUSED-F0_ONLY,INFERENCE_FIRST_XAI_SEPARATE,NOT_EXECUTED,NOT_EXECUTED,NOT_MEASURED,NOT_MEASURED,NOT_MEASURED,NOT_MEASURED

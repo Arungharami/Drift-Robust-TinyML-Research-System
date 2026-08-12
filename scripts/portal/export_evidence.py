@@ -332,6 +332,7 @@ def export_embedded() -> dict[str, Any]:
     budget = yaml.safe_load((REPO_ROOT / "configs/nrf52840_resource_budget.yaml").read_text(encoding="utf-8"))
     decision = _read_csv(embedded / "stage13_decision.csv")
     stage14_summary = _read_json(embedded / "stage14_summary.json")
+    stage14r_summary = _read_csv(embedded / "stage14r_candidate_summary.csv")
     return {
         "gate_id": "GATE-EMBED-EXPORT-001",
         "protocol_status": "PROTOCOL_FROZEN" if decision else "NOT_EXECUTED",
@@ -344,8 +345,15 @@ def export_embedded() -> dict[str, Any]:
         "fp32_claims": _read_csv(embedded / "stage14_claim_evaluation.csv"),
         "fp32_storage": _read_csv(embedded / "stage14_export_storage.csv"),
         "fp32_manifest": _read_csv(embedded / "stage14_manifest.csv"),
+        "c1_repair_summary": stage14r_summary,
+        "c1_repair_selection": _read_csv(embedded / "stage14r_candidate_selection.csv"),
+        "c1_repair_claims": _read_csv(embedded / "stage14r_claim_evaluation.csv"),
+        "c1_fused_gate": (_read_csv(embedded / "c1_fused_gate_decision.csv") or [None])[0],
+        "c1_fused_operations": _read_csv(embedded / "c1_fused_operation_analysis.csv"),
+        "c1_fused_storage": _read_csv(embedded / "c1_fused_storage_analysis.csv"),
+        "c1_fused_claims": _read_csv(embedded / "c1_fused_claim_registry.csv"),
         "statuses": {"model_export": "NOT_EXECUTED", "quantization": "NOT_EXECUTED", "firmware": "NOT_EXECUTED", "compiled_flash": "NOT_MEASURED", "sram": "NOT_MEASURED", "mcu_latency": "NOT_MEASURED", "energy": "NOT_MEASURED"},
-        "artifact_paths": ["docs/embedded/STAGE13_EMBEDDED_EXPORT_PROTOCOL.md", "configs/embedded_equivalence_protocol.yaml", "results/embedded/stage13_candidate_matrix.csv", "data/manifests/embedded_golden_vectors.csv", "docs/embedded/STAGE14_FP32_EXPORT_EQUIVALENCE.md", "results/embedded/stage14_summary.json", "results/embedded/stage14_manifest.csv"],
+        "artifact_paths": ["docs/embedded/STAGE13_EMBEDDED_EXPORT_PROTOCOL.md", "configs/embedded_equivalence_protocol.yaml", "results/embedded/stage13_candidate_matrix.csv", "data/manifests/embedded_golden_vectors.csv", "docs/embedded/STAGE14_FP32_EXPORT_EQUIVALENCE.md", "results/embedded/stage14_summary.json", "results/embedded/stage14_manifest.csv", "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR.md", "results/embedded/stage14r_candidate_summary.csv", "results/embedded/stage14r_manifest.csv", "docs/embedded/C1_FUSED_PREPROCESSING_ARCHITECTURE.md", "configs/c1_fused_equivalence.yaml", "results/embedded/c1_fused_gate_decision.csv"],
     }
 
 

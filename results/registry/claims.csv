@@ -22,3 +22,5 @@ C-XAI-COST-04,"No single method dominates simultaneously on fidelity, stability,
 C-EMBED-FP32-01,MODEL-C1 standalone FP32 implementation reproduces the frozen reference within all Stage-13 criteria.,UNSUPPORTED,all_preregistered_mandatory_criteria,results/embedded/stage14_claim_evaluation.csv
 C-EMBED-FP32-02,MODEL-C4 standalone FP32 implementation reproduces the frozen reference within all Stage-13 criteria.,UNSUPPORTED,all_preregistered_mandatory_criteria,results/embedded/stage14_claim_evaluation.csv
 C-EMBED-FP32-XAI-01,MODEL-C1 local coefficient explanation is reproduced within separately frozen explanation criteria.,UNSUPPORTED,all_preregistered_mandatory_criteria,results/embedded/stage14_claim_evaluation.csv
+C-EMBED-C1-REPAIR-01,At least one prospectively defined all-FP32 explicit StandardScaler representation satisfies all frozen C1 criteria.,UNSUPPORTED,all_frozen_mandatory_criteria,results/embedded/stage14r_claim_evaluation.csv
+C-EMBED-C1-REPAIR-XAI-01,The selected repaired C1 representation preserves local coefficient explanations within frozen criteria.,UNSUPPORTED,all_frozen_mandatory_criteria,results/embedded/stage14r_claim_evaluation.csv

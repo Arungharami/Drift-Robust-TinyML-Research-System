@@ -1,0 +1,4 @@
+architecture,scaler_subtractions,scaler_divisions,classifier_multiplications,classifier_accumulations,bias_additions,total_primary_arithmetic,runtime_prediction_constants,transformed_buffer_elements,measurement_type
+EXPLICIT_PIPELINE,128,128,768,768,6,1798,1030,128,DERIVED_ANALYTICAL
+C1-FUSED-F0,0,0,768,768,6,1542,774,0,DERIVED_ANALYTICAL
+FUSED_MINUS_EXPLICIT,-128,-128,0,0,0,-256,-256,-128,DERIVED_ANALYTICAL
