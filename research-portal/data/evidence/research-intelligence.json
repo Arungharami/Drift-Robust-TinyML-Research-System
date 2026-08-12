@@ -344,7 +344,7 @@
         "seed": "DETERMINISTIC",
         "dataset_id": "UCI_GAS_DRIFT_224_V1",
         "status": "EXECUTED",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "timestamp": "2026-08-12T15:33:29.444968+00:00"
       },
       {
@@ -359,8 +359,23 @@
         "seed": "DETERMINISTIC",
         "dataset_id": "UCI_GAS_DRIFT_224_V1",
         "status": "EXECUTED",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "timestamp": "2026-08-12T16:09:22.232629+00:00"
+      },
+      {
+        "experiment_id": "EXP-MCU-C1-FP32-PORT-001",
+        "research_question_id": "RQ9",
+        "hypothesis_id": "H9",
+        "stage": "15",
+        "model_id": "MODEL-C1",
+        "protocol": "PHYSICAL_NRF52840_FP32_PORT",
+        "train_batches": "NONE",
+        "test_batches": "GOLDEN_BOUNDARY_XAI",
+        "seed": "DETERMINISTIC",
+        "dataset_id": "UCI_GAS_DRIFT_224_V1",
+        "status": "BLOCKED",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "timestamp": "2026-08-12T21:13:01.735182+00:00"
       }
     ],
     "measurements": [
@@ -22123,7 +22138,7 @@
         "path": "results/xai/stage10_fidelity_summary.csv",
         "sha256": "34ec1788f82b8850a101e21e38ce73f91c5f9a9e89933df05e95bd360a84751a",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:07:09.057105+00:00"
       },
       {
@@ -22131,7 +22146,7 @@
         "path": "results/xai/stage11_stability_summary.csv",
         "sha256": "1c4a27d9a9974a56a0e89dfa6a6c74ce2670702c3a5b5e3398681be063c1af23",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:12.959217+00:00"
       },
       {
@@ -22139,7 +22154,7 @@
         "path": "results/xai/stage12_latency_summary.csv",
         "sha256": "3018b6c8b0fd81312eb95c7ad1563dc2308a9d8bf0fa6dc92b68e9805e10e4fd",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:03:08.034889+00:00"
       },
       {
@@ -22155,7 +22170,7 @@
         "path": "results/embedded/stage14r_candidate_summary.csv",
         "sha256": "115ca2ad827ff36ea3a11b79ad81e7eb9b05113c6e92889ea3f08f049b83dcff",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.367905+00:00"
       },
       {
@@ -22163,7 +22178,7 @@
         "path": "results/xai/stage10_fidelity_global.csv",
         "sha256": "a0370400e81bfbe51e9ba19979702a958fc5d6114cd6006cb0c0cba6143336ec",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:06:56.632069+00:00"
       },
       {
@@ -22171,7 +22186,7 @@
         "path": "results/xai/stage10_fidelity_local.csv",
         "sha256": "7329c862cc38e4908329fcbfc9f3a7ec2f130bb218218b2087b688bc8b0104dd",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:06:56.649069+00:00"
       },
       {
@@ -22179,7 +22194,7 @@
         "path": "results/xai/stage10_fidelity_sensor_groups.csv",
         "sha256": "bc41cf69bf8e866149091e83c426d60ed88fab4cc49bae29e9f51a0fe9a2e040",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:06:56.651068+00:00"
       },
       {
@@ -22187,7 +22202,7 @@
         "path": "results/xai/stage10_fidelity_feature_families.csv",
         "sha256": "3a2c0b24e329456f3c74cf73402fa4fba44512da46d8ab3696acc41ac77f718c",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:06:56.653069+00:00"
       },
       {
@@ -22195,7 +22210,7 @@
         "path": "results/xai/stage10_random_controls.csv",
         "sha256": "b0da5fec8bece46ca8d1e2f3b42aec38aa7c167c50a2c36b8bf530a304cf353c",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:06:56.938067+00:00"
       },
       {
@@ -22203,7 +22218,7 @@
         "path": "results/xai/stage10_bootstrap_ci.csv",
         "sha256": "6cfea5f68ac26be86864d5036b5555f37aebac6b0065b246b44c6599f541d3ac",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:07:09.047137+00:00"
       },
       {
@@ -22211,7 +22226,7 @@
         "path": "results/xai/stage10_input_manifest.csv",
         "sha256": "b07f87b05f8afa464417b7ecd21a376e534dcd484bb87232e93126671688b464",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T20:58:08.371762+00:00"
       },
       {
@@ -22219,7 +22234,7 @@
         "path": "results/figures/fid_01_deletion_vs_random.png",
         "sha256": "5cf9b63b42ff88701c2bfa74ea6061a24aef9fe0b0f076199a459e309096f184",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.235830+00:00"
       },
       {
@@ -22227,7 +22242,7 @@
         "path": "results/figures/fid_01_deletion_vs_random.svg",
         "sha256": "e3d82616b14e8af619ca30264ecc1a0dde81629ab5f7c6c0a46ea16f8251e4cf",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.368827+00:00"
       },
       {
@@ -22235,7 +22250,7 @@
         "path": "results/figures/sources/fid_01_deletion_vs_random.csv",
         "sha256": "e8603fd704d0b5381192e9002fc1185f24f666aee230d1be0edf76e75c4b06de",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:04.052017+00:00"
       },
       {
@@ -22243,7 +22258,7 @@
         "path": "results/figures/fid_02_chronological_fidelity.png",
         "sha256": "674fe8be7dc5b0bf586c6f89280e1185628dd0b1dee13e7072ad6dc2efd4bbc0",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.687338+00:00"
       },
       {
@@ -22251,7 +22266,7 @@
         "path": "results/figures/fid_02_chronological_fidelity.svg",
         "sha256": "c87a233865a9149a41fa5a96e53df7ce96d70197b1f4099762e4b8247bab085b",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.775340+00:00"
       },
       {
@@ -22259,7 +22274,7 @@
         "path": "results/figures/sources/fid_02_chronological_fidelity.csv",
         "sha256": "029eb39332c15197b281406faadf90c85eef91a181c1edcdd6f4d78b7cf99783",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.388830+00:00"
       },
       {
@@ -22267,7 +22282,7 @@
         "path": "results/figures/fid_03_error_conditioned.png",
         "sha256": "9bf43678190702a63ddc7cfe2bf5cd9ae0821081904f0b8219f2fbd9cba2cd9f",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:13.121338+00:00"
       },
       {
@@ -22275,7 +22290,7 @@
         "path": "results/figures/fid_03_error_conditioned.svg",
         "sha256": "a981d05d6b0e93228be53398f51af3dfcbf73dd86dbebda95fb4a60c05e4a751",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:13.196343+00:00"
       },
       {
@@ -22283,7 +22298,7 @@
         "path": "results/figures/sources/fid_03_error_conditioned.csv",
         "sha256": "3518538bb5426fa03d355e9567b8711bd7a64c657845e66459635b805ebd3260",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:12.798338+00:00"
       },
       {
@@ -22291,7 +22306,7 @@
         "path": "results/figures/fid_04_sensor_groups.png",
         "sha256": "3190775d752df5a1ee04c10e87601a33e9300924d069b9835b7d277c30fabb25",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:13.504338+00:00"
       },
       {
@@ -22299,7 +22314,7 @@
         "path": "results/figures/fid_04_sensor_groups.svg",
         "sha256": "5180f37da060fcffda2044230ffa07ba470e3d7f164fde3c7bfb453e0451760d",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:13.592338+00:00"
       },
       {
@@ -22307,7 +22322,7 @@
         "path": "results/figures/sources/fid_04_sensor_groups.csv",
         "sha256": "dc96057b43625f3e68e577b729ba81c03800c121ca5ec515c2f2054e720189b7",
         "producer_experiment": "EXP-XAI-FIDELITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:11:13.210340+00:00"
       },
       {
@@ -22315,7 +22330,7 @@
         "path": "results/xai/stage11_global_rank_stability.csv",
         "sha256": "dd4af02e0a5fc7e2a7e4475d5c709e4595e4d71b011b2cc86944d56ce85a68a2",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.589101+00:00"
       },
       {
@@ -22323,7 +22338,7 @@
         "path": "results/xai/stage11_global_magnitude_stability.csv",
         "sha256": "366e7f3c83f763dc61dc151e71f3816b29bf388735e557b30ee9989d16048a4c",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.590100+00:00"
       },
       {
@@ -22331,7 +22346,7 @@
         "path": "results/xai/stage11_direction_stability.csv",
         "sha256": "6e749a730b9f4d2fe5de2acb37ba98ddf3210a860223a7703467927b01ec3beb",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.593100+00:00"
       },
       {
@@ -22339,7 +22354,7 @@
         "path": "results/xai/stage11_sensor_stability.csv",
         "sha256": "759f07d94b7518402219597c5b14bebe392c6a57e0231e9f0f6573f2204840e7",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.594100+00:00"
       },
       {
@@ -22347,7 +22362,7 @@
         "path": "results/xai/stage11_feature_family_stability.csv",
         "sha256": "c75727d3c511a26d0f1b9b8c7309995ae04712e47605c0143061fa439357bc68",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.595101+00:00"
       },
       {
@@ -22355,7 +22370,7 @@
         "path": "results/xai/stage11_local_neighbor_stability.csv",
         "sha256": "0a16ab9f6922c49cf5a9fdb940d8cdadcd8ac72856ba89b67a6360cde0bc775e",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.602100+00:00"
       },
       {
@@ -22363,7 +22378,7 @@
         "path": "results/xai/stage11_cross_batch_matches.csv",
         "sha256": "3308003ee4a8255b4404a6829af1c4ca208bf413d9c088491d915a700ecaa166",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.604100+00:00"
       },
       {
@@ -22371,7 +22386,7 @@
         "path": "results/xai/stage11_cross_batch_stability.csv",
         "sha256": "ad85859a9d07852cbb1640866e71514952c3989097a323b6fedec2420b2c1a05",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.607099+00:00"
       },
       {
@@ -22379,7 +22394,7 @@
         "path": "results/xai/stage11_relative_stability.csv",
         "sha256": "acedaaac754bdb28c7a3e82bf91fecf972f7f287e1fa3d8a864244688eb2a4cd",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:04.609099+00:00"
       },
       {
@@ -22387,7 +22402,7 @@
         "path": "results/xai/stage11_fidelity_stability_link.csv",
         "sha256": "f85e0e72f31d21a7517ec6c13314465ca3440ecb5edd72eaa779a17253e8ad8a",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:07.538220+00:00"
       },
       {
@@ -22395,7 +22410,7 @@
         "path": "results/xai/stage11_bootstrap_ci.csv",
         "sha256": "c68cfae3888795e370ee94a9d959bd5c38c122de1aa5257d47e9267108e95580",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:12.946189+00:00"
       },
       {
@@ -22403,7 +22418,7 @@
         "path": "results/xai/stage11_input_manifest.csv",
         "sha256": "36a41d4e7a007201d3b42ad5daf1f16dbee041c6dcfc0fef4c07b8b005bbbb07",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:34:54.498204+00:00"
       },
       {
@@ -22411,7 +22426,7 @@
         "path": "results/figures/stab_01_topk_overlap.png",
         "sha256": "b987e80dc9f35d6d471f976042ea870cb4d583a74d9b54801b4c7fc2a082876b",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.439762+00:00"
       },
       {
@@ -22419,7 +22434,7 @@
         "path": "results/figures/stab_01_topk_overlap.svg",
         "sha256": "814b693e57c793df08eeab87c4f3a2bd22892aaea750b20a5d3b841467a068d7",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.515798+00:00"
       },
       {
@@ -22427,7 +22442,7 @@
         "path": "results/figures/sources/stab_01_topk_overlap.csv",
         "sha256": "327e8afaa1c452768771b0f4fecc63028e5c017efe37a86ba9868bcf02200737",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.055765+00:00"
       },
       {
@@ -22435,7 +22450,7 @@
         "path": "results/figures/stab_02_rank_stability.png",
         "sha256": "bc2313270b8fbf6a2799a052dde9de37595fc0935f58eeb8f2fd805a347d0383",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.797190+00:00"
       },
       {
@@ -22443,7 +22458,7 @@
         "path": "results/figures/stab_02_rank_stability.svg",
         "sha256": "07575ed6a0c6198ce11c70933057a0d029018eb24ac79dd7496b56f863241f9f",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.864190+00:00"
       },
       {
@@ -22451,7 +22466,7 @@
         "path": "results/figures/sources/stab_02_rank_stability.csv",
         "sha256": "9d6ffe00c5140255a1274ee032704d72f298a3469ee88df13f30cb8808f225f5",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.535683+00:00"
       },
       {
@@ -22459,7 +22474,7 @@
         "path": "results/figures/stab_03_sensor_stability.png",
         "sha256": "57868074d78b288db138b60a714ed9252615a90b1ae6f6946bf58829ada8c8a9",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.072223+00:00"
       },
       {
@@ -22467,7 +22482,7 @@
         "path": "results/figures/stab_03_sensor_stability.svg",
         "sha256": "90473c08d530469582bce118548d80feb0455e9f21102150a6c9f32e4677c3c4",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.117223+00:00"
       },
       {
@@ -22475,7 +22490,7 @@
         "path": "results/figures/sources/stab_03_sensor_stability.csv",
         "sha256": "288b8c608764cd3f5aa8c29b8c14c0880f65e9253b7c88254fb19f7ffbbc4127",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:14.873190+00:00"
       },
       {
@@ -22483,7 +22498,7 @@
         "path": "results/figures/stab_04_family_evolution.png",
         "sha256": "101e77117b4e0493b9b74d7e0974e0b3e7eb3fc7272c8afddc6b6f3d20b20b9c",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.359193+00:00"
       },
       {
@@ -22491,7 +22506,7 @@
         "path": "results/figures/stab_04_family_evolution.svg",
         "sha256": "e0ac99ba8815beb0af15e9cb8afe51f301a3081b00d08880b4b99af0ffd71672",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.419194+00:00"
       },
       {
@@ -22499,7 +22514,7 @@
         "path": "results/figures/sources/stab_04_family_evolution.csv",
         "sha256": "695fbd2d7b0a725f4ad30f4052e7e66c68b728bd2a47078dc6801f3326a26a7f",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.127190+00:00"
       },
       {
@@ -22507,7 +22522,7 @@
         "path": "results/figures/stab_05_explanation_vs_input.png",
         "sha256": "35414e09d1a95ac40c258784f5291c04a2d1363e717360a992b76b0f9203a554",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.660212+00:00"
       },
       {
@@ -22515,7 +22530,7 @@
         "path": "results/figures/stab_05_explanation_vs_input.svg",
         "sha256": "78cc2d278bd7eece70d40b28d1e5da6bf2e367e790135040070156a0e3020b2f",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.728215+00:00"
       },
       {
@@ -22523,7 +22538,7 @@
         "path": "results/figures/sources/stab_06_explanation_vs_performance.csv",
         "sha256": "36aa1011db6388ae6304d0475f9de73f6abc42ac81d769939fc7d3380e123447",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.738216+00:00"
       },
       {
@@ -22531,7 +22546,7 @@
         "path": "results/figures/stab_06_explanation_vs_performance.png",
         "sha256": "21eb772d407e981d58624fb483eadc8656178f89e9bcc7f4e09b3ab9d8acf8fc",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:15.967245+00:00"
       },
       {
@@ -22539,7 +22554,7 @@
         "path": "results/figures/stab_06_explanation_vs_performance.svg",
         "sha256": "079da747b7a4b1b82db178e6fdc17bf923aca1d5c07ccdff4264e471a6307ce7",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.035245+00:00"
       },
       {
@@ -22547,7 +22562,7 @@
         "path": "results/figures/stab_07_error_conditioned.png",
         "sha256": "21bb93fb053e6bd9a9d7fb38f67dc45c0e0e8db7da6d4349782c9a2822fe5679",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.499213+00:00"
       },
       {
@@ -22555,7 +22570,7 @@
         "path": "results/figures/stab_07_error_conditioned.svg",
         "sha256": "b22495c08b564fe6b3df18529888a4137068ebf83ebab32b71812b9c96986c53",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.657214+00:00"
       },
       {
@@ -22563,7 +22578,7 @@
         "path": "results/figures/sources/stab_07_error_conditioned.csv",
         "sha256": "67e929d4e12251649a4bc24fbdb1ca0a4c2b7d8a3be701fe8a86accf510d1bc2",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.045214+00:00"
       },
       {
@@ -22571,7 +22586,7 @@
         "path": "results/figures/stab_08_fidelity_vs_stability.png",
         "sha256": "3e6fb3246c6a44d730007f53991443757fd3f4df5ed01696d009a2c67e597460",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.905213+00:00"
       },
       {
@@ -22579,7 +22594,7 @@
         "path": "results/figures/stab_08_fidelity_vs_stability.svg",
         "sha256": "bf248f70d3d435404e2ad9eb3d1962e779419b445c8555f1f737230de6281c81",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.967215+00:00"
       },
       {
@@ -22587,7 +22602,7 @@
         "path": "results/figures/sources/stab_08_fidelity_vs_stability.csv",
         "sha256": "0f675c2f3dd521aab118c908298560d2d3c3180deef9f0a3498541d51486cca5",
         "producer_experiment": "EXP-XAI-STABILITY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T21:35:16.667215+00:00"
       },
       {
@@ -22595,7 +22610,7 @@
         "path": "results/xai/stage12_raw_timings.csv",
         "sha256": "f4afe852c4a7b3cc4dd1cae6811563d52150999f4a61cc94d7a80a84b5c250fa",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:03:07.735609+00:00"
       },
       {
@@ -22603,7 +22618,7 @@
         "path": "results/xai/stage12_baseline_inference.csv",
         "sha256": "1ada8a57ad3ac7876811feda80b80e28c7957403463c6929cafa93cb119bb249",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:11:17.161768+00:00"
       },
       {
@@ -22611,7 +22626,7 @@
         "path": "results/xai/stage12_global_latency.csv",
         "sha256": "f6c4ee7c54c4f7510eec82b2b0c0ed13ed7899b527148daf0ae8492dcdbf77c3",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:11:17.182827+00:00"
       },
       {
@@ -22619,7 +22634,7 @@
         "path": "results/xai/stage12_local_latency.csv",
         "sha256": "9c4389f549adaaa3e8961d776a29956fa3b37cce475b5d18ddbeb81554df26a9",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:11:17.193734+00:00"
       },
       {
@@ -22627,7 +22642,7 @@
         "path": "results/xai/stage12_operation_counts.csv",
         "sha256": "25bb60b5462fff54dd0b9e5870a4931a620151763349b053317ed79cb7738ff3",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:03:08.048632+00:00"
       },
       {
@@ -22635,7 +22650,7 @@
         "path": "results/xai/stage12_bootstrap_ci.csv",
         "sha256": "da40f0a154931febaa2af49b3ff5995872dc18e66f645b85c44ae608c52b7380",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:03:14.902947+00:00"
       },
       {
@@ -22643,7 +22658,7 @@
         "path": "results/xai/stage12_fidelity_stability_cost.csv",
         "sha256": "7ea41414ffe8f7a7c777c242f0121282a9afb7ab160cd0cb0b2fbb88694a9d7d",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:03:14.916363+00:00"
       },
       {
@@ -22651,7 +22666,7 @@
         "path": "results/xai/stage12_input_manifest.csv",
         "sha256": "b9e948a9dee23dfe8c5249034d53a1308c5e7b93002d4f62f486b57f4204cf16",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T22:58:35.443469+00:00"
       },
       {
@@ -22659,7 +22674,7 @@
         "path": "results/xai/stage12_host_environment.json",
         "sha256": "302d5b15d187e839d8279e738b03273eca895e6b530f3092f463484f06fc3144",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T22:58:35.504005+00:00"
       },
       {
@@ -22667,7 +22682,7 @@
         "path": "results/xai/stage12_thread_environment.json",
         "sha256": "f34c73cfa8398c972ed37d7f2ef951c32e9e3d671ed82165fa7bcf36f9f0800e",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T22:58:35.571133+00:00"
       },
       {
@@ -22675,7 +22690,7 @@
         "path": "results/xai/stage12_ablation_equivalence.csv",
         "sha256": "723e392771718fc514eecb744690ac02d94248a701f4e9a6564114664fffebc6",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:11:22.942683+00:00"
       },
       {
@@ -22683,7 +22698,7 @@
         "path": "results/xai/stage12_claim_evaluation.csv",
         "sha256": "abd6bcfe2ab2f76e9815ef3bf50d36f0dbc6fbf1d41fd01161c78633583c0bc8",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:11:23.169376+00:00"
       },
       {
@@ -22691,7 +22706,7 @@
         "path": "results/figures/sources/lat_01_baseline_host_inference.csv",
         "sha256": "93eb8a7a88a3db655c7a60eb80cdc7ea1eac3d01b7068374f0d4547f13fd7b84",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:11.231363+00:00"
       },
       {
@@ -22699,7 +22714,7 @@
         "path": "results/figures/lat_01_baseline_host_inference.png",
         "sha256": "5af10af19f55d9c2e5a062916ab2144b8169d7357fafa289ef7416f7878254de",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.230422+00:00"
       },
       {
@@ -22707,7 +22722,7 @@
         "path": "results/figures/lat_01_baseline_host_inference.svg",
         "sha256": "4c21af47af509532a063d3d7fb78ca640c93e65251e55fad3b9f1fb2c61cbb37",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.309744+00:00"
       },
       {
@@ -22715,7 +22730,7 @@
         "path": "results/figures/sources/lat_02_local_explanation.csv",
         "sha256": "b457b42b1afc61059cfe8de704f9c5124d298ad83c38805016676173e9ca5c57",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.332004+00:00"
       },
       {
@@ -22723,7 +22738,7 @@
         "path": "results/figures/lat_02_local_explanation.png",
         "sha256": "0fa8386f52a1f67129e6a142ce2b23de45c8b547d14b27d9e929ba7b1fe7a3b6",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.768036+00:00"
       },
       {
@@ -22731,7 +22746,7 @@
         "path": "results/figures/lat_02_local_explanation.svg",
         "sha256": "22629a3dbef073ca18d660f0bbe3ba5c483753ff86401b0be4b7e6b314e51bb5",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.901833+00:00"
       },
       {
@@ -22739,7 +22754,7 @@
         "path": "results/figures/sources/lat_03_local_overhead.csv",
         "sha256": "9c961cd79a57529a9a2d80b88b49f171b573b8813f6e458cbd588f0727014f57",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:12.913791+00:00"
       },
       {
@@ -22747,7 +22762,7 @@
         "path": "results/figures/lat_03_local_overhead.png",
         "sha256": "ccad58234762b13fa418a6a758c8cbb3185e86d30e42a374fce1253b0a8024f1",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.207467+00:00"
       },
       {
@@ -22755,7 +22770,7 @@
         "path": "results/figures/lat_03_local_overhead.svg",
         "sha256": "8b334810654510bd5a5578c87c1c2c70bb47e9a1ad691eb8901e51b9b6859ca9",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.334643+00:00"
       },
       {
@@ -22763,7 +22778,7 @@
         "path": "results/figures/sources/lat_04_global_total.csv",
         "sha256": "98d01f89156f87a8df15ab689f819f7173dd29a7eb7affe14403b23f1fef2e09",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.345255+00:00"
       },
       {
@@ -22771,7 +22786,7 @@
         "path": "results/figures/lat_04_global_total.png",
         "sha256": "7636befdee57e19352351937878d245339fe88a07e48fd8dbcf14cadd21864a0",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.748007+00:00"
       },
       {
@@ -22779,7 +22794,7 @@
         "path": "results/figures/lat_04_global_total.svg",
         "sha256": "6a7d02f69dcde3c54bee9e4502d815d93940e0014d72c4796338c992cca9ddc6",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.912586+00:00"
       },
       {
@@ -22787,7 +22802,7 @@
         "path": "results/figures/sources/lat_05_computational_counts.csv",
         "sha256": "c4e988704dd5f4948276394246882d8ae5a034f454f81c0f3cb65dd1d7e88ddb",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:13.928234+00:00"
       },
       {
@@ -22795,7 +22810,7 @@
         "path": "results/figures/lat_05_computational_counts.png",
         "sha256": "2e7cd9554f589eb5102c2311535f625e763a6efc8f1dd3aa083ad8b84c665982",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.253776+00:00"
       },
       {
@@ -22803,7 +22818,7 @@
         "path": "results/figures/lat_05_computational_counts.svg",
         "sha256": "5a1982a05bff94255dbb9dfcbb1c51aaf140d7d4494c3e933a9f9fd987126455",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.365468+00:00"
       },
       {
@@ -22811,7 +22826,7 @@
         "path": "results/figures/sources/lat_06_host_latency_distribution.csv",
         "sha256": "4d2fee550af97011031656ac914143e74fa4a7c11cc624788ca838a701cbff89",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.396983+00:00"
       },
       {
@@ -22819,7 +22834,7 @@
         "path": "results/figures/lat_06_host_latency_distribution.png",
         "sha256": "c6f73472b14fa6e24eb11b004e4589d8bd96d209abefc9108aaea793f24b7bcd",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.730344+00:00"
       },
       {
@@ -22827,7 +22842,7 @@
         "path": "results/figures/lat_06_host_latency_distribution.svg",
         "sha256": "83088f2ae7d6064cb961157d65693b8bb909893eac08405f1e038b45967af12c",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.854992+00:00"
       },
       {
@@ -22835,7 +22850,7 @@
         "path": "results/figures/sources/lat_07_fidelity_vs_host_cost.csv",
         "sha256": "35a8497750eb53e2becd27d2a16d6e25bf5240489cc86cbe4b4392ecb62dc784",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:14.867216+00:00"
       },
       {
@@ -22843,7 +22858,7 @@
         "path": "results/figures/lat_07_fidelity_vs_host_cost.png",
         "sha256": "d72e6603d8a8bfb089e043eed99e56af1652f1bfa40db2a3f0d6db0e481736ed",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.189693+00:00"
       },
       {
@@ -22851,7 +22866,7 @@
         "path": "results/figures/lat_07_fidelity_vs_host_cost.svg",
         "sha256": "ac32cbe26cded9add27589a4065cf9ec68fb1e9a8aa3585d44fe18f81494401d",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.311693+00:00"
       },
       {
@@ -22859,7 +22874,7 @@
         "path": "results/figures/sources/lat_08_stability_vs_host_cost.csv",
         "sha256": "228bde216d9bd00878fe8185456015091042fc8d6af2f6f0a458b419cedda680",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.327642+00:00"
       },
       {
@@ -22867,7 +22882,7 @@
         "path": "results/figures/lat_08_stability_vs_host_cost.png",
         "sha256": "9a69c202de6b94fe20957eda9df396e4de28777a8816c802b299d400cb8a3158",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.556689+00:00"
       },
       {
@@ -22875,7 +22890,7 @@
         "path": "results/figures/lat_08_stability_vs_host_cost.svg",
         "sha256": "4c73fb318c4e569ccc62146a5a4073bd15cbbc8b6d43d8f73a44cf2e2b7b2568",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.633843+00:00"
       },
       {
@@ -22883,7 +22898,7 @@
         "path": "results/figures/sources/lat_09_pre_hardware_evidence_map.csv",
         "sha256": "f3b1ba510833b9a6ca4cbf853e58b21cc941fe4e63f34e01f8d6782a83e4d742",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:15.642843+00:00"
       },
       {
@@ -22891,7 +22906,7 @@
         "path": "results/figures/lat_09_pre_hardware_evidence_map.png",
         "sha256": "3004fcb3ab12b84cc9d0f6c03b52d969574f190908c0be2209cd6b589e00ee54",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:16.027390+00:00"
       },
       {
@@ -22899,7 +22914,7 @@
         "path": "results/figures/lat_09_pre_hardware_evidence_map.svg",
         "sha256": "94f917f0dde4767179fd0071718cf916b4d02e7d563d8fa35e4cde005f8e8059",
         "producer_experiment": "EXP-XAI-LATENCY-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-11T23:07:16.198213+00:00"
       },
       {
@@ -23019,7 +23034,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/c1_repair_vectors.csv",
         "sha256": "048cab837006249a489793a7c74fab27bc98346b62c4da1a3b1c19e4d464f743",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.082888+00:00"
       },
       {
@@ -23195,7 +23210,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/repair_candidates.h",
         "sha256": "1826759248265de6d1f07035e1f740555fefa511dc3bafb49c35f362fef80ce1",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.391734+00:00"
       },
       {
@@ -23203,7 +23218,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/repair_candidates.c",
         "sha256": "8671a7563c8da1648101375492c5a69a4d6c38adee7e0586319c09ced8eb929d",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.391734+00:00"
       },
       {
@@ -23211,7 +23226,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/harness.c",
         "sha256": "e109b9487c06946acaeb192d95eee0fe9e9fffb0d6db363acc7fc720f0fb0e90",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:38:11.016678+00:00"
       },
       {
@@ -23219,7 +23234,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/c1_repair_host.exe",
         "sha256": "0163cabfdf4b7ecea9f3cc1c1dc81580fbf06144fd84cb70e2a1c0f3b0b72bcf",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.245423+00:00"
       },
       {
@@ -23227,7 +23242,7 @@
         "path": "embedded/experimental/c1_preprocessing_repair/c1_repair_outputs_repeat.csv",
         "sha256": "c1e05514a389bfc66403fa324325da9c9d95bc846c35e2cdcdf123351db22a21",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.382216+00:00"
       },
       {
@@ -23235,7 +23250,7 @@
         "path": "configs/c1_fp32_preprocessing_repair.yaml",
         "sha256": "2c7c70f2b7f099f68bfa4928fbbb1b841372cca6b899489c17c3293530e75e87",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:37:48.301807+00:00"
       },
       {
@@ -23243,7 +23258,7 @@
         "path": "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR_PROTOCOL.md",
         "sha256": "2467e027e476177d8bf2b8b41282b96d800b1cc22327f663bee7ce445bc3a77c",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:37:48.301807+00:00"
       },
       {
@@ -23251,7 +23266,7 @@
         "path": "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR.md",
         "sha256": "37eacfa45f446e39c5ee5ebabb7021040261bb7b2626f737e162de5486d2dabd",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:06.044846+00:00"
       },
       {
@@ -23259,7 +23274,7 @@
         "path": "results/embedded/stage14r_input_manifest.csv",
         "sha256": "5054cb68396fedd067577038935c28502825227d918a57a9d3deada07c21485c",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.035232+00:00"
       },
       {
@@ -23267,7 +23282,7 @@
         "path": "results/embedded/stage14r_error_decomposition.csv",
         "sha256": "1cafe89775c1976b2505f4e70f1bff9e61eebd866494336f3851eaf139b1d88d",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.347025+00:00"
       },
       {
@@ -23275,7 +23290,7 @@
         "path": "results/embedded/stage14r_candidate_constants.csv",
         "sha256": "d51c82c9d654621db61aafbb860cdbfb437ee4f7917e6612249afc73f679a74a",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:14.391734+00:00"
       },
       {
@@ -23283,7 +23298,7 @@
         "path": "results/embedded/stage14r_preprocessing_equivalence.csv",
         "sha256": "220d904fc2020c069cc002c3d46406b10629484e73d9149f7f3e60da19443240",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.119109+00:00"
       },
       {
@@ -23291,7 +23306,7 @@
         "path": "results/embedded/stage14r_output_equivalence.csv",
         "sha256": "9339a059c36b81282eea7662cdf3f66c062da9f2dbfe0ce45c51a8574fd73031",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.144877+00:00"
       },
       {
@@ -23299,7 +23314,7 @@
         "path": "results/embedded/stage14r_boundary_equivalence.csv",
         "sha256": "d15022fde35a2e327307c64350d8f797ddeb948bffe5bf38dea4ce70c70ab5f1",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.147845+00:00"
       },
       {
@@ -23307,7 +23322,7 @@
         "path": "results/embedded/stage14r_xai_equivalence.csv",
         "sha256": "e9b1b2a1ea2151dd904abc81d3e117ca58e87927f44f10facf362a4d86042253",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.343545+00:00"
       },
       {
@@ -23315,7 +23330,7 @@
         "path": "results/embedded/stage14r_complexity.csv",
         "sha256": "7e1973b2953e724a6c6125ece3c0a7bd18c99231e615b313ba4af01895618041",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.362684+00:00"
       },
       {
@@ -23323,7 +23338,7 @@
         "path": "results/embedded/stage14r_candidate_selection.csv",
         "sha256": "517dca2626835821e64d00c915ae86d839a011a5d50d9080ea0fd265fee59e26",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.366165+00:00"
       },
       {
@@ -23331,7 +23346,7 @@
         "path": "results/embedded/stage14r_claim_evaluation.csv",
         "sha256": "446d21a663d91740cfc208066e767d9d688f6b48505b4fe83bcd95bccb129e17",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.367905+00:00"
       },
       {
@@ -23339,7 +23354,7 @@
         "path": "results/embedded/stage14r_build_environment.json",
         "sha256": "cbc9a0f4e9ce095092044414e991788f56271d81bd23501b6ccee1be97227f10",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.369645+00:00"
       },
       {
@@ -23347,7 +23362,7 @@
         "path": "docs/embedded/C1_FUSED_PREPROCESSING_INFERENCE_PROPOSAL.md",
         "sha256": "622de7ceffa1529746a858d218fb016acde7a46bc7ac9de07d9255f24fc016b7",
         "producer_experiment": "EXP-EMBED-C1-PREPROC-REPAIR-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:43:15.367905+00:00"
       },
       {
@@ -23355,7 +23370,7 @@
         "path": "docs/embedded/C1_FUSED_PREPROCESSING_ARCHITECTURE.md",
         "sha256": "c10fd62b8f3af130de4a13e8685f2097b64a68885c1a07a0b8676b4021374f31",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:55:17.696850+00:00"
       },
       {
@@ -23363,7 +23378,7 @@
         "path": "docs/embedded/C1_FUSED_EQUIVALENCE_PROTOCOL.md",
         "sha256": "cc9bbf457103de29e24f75cad6c74d676a2437fc06469f2635d919b6073e0bdd",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:55:17.696850+00:00"
       },
       {
@@ -23371,7 +23386,7 @@
         "path": "configs/c1_fused_equivalence.yaml",
         "sha256": "01661626e8c0843003140d155f2009a27c3fd34cc65ef69b66f5b4fe35ece770",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:55:17.696850+00:00"
       },
       {
@@ -23379,7 +23394,7 @@
         "path": "results/embedded/c1_fused_protocol_input_manifest.csv",
         "sha256": "403932af0c37f07a2e481d6aeb7d3cfcf8d8d0c4b0531575f7ea6b5e50b07e7b",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.121461+00:00"
       },
       {
@@ -23387,7 +23402,7 @@
         "path": "results/embedded/c1_fused_algebraic_spec.csv",
         "sha256": "63651b4d836cfa5f6316cba4ec6c1dfc1c445ca034c017085a7ea1428663cdc4",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.123636+00:00"
       },
       {
@@ -23395,7 +23410,7 @@
         "path": "results/embedded/c1_fused_operation_analysis.csv",
         "sha256": "e22d2630c2b7b54a1247c93f695d0fbc6e2e53e13b52efd5f71f150246b71f55",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.124636+00:00"
       },
       {
@@ -23403,7 +23418,7 @@
         "path": "results/embedded/c1_fused_storage_analysis.csv",
         "sha256": "dbaf01cd78e0afb5710129b6f38df9b83dad8592b5cbd28f12c305a63bf22067",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.126636+00:00"
       },
       {
@@ -23411,7 +23426,7 @@
         "path": "results/embedded/c1_fused_xai_semantics.csv",
         "sha256": "4843f184e7f6eef0e886220596c8804bd030b21044d547bfd3300af37731a585",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.127765+00:00"
       },
       {
@@ -23419,7 +23434,7 @@
         "path": "results/embedded/c1_fused_claim_registry.csv",
         "sha256": "3f701630fa04f7c1bf74d0a7cbf46d01e586daa6d2e85f32fe44058890bedf25",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.128768+00:00"
       },
       {
@@ -23427,7 +23442,7 @@
         "path": "results/embedded/c1_fused_gate_decision.csv",
         "sha256": "60f277b4c2de38f8b23cbffdefa076014eee6cbc818862bbd70f81c518e86b0e",
         "producer_experiment": "GATE-C1-FUSED-PREPROC-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T14:57:42.130774+00:00"
       },
       {
@@ -23435,7 +23450,7 @@
         "path": "docs/embedded/EXP_EMBED_C1_FUSED_EQUIV_001.md",
         "sha256": "92fccefa9c9db86ed73b558899068ed80515eb2349e946eec1cc45fcb312ff45",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:32:23.882219+00:00"
       },
       {
@@ -23443,15 +23458,15 @@
         "path": "embedded/generated/c1_fused/c1_fused_host.exe",
         "sha256": "eaebb803f665903cf04c7ab11f7f8ac92a701b086e2a785288ff1c644aae01c3",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.006657+00:00"
       },
       {
         "artifact_id": "ART-9B105A12CE6F",
         "path": "embedded/generated/c1_fused/inference_c1_fused.c",
         "sha256": "9b105a12ce6fc5da542acd6e239bdfe68248ced1309c005a35f050413ae694df",
-        "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.864189+00:00"
       },
       {
@@ -23459,15 +23474,15 @@
         "path": "embedded/generated/c1_fused/inference_c1_fused.h",
         "sha256": "c1334eeb57edf314b0e79a816c8ccc11f7b6e775c5d01abc5cdbc174c02d37b6",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.864189+00:00"
       },
       {
         "artifact_id": "ART-E5A3A5B685B9",
         "path": "embedded/generated/c1_fused/model_c1_fused.c",
         "sha256": "e5a3a5b685b970c30a9bcb00fbb88a25979ce836201a58bdcafca1ae6afc0184",
-        "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.864189+00:00"
       },
       {
@@ -23475,7 +23490,7 @@
         "path": "embedded/generated/c1_fused/model_c1_fused.h",
         "sha256": "3c977c09b93368dcff8f029e76c9e99283adb6ee6748aa26fa613d5026211951",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.863190+00:00"
       },
       {
@@ -23483,7 +23498,7 @@
         "path": "embedded/generated/c1_fused/outputs_repeat.csv",
         "sha256": "a4386e715cd7e07c4ed05d1adc01e546796f3630acd0848ee5b910f5906ebbb6",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.113981+00:00"
       },
       {
@@ -23491,7 +23506,7 @@
         "path": "embedded/generated/c1_fused/test_harness_c1_fused.c",
         "sha256": "c3ae214ed1a787384aa37154f46adea7862f532cb77766b5ad1dcb526f5a2aeb",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.865189+00:00"
       },
       {
@@ -23499,7 +23514,7 @@
         "path": "embedded/generated/c1_fused/vectors.csv",
         "sha256": "83d3fef747bbd63018dd19ee963650eca065c97b78c6a5d19ba016fccf12bad1",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:28.838004+00:00"
       },
       {
@@ -23507,7 +23522,7 @@
         "path": "results/embedded/c1_fused_boundary_equivalence.csv",
         "sha256": "aa00186b8e42dbc7749ec9d3395a7eacb009545733f0ec05e62560861a071d68",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.384337+00:00"
       },
       {
@@ -23515,7 +23530,7 @@
         "path": "results/embedded/c1_fused_build_environment.json",
         "sha256": "a9dee1fd76d5861a9c395303a4eef553b2c0c75a0d6a7dc38ca9f7bdc8793868",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.278635+00:00"
       },
       {
@@ -23523,7 +23538,7 @@
         "path": "results/embedded/c1_fused_claim_evaluation.csv",
         "sha256": "aa313d1849b42801b698bcdd74459d3402814a37885790c3d30ade654b494ff0",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.401542+00:00"
       },
       {
@@ -23531,7 +23546,7 @@
         "path": "results/embedded/c1_fused_class_batch_summary.csv",
         "sha256": "18b83a907ba7fc37d27b834751d8a1ef636d9ec47fca72c419b8cc6dcb77f86f",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.400538+00:00"
       },
       {
@@ -23539,7 +23554,7 @@
         "path": "results/embedded/c1_fused_error_summary.csv",
         "sha256": "d81a7d8aaf9646bc147e85c6a120d2cd73c1d9bddad182ff059d180cb3228684",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.387946+00:00"
       },
       {
@@ -23547,7 +23562,7 @@
         "path": "results/embedded/c1_fused_exp_input_manifest.csv",
         "sha256": "310821e9357737475f7e69296b3f498dd4bcb24f310b18c3b68960b9ece98535",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:28.691432+00:00"
       },
       {
@@ -23555,7 +23570,7 @@
         "path": "results/embedded/c1_fused_golden_equivalence.csv",
         "sha256": "65461cda421b4fdacbf24da67fd94a8ba3f0d85161fb7508441911bf254bfedd",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.383369+00:00"
       },
       {
@@ -23563,7 +23578,7 @@
         "path": "results/embedded/c1_fused_operation_validation.csv",
         "sha256": "9968b4b69cfd5dbafcb3751daed2d19341fb84f8c6d33a762825cf8a160b566b",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.401542+00:00"
       },
       {
@@ -23571,7 +23586,7 @@
         "path": "results/embedded/c1_fused_parameter_derivation.csv",
         "sha256": "dd7ce7daa531e26d7970e585cf53a4f97115ca667dd001ca5c1837ec9ae8fd4e",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.862263+00:00"
       },
       {
@@ -23579,7 +23594,7 @@
         "path": "results/embedded/c1_fused_raw_cast_analysis.csv",
         "sha256": "fbb75c117b547cd521d539fe827c8add7dd0d4283d56837ba4656c08c0d5d0ad",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.353430+00:00"
       },
       {
@@ -23587,7 +23602,7 @@
         "path": "results/embedded/c1_fused_storage_validation.csv",
         "sha256": "86feeb518d46012d0aec372a40722d5a4ab40590b70b001c114fbe17d862fae5",
         "producer_experiment": "EXP-EMBED-C1-FUSED-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T15:33:29.401542+00:00"
       },
       {
@@ -23595,7 +23610,7 @@
         "path": "configs/c1_fused_xai_equivalence.yaml",
         "sha256": "801f0e0cfb816d19143853dfe4d68b2803cd489269a6d2e76f5b0816ac59570c",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:04:10.316066+00:00"
       },
       {
@@ -23603,7 +23618,7 @@
         "path": "docs/embedded/C1_FUSED_XAI_EQUIVALENCE_PROTOCOL.md",
         "sha256": "d71887f92e29cb5e1e251449561f161d4495034680f7f8873aa2cf5b135fa5b4",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:04:10.316066+00:00"
       },
       {
@@ -23611,7 +23626,7 @@
         "path": "docs/embedded/EXP_EMBED_C1_FUSED_XAI_EQUIV_001.md",
         "sha256": "74baf0715e7139e17f55eb0bc6125d74bb21a587aa141275e3ff98642872afa8",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:07:21.452281+00:00"
       },
       {
@@ -23619,7 +23634,7 @@
         "path": "embedded/generated/c1_fused/c1_fused_xai_host.exe",
         "sha256": "5f64ce4152bab390f99f64cb78de118b6aea7704026c1466be043c3b593c860a",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:20.049880+00:00"
       },
       {
@@ -23627,7 +23642,7 @@
         "path": "embedded/generated/c1_fused/c1_fused_xai_host.pdb",
         "sha256": "1aeec8f9abce4010a2360cb05afa3b73962d1e7d86d37e784ebb5342068a8d18",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:20.064089+00:00"
       },
       {
@@ -23635,15 +23650,15 @@
         "path": "embedded/generated/c1_fused/test_harness_xai_c1_fused.c",
         "sha256": "3d3b49d37945fe22976f9217b4e97f80f94fabfad9205c6d98165ac15fce594e",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.879335+00:00"
       },
       {
         "artifact_id": "ART-43BF236A469D",
         "path": "embedded/generated/c1_fused/xai_c1_fused.c",
         "sha256": "43bf236a469d1870269dd2373be40bcc8233596d86aeae84ef476aa4ba1e7833",
-        "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.878365+00:00"
       },
       {
@@ -23651,7 +23666,7 @@
         "path": "embedded/generated/c1_fused/xai_c1_fused.h",
         "sha256": "bb1bad17825b9039d027dd883548b454d9a4ce8ad0f1482b28860674186a6a7c",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.878365+00:00"
       },
       {
@@ -23659,7 +23674,7 @@
         "path": "embedded/generated/c1_fused/xai_outputs_repeat.csv",
         "sha256": "a17307bbfa3e079f95a418e8549f3330f90a2cd5760a98c09a4467ef48838bbc",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:20.169699+00:00"
       },
       {
@@ -23667,7 +23682,7 @@
         "path": "embedded/generated/c1_fused/xai_vectors.csv",
         "sha256": "da9650ae42ba1130d0b2226ee22d0e41e4f2247b44359cae9ad1fab303a65942",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.886942+00:00"
       },
       {
@@ -23675,7 +23690,7 @@
         "path": "results/embedded/c1_fused_xai_additivity.csv",
         "sha256": "05b98425fc79b94f2128f5883bbb52792541d527def2ddf4dee323d9767cde3a",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.066618+00:00"
       },
       {
@@ -23683,7 +23698,7 @@
         "path": "results/embedded/c1_fused_xai_attribution_equivalence.csv",
         "sha256": "2dbbf6702f80380585ff24d4ef01857654dee238b1fd5ffa21f0a4183dc43967",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.024338+00:00"
       },
       {
@@ -23691,7 +23706,7 @@
         "path": "results/embedded/c1_fused_xai_build_environment.json",
         "sha256": "31b2c68c2fe8e0c2913c34325dd66e042af910b28bfd414ae2d2287bb450d680",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.166332+00:00"
       },
       {
@@ -23699,7 +23714,7 @@
         "path": "results/embedded/c1_fused_xai_claim_evaluation.csv",
         "sha256": "417b9d635e63bb5044f41972e260093fe3cda087249a725de90a681fbe66aeb6",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.165310+00:00"
       },
       {
@@ -23707,7 +23722,7 @@
         "path": "results/embedded/c1_fused_xai_error_summary.csv",
         "sha256": "db33cf4b5afbd8f6172d4a0c19b5b85b9cb27468a05f4644adc88c84caa33000",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.156761+00:00"
       },
       {
@@ -23715,7 +23730,7 @@
         "path": "results/embedded/c1_fused_xai_input_manifest.csv",
         "sha256": "d30a0234a9c619a919faf26b7d44b1fddce32749e573407dbef7be64b50c336a",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.352763+00:00"
       },
       {
@@ -23723,7 +23738,7 @@
         "path": "results/embedded/c1_fused_xai_operation_analysis.csv",
         "sha256": "1a5ce1972bed6c1b339e9be1a82e902abb26861a2c174060b79ed0e7fbbdab7b",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.163341+00:00"
       },
       {
@@ -23731,7 +23746,7 @@
         "path": "results/embedded/c1_fused_xai_sensor_view.csv",
         "sha256": "4774289e0d7292c71069d1c301fb017037af6e6c14569e842d9a0d2e94ebe92d",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.073196+00:00"
       },
       {
@@ -23739,7 +23754,7 @@
         "path": "results/embedded/c1_fused_xai_sign_equivalence.csv",
         "sha256": "6d6d1056076fc712418314a86a0ac40a3913f6dc7fbe3bb28cd96c9db2259916",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.064618+00:00"
       },
       {
@@ -23747,7 +23762,7 @@
         "path": "results/embedded/c1_fused_xai_storage_analysis.csv",
         "sha256": "5ac9af8aef19e950c222429b4749e48877586bd7726c3a79596574b7626940b0",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.164341+00:00"
       },
       {
@@ -23755,7 +23770,7 @@
         "path": "results/embedded/c1_fused_xai_topk_equivalence.csv",
         "sha256": "927736525871ec387e8955df5df441275c6352db3e918d58849576d9578f47f4",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.031208+00:00"
       },
       {
@@ -23763,7 +23778,7 @@
         "path": "results/embedded/c1_fused_xai_vector_summary.csv",
         "sha256": "9e465acfa658f6d5c0fe888f0bc13307706bae3e4fa87e5ea87d43a663c3da18",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:22.028166+00:00"
       },
       {
@@ -23771,8 +23786,56 @@
         "path": "results/embedded/c1_stage09_xai_semantics.csv",
         "sha256": "5930b9f18881ba008ef8e7719f1927de04ac3ca9865abcb768aa9409f8f28de8",
         "producer_experiment": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001",
-        "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
         "created_at": "2026-08-12T16:09:19.364476+00:00"
+      },
+      {
+        "artifact_id": "ART-6A06031E8EFA",
+        "path": "results/embedded/c1_fused_manifest.csv",
+        "sha256": "6a06031e8efac780a9a352fdf4c2da6a976e75cc273a46ea3a65b9d8bb25869e",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T15:33:29.444968+00:00"
+      },
+      {
+        "artifact_id": "ART-4913C79034B8",
+        "path": "results/embedded/c1_fused_xai_manifest.csv",
+        "sha256": "4913c79034b8d7460d3c73efbb56392cd21eb2609a505f20f6ddf0b2626f3806",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T16:09:22.232629+00:00"
+      },
+      {
+        "artifact_id": "ART-51DA8951B985",
+        "path": "configs/nrf52840_resource_budget.yaml",
+        "sha256": "51da8951b985cf649b581d78d1de0ba155b7539a560528bfcf9060d590280a72",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T03:27:56.500399+00:00"
+      },
+      {
+        "artifact_id": "ART-AF2B6ECE6878",
+        "path": "results/embedded/stage15_hardware_detection.json",
+        "sha256": "af2b6ece68785dd48433440683e87a5ffc5c5b7e80c1d8329e4e43d50358656b",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T21:13:01.713702+00:00"
+      },
+      {
+        "artifact_id": "ART-5F1FDD14E422",
+        "path": "results/embedded/stage15_toolchain_inventory.csv",
+        "sha256": "5f1fdd14e42248516a99ecdbe322b3ae434142a1d72fbe37ecccd6acb0f66dfa",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T21:13:01.713702+00:00"
+      },
+      {
+        "artifact_id": "ART-026A12C87CFE",
+        "path": "docs/embedded/EXP_MCU_C1_FP32_PORT_001.md",
+        "sha256": "026a12c87cfef999b4967cbc1e49086524c690bf5ce35748fda9499c37861b43",
+        "producer_experiment": "EXP-MCU-C1-FP32-PORT-001",
+        "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
+        "created_at": "2026-08-12T21:12:54.865894+00:00"
       }
     ],
     "claims": [

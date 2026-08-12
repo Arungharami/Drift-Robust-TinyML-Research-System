@@ -273,11 +273,11 @@ stages:
     name: nRF52840 deployment
     status: BLOCKED
     notebook: null
-    script: null
-    artifact_paths: []
+    script: scripts/check_stage15_mcu_prerequisites.py
+    artifact_paths: [results/embedded/stage15_hardware_detection.json, results/embedded/stage15_toolchain_inventory.csv, results/embedded/stage15_manifest.csv]
     git_commit: null
     depends_on: ["14"]
-    notes: Physical hardware not yet programmed. Hardware itself not confirmed available.
+    notes: EXP-MCU-C1-FP32-PORT-001 is BLOCKED_HARDWARE. No physical Nordic/J-Link/CMSIS-DAP device was detected, so no target was guessed, no toolchain was changed, and no build, flash, physical correctness, linked ROM, or linked static-RAM evidence was produced.
 
   - id: "16"
     name: Flash/SRAM measurement

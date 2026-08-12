@@ -41,6 +41,7 @@ export interface EmbeddedEvidence {
     c1_fused_execution_claims: Record<string, string>[];
     c1_fused_xai_summary: Record<string, string>[];
     c1_fused_xai_claims: Record<string, string>[];
+    stage15_hardware_gate: Record<string, unknown> | null;
   statuses: Record<string, string>;
   artifact_paths: string[];
 }

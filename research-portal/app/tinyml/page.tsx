@@ -36,6 +36,11 @@ export default function TinyMlPage() {
       <p>C1 local-XAI equivalence: <code>{embedded.fp32_summary.c1_xai_status}</code>. Quantization and MCU deployment remain <code>NOT_EXECUTED</code>.</p>
     </>}
 
+    {embedded.stage15_hardware_gate && <>
+      <h2>Stage 15 physical MCU port</h2>
+      <p>Experiment <code>EXP-MCU-C1-FP32-PORT-001</code>: <code>BLOCKED_HARDWARE</code>. No supported physical board/debug probe was detected, so no board target was guessed and no build, flash, physical correctness, linked ROM, or linked static-RAM claim was produced.</p>
+    </>}
+
     {embedded.c1_repair_summary.length > 0 && <>
       <h2>Stage 14R C1 explicit-preprocessing repair</h2>
       <p>Outcome: <code>FAILED</code>. The original failure reproduced, and none of the five prospectively frozen all-FP32 candidates passed every unchanged preprocessing criterion. No candidate was selected.</p>

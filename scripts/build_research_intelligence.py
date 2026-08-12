@@ -150,6 +150,12 @@ def normalized_registries() -> None:
         for r in rows(fused_xai):
             path=ROOT/r["artifact_path"];aid="ART-"+r["sha256"][:12].upper()
             artifacts[aid]={"artifact_id":aid,"path":r["artifact_path"],"sha256":r["sha256"],"producer_experiment":"EXP-EMBED-C1-FUSED-XAI-EQUIV-001","git_commit":git_commit(),"created_at":datetime.fromtimestamp(path.stat().st_mtime,timezone.utc).isoformat()}
+    stage15 = ROOT / "results/embedded/stage15_manifest.csv"
+    if stage15.exists():
+        experiments.append({"experiment_id":"EXP-MCU-C1-FP32-PORT-001","research_question_id":"RQ9","hypothesis_id":"H9","stage":"15","model_id":"MODEL-C1","protocol":"PHYSICAL_NRF52840_FP32_PORT","train_batches":"NONE","test_batches":"GOLDEN_BOUNDARY_XAI","seed":"DETERMINISTIC","dataset_id":"UCI_GAS_DRIFT_224_V1","status":"BLOCKED","git_commit":git_commit(),"timestamp":datetime.fromtimestamp(stage15.stat().st_mtime,timezone.utc).isoformat()})
+        for r in rows(stage15):
+            path=ROOT/r["artifact_path"];aid="ART-"+r["sha256"][:12].upper()
+            artifacts[aid]={"artifact_id":aid,"path":r["artifact_path"],"sha256":r["sha256"],"producer_experiment":"EXP-MCU-C1-FP32-PORT-001","git_commit":git_commit(),"created_at":datetime.fromtimestamp(path.stat().st_mtime,timezone.utc).isoformat()}
     write(REG / "experiments.csv", ["experiment_id", "research_question_id", "hypothesis_id", "stage", "model_id", "protocol", "train_batches", "test_batches", "seed", "dataset_id", "status", "git_commit", "timestamp"], experiments)
     write(REG / "measurements.csv", ["experiment_id", "metric_name", "value", "unit", "ci_low", "ci_high", "n", "model_id", "method", "batch", "k", "measurement_type", "evidence_state", "artifact_id"], measurements)
     write(REG / "artifacts.csv", ["artifact_id", "path", "sha256", "producer_experiment", "git_commit", "created_at"], list(artifacts.values()))

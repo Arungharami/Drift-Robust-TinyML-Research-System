@@ -2063,6 +2063,35 @@
       "evidence": "results/embedded/c1_fused_xai_manifest.csv"
     }
   ],
+  "stage15_hardware_gate": {
+    "experiment_id": "EXP-MCU-C1-FP32-PORT-001",
+    "timestamp_utc": "2026-08-12T21:13:01.638411+00:00",
+    "scientific_execution_status": "BLOCKED_HARDWARE",
+    "host_os": "Windows-11-10.0.29617-SP0",
+    "physical_debug_probe_or_board_detected": false,
+    "board_identity": "UNRESOLVED_NO_SUPPORTED_DEVICE_DETECTED",
+    "zephyr_board_target": "NOT_SELECTED",
+    "pnp_detection_json": "[]",
+    "serial_ports_json": "{\"DeviceID\":\"COM1\",\"Name\":\"Communications Port (COM1)\",\"PNPDeviceID\":\"ACPI\\\\PNP0501\\\\0\"}",
+    "detection_stderr": "",
+    "serial_detection_stderr": "",
+    "smoke_test": "NOT_EXECUTED",
+    "build_a": "NOT_EXECUTED",
+    "build_b": "NOT_EXECUTED",
+    "build_c": "NOT_EXECUTED",
+    "build_d": "NOT_EXECUTED",
+    "flash": "NOT_EXECUTED",
+    "physical_golden": "NOT_EXECUTED",
+    "physical_boundary": "NOT_EXECUTED",
+    "physical_xai": "NOT_EXECUTED",
+    "linked_rom_footprint": "NOT_MEASURED",
+    "linked_static_ram": "NOT_MEASURED",
+    "mcu_latency": "NOT_MEASURED",
+    "mcu_xai_latency": "NOT_MEASURED",
+    "energy": "NOT_MEASURED",
+    "quantization": "NOT_EXECUTED",
+    "reason": "No physical nRF52840 board/debug probe was detected; physical execution is mandatory."
+  },
   "statuses": {
     "model_export": "HOST_EXECUTED",
     "quantization": "NOT_EXECUTED",
@@ -2092,6 +2121,9 @@
     "results/embedded/c1_fused_manifest.csv",
     "docs/embedded/EXP_EMBED_C1_FUSED_XAI_EQUIV_001.md",
     "results/embedded/c1_fused_xai_attribution_equivalence.csv",
-    "results/embedded/c1_fused_xai_manifest.csv"
+    "results/embedded/c1_fused_xai_manifest.csv",
+    "docs/embedded/EXP_MCU_C1_FP32_PORT_001.md",
+    "results/embedded/stage15_hardware_detection.json",
+    "results/embedded/stage15_manifest.csv"
   ]
 }
