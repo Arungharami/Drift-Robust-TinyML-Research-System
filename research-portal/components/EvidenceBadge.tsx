@@ -7,6 +7,7 @@ const LABELS: Record<EvidenceStatus, string> = {
   RUNNING: "Running",
   FAILED: "Failed",
   BLOCKED: "Blocked",
+  PROTOCOL_FROZEN: "Protocol frozen",
   NOT_EXECUTED: "Not executed",
 };
 

@@ -18,6 +18,30 @@
     "source_csv": "results/figures/sources/feature_batch_drift_heatmap.csv"
   },
   {
+    "id": "fid_01_deletion_vs_random",
+    "svg_path": "results/figures/fid_01_deletion_vs_random.svg",
+    "png_path": "results/figures/fid_01_deletion_vs_random.png",
+    "source_csv": "results/figures/sources/fid_01_deletion_vs_random.csv"
+  },
+  {
+    "id": "fid_02_chronological_fidelity",
+    "svg_path": "results/figures/fid_02_chronological_fidelity.svg",
+    "png_path": "results/figures/fid_02_chronological_fidelity.png",
+    "source_csv": "results/figures/sources/fid_02_chronological_fidelity.csv"
+  },
+  {
+    "id": "fid_03_error_conditioned",
+    "svg_path": "results/figures/fid_03_error_conditioned.svg",
+    "png_path": "results/figures/fid_03_error_conditioned.png",
+    "source_csv": "results/figures/sources/fid_03_error_conditioned.csv"
+  },
+  {
+    "id": "fid_04_sensor_groups",
+    "svg_path": "results/figures/fid_04_sensor_groups.svg",
+    "png_path": "results/figures/fid_04_sensor_groups.png",
+    "source_csv": "results/figures/sources/fid_04_sensor_groups.csv"
+  },
+  {
     "id": "figure_10_class_error_heatmap",
     "svg_path": "results/figures/figure_10_class_error_heatmap.svg",
     "png_path": "results/figures/figure_10_class_error_heatmap.png",
@@ -84,10 +108,112 @@
     "source_csv": "results/figures/sources/global_drift_trajectory.csv"
   },
   {
+    "id": "lat_01_baseline_host_inference",
+    "svg_path": "results/figures/lat_01_baseline_host_inference.svg",
+    "png_path": "results/figures/lat_01_baseline_host_inference.png",
+    "source_csv": "results/figures/sources/lat_01_baseline_host_inference.csv"
+  },
+  {
+    "id": "lat_02_local_explanation",
+    "svg_path": "results/figures/lat_02_local_explanation.svg",
+    "png_path": "results/figures/lat_02_local_explanation.png",
+    "source_csv": "results/figures/sources/lat_02_local_explanation.csv"
+  },
+  {
+    "id": "lat_03_local_overhead",
+    "svg_path": "results/figures/lat_03_local_overhead.svg",
+    "png_path": "results/figures/lat_03_local_overhead.png",
+    "source_csv": "results/figures/sources/lat_03_local_overhead.csv"
+  },
+  {
+    "id": "lat_04_global_total",
+    "svg_path": "results/figures/lat_04_global_total.svg",
+    "png_path": "results/figures/lat_04_global_total.png",
+    "source_csv": "results/figures/sources/lat_04_global_total.csv"
+  },
+  {
+    "id": "lat_05_computational_counts",
+    "svg_path": "results/figures/lat_05_computational_counts.svg",
+    "png_path": "results/figures/lat_05_computational_counts.png",
+    "source_csv": "results/figures/sources/lat_05_computational_counts.csv"
+  },
+  {
+    "id": "lat_06_host_latency_distribution",
+    "svg_path": "results/figures/lat_06_host_latency_distribution.svg",
+    "png_path": "results/figures/lat_06_host_latency_distribution.png",
+    "source_csv": "results/figures/sources/lat_06_host_latency_distribution.csv"
+  },
+  {
+    "id": "lat_07_fidelity_vs_host_cost",
+    "svg_path": "results/figures/lat_07_fidelity_vs_host_cost.svg",
+    "png_path": "results/figures/lat_07_fidelity_vs_host_cost.png",
+    "source_csv": "results/figures/sources/lat_07_fidelity_vs_host_cost.csv"
+  },
+  {
+    "id": "lat_08_stability_vs_host_cost",
+    "svg_path": "results/figures/lat_08_stability_vs_host_cost.svg",
+    "png_path": "results/figures/lat_08_stability_vs_host_cost.png",
+    "source_csv": "results/figures/sources/lat_08_stability_vs_host_cost.csv"
+  },
+  {
+    "id": "lat_09_pre_hardware_evidence_map",
+    "svg_path": "results/figures/lat_09_pre_hardware_evidence_map.svg",
+    "png_path": "results/figures/lat_09_pre_hardware_evidence_map.png",
+    "source_csv": "results/figures/sources/lat_09_pre_hardware_evidence_map.csv"
+  },
+  {
     "id": "sensor_drift_vs_importance",
     "svg_path": "results/figures/sensor_drift_vs_importance.svg",
     "png_path": "results/figures/sensor_drift_vs_importance.png",
     "source_csv": "results/figures/sources/sensor_drift_vs_importance.csv"
+  },
+  {
+    "id": "stab_01_topk_overlap",
+    "svg_path": "results/figures/stab_01_topk_overlap.svg",
+    "png_path": "results/figures/stab_01_topk_overlap.png",
+    "source_csv": "results/figures/sources/stab_01_topk_overlap.csv"
+  },
+  {
+    "id": "stab_02_rank_stability",
+    "svg_path": "results/figures/stab_02_rank_stability.svg",
+    "png_path": "results/figures/stab_02_rank_stability.png",
+    "source_csv": "results/figures/sources/stab_02_rank_stability.csv"
+  },
+  {
+    "id": "stab_03_sensor_stability",
+    "svg_path": "results/figures/stab_03_sensor_stability.svg",
+    "png_path": "results/figures/stab_03_sensor_stability.png",
+    "source_csv": "results/figures/sources/stab_03_sensor_stability.csv"
+  },
+  {
+    "id": "stab_04_family_evolution",
+    "svg_path": "results/figures/stab_04_family_evolution.svg",
+    "png_path": "results/figures/stab_04_family_evolution.png",
+    "source_csv": "results/figures/sources/stab_04_family_evolution.csv"
+  },
+  {
+    "id": "stab_05_explanation_vs_input",
+    "svg_path": "results/figures/stab_05_explanation_vs_input.svg",
+    "png_path": "results/figures/stab_05_explanation_vs_input.png",
+    "source_csv": "results/figures/sources/stab_05_explanation_vs_input.csv"
+  },
+  {
+    "id": "stab_06_explanation_vs_performance",
+    "svg_path": "results/figures/stab_06_explanation_vs_performance.svg",
+    "png_path": "results/figures/stab_06_explanation_vs_performance.png",
+    "source_csv": "results/figures/sources/stab_06_explanation_vs_performance.csv"
+  },
+  {
+    "id": "stab_07_error_conditioned",
+    "svg_path": "results/figures/stab_07_error_conditioned.svg",
+    "png_path": "results/figures/stab_07_error_conditioned.png",
+    "source_csv": "results/figures/sources/stab_07_error_conditioned.csv"
+  },
+  {
+    "id": "stab_08_fidelity_vs_stability",
+    "svg_path": "results/figures/stab_08_fidelity_vs_stability.svg",
+    "png_path": "results/figures/stab_08_fidelity_vs_stability.png",
+    "source_csv": "results/figures/sources/stab_08_fidelity_vs_stability.csv"
   },
   {
     "id": "top20_drifting_features",

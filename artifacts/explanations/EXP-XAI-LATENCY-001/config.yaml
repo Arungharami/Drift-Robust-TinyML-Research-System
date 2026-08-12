@@ -1,0 +1,66 @@
+protocol_version: stage12_xai_latency_v2
+amendment:
+  prior_attempt: v1 terminated at the 10-minute process ceiling during permutation warm-up before stage12_raw_timings.csv existed
+  scientific_result_from_prior_attempt: NONE
+  frozen_change: permutation evaluation uses a deterministic stratified 256-sample subset per batch
+  unchanged: all batches, repeats, seeds, methods, local samples, timers, and timing boundaries
+experiment_id: EXP-XAI-LATENCY-001
+scientific_description: Controlled Host-Side Computational Cost of Resource-Aware Explanations
+host_environment:
+  os: Windows-10-10.0.29617-SP0
+  architecture: AMD64
+  cpu: Intel64 Family 6 Model 158 Stepping 13 GenuineIntel
+  physical_cores: 8
+  logical_cores: 16
+  ram_bytes: 16996315136
+  python: 3.11.9
+  numpy: 2.4.6
+  scipy: 1.17.1
+  scikit_learn: 1.9.0
+  joblib: 1.5.3
+  threadpoolctl: 3.6.0
+thread_control:
+  environment: {OMP_NUM_THREADS: 1, MKL_NUM_THREADS: 1, OPENBLAS_NUM_THREADS: 1, BLIS_NUM_THREADS: 1}
+  threadpool_limit: 1
+  sklearn_n_jobs: 1
+models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+batches: [2, 6, 10]
+local_samples: all_frozen_stage09_audit_samples_in_batches_2_6_10
+methods:
+  global: [INTRINSIC_COEFFICIENT, INTRINSIC_IMPURITY, PERMUTATION_IMPORTANCE_MACRO_F1]
+  local: [INTRINSIC_COEFFICIENT, SINGLE_FEATURE_ABLATION_LOCAL_VECTORIZED, SINGLE_FEATURE_ABLATION_LOCAL_NAIVE_REFERENCE]
+warmup:
+  inference_and_local: 5
+  intrinsic_and_reduction: 10
+  permutation: 1
+measured_repeats:
+  inference_and_local: 30
+  model_load: 10
+  intrinsic_and_reduction: 100
+  permutation: 3
+  naive_ablation: 5
+naive_ablation_subset: first_lexicographic_frozen_sample_per_model_and_batch
+batch_inference_size: 32
+permutation_repeats_per_run: 5
+permutation_n_jobs: 1
+permutation_evaluation:
+  sample_count: 256
+  selection: deterministic_stratified_without_replacement
+  seed: 42
+  reporting_rule: retain total run time and actual evaluated sample count; do not equate with local per-sample explanation latency
+timer: {wall: time.perf_counter_ns, cpu: time.process_time_ns, monotonic_required: true}
+timing_boundaries: [model_load, preprocessing, baseline_inference, explanation_compute, top_k_reduction, serialization]
+top_k: [1, 3, 5, 10, 20]
+seed: 42
+bootstrap: {repetitions: 1000, confidence_level: 0.95, seed: 1242, resampling_unit: timing_replicate}
+variance: {report_coefficient_of_variation: true, high_variance_threshold: 0.25, no_outlier_exclusion: true}
+timeout_seconds_per_permutation_run: 300
+exclusions: [file_io_from_algorithmic_latency, model_load_from_steady_state_latency, unsupported_method_model_pairs]
+sensor_group_scenario: {status: ANALYTICAL_ONLY, groups: 16, reason: no frozen group-explanation implementation}
+physical_fields: {mcu_latency: NOT_MEASURED, energy: NOT_MEASURED, flash: BLOCKED, sram: BLOCKED}
+candidate_claim_acceptance:
+  C-XAI-COST-01: at_least_two_comparable_local_methods_have_nonoverlapping_median_bootstrap_ci_or_overhead_ratio_difference_ge_2
+  C-XAI-COST-02: ablation_additional_prediction_calls_eq_128_and_explanation_latency_strongly_tracks_baseline_model_latency_spearman_ci_low_gt_0
+  C-XAI-COST-03: within_global_scope_intrinsic_median_total_latency_lt_permutation_p05_total_latency_for_applicable_models
+  C-XAI-COST-04: no_method_is_non_worse_on_matched_fidelity_stability_and_host_cost_with_strict_improvement_on_one
+expected_outputs: [stage12_raw_timings.csv, stage12_baseline_inference.csv, stage12_global_latency.csv, stage12_local_latency.csv, stage12_operation_counts.csv, stage12_latency_summary.csv, stage12_bootstrap_ci.csv, stage12_fidelity_stability_cost.csv, stage12_input_manifest.csv, stage12_manifest.csv, stage12_host_environment.json, stage12_thread_environment.json]

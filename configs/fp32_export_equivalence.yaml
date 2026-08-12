@@ -1,0 +1,41 @@
+experiment_id: EXP-EMBED-FP32-EQUIV-001
+protocol_version: stage14_fp32_equivalence_v1
+status: FROZEN_BEFORE_EXPORT
+candidates: [MODEL-C1, MODEL-C4]
+compiler:
+  command: python -m ziglang cc
+  version: 0.16.0
+  validation_architecture: x86_64-windows-host
+  primary_flags: [-O2, -std=c11, -fno-fast-math]
+  secondary_flags: [-O0, -std=c11, -fno-fast-math]
+  fp_policy: IEEE_LIKE_FP32_NO_FAST_MATH
+  fma_policy: COMPILER_DEFAULT_WITHOUT_FAST_MATH
+  math_library: Zig bundled libc/libm
+reference_dtype: float64
+exported_dtype: float32
+preprocessing_arithmetic_order: subtract_float32_then_divide_float32
+class_order: [1, 2, 3, 4, 5, 6]
+models:
+  MODEL-C1: {estimator: LogisticRegression, score: affine_128_to_6, output_activation: stable_softmax}
+  MODEL-C4: {estimator: MLPClassifier, layers: [128, 64, 32, 6], hidden_activation: relu, output_activation: softmax, weight_layout: sklearn_c_order_input_by_output}
+test_sets:
+  golden: data/manifests/embedded_golden_vectors.csv
+  boundary: data/manifests/embedded_boundary_vectors.csv
+tolerances:
+  preprocessing: {max_absolute_error: 2.0e-5, max_relative_error: 2.0e-6, relative_denominator_floor: 1.0e-8}
+  MODEL-C1: {score_max_absolute_error: 1.0e-4, probability_max_absolute_error: 1.0e-5}
+  MODEL-C4: {score_max_absolute_error: 2.0e-4, probability_max_absolute_error: 2.0e-5}
+  probability_normalization_absolute_error: 2.0e-6
+  decision: {golden_agreement: 1.0, boundary_agreement: 1.0}
+  c1_xai:
+    attribution_max_absolute_error: 2.0e-4
+    attribution_max_relative_error: 2.0e-5
+    sign_reference_zero_threshold: 2.0e-4
+    top_k: [1, 3, 5, 10, 20]
+    required_top_k_set_overlap: 1.0
+failure_conditions: [PREPROCESSING_MISMATCH, PARAMETER_EXPORT_MISMATCH, WEIGHT_ORIENTATION_ERROR, ACTIVATION_MISMATCH, SOFTMAX_MISMATCH, SCORE_TOLERANCE_FAILURE, PROBABILITY_TOLERANCE_FAILURE, GOLDEN_DECISION_MISMATCH, BOUNDARY_DECISION_MISMATCH, NONDETERMINISTIC_OUTPUT, BUILD_FAILURE, UNSUPPORTED_NUMERIC_SEMANTICS]
+hard_stops: [quantization, int8, uint8, int16, fp16, fast_math, c2_export, c3_export, mcu_execution, physical_memory_measurement, hardware_latency, energy]
+candidate_claims:
+  C-EMBED-FP32-01: {initial_status: PREREGISTERED_UNRESOLVED, acceptance: MODEL-C1_passes_all_mandatory_candidate_rules}
+  C-EMBED-FP32-02: {initial_status: PREREGISTERED_UNRESOLVED, acceptance: MODEL-C4_passes_all_mandatory_candidate_rules}
+  C-EMBED-FP32-XAI-01: {initial_status: PREREGISTERED_UNRESOLVED, acceptance: all_C1_attribution_sign_error_and_top_k_criteria_pass}

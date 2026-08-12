@@ -20,6 +20,7 @@ import platformJson from "@/data/evidence/platform.json";
 import environmentJson from "@/data/evidence/environment.json";
 import projectStatusJson from "@/data/evidence/project-status.json";
 import researchIntelligenceJson from "@/data/evidence/research-intelligence.json";
+import embeddedJson from "@/data/evidence/embedded.json";
 
 import type {
   BaselinesEvidence,
@@ -35,7 +36,12 @@ import type {
   TableRecord,
   XaiEvidence,
   ResearchIntelligence,
+  EmbeddedEvidence,
 } from "./types";
+
+export function getEmbedded(): EmbeddedEvidence {
+  return embeddedJson as unknown as EmbeddedEvidence;
+}
 
 export function getDataset(): DatasetEvidence {
   return datasetJson as DatasetEvidence;

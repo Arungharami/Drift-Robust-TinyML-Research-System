@@ -1,0 +1,18 @@
+specification_id: PREPROC-FROZEN-B1-001
+status: FROZEN
+source_pipeline_pattern: artifacts/models/BASE-FIXED-C*-001.joblib
+operation_sequence: [raw_float_input, standard_scaler, frozen_estimator]
+input_dimension: 128
+feature_order_source: results/xai/stage09_feature_map.csv
+feature_order_hash_source: results/embedded/stage13_preprocessing_inventory.csv
+scaling_formula: transformed_i = (raw_i - mean_i) / scale_i
+fit_scope: Batch 1 only
+runtime_refit: FORBIDDEN
+future_batch_recalculation: FORBIDDEN
+missing_value_behavior: REJECT_NONFINITE_INPUT
+clipping: NONE
+reference_storage_dtype: float64
+initial_embedded_candidate_dtype: float32
+class_encoding: [1, 2, 3, 4, 5, 6]
+output_decoding: estimator classes array index to original integer gas label
+constants_location: frozen pipeline scaler attributes mean_, scale_, var_

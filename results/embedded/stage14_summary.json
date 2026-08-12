@@ -1,0 +1,35 @@
+{
+  "experiment_id": "EXP-EMBED-FP32-EQUIV-001",
+  "scientific_execution_status": "FAILED",
+  "scientific_outcome": "FAILED",
+  "candidates": {
+    "MODEL-C1": {
+      "status": "FAIL",
+      "max_preprocessing_absolute_error": 7.994910077968598e-06,
+      "max_preprocessing_relative_error": 0.0027443441751280892,
+      "max_score_absolute_error": 8.314903897144177e-05,
+      "max_probability_absolute_error": 1.5100989285143918e-06,
+      "max_probability_normalization_error": 1.5410410414418152e-07,
+      "golden_agreement": 1.0,
+      "boundary_agreement": 1.0
+    },
+    "MODEL-C4": {
+      "status": "FAIL",
+      "max_preprocessing_absolute_error": 0.0004845352286793059,
+      "max_preprocessing_relative_error": 1.3920874633657409e-05,
+      "max_score_absolute_error": 3.596441703890285e-07,
+      "max_probability_absolute_error": 3.596441703890285e-07,
+      "max_probability_normalization_error": 8.168999987567815e-08,
+      "golden_agreement": 1.0,
+      "boundary_agreement": 1.0
+    }
+  },
+  "c1_xai_status": "FAIL",
+  "quantization": "NOT_EXECUTED",
+  "mcu_deployment": "NOT_EXECUTED",
+  "compiled_flash": "NOT_MEASURED",
+  "mcu_sram": "NOT_MEASURED",
+  "mcu_latency": "NOT_MEASURED",
+  "energy": "NOT_MEASURED",
+  "public_deployment": "BLOCKED_CREDENTIALS"
+}

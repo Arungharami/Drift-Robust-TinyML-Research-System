@@ -164,67 +164,117 @@
   {
     "id": "10",
     "name": "Fidelity evaluation",
-    "status": "NOT_EXECUTED",
+    "status": "EXECUTED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
+    "script": "src/xai/run_stage10.py",
+    "artifact_paths": [
+      "results/xai/stage10_fidelity_global.csv",
+      "results/xai/stage10_fidelity_local.csv",
+      "results/xai/stage10_fidelity_sensor_groups.csv",
+      "results/xai/stage10_fidelity_feature_families.csv",
+      "results/xai/stage10_random_controls.csv",
+      "results/xai/stage10_bootstrap_ci.csv",
+      "results/xai/stage10_fidelity_summary.csv",
+      "results/xai/stage10_input_manifest.csv",
+      "results/xai/stage10_manifest.csv",
+      "artifacts/explanations/EXP-XAI-FIDELITY-001"
+    ],
+    "git_commit": "WORKTREE",
     "depends_on": [
       "09"
     ],
-    "notes": "Requires stage 09."
+    "notes": "EXP-XAI-FIDELITY-001; method-specific global, local, sensor-group, family, matched-random, and bootstrap evidence. Local ablation is labelled ABLATION_CONSISTENCY because its perturbation evaluation is partly circular."
   },
   {
     "id": "11",
     "name": "Explanation stability evaluation",
-    "status": "NOT_EXECUTED",
+    "status": "EXECUTED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
+    "script": "src/xai/run_stage11.py",
+    "artifact_paths": [
+      "results/xai/stage11_global_rank_stability.csv",
+      "results/xai/stage11_global_magnitude_stability.csv",
+      "results/xai/stage11_direction_stability.csv",
+      "results/xai/stage11_sensor_stability.csv",
+      "results/xai/stage11_feature_family_stability.csv",
+      "results/xai/stage11_local_neighbor_stability.csv",
+      "results/xai/stage11_cross_batch_matches.csv",
+      "results/xai/stage11_cross_batch_stability.csv",
+      "results/xai/stage11_relative_stability.csv",
+      "results/xai/stage11_fidelity_stability_link.csv",
+      "results/xai/stage11_bootstrap_ci.csv",
+      "results/xai/stage11_stability_summary.csv",
+      "results/xai/stage11_input_manifest.csv",
+      "results/xai/stage11_manifest.csv",
+      "artifacts/explanations/EXP-XAI-STABILITY-001"
+    ],
+    "git_commit": "WORKTREE",
     "depends_on": [
       "09"
     ],
-    "notes": "Requires stage 09."
+    "notes": "EXP-XAI-STABILITY-001; global chronological, physical sensor/family, natural-neighbor, matched cross-sectional, relative, and fidelity-linkage evidence. No universal stability score."
   },
   {
     "id": "12",
-    "name": "Explanation latency",
-    "status": "NOT_EXECUTED",
+    "name": "Controlled host-side XAI computational cost",
+    "status": "EXECUTED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
-    "depends_on": [
-      "09"
+    "script": "src/xai/run_stage12.py",
+    "artifact_paths": [
+      "results/xai/stage12_raw_timings.csv",
+      "results/xai/stage12_latency_summary.csv",
+      "results/xai/stage12_operation_counts.csv",
+      "results/xai/stage12_manifest.csv",
+      "artifacts/explanations/EXP-XAI-LATENCY-001"
     ],
-    "notes": "Host-side timing only until stage 16; on-device timing requires stage 15."
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "09",
+      "10",
+      "11"
+    ],
+    "notes": "EXP-XAI-LATENCY-001 measured controlled single-thread workstation cost with raw nanosecond timings and hardware-independent operation counts. Global and local scopes remain separate. Host latency is not an estimate of nRF52840 latency or energy; MCU latency, physical energy, Flash, and SRAM remain NOT_MEASURED/BLOCKED. Stage 13 did not execute."
   },
   {
     "id": "13",
-    "name": "Quantization",
-    "status": "NOT_EXECUTED",
+    "name": "Embedded architecture and export protocol freeze",
+    "status": "PROTOCOL_FROZEN",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
-    "depends_on": [
-      "08"
+    "script": "scripts/freeze_stage13_protocol.py",
+    "artifact_paths": [
+      "results/embedded/stage13_model_inventory.csv",
+      "results/embedded/stage13_candidate_matrix.csv",
+      "results/embedded/stage13_decision.csv",
+      "data/manifests/embedded_golden_vectors.csv",
+      "configs/embedded_equivalence_protocol.yaml"
     ],
-    "notes": "No deep model exists yet to quantize; classical models would need a separate export path."
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "09",
+      "10",
+      "11",
+      "12"
+    ],
+    "notes": "GATE-EMBED-EXPORT-001 architecture and numerical-equivalence protocol frozen. This is not an executed model export or performance experiment. Export, quantization, firmware, compiled Flash/SRAM, MCU timing, and energy remain NOT_EXECUTED/NOT_MEASURED."
   },
   {
     "id": "14",
-    "name": "Embedded export",
-    "status": "NOT_EXECUTED",
+    "name": "Standalone FP32 export equivalence",
+    "status": "FAILED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
+    "script": "scripts/run_stage14_fp32_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1",
+      "embedded/generated/c4",
+      "results/embedded/stage14_summary.json",
+      "results/embedded/stage14_manifest.csv",
+      "results/embedded/stage14_preprocessing_equivalence.csv"
+    ],
+    "git_commit": "WORKTREE",
     "depends_on": [
       "13"
     ],
-    "notes": "Requires stage 13."
+    "notes": "EXP-EMBED-FP32-EQUIV-001 completed with scientific outcome FAILED. C1 and C4 passed score, probability, normalization, golden decision, and boundary decision checks but failed frozen preprocessing criteria. Host-compiled validation only; quantization and MCU work remain unexecuted."
   },
   {
     "id": "15",

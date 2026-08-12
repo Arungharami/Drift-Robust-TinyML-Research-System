@@ -9,7 +9,30 @@ export type EvidenceStatus =
   | "RUNNING"
   | "FAILED"
   | "BLOCKED"
+  | "PROTOCOL_FROZEN"
   | "NOT_EXECUTED";
+
+export interface EmbeddedEvidence {
+  gate_id: string;
+  protocol_status: "PROTOCOL_FROZEN";
+  target: { mcu: string; core: string; clock_hz: number; physical_flash_bytes: number; physical_sram_bytes: number };
+  model_inventory: Record<string, string>[];
+  candidates: Record<string, string>[];
+  analytical_memory: Record<string, string>[];
+  decision: Record<string, string>[];
+  fp32_summary: {
+    experiment_id: string;
+    scientific_execution_status: string;
+    scientific_outcome: string;
+    candidates: Record<string, { status: string; max_preprocessing_absolute_error: number; max_preprocessing_relative_error: number; max_score_absolute_error: number; max_probability_absolute_error: number; golden_agreement: number; boundary_agreement: number }>;
+    c1_xai_status: string;
+  } | null;
+  fp32_claims: Record<string, string>[];
+  fp32_storage: Record<string, string>[];
+  fp32_manifest: Record<string, string>[];
+  statuses: Record<string, string>;
+  artifact_paths: string[];
+}
 
 export interface PipelineStage {
   id: string;
@@ -178,8 +201,25 @@ export interface XaiEvidence {
   top3_by_model_method_batch: XaiTop3Row[];
   artifact_paths: string[];
   fidelity_status: EvidenceStatus;
+  fidelity_experiment_id: string | null;
+  fidelity_summary: Record<string, string>[];
+  fidelity_ci_count: number;
+  fidelity_artifact_paths: string[];
   stability_status: EvidenceStatus;
+  stability_experiment_id: string | null;
+  stability_summary: Record<string, string>[];
+  stability_ci_count: number;
+  stability_artifact_paths: string[];
+  stability_local_category_summary: Array<{ model_id: string; category: string; n: number; mean_explanation_distance: number; mean_jaccard_at_10: number }>;
+  fidelity_stability_link: Record<string, string>[];
   latency_status: EvidenceStatus;
+  latency_experiment_id: string | null;
+  latency_summary: Record<string, string>[];
+  latency_tradeoff: Record<string, string>[];
+  latency_claims: Record<string, string>[];
+  latency_environment: Record<string, unknown> | null;
+  latency_artifact_paths: string[];
+  mcu_cost_status: "NOT_MEASURED";
 }
 
 export interface ProjectStatus {

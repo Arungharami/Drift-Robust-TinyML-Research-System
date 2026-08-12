@@ -1,0 +1,7 @@
+{
+  "model_id": "MODEL-C1",
+  "source_sha256": "523969e083f87661191b97852b5bfed21513042c5a6b9d78c81fb52386d04214",
+  "generator": "src/embedded/export_fp32_common.py",
+  "dtype": "float32",
+  "quantization": "NOT_EXECUTED"
+}

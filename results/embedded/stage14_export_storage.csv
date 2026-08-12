@@ -1,0 +1,3 @@
+experiment_id,model_id,source_constant_bytes,coefficient_or_weight_bytes,bias_bytes,preprocessing_constant_bytes,generated_source_file_bytes,measurement_type,measured_mcu_flash
+EXP-EMBED-FP32-EQUIV-001,MODEL-C1,4120,3072,24,1024,16572,DERIVED_FROM_EXPORT,NOT_MEASURED
+EXP-EMBED-FP32-EQUIV-001,MODEL-C4,43160,41728,408,1024,165686,DERIVED_FROM_EXPORT,NOT_MEASURED
