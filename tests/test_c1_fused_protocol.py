@@ -6,7 +6,8 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/"results/embedded"
 
 def test_gate_frozen_but_performance_not_executed():
  d=pd.read_csv(OUT/"c1_fused_gate_decision.csv").iloc[0];assert d.gate_status=="FROZEN";assert d.performance_experiment_status=="NOT_EXECUTED";assert d.future_experiment_id=="EXP-EMBED-C1-FUSED-EQUIV-001"
- assert not (ROOT/"embedded/generated/c1_fused").exists()
+ assert (ROOT/"embedded/generated/c1_fused").exists()
+ assert (OUT/"c1_fused_manifest.csv").exists()
 
 def test_immutable_lineage_verified():
  rows=pd.read_csv(OUT/"c1_fused_protocol_input_manifest.csv");assert rows.verification_status.eq("VERIFIED").all()
@@ -46,4 +47,4 @@ def test_claims_begin_unsupported_and_history_not_relabeled():
 def test_no_training_quantization_or_fused_execution_authorized():
  text=(ROOT/"scripts/freeze_c1_fused_protocol.py").read_text(encoding="utf-8");assert ".fit(" not in text and ".partial_fit(" not in text
  cfg=(ROOT/"configs/c1_fused_equivalence.yaml").read_text(encoding="utf-8");assert not re.search(r"\b(INT8|INT16|FP16|PTQ|QAT)\s*:\s*(EXECUTED|AUTHORIZED)",cfg)
- stages=yaml.safe_load((ROOT/"configs/pipeline_stages.yaml").read_text(encoding="utf-8"))["stages"];assert next(s for s in stages if s["id"]=="14F-GATE")["status"]=="PROTOCOL_FROZEN";assert next(s for s in stages if s["id"]=="15")["status"]!="EXECUTED"
+ stages=yaml.safe_load((ROOT/"configs/pipeline_stages.yaml").read_text(encoding="utf-8"))["stages"];assert next(s for s in stages if s["id"]=="14F-GATE")["status"]=="PROTOCOL_FROZEN";assert next(s for s in stages if s["id"]=="14F-EXEC")["status"]=="EXECUTED";assert next(s for s in stages if s["id"]=="15")["status"]!="EXECUTED"

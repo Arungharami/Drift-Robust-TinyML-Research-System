@@ -1,0 +1,2 @@
+claim_id,experiment_id,status,mandatory_checks,evidence
+C-EMBED-C1-FUSED-XAI-01,EXP-EMBED-C1-FUSED-XAI-EQUIV-001,SUPPORTED,"{""class_semantics"": true, ""feature_order"": true, ""attribution"": true, ""vector_l1"": true, ""sign"": true, ""topk"": true, ""additivity"": true}",results/embedded/c1_fused_xai_manifest.csv

@@ -312,6 +312,42 @@
     "notes": "GATE-C1-FUSED-PREPROC-001 frozen. No fused implementation or equivalence output was generated. Future EXP-EMBED-C1-FUSED-EQUIV-001 is authorized separately; quantization and hardware work remain prohibited."
   },
   {
+    "id": "14F-EXEC",
+    "name": "C1 fused FP32 host equivalence",
+    "status": "EXECUTED",
+    "notebook": null,
+    "script": "scripts/run_c1_fused_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1_fused",
+      "results/embedded/c1_fused_golden_equivalence.csv",
+      "results/embedded/c1_fused_boundary_equivalence.csv",
+      "results/embedded/c1_fused_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14F-GATE"
+    ],
+    "notes": "EXP-EMBED-C1-FUSED-EQUIV-001 PASSED prospectively frozen score, probability, normalization, deterministic-generation/execution, golden-decision, and boundary-decision criteria on the host. Fused XAI, quantization, MCU compilation, and hardware measurements remain NOT_EXECUTED/NOT_MEASURED."
+  },
+  {
+    "id": "14F-XAI",
+    "name": "C1 fused local-XAI host equivalence",
+    "status": "EXECUTED",
+    "notebook": null,
+    "script": "scripts/run_c1_fused_xai_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1_fused/xai_c1_fused.c",
+      "results/embedded/c1_fused_xai_attribution_equivalence.csv",
+      "results/embedded/c1_fused_xai_topk_equivalence.csv",
+      "results/embedded/c1_fused_xai_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14F-EXEC"
+    ],
+    "notes": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001 PASSED all prospectively frozen local attribution, vector, sign, Top-K, additivity, semantic, determinism, and lineage criteria on the host. Quantization, MCU execution, and hardware measurements remain unexecuted."
+  },
+  {
     "id": "15",
     "name": "nRF52840 deployment",
     "status": "BLOCKED",

@@ -1,0 +1,2 @@
+architecture,subtractions,multiplications,topk_algorithm,topk_comparisons_upper_bound_per_k,evidence_type
+FULL_VECTOR,128,128,deterministic bounded insertion/select,128*K,DERIVED_ANALYTICAL

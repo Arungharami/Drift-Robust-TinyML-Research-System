@@ -1,0 +1,7 @@
+component,fp32_values,bytes,evidence_type
+prediction_constants,774,3096,DERIVED_FROM_ARCHITECTURE
+xai_means_increment,128,512,DERIVED_FROM_ARCHITECTURE
+prediction_plus_xai_constants,902,3608,DERIVED_FROM_ARCHITECTURE
+full_attribution_buffer,128,512,DERIVED_FROM_ARCHITECTURE
+streaming_topk,K values plus K indices,K*4 plus K*index_bytes,ANALYTICAL_OPTION_NOT_IMPLEMENTED
+runtime_scales,0,0,DERIVED_FROM_ARCHITECTURE

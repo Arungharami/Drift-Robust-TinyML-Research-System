@@ -1,0 +1,4 @@
+claim_id,experiment_id,status,evidence
+C-EMBED-C1-FUSED-01,EXP-EMBED-C1-FUSED-EQUIV-001,SUPPORTED,"score, probability, normalization, determinism, lineage"
+C-EMBED-C1-FUSED-02,EXP-EMBED-C1-FUSED-EQUIV-001,SUPPORTED,golden and boundary decisions
+C-EMBED-C1-FUSED-XAI-01,EXP-EMBED-C1-FUSED-EQUIV-001,NOT_EXECUTED,separate experiment required

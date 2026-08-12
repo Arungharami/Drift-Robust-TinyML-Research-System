@@ -1,0 +1,16 @@
+{
+  "experiment_id": "EXP-EMBED-C1-FUSED-EQUIV-001",
+  "compiler": "clang version 21.1.0",
+  "language": "C11",
+  "optimization": "-O2",
+  "fast_math": "disabled (-fno-fast-math)",
+  "fp_contraction": "off (-ffp-contract=off)",
+  "target_architecture": "AMD64",
+  "build_command": "C:\\Users\\arun_\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -m ziglang cc -std=c11 -O2 -fno-fast-math -ffp-contract=off -IC:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1_fused C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1_fused\\test_harness_c1_fused.c C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1_fused\\inference_c1_fused.c C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1_fused\\model_c1_fused.c -o C:\\Users\\arun_\\OneDrive\\Desktop\\Research\\Drift-Robust-TinyML-Research-System-colab\\Drift-Robust-TinyML-Research-System\\embedded\\generated\\c1_fused\\c1_fused_host.exe -lm",
+  "math_library": "host libm expf",
+  "git_commit": "0b8553d9f0e08161613fa6fcb7efa0e03f606c72",
+  "timestamp_utc": "2026-08-12T15:33:29.278652+00:00",
+  "execution_scope": "HOST",
+  "runtime_dtype": "float32",
+  "mcu_execution": "NOT_EXECUTED"
+}

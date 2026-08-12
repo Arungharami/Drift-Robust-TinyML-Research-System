@@ -45,10 +45,12 @@ export default function TinyMlPage() {
 
     {embedded.c1_fused_gate && <>
       <h2>C1 fused preprocessing architecture gate</h2>
-      <p>Gate <code>{embedded.c1_fused_gate.gate_id}</code>: <code>{embedded.c1_fused_gate.gate_status}</code>. Future experiment <code>{embedded.c1_fused_gate.future_experiment_id}</code> is authorized but remains <code>{embedded.c1_fused_gate.performance_experiment_status}</code>.</p>
+      <p>Gate <code>{embedded.c1_fused_gate.gate_id}</code>: <code>{embedded.c1_fused_gate.gate_status}</code>. Experiment <code>{embedded.c1_fused_gate.future_experiment_id}</code> subsequently executed and <code>PASSED</code> every frozen criterion on the host.</p>
       <p>The architecture folds the frozen scaler into raw-domain linear weights and biases. It deliberately does not materialize standardized features, so it does not retroactively repair Stage 14 or Stage 14R.</p>
       <div className="table-scroll"><table><thead><tr><th>Architecture</th><th>Scaler subtractions</th><th>Scaler divisions</th><th>Classifier multiplications</th><th>Transformed buffer</th><th>Evidence</th></tr></thead><tbody>{embedded.c1_fused_operations.filter(row => row.architecture !== "FUSED_MINUS_EXPLICIT").map(row => <tr key={row.architecture}><td><code>{row.architecture}</code></td><td>{row.scaler_subtractions}</td><td>{row.scaler_divisions}</td><td>{row.classifier_multiplications}</td><td>{row.transformed_buffer_elements} elements</td><td><code>DERIVED_ANALYTICAL</code></td></tr>)}</tbody></table></div>
       <p>Fused local XAI is not included. Inference must pass first; a baseline-preserving explanation representation requires a separate experiment.</p>
+      <p>Golden maximum score error: <code>{Number(embedded.c1_fused_execution.find(row => row.population === "GOLDEN" && row.metric === "score_absolute_error")?.max).toExponential(3)}</code>. Claims <code>C-EMBED-C1-FUSED-01</code> and <code>C-EMBED-C1-FUSED-02</code> are supported; fused XAI remains <code>NOT_EXECUTED</code>.</p>
+      {embedded.c1_fused_xai_summary.length > 0 && <p>Fused local XAI subsequently <code>PASSED</code> across {embedded.c1_fused_xai_summary.length} Stage-09 audit samples. Maximum vector L1 error was <code>{Math.max(...embedded.c1_fused_xai_summary.map(row => Number(row.attribution_vector_l1_error))).toExponential(3)}</code>; <code>C-EMBED-C1-FUSED-XAI-01</code> is supported for the host representation.</p>}
     </>}
 
     <h2>Analytical storage — derived estimate</h2>

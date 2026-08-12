@@ -36,7 +36,11 @@ export interface EmbeddedEvidence {
   c1_fused_gate: Record<string, string> | null;
   c1_fused_operations: Record<string, string>[];
   c1_fused_storage: Record<string, string>[];
-  c1_fused_claims: Record<string, string>[];
+    c1_fused_claims: Record<string, string>[];
+    c1_fused_execution: Record<string, string>[];
+    c1_fused_execution_claims: Record<string, string>[];
+    c1_fused_xai_summary: Record<string, string>[];
+    c1_fused_xai_claims: Record<string, string>[];
   statuses: Record<string, string>;
   artifact_paths: string[];
 }

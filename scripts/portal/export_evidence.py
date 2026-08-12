@@ -352,8 +352,12 @@ def export_embedded() -> dict[str, Any]:
         "c1_fused_operations": _read_csv(embedded / "c1_fused_operation_analysis.csv"),
         "c1_fused_storage": _read_csv(embedded / "c1_fused_storage_analysis.csv"),
         "c1_fused_claims": _read_csv(embedded / "c1_fused_claim_registry.csv"),
-        "statuses": {"model_export": "NOT_EXECUTED", "quantization": "NOT_EXECUTED", "firmware": "NOT_EXECUTED", "compiled_flash": "NOT_MEASURED", "sram": "NOT_MEASURED", "mcu_latency": "NOT_MEASURED", "energy": "NOT_MEASURED"},
-        "artifact_paths": ["docs/embedded/STAGE13_EMBEDDED_EXPORT_PROTOCOL.md", "configs/embedded_equivalence_protocol.yaml", "results/embedded/stage13_candidate_matrix.csv", "data/manifests/embedded_golden_vectors.csv", "docs/embedded/STAGE14_FP32_EXPORT_EQUIVALENCE.md", "results/embedded/stage14_summary.json", "results/embedded/stage14_manifest.csv", "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR.md", "results/embedded/stage14r_candidate_summary.csv", "results/embedded/stage14r_manifest.csv", "docs/embedded/C1_FUSED_PREPROCESSING_ARCHITECTURE.md", "configs/c1_fused_equivalence.yaml", "results/embedded/c1_fused_gate_decision.csv"],
+        "c1_fused_execution": _read_csv(embedded / "c1_fused_error_summary.csv"),
+        "c1_fused_execution_claims": _read_csv(embedded / "c1_fused_claim_evaluation.csv"),
+        "c1_fused_xai_summary": _read_csv(embedded / "c1_fused_xai_vector_summary.csv"),
+        "c1_fused_xai_claims": _read_csv(embedded / "c1_fused_xai_claim_evaluation.csv"),
+        "statuses": {"model_export": "HOST_EXECUTED", "quantization": "NOT_EXECUTED", "firmware": "NOT_EXECUTED", "compiled_flash": "NOT_MEASURED", "sram": "NOT_MEASURED", "mcu_latency": "NOT_MEASURED", "energy": "NOT_MEASURED"},
+        "artifact_paths": ["docs/embedded/STAGE13_EMBEDDED_EXPORT_PROTOCOL.md", "configs/embedded_equivalence_protocol.yaml", "results/embedded/stage13_candidate_matrix.csv", "data/manifests/embedded_golden_vectors.csv", "docs/embedded/STAGE14_FP32_EXPORT_EQUIVALENCE.md", "results/embedded/stage14_summary.json", "results/embedded/stage14_manifest.csv", "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR.md", "results/embedded/stage14r_candidate_summary.csv", "results/embedded/stage14r_manifest.csv", "docs/embedded/C1_FUSED_PREPROCESSING_ARCHITECTURE.md", "configs/c1_fused_equivalence.yaml", "results/embedded/c1_fused_gate_decision.csv", "docs/embedded/EXP_EMBED_C1_FUSED_EQUIV_001.md", "results/embedded/c1_fused_golden_equivalence.csv", "results/embedded/c1_fused_boundary_equivalence.csv", "results/embedded/c1_fused_manifest.csv", "docs/embedded/EXP_EMBED_C1_FUSED_XAI_EQUIV_001.md", "results/embedded/c1_fused_xai_attribution_equivalence.csv", "results/embedded/c1_fused_xai_manifest.csv"],
     }
 
 
