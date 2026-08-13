@@ -1,0 +1,122 @@
+[
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 7,
+    "feature_name": "S1:EMAd_0.1",
+    "importance": 0.03971542422682927,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 127,
+    "feature_name": "S16:EMAd_0.1",
+    "importance": 0.03633364492396007,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 2,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 0,
+    "feature_name": "S1:dR",
+    "importance": 0.035016587696426744,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 3,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 71,
+    "feature_name": "S9:EMAd_0.1",
+    "importance": 0.0316282319550713,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 4,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 12,
+    "feature_name": "S2:EMAi_0.1",
+    "importance": 0.030382261459755956,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 5,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 72,
+    "feature_name": "S10:dR",
+    "importance": 0.029640864609219834,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 6,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 5,
+    "feature_name": "S1:EMAd_0.001",
+    "importance": 0.027266272058128767,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 7,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 77,
+    "feature_name": "S10:EMAd_0.001",
+    "importance": 0.026117040237999812,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 8,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 4,
+    "feature_name": "S1:EMAi_0.1",
+    "importance": 0.024102681538235915,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 9,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 63,
+    "feature_name": "S8:EMAd_0.1",
+    "importance": 0.02204118240562756,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 10,
+    "status": "EXECUTED",
+    "top_k": 10
+  }
+]

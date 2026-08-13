@@ -1,0 +1,14 @@
+[
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 64,
+    "feature_name": "S9:dR",
+    "importance": 0.49087808980094527,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 1
+  }
+]

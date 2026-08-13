@@ -1,0 +1,62 @@
+[
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 64,
+    "feature_name": "S9:dR",
+    "importance": 0.49087808980094527,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 5
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 72,
+    "feature_name": "S10:dR",
+    "importance": 0.4841492133511514,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 2,
+    "status": "EXECUTED",
+    "top_k": 5
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 8,
+    "feature_name": "S2:dR",
+    "importance": 0.4702704173980215,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 3,
+    "status": "EXECUTED",
+    "top_k": 5
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 0,
+    "feature_name": "S1:dR",
+    "importance": 0.41480788315803413,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 4,
+    "status": "EXECUTED",
+    "top_k": 5
+  },
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 102,
+    "feature_name": "S13:EMAd_0.01",
+    "importance": 0.3497493935697049,
+    "method": "INTRINSIC_COEFFICIENT",
+    "model_id": "MODEL-C1",
+    "rank": 5,
+    "status": "EXECUTED",
+    "top_k": 5
+  }
+]

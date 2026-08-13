@@ -23,6 +23,8 @@ results/raw/*
 artifacts/*
 !artifacts/models/
 !artifacts/models/*.joblib
+!artifacts/explanations/
+!artifacts/explanations/**
 *.pt
 *.pth
 *.h5

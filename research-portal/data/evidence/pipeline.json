@@ -1,0 +1,346 @@
+[
+  {
+    "id": "00",
+    "name": "Environment and reproducibility",
+    "status": "EXECUTED",
+    "notebook": "notebooks/00_environment_and_reproducibility.ipynb",
+    "script": "scripts/capture_environment.py",
+    "artifact_paths": [
+      "results/reproducibility/environment.json"
+    ],
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "depends_on": [],
+    "notes": "Captures Python/OS/package versions, git commit, and seed for every subsequent stage."
+  },
+  {
+    "id": "01",
+    "name": "Dataset acquisition / integrity",
+    "status": "EXECUTED",
+    "notebook": "notebooks/01_dataset_audit_and_drift_characterization.ipynb",
+    "script": "scripts/download_dataset.py",
+    "artifact_paths": [
+      "data/raw"
+    ],
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "depends_on": [
+      "00"
+    ],
+    "notes": "Official UCI archive downloaded and SHA-256 verified against the published archive hash."
+  },
+  {
+    "id": "02",
+    "name": "Dataset validation",
+    "status": "EXECUTED",
+    "notebook": "notebooks/01_dataset_audit_and_drift_characterization.ipynb",
+    "script": "scripts/validate_dataset.py",
+    "artifact_paths": [
+      "results/reproducibility/dataset_validation.json",
+      "results/reproducibility/dataset_validation.md"
+    ],
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "depends_on": [
+      "01"
+    ],
+    "notes": "Verified 13,910 samples, 128 features, 10 batches, 6 classes; 0 missing values."
+  },
+  {
+    "id": "03",
+    "name": "Chronological split definition",
+    "status": "EXECUTED",
+    "notebook": null,
+    "script": "src/data",
+    "artifact_paths": [
+      "configs/chronological_protocol.yaml"
+    ],
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "depends_on": [
+      "02"
+    ],
+    "notes": "FIXED_ORIGIN (train batch 1, test 2-10), EXPANDING_WINDOW, and IID_DIAGNOSTIC protocols frozen in config."
+  },
+  {
+    "id": "04",
+    "name": "Preprocessing",
+    "status": "EXECUTED",
+    "notebook": "notebooks/02_classical_chronological_baselines.ipynb",
+    "script": "src/data",
+    "artifact_paths": [],
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "depends_on": [
+      "03"
+    ],
+    "notes": "Standardization fitted on training data only per protocol; no leakage across chronological boundary."
+  },
+  {
+    "id": "05",
+    "name": "Baseline model training",
+    "status": "EXECUTED",
+    "notebook": "notebooks/02_classical_chronological_baselines.ipynb",
+    "script": "scripts/run_classical_baselines.py",
+    "artifact_paths": [
+      "artifacts/models/BASE-FIXED-C1-001.joblib",
+      "artifacts/models/BASE-FIXED-C2-001.joblib",
+      "artifacts/models/BASE-FIXED-C3-001.joblib",
+      "artifacts/models/BASE-FIXED-C4-001.joblib"
+    ],
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "depends_on": [
+      "04"
+    ],
+    "notes": "Logistic Regression, Random Forest, RBF-SVM, MLP trained on Batch 1 (seed 42)."
+  },
+  {
+    "id": "06",
+    "name": "Chronological evaluation",
+    "status": "EXECUTED",
+    "notebook": "notebooks/02_classical_chronological_baselines.ipynb",
+    "script": "scripts/run_classical_baselines.py",
+    "artifact_paths": [
+      "results/baselines/fixed_origin_metrics.csv",
+      "results/baselines/expanding_window_metrics.csv",
+      "results/baselines/iid_diagnostic_metrics.csv"
+    ],
+    "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
+    "depends_on": [
+      "05"
+    ],
+    "notes": "All 4 models evaluated on batches 2-10 under FIXED_ORIGIN, EXPANDING_WINDOW, and IID_DIAGNOSTIC."
+  },
+  {
+    "id": "07",
+    "name": "Drift analysis",
+    "status": "EXECUTED",
+    "notebook": "notebooks/01_dataset_audit_and_drift_characterization.ipynb",
+    "script": "scripts/run_drift_analysis.py",
+    "artifact_paths": [
+      "results/drift/feature_drift_by_batch.csv",
+      "results/drift/global_drift_by_batch.csv"
+    ],
+    "git_commit": "c2e2d1a1fc0e20e3169d61f594e5938dffe9cb29",
+    "depends_on": [
+      "02"
+    ],
+    "notes": "Per-feature and global drift (normalized Wasserstein, standardized mean shift) vs. Batch 1."
+  },
+  {
+    "id": "08",
+    "name": "Evidence-based model selection",
+    "status": "EXECUTED",
+    "notebook": "notebooks/03_temporal_adaptation_and_iid_diagnostic.ipynb",
+    "script": "scripts/build_baseline_artifacts.py",
+    "artifact_paths": [
+      "results/baselines/fixed_origin_summary.csv",
+      "paper/claim_evidence_matrix.csv"
+    ],
+    "git_commit": "9ede9dd8f3b2c8b9e6f6b0e0b3f6b0e0b3f6b0e0",
+    "depends_on": [
+      "06",
+      "07"
+    ],
+    "notes": "Claim-evidence matrix (paper/claim_evidence_matrix.csv) links each candidate claim to its artifact; C006 explicitly UNSUPPORTED."
+  },
+  {
+    "id": "09",
+    "name": "Resource-aware XAI",
+    "status": "EXECUTED",
+    "notebook": "notebooks/05_resource_aware_xai.ipynb",
+    "script": "src/xai/run_stage09.py",
+    "artifact_paths": [
+      "artifacts/explanations/EXP-XAI-0001",
+      "results/xai/stage09_global_importance.csv",
+      "results/xai/stage09_reduced_explanations.csv",
+      "results/xai/stage09_local_samples.csv",
+      "results/xai/stage09_local_explanations.csv",
+      "results/xai/stage09_fidelity_prep.csv",
+      "results/xai/stage09_manifest.csv",
+      "results/xai/stage09_feature_map.csv"
+    ],
+    "git_commit": "a2bfa8a",
+    "depends_on": [
+      "08"
+    ],
+    "notes": "EXP-XAI-0001 (registry rows EXP-XAI-0001-C1..C4). Intrinsic coefficient explanations for MODEL-C1, intrinsic impurity for MODEL-C2, model-agnostic permutation importance (macro-F1) and single-feature-ablation local explanations for all 4 frozen FIXED_ORIGIN models. No retraining; chronological split unchanged. Full applicability matrix in results/xai/stage09_manifest.csv. See docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md. This stage prepares evidence for Stages 10-12 \u2014 it does not itself report fidelity, stability, or latency conclusions."
+  },
+  {
+    "id": "10",
+    "name": "Fidelity evaluation",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "09"
+    ],
+    "notes": "Requires stage 09."
+  },
+  {
+    "id": "11",
+    "name": "Explanation stability evaluation",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "09"
+    ],
+    "notes": "Requires stage 09."
+  },
+  {
+    "id": "12",
+    "name": "Explanation latency",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "09"
+    ],
+    "notes": "Host-side timing only until stage 16; on-device timing requires stage 15."
+  },
+  {
+    "id": "13",
+    "name": "Quantization",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "08"
+    ],
+    "notes": "No deep model exists yet to quantize; classical models would need a separate export path."
+  },
+  {
+    "id": "14",
+    "name": "Embedded export",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "13"
+    ],
+    "notes": "Requires stage 13."
+  },
+  {
+    "id": "15",
+    "name": "nRF52840 deployment",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "14"
+    ],
+    "notes": "Physical hardware not yet programmed. Hardware itself not confirmed available."
+  },
+  {
+    "id": "16",
+    "name": "Flash/SRAM measurement",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "15"
+    ],
+    "notes": "Requires stage 15."
+  },
+  {
+    "id": "17",
+    "name": "Physical inference latency",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "15"
+    ],
+    "notes": "Requires stage 15."
+  },
+  {
+    "id": "18",
+    "name": "PPK2 energy measurement",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "17"
+    ],
+    "notes": "Requires Nordic Power Profiler Kit II and stage 15. No raw traces exist."
+  },
+  {
+    "id": "19",
+    "name": "Explanation-energy measurement",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "18",
+      "12"
+    ],
+    "notes": "Requires stages 12 and 18."
+  },
+  {
+    "id": "20",
+    "name": "Pareto analysis",
+    "status": "NOT_EXECUTED",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [],
+    "git_commit": null,
+    "depends_on": [
+      "10",
+      "11",
+      "17",
+      "18"
+    ],
+    "notes": "Multi-objective (accuracy, fidelity, stability, latency, Flash, SRAM, energy) frontier \u2014 needs stages 10, 11, 17, 18."
+  },
+  {
+    "id": "21",
+    "name": "Figures/tables",
+    "status": "EXECUTED",
+    "notebook": "notebooks/03_temporal_adaptation_and_iid_diagnostic.ipynb",
+    "script": "scripts/build_baseline_artifacts.py",
+    "artifact_paths": [
+      "results/figures",
+      "results/tables"
+    ],
+    "git_commit": "9ede9dd8f3b2c8b9e6f6b0e0b3f6b0e0b3f6b0e0",
+    "depends_on": [
+      "06",
+      "07",
+      "08"
+    ],
+    "notes": "15 figures + 5 tables generated from Checkpoint 1-2 evidence, each with a source CSV under results/figures/sources/."
+  },
+  {
+    "id": "22",
+    "name": "Manuscript evidence export",
+    "status": "RUNNING",
+    "notebook": null,
+    "script": null,
+    "artifact_paths": [
+      "paper/claim_evidence_matrix.csv",
+      "paper/RESULTS_DRAFT.md",
+      "paper/DISCUSSION_DRAFT.md"
+    ],
+    "git_commit": "705119d",
+    "depends_on": [
+      "21"
+    ],
+    "notes": "Claim-evidence matrix and figure/table indices exist; Results/Discussion prose intentionally left undrafted pending further evidence (see paper/RESULTS_DRAFT.md)."
+  }
+]

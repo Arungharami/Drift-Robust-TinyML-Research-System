@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-08-11T03:23:54.144286+00:00",
+  "in_colab": false,
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.29617-SP0",
+  "cpu": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel",
+  "logical_cpu_count": 16,
+  "ram_bytes": 16996315136,
+  "gpu": "NVIDIA GeForce RTX 2070",
+  "cuda": null,
+  "git_commit": "48160ce8612d1c818cdf69a503bdb99123855e76",
+  "seed": 42,
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.9.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "batch": "3",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 105,
+    "feature_name": "S14:dR_norm",
+    "importance": 0.10294754831157424,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C2",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 1
+  }
+]
