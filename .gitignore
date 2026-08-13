@@ -40,7 +40,7 @@ models/
 *.pkl
 *.model
 
-# LaTeX
+# LaTeX / generated documents
 *.aux
 *.bbl
 *.blg
@@ -51,6 +51,16 @@ models/
 *.toc
 *.fls
 *.fdb_latexmk
+
+# Allow only a validated final manuscript PDF to be versioned.
+!paper/final/
+!paper/final/*.pdf
+
+# Node / Next.js research portal
+research-portal/node_modules/
+research-portal/.next/
+research-portal/out/
+research-portal/.vercel/
 
 # OS
 .DS_Store

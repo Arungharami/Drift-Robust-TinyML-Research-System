@@ -1,0 +1,41 @@
+name: Research Portal CI
+
+on:
+  pull_request:
+    paths:
+      - "research-portal/**"
+      - ".github/workflows/research-portal-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "research-portal/**"
+      - ".github/workflows/research-portal-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: research-portal
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: research-portal/package.json
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build portal
+        run: npm run build
