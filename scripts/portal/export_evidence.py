@@ -158,6 +158,74 @@ def export_references() -> list[dict[str, Any]]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+# --- xai (Stage 09) ------------------------------------------------------------------------------
+
+
+def export_xai() -> dict[str, Any]:
+    xai_dir = REPO_ROOT / "results" / "xai"
+    manifest_rows = _read_csv(xai_dir / "stage09_manifest.csv")
+    global_rows = _read_csv(xai_dir / "stage09_global_importance.csv")
+    local_samples = _read_csv(xai_dir / "stage09_local_samples.csv")
+    reduced_rows = _read_csv(xai_dir / "stage09_reduced_explanations.csv")
+    fidelity_prep_rows = _read_csv(xai_dir / "stage09_fidelity_prep.csv")
+
+    experiment_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-XAI-0001" / "manifest.json"
+    experiment_manifest = _read_json(experiment_manifest_path)
+
+    category_counts: dict[str, int] = {}
+    for row in local_samples:
+        for category in row.get("category", "").split(","):
+            if category:
+                category_counts[category] = category_counts.get(category, 0) + 1
+
+    # Small curated top-3 table (batch 2, every method that ran at batch scope "2" or "ALL") for
+    # display without shipping all 4,864 global rows to the client.
+    top3: list[dict[str, Any]] = []
+    by_model_method: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
+    for row in global_rows:
+        if row.get("batch") not in ("2", "ALL"):
+            continue
+        key = (row["model_id"], row["method"], row["batch"])
+        by_model_method.setdefault(key, []).append(row)
+    for (model_id, method, batch), rows in sorted(by_model_method.items()):
+        ranked = sorted(rows, key=lambda r: int(r["rank"]))[:3]
+        top3.append(
+            {
+                "model_id": model_id, "method": method, "batch": batch,
+                "features": [r["feature_name"] for r in ranked],
+            }
+        )
+
+    return {
+        "evidence_status": "EXECUTED" if experiment_manifest else "NOT_EXECUTED",
+        "experiment_id": experiment_manifest.get("experiment_id") if experiment_manifest else None,
+        "status": experiment_manifest.get("status") if experiment_manifest else "NOT_EXECUTED",
+        "created_at": experiment_manifest.get("created_at") if experiment_manifest else None,
+        "per_model_status": experiment_manifest.get("per_model_status") if experiment_manifest else {},
+        "applicability_matrix": manifest_rows,
+        "n_global_rows": len(global_rows),
+        "n_local_samples": len(local_samples),
+        "n_reduced_rows": len(reduced_rows),
+        "n_fidelity_prep_rows": len(fidelity_prep_rows),
+        "local_sample_categories": category_counts,
+        "top3_by_model_method_batch": top3,
+        "artifact_paths": [
+            "results/xai/stage09_global_importance.csv",
+            "results/xai/stage09_reduced_explanations.csv",
+            "results/xai/stage09_local_samples.csv",
+            "results/xai/stage09_local_explanations.csv",
+            "results/xai/stage09_fidelity_prep.csv",
+            "results/xai/stage09_manifest.csv",
+            "results/xai/stage09_feature_map.csv",
+            "docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md",
+        ],
+        # Explicitly not computed by Stage 09 — later stages, still NOT_EXECUTED.
+        "fidelity_status": "NOT_EXECUTED",
+        "stability_status": "NOT_EXECUTED",
+        "latency_status": "NOT_EXECUTED",
+    }
+
+
 # --- pipeline -----------------------------------------------------------------------------------
 
 
@@ -252,6 +320,7 @@ def main() -> int:
     drift = export_drift()
     claims = export_claims()
     references = export_references()
+    xai = export_xai()
     pipeline = export_pipeline()
     figures = export_figures()
     tables = export_tables()
@@ -265,6 +334,7 @@ def main() -> int:
     _write("drift.json", drift)
     _write("claims.json", claims)
     _write("references.json", references)
+    _write("xai.json", xai)
     _write("pipeline.json", pipeline)
     _write("figures.json", figures)
     _write("tables.json", tables)

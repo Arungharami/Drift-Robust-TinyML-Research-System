@@ -1,0 +1,45 @@
+{
+  "config_hash": "92158c5601eb7a96812e316affec214d5ed1e694e43df45d193d81835da820ab",
+  "config_path": "configs\\xai\\stage09_resource_aware_xai_v1.yaml",
+  "created_at": "2026-08-11T03:23:54.144286+00:00",
+  "experiment_id": "EXP-XAI-0001",
+  "git_commit": "48160ce8612d1c818cdf69a503bdb99123855e76",
+  "n_fidelity_prep_rows": 880,
+  "n_global_rows": 4864,
+  "n_local_explanation_rows": 35072,
+  "n_local_samples": 220,
+  "n_reduced_rows": 722,
+  "output_artifacts": [
+    "results\\xai\\stage09_feature_map.csv",
+    "results\\xai\\stage09_global_importance.csv",
+    "results\\xai\\stage09_reduced_explanations.csv",
+    "results\\xai\\stage09_local_samples.csv",
+    "results\\xai\\stage09_local_explanations.csv",
+    "results\\xai\\stage09_fidelity_prep.csv",
+    "results\\xai\\stage09_manifest.csv"
+  ],
+  "per_model_status": {
+    "MODEL-C1": {
+      "n_global_rows": 1280,
+      "n_local_samples": 54,
+      "status": "EXECUTED"
+    },
+    "MODEL-C2": {
+      "n_global_rows": 1280,
+      "n_local_samples": 53,
+      "status": "EXECUTED"
+    },
+    "MODEL-C3": {
+      "n_global_rows": 1152,
+      "n_local_samples": 54,
+      "status": "EXECUTED"
+    },
+    "MODEL-C4": {
+      "n_global_rows": 1152,
+      "n_local_samples": 59,
+      "status": "EXECUTED"
+    }
+  },
+  "stage": "09",
+  "status": "EXECUTED"
+}

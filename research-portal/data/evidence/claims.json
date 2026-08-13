@@ -89,5 +89,18 @@
     "figure": "14",
     "git_commit": "5a9fd6204ec7d0becf6b95cbab2071075a3ff5ae",
     "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C008",
+    "candidate_claim": "Global permutation-importance (macro-F1) rankings and single-feature-ablation local explanations were generated for all four evidence-selected FIXED_ORIGIN models across all nine evaluation batches, with no unjustified explanation method forced onto an incapable model",
+    "experiment_id": "EXP-XAI-0001-C1\u2013C4",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "92158c5601eb7a96812e316affec214d5ed1e694e43df45d193d81835da820ab",
+    "metric": "permutation_importance_macro_f1",
+    "result_artifact": "results/xai/stage09_global_importance.csv",
+    "figure": "",
+    "git_commit": "48160ce8612d1c818cdf69a503bdb99123855e76",
+    "status": "SUPPORTED"
   }
 ]

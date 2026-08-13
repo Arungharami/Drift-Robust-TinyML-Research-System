@@ -1,0 +1,274 @@
+{
+  "evidence_status": "EXECUTED",
+  "experiment_id": "EXP-XAI-0001",
+  "status": "EXECUTED",
+  "created_at": "2026-08-11T03:23:54.144286+00:00",
+  "per_model_status": {
+    "MODEL-C1": {
+      "n_global_rows": 1280,
+      "n_local_samples": 54,
+      "status": "EXECUTED"
+    },
+    "MODEL-C2": {
+      "n_global_rows": 1280,
+      "n_local_samples": 53,
+      "status": "EXECUTED"
+    },
+    "MODEL-C3": {
+      "n_global_rows": 1152,
+      "n_local_samples": 54,
+      "status": "EXECUTED"
+    },
+    "MODEL-C4": {
+      "n_global_rows": 1152,
+      "n_local_samples": 59,
+      "status": "EXECUTED"
+    }
+  },
+  "applicability_matrix": [
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C1",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C1",
+      "method": "INTRINSIC_IMPURITY",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C1",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C1",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "scope": "local",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C1",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "local",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C2",
+      "method": "INTRINSIC_IMPURITY",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C2",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C2",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C2",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "scope": "local",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C2",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "local",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C3",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C3",
+      "method": "INTRINSIC_IMPURITY",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C3",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C3",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "scope": "local",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C3",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "local",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C4",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C4",
+      "method": "INTRINSIC_IMPURITY",
+      "scope": "global",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C4",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "scope": "global",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C4",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "scope": "local",
+      "status": "EXECUTED",
+      "reason": ""
+    },
+    {
+      "experiment_id": "EXP-XAI-0001",
+      "model_id": "MODEL-C4",
+      "method": "INTRINSIC_COEFFICIENT",
+      "scope": "local",
+      "status": "NOT_APPLICABLE",
+      "reason": "capability not detected on fitted estimator"
+    }
+  ],
+  "n_global_rows": 4864,
+  "n_local_samples": 220,
+  "n_reduced_rows": 722,
+  "n_fidelity_prep_rows": 880,
+  "local_sample_categories": {
+    "CORRECT_REPRESENTATIVE": 103,
+    "MISCLASSIFIED": 60,
+    "NEAR_DECISION_BOUNDARY": 60
+  },
+  "top3_by_model_method_batch": [
+    {
+      "model_id": "MODEL-C1",
+      "method": "INTRINSIC_COEFFICIENT",
+      "batch": "ALL",
+      "features": [
+        "S9:dR_norm",
+        "S10:dR_norm",
+        "S2:dR_norm"
+      ]
+    },
+    {
+      "model_id": "MODEL-C1",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "batch": "2",
+      "features": [
+        "S9:dR_norm",
+        "S2:dR_norm",
+        "S10:dR_norm"
+      ]
+    },
+    {
+      "model_id": "MODEL-C2",
+      "method": "INTRINSIC_IMPURITY",
+      "batch": "ALL",
+      "features": [
+        "S2:dR",
+        "S1:dR",
+        "S1:dR_norm"
+      ]
+    },
+    {
+      "model_id": "MODEL-C2",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "batch": "2",
+      "features": [
+        "S1:EMAd_0.1",
+        "S9:EMAd_0.1",
+        "S2:EMAd_0.001"
+      ]
+    },
+    {
+      "model_id": "MODEL-C3",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "batch": "2",
+      "features": [
+        "S9:dR_norm",
+        "S13:EMAi_0.01",
+        "S14:EMAi_0.01"
+      ]
+    },
+    {
+      "model_id": "MODEL-C4",
+      "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+      "batch": "2",
+      "features": [
+        "S2:EMAd_0.1",
+        "S13:EMAi_0.1",
+        "S4:EMAi_0.1"
+      ]
+    }
+  ],
+  "artifact_paths": [
+    "results/xai/stage09_global_importance.csv",
+    "results/xai/stage09_reduced_explanations.csv",
+    "results/xai/stage09_local_samples.csv",
+    "results/xai/stage09_local_explanations.csv",
+    "results/xai/stage09_fidelity_prep.csv",
+    "results/xai/stage09_manifest.csv",
+    "results/xai/stage09_feature_map.csv",
+    "docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md"
+  ],
+  "fidelity_status": "NOT_EXECUTED",
+  "stability_status": "NOT_EXECUTED",
+  "latency_status": "NOT_EXECUTED"
+}

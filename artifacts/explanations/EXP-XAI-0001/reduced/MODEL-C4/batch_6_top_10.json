@@ -1,0 +1,122 @@
+[
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 98,
+    "feature_name": "S13:EMAi_0.001",
+    "importance": 0.03716253756755,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 99,
+    "feature_name": "S13:EMAi_0.01",
+    "importance": 0.024877036029246992,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 2,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 119,
+    "feature_name": "S15:EMAd_0.1",
+    "importance": 0.005510622711081448,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 3,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 95,
+    "feature_name": "S12:EMAd_0.1",
+    "importance": 0.004179096511368585,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 4,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 14,
+    "feature_name": "S2:EMAd_0.01",
+    "importance": 0.004023601980475222,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 5,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 38,
+    "feature_name": "S5:EMAd_0.01",
+    "importance": 0.0031629645811763083,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 6,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 111,
+    "feature_name": "S14:EMAd_0.1",
+    "importance": 0.0031274877362180153,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 7,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 17,
+    "feature_name": "S3:dR_norm",
+    "importance": 0.003124419961831837,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 8,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 108,
+    "feature_name": "S14:EMAi_0.1",
+    "importance": 0.0030371633771817176,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 9,
+    "status": "EXECUTED",
+    "top_k": 10
+  },
+  {
+    "batch": "6",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 46,
+    "feature_name": "S6:EMAd_0.01",
+    "importance": 0.0028631674307947443,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C4",
+    "rank": 10,
+    "status": "EXECUTED",
+    "top_k": 10
+  }
+]
