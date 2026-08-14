@@ -41,6 +41,18 @@ def corr_ci(x,y,rng,reps=1000):
   if np.isfinite(v):z.append(v)
  return est,float(np.quantile(z,.025)),float(np.quantile(z,.975))
 
+def summarize_pairs(rows: list[dict[str, Any]], top_k_values: list[int]) -> list[dict[str, Any]]:
+ """Compatibility summary for the original Stage 11 pairwise-test contract."""
+ frame=pd.DataFrame(rows); summaries=[]
+ for model_id,group in frame.groupby("model_id",sort=True):
+  reference=group[(group["comparison"]=="REFERENCE")&(group["batch_a"]!=group["batch_b"])]
+  adjacent=group[group["comparison"]=="ADJACENT"]
+  row={"experiment_id":group["experiment_id"].iloc[0],"source_experiment_id":group["source_experiment_id"].iloc[0],"model_id":model_id,"method":group["method"].iloc[0],"n_reference_comparisons":int(len(reference)),"n_adjacent_comparisons":int(len(adjacent)),"mean_reference_spearman":float(reference["spearman_rank_correlation"].mean()),"std_reference_spearman":float(reference["spearman_rank_correlation"].std(ddof=1)),"minimum_reference_spearman":float(reference["spearman_rank_correlation"].min()),"mean_reference_kendall":float(reference["kendall_rank_correlation"].mean()),"mean_reference_cosine":float(reference["importance_cosine_similarity"].mean()),"mean_adjacent_spearman":float(adjacent["spearman_rank_correlation"].mean()),"std_adjacent_spearman":float(adjacent["spearman_rank_correlation"].std(ddof=1)),"minimum_adjacent_spearman":float(adjacent["spearman_rank_correlation"].min()),"mean_adjacent_kendall":float(adjacent["kendall_rank_correlation"].mean()),"mean_adjacent_cosine":float(adjacent["importance_cosine_similarity"].mean())}
+  for top_k in top_k_values:
+   column=f"top_{top_k}_jaccard"; row[f"mean_reference_top_{top_k}_jaccard"]=float(reference[column].mean()); row[f"mean_adjacent_top_{top_k}_jaccard"]=float(adjacent[column].mean())
+  summaries.append(row)
+ return summaries
+
 def main(config_path:Path=ROOT/"configs/xai_stability_protocol.yaml"):
  cfg=yaml.safe_load(config_path.read_text(encoding="utf-8"));eid=cfg["experiment_id"];xdir=ROOT/"results/xai";adir=ROOT/f"artifacts/explanations/{eid}"
  stage10_manifest_path=xdir/"stage10_manifest.csv";stage10=pd.read_csv(stage10_manifest_path);inputs=[stage10_manifest_path]

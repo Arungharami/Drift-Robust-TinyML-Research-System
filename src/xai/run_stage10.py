@@ -43,6 +43,20 @@ def bootstrap(values: np.ndarray, rng: np.random.Generator, reps: int) -> tuple[
     estimates = np.array([np.mean(rng.choice(values, len(values), replace=True)) for _ in range(reps)])
     return float(np.mean(values)), float(np.quantile(estimates, .025)), float(np.quantile(estimates, .975))
 
+def summarize_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Compatibility summary used by the original Stage 10 unit contract."""
+    if not rows:
+        return []
+    frame = pd.DataFrame(rows)
+    groups = ["experiment_id", "source_experiment_id", "model_id", "candidate_method", "reference_method", "top_k"]
+    summary: list[dict[str, Any]] = []
+    for keys, group in frame.groupby(groups, sort=True, dropna=False):
+        values = dict(zip(groups, keys))
+        std = lambda column: float(group[column].std(ddof=1)) if len(group) > 1 else 0.0
+        values.update({"n_samples": int(len(group)), "mean_rank_overlap_at_k": float(group["rank_overlap_at_k"].mean()), "candidate_prediction_preservation_rate": float(group["candidate_prediction_preserved"].mean()), "reference_prediction_preservation_rate": float(group["reference_prediction_preserved"].mean()), "mean_candidate_probability_closeness": float(group["candidate_probability_closeness"].mean()), "std_candidate_probability_closeness": std("candidate_probability_closeness"), "mean_reference_probability_closeness": float(group["reference_probability_closeness"].mean()), "mean_candidate_absolute_sufficiency_gap": float(group["candidate_absolute_sufficiency_gap"].mean()), "std_candidate_absolute_sufficiency_gap": std("candidate_absolute_sufficiency_gap"), "mean_reference_absolute_sufficiency_gap": float(group["reference_absolute_sufficiency_gap"].mean()), "mean_candidate_comprehensiveness_drop": float(group["candidate_comprehensiveness_drop"].mean()), "std_candidate_comprehensiveness_drop": std("candidate_comprehensiveness_drop"), "mean_reference_comprehensiveness_drop": float(group["reference_comprehensiveness_drop"].mean()), "mean_candidate_minus_reference_probability_closeness": float(group["candidate_minus_reference_probability_closeness"].mean()), "mean_candidate_minus_reference_absolute_sufficiency_gap": float(group["candidate_minus_reference_absolute_sufficiency_gap"].mean()), "mean_candidate_minus_reference_comprehensiveness_drop": float(group["candidate_minus_reference_comprehensiveness_drop"].mean())})
+        summary.append(values)
+    return summary
+
 def main(config_path: Path = ROOT / "configs/xai_fidelity_protocol.yaml") -> int:
     cfg = yaml.safe_load(config_path.read_text(encoding="utf-8")); eid = cfg["experiment_id"]
     result_dir = ROOT / "results/xai"; artifact_dir = ROOT / f"artifacts/explanations/{eid}"

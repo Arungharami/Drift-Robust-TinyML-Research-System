@@ -25,6 +25,21 @@ def stats(v):
 def boot(v,rng,reps=1000):
  a=np.asarray(v,float);z=np.array([np.median(rng.choice(a,len(a),replace=True)) for _ in range(reps)]);return float(np.median(a)),float(np.quantile(z,.025)),float(np.quantile(z,.975))
 
+def benchmark_callable(call: Callable[[], Any], warmups: int, repeats: int) -> list[int]:
+ if warmups < 0 or repeats <= 0: raise ValueError("warmups must be nonnegative and repeats positive")
+ for _ in range(warmups): call()
+ durations=[]
+ for _ in range(repeats):
+  start=time.perf_counter_ns(); call(); durations.append(time.perf_counter_ns()-start)
+ return durations
+
+def summarize(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+ frame=pd.DataFrame(rows); out=[]
+ for keys,g in frame.groupby(["experiment_id","model_id","method"],sort=True):
+  values=g["latency_ns"].astype(float).to_numpy()
+  out.append({"experiment_id":keys[0],"model_id":keys[1],"method":keys[2],"n_measurements":len(values),"mean_latency_ms":float(values.mean()/1e6),"std_latency_ms":float(values.std(ddof=1)/1e6),"median_latency_ms":float(np.median(values)/1e6),"p95_latency_ms":float(np.percentile(values,95)/1e6),"minimum_latency_ms":float(values.min()/1e6),"maximum_latency_ms":float(values.max()/1e6)})
+ return out
+
 def main(config_path:Path=ROOT/"configs/xai_latency_protocol.yaml"):
  cfg=yaml.safe_load(config_path.read_text(encoding="utf-8"));eid=cfg["experiment_id"];xd=ROOT/"results/xai";ad=ROOT/f"artifacts/explanations/{eid}"
  # Verify registered lineage without modifying prior outputs.
