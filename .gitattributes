@@ -7,6 +7,7 @@
 *.exe binary
 *.pdb binary
 *.png binary
+*.sh text eol=lf
 
 # These frozen source, protocol, and documentation inputs were registered
 # against LF bytes.  They intentionally override the artifact default above.
