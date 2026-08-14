@@ -1,61 +1,84 @@
-# research-portal
+# Drift-Robust TinyML research portal
 
-Evidence-driven research portal for **Drift-Robust Explainable TinyML for Electronic-Nose
-Sensing**, built with Next.js (App Router, TypeScript).
+Evidence-driven Next.js portal for **Drift-Robust Explainable TinyML for Electronic-Nose
+Sensing**.
 
-## Architecture
+The portal may describe planned methodology, but it must never display an experimental number as
+a result unless executed code produced it and a traceable repository artifact preserves it.
 
-This app never hand-types a research metric. The only bridge from real repository artifacts
-(`results/`, `artifacts/`, `configs/`, `paper/`) to the UI is:
+## Evidence architecture
 
-```
-scripts/portal/export_evidence.py   (run from the repo root)
-        |
-        v
+The application does not hand-type research metrics:
+
+```text
+results/ + artifacts/ + configs/ + paper/
+                    |
+                    v
+scripts/portal/export_evidence.py
+                    |
+                    v
 research-portal/data/evidence/*.json
-        |
-        v
-research-portal/lib/evidence.ts     (typed accessors — the ONLY module that imports this JSON)
-        |
-        v
-app/**/page.tsx, app/api/**/route.ts
+                    |
+                    v
+research-portal/lib/evidence.ts
+                    |
+                    v
+app/**/page.tsx + app/api/**/route.ts
 ```
 
-If an artifact does not exist upstream, the corresponding evidence field is `null` and every
-page renders `NOT EXECUTED` via `<EvidenceBadge>` — never a placeholder or estimated number.
+`research-portal/lib/evidence.ts` is the only module that imports generated evidence JSON. If
+source evidence is missing, exported values remain null and the UI renders an explicit
+non-executed or blocked state.
+
+## Evidence states
+
+- `EXECUTED` — the stage ran and the declared artifacts exist.
+- `RUNNING` — active work, not a completed result.
+- `PLANNED` — protocol or design work not yet executed.
+- `NOT_EXECUTED` — required evidence does not exist.
+- `BLOCKED` — execution cannot proceed because a named dependency or resource is unavailable.
+- `FAILED` / `INVALID` — execution occurred but did not produce admissible evidence.
+
+Do not promote a status using estimates, manually typed values, literature measurements, or
+simulation substituted for physical hardware.
 
 ## Local development
 
-```bash
-# from the repository root, regenerate evidence first:
-python scripts/portal/export_evidence.py
+Regenerate evidence first from the repository root:
 
+```bash
+python scripts/portal/export_evidence.py
 cd research-portal
-npm install
-npm run dev        # http://localhost:3000
+npm ci
+npm run typecheck
+npm run lint
+npm run dev
 ```
 
-Other scripts: `npm run build`, `npm run start`, `npm run typecheck`, `npm run lint`.
+Production validation:
 
-## Deploying to Vercel
+```bash
+npm run build
+npm start
+```
 
-This app lives in a subdirectory, not the repository root:
+The project uses Next.js App Router, TypeScript, Recharts for evidence-backed plots, and a small
+hand-written design system. It supports light/dark presentation without a CSS framework.
 
-1. In the Vercel project settings, set **Root Directory** to `research-portal`.
-2. Framework preset: **Next.js** (auto-detected).
-3. Build command / output: defaults (`next build`) are correct — do not override.
-4. Environment variables: copy from `.env.example` into the Vercel project's environment
-   variables. None of them are secret; all are `NEXT_PUBLIC_*` values used only for outbound
-   links and metadata.
-5. Confirm the Python-only parts of the parent repository (`src/`, `scripts/`, `notebooks/`)
-   are **not** picked up as the deploy target — Root Directory scoping handles this
-   automatically as long as it is set correctly.
+## Vercel deployment
 
-## Regenerating evidence before a deploy
+Import the GitHub repository and configure:
 
-`research-portal/data/evidence/*.json` is committed (not `.gitignore`d) so that Vercel's build
-does not need Python or access to the rest of the monorepo at build time. Whenever the
-underlying research artifacts change, regenerate and commit:
+- Framework Preset: **Next.js**
+- Root Directory: **research-portal**
+- Build Command: default (`next build`)
+- Output Directory: default
+- Environment variables: copy the non-secret `NEXT_PUBLIC_*` values from `.env.example`
+
+Generated evidence JSON is committed so Vercel does not need Python or access to the parent
+research environment during the build.
+
+Whenever authoritative research artifacts change:
 
 ```bash
 python scripts/portal/export_evidence.py
@@ -63,12 +86,47 @@ git add research-portal/data/evidence
 git commit -m "Refresh research portal evidence"
 ```
 
-## Design notes
+## Machine-readable status
 
-- No Tailwind/CSS framework — a small hand-written design-token system in `app/globals.css`,
-  chosen deliberately to avoid a generic SaaS/marketing look for an academic research portal.
-- Light/dark mode via CSS variables (`prefers-color-scheme` + a `data-theme` override toggled by
-  `components/ThemeToggle.tsx`, persisted to `localStorage`).
-- Charts: `recharts`, used only on `/results` where real CSV-derived series exist.
-- Figures embed directly from `raw.githubusercontent.com` at the exact commit evidence was
-  exported from, rather than duplicating binary figure files into this app.
+The portal exposes `/api/project-status` plus experiment, result, and hardware APIs. These
+routes return exported evidence and must not maintain a second hand-written status source.
+
+## Hardware boundary
+
+Hugging Face, Kaggle, Colab, host timing, or a browser demo cannot prove nRF52840 deployment.
+Flash, SRAM, on-device latency, and PPK2 energy remain null or non-executed until real device,
+toolchain, and measurement artifacts exist.
+
+The real-world telemetry contract therefore permits null measurements:
+
+```json
+{
+  "device_id": "nrf52840-enose-01",
+  "prediction": null,
+  "confidence": null,
+  "top_features": [],
+  "inference_latency_ms": null,
+  "explanation_latency_ms": null,
+  "energy_uJ": null,
+  "evidence_status": "NOT_EXECUTED"
+}
+```
+
+## Professor/advisor review
+
+Use Vercel previews as review checkpoints:
+
+1. confirm the research question and novelty boundary;
+2. freeze chronological splits, leakage controls, baselines, and ablations;
+3. review executed evidence and failed gates;
+4. validate hardware measurement protocols before device claims;
+5. trace every table and figure to a saved artifact;
+6. strengthen manuscript claims only after the claim-evidence matrix supports them.
+
+## Consolidation note
+
+The default branch previously contained an earlier single-page portal. The consolidated portal
+keeps the research branch's multi-page, artifact-driven implementation because it is wired to
+`scripts/portal/export_evidence.py` and the saved evidence directory. The earlier static
+`lib/research.ts`, duplicate `next.config.ts`, and single-page application are intentionally
+superseded; their history remains available in Git.

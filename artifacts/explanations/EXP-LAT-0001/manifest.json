@@ -1,0 +1,28 @@
+{
+  "config_hash": "44eace6c951d8fb2637e1ef1849b7595c8075971a4ea6378133caeaa91850c38",
+  "created_at": "2026-08-14T04:06:19.401174+00:00",
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+  "experiment_id": "EXP-LAT-0001",
+  "git_commit": "fca7eef8424991d9ce8a8aa75400d824b619d591",
+  "host_only": true,
+  "input_artifacts": {
+    "results/xai/stage09_local_samples.csv": "cf214e301b1c0c3e2821a9dc011d06489fdb0c0ba254f0cd786e8762742fb51f"
+  },
+  "interpretation": "Shared GitHub runner host timing only; not on-device latency.",
+  "models": [
+    "MODEL-C1",
+    "MODEL-C2",
+    "MODEL-C3",
+    "MODEL-C4"
+  ],
+  "n_raw_rows": 540,
+  "n_summary_rows": 9,
+  "output_artifacts": {
+    "results/xai/stage12_host_latency_raw.csv": "0b5bc60290b22ef553dd0c482201dac8a2dce76067c8ad1c9b55c061d3404ac3",
+    "results/xai/stage12_host_latency_summary.csv": "4f8bb75ff5f8c19136b142c3b67afaa3911f1eb73289ae1c417bef2ac37424e6"
+  },
+  "protocol_version": "stage12_host_latency_v1",
+  "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+  "stage": "12",
+  "status": "EXECUTED"
+}

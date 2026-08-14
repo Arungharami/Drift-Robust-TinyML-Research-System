@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-08-14T03:55:30.775955+00:00",
+  "in_colab": false,
+  "python": "3.11.15 (main, Jun 16 2026, 21:41:52) [GCC 13.3.0]",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "logical_cpu_count": 4,
+  "ram_bytes": 16766414848,
+  "gpu": null,
+  "cuda": null,
+  "git_commit": "d571b4301819db27fce1eba9485edac0eb58645d",
+  "seed": 42,
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3"
+  }
+}

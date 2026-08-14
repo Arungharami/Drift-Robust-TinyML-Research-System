@@ -1,0 +1,88 @@
+name: Stage 10 Explanation Fidelity
+
+on:
+  push:
+    branches:
+      - agent/stage10-explanation-fidelity
+    paths:
+      - .github/workflows/stage10-fidelity.yml
+      - configs/xai/stage10_fidelity_v1.yaml
+      - src/xai/fidelity.py
+      - src/xai/run_stage10.py
+      - tests/test_xai_fidelity.py
+      - results/xai/stage09_fidelity_prep.csv
+      - artifacts/models/**
+      - scripts/download_dataset.py
+      - src/data/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install locked project requirements
+        run: python -m pip install -r requirements.txt
+      - name: Validate Stage 10 unit tests and protocol
+        run: |
+          pytest -q tests/test_xai_fidelity.py
+          python -m src.xai.run_stage10 --config configs/xai/stage10_fidelity_v1.yaml --check-config
+      - name: Download and verify canonical UCI dataset
+        run: python scripts/download_dataset.py
+      - name: Execute Stage 10 fidelity experiment
+        run: python -m src.xai.run_stage10 --config configs/xai/stage10_fidelity_v1.yaml
+      - name: Validate generated evidence
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(
+              Path("artifacts/explanations/EXP-FID-0001/manifest.json").read_text(encoding="utf-8")
+          )
+          assert manifest["status"] == "EXECUTED"
+          assert manifest["stage"] == "10"
+          assert manifest["n_per_sample_rows"] == 880
+          assert manifest["n_summary_rows"] == 16
+          with Path("results/xai/stage10_fidelity_per_sample.csv").open(
+              newline="", encoding="utf-8"
+          ) as handle:
+              assert sum(1 for _ in csv.DictReader(handle)) == 880
+          with Path("results/xai/stage10_fidelity_summary.csv").open(
+              newline="", encoding="utf-8"
+          ) as handle:
+              assert sum(1 for _ in csv.DictReader(handle)) == 16
+          PY
+      - name: Upload immutable workflow evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage10-fidelity-evidence
+          if-no-files-found: error
+          retention-days: 90
+          path: |
+            results/xai/stage10_fidelity_per_sample.csv
+            results/xai/stage10_fidelity_summary.csv
+            artifacts/explanations/EXP-FID-0001/
+      - name: Commit named evidence files to the research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f             results/xai/stage10_fidelity_per_sample.csv             results/xai/stage10_fidelity_summary.csv             artifacts/explanations/EXP-FID-0001/config.json             artifacts/explanations/EXP-FID-0001/config.yaml             artifacts/explanations/EXP-FID-0001/environment.json             artifacts/explanations/EXP-FID-0001/manifest.json             artifacts/explanations/EXP-FID-0001/run.log
+          if git diff --cached --quiet; then
+            echo "Stage 10 evidence is unchanged."
+          else
+            git commit -m "Record executed Stage 10 fidelity evidence"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

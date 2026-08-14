@@ -1,0 +1,63 @@
+name: Export Research Portal Evidence
+
+on:
+  push:
+    paths:
+      - configs/pipeline_stages.yaml
+      - results/registry/experiment_registry.csv
+      - results/xai/**
+      - artifacts/explanations/**/manifest.json
+      - paper/claim_evidence_matrix.csv
+      - scripts/portal/export_evidence.py
+      - .github/workflows/evidence-export.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Export evidence from authoritative artifacts
+        run: python scripts/portal/export_evidence.py
+      - name: Validate exported JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          evidence = Path("research-portal/data/evidence")
+          files = sorted(evidence.glob("*.json"))
+          assert files
+          for path in files:
+              json.loads(path.read_text(encoding="utf-8"))
+          pipeline = json.loads((evidence / "pipeline.json").read_text(encoding="utf-8"))
+          stage10 = next(stage for stage in pipeline if stage["id"] == "10")
+          assert stage10["status"] == "EXECUTED"
+          xai = json.loads((evidence / "xai.json").read_text(encoding="utf-8"))
+          assert xai["fidelity_status"] == "EXECUTED"
+          assert xai["n_fidelity_rows"] == 880
+          assert xai["n_fidelity_summary_rows"] == 16
+          PY
+      - name: Commit generated evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-portal/data/evidence/*.json
+          if git diff --cached --quiet; then
+            echo "Portal evidence is unchanged."
+          else
+            git commit -m "Synchronize research portal evidence"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

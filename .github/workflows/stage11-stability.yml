@@ -1,0 +1,77 @@
+name: Stage 11 Explanation Stability
+
+on:
+  push:
+    branches:
+      - agent/stage11-explanation-stability
+    paths:
+      - .github/workflows/stage11-stability.yml
+      - configs/xai/stage11_stability_v1.yaml
+      - src/xai/stability.py
+      - src/xai/run_stage11.py
+      - tests/test_xai_stability.py
+      - results/xai/stage09_global_importance.csv
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Validate Stage 11 unit tests and protocol
+        run: |
+          pytest -q tests/test_xai_stability.py
+          python -m src.xai.run_stage11 --config configs/xai/stage11_stability_v1.yaml --check-config
+      - name: Execute Stage 11 stability experiment
+        run: python -m src.xai.run_stage11 --config configs/xai/stage11_stability_v1.yaml
+      - name: Validate generated evidence
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(
+              Path("artifacts/explanations/EXP-STAB-0001/manifest.json").read_text(encoding="utf-8")
+          )
+          assert manifest["status"] == "EXECUTED"
+          assert manifest["stage"] == "11"
+          assert manifest["n_pairwise_rows"] == 68
+          assert manifest["n_summary_rows"] == 4
+          with Path("results/xai/stage11_stability_pairwise.csv").open(newline="", encoding="utf-8") as handle:
+              assert sum(1 for _ in csv.DictReader(handle)) == 68
+          with Path("results/xai/stage11_stability_summary.csv").open(newline="", encoding="utf-8") as handle:
+              assert sum(1 for _ in csv.DictReader(handle)) == 4
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage11-stability-evidence
+          if-no-files-found: error
+          retention-days: 90
+          path: |
+            results/xai/stage11_stability_pairwise.csv
+            results/xai/stage11_stability_summary.csv
+            artifacts/explanations/EXP-STAB-0001/
+      - name: Commit named Stage 11 evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f             results/xai/stage11_stability_pairwise.csv             results/xai/stage11_stability_summary.csv             artifacts/explanations/EXP-STAB-0001/config.json             artifacts/explanations/EXP-STAB-0001/config.yaml             artifacts/explanations/EXP-STAB-0001/environment.json             artifacts/explanations/EXP-STAB-0001/manifest.json             artifacts/explanations/EXP-STAB-0001/run.log
+          if git diff --cached --quiet; then
+            echo "Stage 11 evidence is unchanged."
+          else
+            git commit -m "Record executed Stage 11 stability evidence"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

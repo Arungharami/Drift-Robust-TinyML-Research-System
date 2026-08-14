@@ -10,14 +10,13 @@ model candidates, and which representations are practical enough to evaluate lat
 fidelity (Stage 10), stability (Stage 11), and latency (Stage 12) — as a precursor to TinyML
 deployment evidence (Stages 13-19)?
 
-This stage does **not** answer whether those representations are faithful, stable, or fast — it
-prepares the artifacts that let Stages 10-12 answer those questions with real data instead of
-assumption.
+This stage does **not** itself answer whether those representations are faithful, stable, or fast.
+Stage 10 has now evaluated fidelity from these saved artifacts; Stages 11-12 remain separate.
 
 ## Hypothesis
 
-None asserted yet. Stage 09 is preparatory; Stages 10 and 11 will test hypotheses about
-fidelity and drift-stability using the artifacts produced here.
+None asserted by Stage 09. Stage 10 has since measured behavioral fidelity descriptively; Stage 11
+will test drift-stability using the artifacts produced here.
 
 ## Protocol
 
@@ -178,14 +177,13 @@ question, deferred to Stage 10).
   would likely shift the specific contribution magnitudes, though not the general method.
 - Local sampling covers 3 of 9 evaluation batches (2, 6, 10), not all 9 — a disclosed scope
   decision to bound compute, not a hidden limitation.
-- No fidelity, stability, latency, quantization, or hardware conclusion is drawn here. Every
-  such field remains `NOT_EXECUTED` on the research portal and in `configs/pipeline_stages.yaml`
-  until its own stage runs independently.
+- No fidelity, stability, latency, quantization, or hardware conclusion is drawn by Stage 09.
+  Stages 10 and 11 have since executed fidelity and global stability independently; latency,
+  quantization, and hardware measurements remain `NOT_EXECUTED` until their own stages run.
 
-## Next experiment
+## Downstream status
 
-**Stage 10 — Explanation fidelity.** `results/xai/stage09_fidelity_prep.csv` already contains
-the `(sample_id, model_id, reference_method, candidate_method, top_k, reference_features,
-candidate_features)` schema needed to compute a perturbation-based or overlap-based fidelity
-score between each model's reference explanation and its resource-reduced top-k candidate,
-without recomputing any explanation from scratch.
+**Stage 10 — Explanation fidelity is EXECUTED.** It consumed
+`results/xai/stage09_fidelity_prep.csv` without recomputing Stage 09 explanations; see
+`docs/experiments/STAGE10_EXPLANATION_FIDELITY.md`. **Stage 11 — stability across drift is
+also EXECUTED**; see `docs/experiments/STAGE11_EXPLANATION_STABILITY.md`. Stage 12 latency is next.

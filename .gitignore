@@ -1,18 +1,40 @@
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
 *.egg-info/
+.installed.cfg
+*.egg
 .pytest_cache/
 .pytest_tmp/
 .coverage
+
+# Environments and local runtimes
+.env
 .venv/
+env/
+venv/
+ENV/
 .python/
 python-installer.exe
-.env
-.ipynb_checkpoints/
-.DS_Store
-Thumbs.db
 
-# Downloaded/generated evidence (small manifests and tables are explicitly retained)
+# Jupyter
+.ipynb_checkpoints/
+
+# Downloaded/generated research data
 data/raw/*
 data/processed/*
 data/external/*
@@ -20,17 +42,22 @@ data/external/*
 !data/processed/.gitkeep
 !data/external/.gitkeep
 results/raw/*
+
+# Model and explanation artifacts
 artifacts/*
 !artifacts/models/
 !artifacts/models/*.joblib
 !artifacts/explanations/
 !artifacts/explanations/**
+models/
 *.pt
 *.pth
 *.h5
+*.hdf5
 *.pkl
+*.model
 
-# Secrets
+# Secrets and credentials
 *.key
 *.pem
 kaggle.json
@@ -39,5 +66,28 @@ access_token
 token.json
 credentials.json
 
-# Build output (colab/bridge workspace + release bundles — regenerated, not source)
-dist/
+# LaTeX and generated documents
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.pdf
+*.gz
+*.toc
+*.fls
+*.fdb_latexmk
+
+# Allow only a validated final manuscript PDF to be versioned.
+!paper/final/
+!paper/final/*.pdf
+
+# Node / Next.js research portal
+research-portal/node_modules/
+research-portal/.next/
+research-portal/out/
+research-portal/.vercel/
+
+# OS
+.DS_Store
+Thumbs.db

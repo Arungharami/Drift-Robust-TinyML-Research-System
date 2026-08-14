@@ -1,0 +1,37 @@
+# Stage 11 — Chronological explanation stability. Frozen protocol.
+protocol_version: stage11_stability_v1
+experiment_id: EXP-STAB-0001
+source_experiment_id: EXP-XAI-0001
+dataset_hash: dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6
+split_protocol: FIXED_ORIGIN
+split_hash: 5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae
+method: PERMUTATION_IMPORTANCE_MACRO_F1
+
+eligible_model_ids: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+reference_batch: 2
+n_features: 128
+top_k_values: [1, 3, 5, 10]
+random_seed: 42
+
+comparisons:
+  - REFERENCE_TO_BATCH_2
+  - ADJACENT_BATCH
+metrics:
+  - SPEARMAN_RANK_CORRELATION
+  - KENDALL_RANK_CORRELATION
+  - IMPORTANCE_COSINE_SIMILARITY
+  - TOP_K_JACCARD
+interpretation:
+  thresholds: null
+  policy: DESCRIPTIVE_ONLY
+  notes: Stability is summarized without declaring adequacy; self-comparisons are excluded from aggregate reference statistics.
+
+input_path: results/xai/stage09_global_importance.csv
+output_paths:
+  artifact_dir: artifacts/explanations/EXP-STAB-0001
+  pairwise: results/xai/stage11_stability_pairwise.csv
+  summary: results/xai/stage11_stability_summary.csv
+
+expected_pairwise_rows: 68
+expected_summary_rows: 4

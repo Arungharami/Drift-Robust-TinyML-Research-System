@@ -1,0 +1,38 @@
+{
+  "config_hash": "c39882f58b574027d0e221825676d3c82e79b78a41317e6159355190b2ea2105",
+  "created_at": "2026-08-14T03:40:35.511092+00:00",
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+  "experiment_id": "EXP-FID-0001",
+  "git_commit": "54ab3e7711324187d99a476ff25958ac9f2e6996",
+  "input_artifacts": {
+    "artifacts/models/BASE-FIXED-C1-001.joblib": "523969e083f87661191b97852b5bfed21513042c5a6b9d78c81fb52386d04214",
+    "artifacts/models/BASE-FIXED-C2-001.joblib": "65b8c9ae4fed9c9e448a6699dbfa22da5b8c889a9ec357ce57230876bbbf9664",
+    "artifacts/models/BASE-FIXED-C3-001.joblib": "4bf3323b86d298b5cb4ab5941ab40d03c10ac4b95104201cee0acddfe5b549c0",
+    "artifacts/models/BASE-FIXED-C4-001.joblib": "af63d8b42a20991f768f993185dc65b96079a9a51adc4dc67b7e60574d849cc5",
+    "results/xai/stage09_fidelity_prep.csv": "d4238aefe40ac5f4ca36f5db0b1bc536278bcf98c54e36ea7cd83bf48c64d9f7"
+  },
+  "interpretation": "Descriptive metrics only; no preregistered pass/fail threshold.",
+  "models": [
+    "MODEL-C1",
+    "MODEL-C2",
+    "MODEL-C3",
+    "MODEL-C4"
+  ],
+  "n_per_sample_rows": 880,
+  "n_summary_rows": 16,
+  "output_artifacts": {
+    "results/xai/stage10_fidelity_per_sample.csv": "1e42b24da0f527e6ea2696f6491ca3811fc873bc453ca2a5c8c7fd33643bd54f",
+    "results/xai/stage10_fidelity_summary.csv": "08a94f2fb529315d4869fca8ba6a17d454ccf144abbfd2eb3790f18cbb29c4a5"
+  },
+  "protocol_version": "stage10_fidelity_v1",
+  "source_experiment_id": "EXP-XAI-0001",
+  "split_protocol": "FIXED_ORIGIN",
+  "stage": "10",
+  "status": "EXECUTED",
+  "top_k_values": [
+    1,
+    3,
+    5,
+    10
+  ]
+}
