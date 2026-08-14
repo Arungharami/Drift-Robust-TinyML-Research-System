@@ -102,5 +102,18 @@
     "figure": "",
     "git_commit": "48160ce8612d1c818cdf69a503bdb99123855e76",
     "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C009",
+    "candidate_claim": "Behavioral fidelity metrics were executed for 880 frozen model/sample/top-k combinations under the Stage 10 protocol; these descriptive results do not establish a universal fidelity threshold",
+    "experiment_id": "EXP-FID-0001-C1\u2013C4",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "c39882f58b574027d0e221825676d3c82e79b78a41317e6159355190b2ea2105",
+    "metric": "behavioral_fidelity",
+    "result_artifact": "results/xai/stage10_fidelity_summary.csv",
+    "figure": "",
+    "git_commit": "54ab3e7711324187d99a476ff25958ac9f2e6996",
+    "status": "SUPPORTED"
   }
 ]
