@@ -1,0 +1,47 @@
+# Stage 10 — Explanation Fidelity. Frozen protocol; do not silently edit.
+# Create a v2 config for any methodological change.
+protocol_version: stage10_fidelity_v1
+experiment_id: EXP-FID-0001
+source_experiment_id: EXP-XAI-0001
+
+dataset_manifest: data/manifests/dataset_manifest.json
+dataset_hash: dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6
+split_protocol: FIXED_ORIGIN
+train_batch: 1
+evaluation_sample_batches: [2, 6, 10]
+random_seed: 42
+
+eligible_model_ids: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+model_artifact_paths:
+  MODEL-C1: artifacts/models/BASE-FIXED-C1-001.joblib
+  MODEL-C2: artifacts/models/BASE-FIXED-C2-001.joblib
+  MODEL-C3: artifacts/models/BASE-FIXED-C3-001.joblib
+  MODEL-C4: artifacts/models/BASE-FIXED-C4-001.joblib
+
+top_k_values: [1, 3, 5, 10]
+baseline:
+  method: TRAIN_BATCH_FEATURE_MEAN
+  source_batch: 1
+probability_target: FULL_INPUT_PREDICTED_CLASS
+
+metrics:
+  - RANK_OVERLAP_AT_K
+  - PREDICTION_PRESERVATION_KEEP_ONLY
+  - TARGET_PROBABILITY_CLOSENESS_KEEP_ONLY
+  - ABSOLUTE_SUFFICIENCY_GAP
+  - COMPREHENSIVENESS_DROP
+interpretation:
+  thresholds: null
+  policy: DESCRIPTIVE_ONLY
+  notes: No pass/fail threshold is preregistered; report candidate and reference values without declaring adequacy.
+
+input_paths:
+  fidelity_prep: results/xai/stage09_fidelity_prep.csv
+  local_samples: results/xai/stage09_local_samples.csv
+output_paths:
+  artifact_dir: artifacts/explanations/EXP-FID-0001
+  per_sample: results/xai/stage10_fidelity_per_sample.csv
+  summary: results/xai/stage10_fidelity_summary.csv
+
+expected_per_sample_rows: 880
+expected_summary_rows: 16
