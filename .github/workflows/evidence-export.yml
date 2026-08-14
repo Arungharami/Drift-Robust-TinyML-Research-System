@@ -58,6 +58,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Portal evidence is unchanged."
           else
-            git commit -m "Synchronize portal with Stage 10 evidence"
+            git commit -m "Synchronize research portal evidence"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
