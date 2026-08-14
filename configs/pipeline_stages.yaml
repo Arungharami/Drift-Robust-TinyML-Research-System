@@ -158,13 +158,19 @@ stages:
 
   - id: "12"
     name: Explanation latency
-    status: NOT_EXECUTED
+    status: EXECUTED
     notebook: null
-    script: null
-    artifact_paths: []
-    git_commit: null
+    script: src/xai/run_stage12.py
+    artifact_paths:
+      [artifacts/explanations/EXP-LAT-0001, results/xai/stage12_host_latency_raw.csv,
+       results/xai/stage12_host_latency_summary.csv]
+    git_commit: fca7eef8424991d9ce8a8aa75400d824b619d591
     depends_on: ["09"]
-    notes: Host-side timing only until stage 16; on-device timing requires stage 15.
+    notes: >-
+      EXP-LAT-0001 records 540 host-side timings on one captured shared GitHub runner. Median
+      vectorized local-ablation latency was 0.834 ms (C1), 81.815 ms (C2), 2.263 ms (C3), and
+      1.166 ms (C4). These are comparative host measurements, not nRF52840/on-device timing;
+      physical latency remains Stage 17.
 
   - id: "13"
     name: Quantization

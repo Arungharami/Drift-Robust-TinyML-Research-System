@@ -194,6 +194,15 @@ export interface StabilitySummaryRow {
   mean_reference_top_1_jaccard: string;
 }
 
+export interface LatencySummaryRow {
+  experiment_id: string;
+  model_id: string;
+  method: string;
+  n_measurements: string;
+  median_latency_ms: string;
+  p95_latency_ms: string;
+}
+
 export interface XaiEvidence {
   evidence_status: EvidenceStatus;
   experiment_id: string | null;
@@ -222,6 +231,10 @@ export interface XaiEvidence {
   stability_summary: StabilitySummaryRow[];
   stability_artifact_paths: string[];
   latency_status: EvidenceStatus;
+  latency_experiment_id: string | null;
+  n_latency_raw_rows: number;
+  latency_summary: LatencySummaryRow[];
+  latency_artifact_paths: string[];
 }
 
 export interface ProjectStatus {
