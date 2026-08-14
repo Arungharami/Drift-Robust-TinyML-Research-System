@@ -24,9 +24,10 @@ UCI Gas Sensor Array Drift Dataset
   -> Vercel research portal -> manuscript
 ```
 
-Everything left of "evidence-selected models" is executed (Checkpoint 1–2). Everything from
-resource-aware XAI onward is `NOT_EXECUTED` — see `configs/pipeline_stages.yaml` for the
-authoritative, version-controlled status of all 23 pipeline stages.
+The authoritative registry currently records Stages 00–09 and Stage 21 as `EXECUTED`,
+Stages 10–20 as `NOT_EXECUTED`, and Stage 22 as `RUNNING`. See
+`configs/pipeline_stages.yaml` for the version-controlled status of all 23 stages; derived
+documentation and portal evidence must be reconciled to that registry.
 
 ## Repository structure
 
@@ -55,6 +56,12 @@ pytest -q
 ```
 
 Generated data and results are ignored by Git; manifests and result tables are retained as evidence. The downloader never silently replaces raw files.
+
+## AI-agent execution
+
+Before using DeepSeek Harness, Codex, Claude, or another coding agent, read [`AGENTS.md`](AGENTS.md).
+For the repository-specific DeepSeek Harness setup, safe prompts, current evidence boundary, and
+completion checklist, see [`docs/DEEPSEEK_HARNESS_WORKFLOW.md`](docs/DEEPSEEK_HARNESS_WORKFLOW.md).
 
 ## Experimental protocol
 
