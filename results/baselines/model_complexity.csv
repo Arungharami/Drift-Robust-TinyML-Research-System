@@ -1,0 +1,5 @@
+experiment_id,model,model_name,serialized_host_bytes,complexity_unit,parameter_count,coefficient_count,tree_count,total_nodes,max_tree_depth,support_vector_count,support_vector_values,layer_dimensions
+BASE-FIXED-C1-001,MODEL-C1,Logistic Regression,10617,model-specific host structure,774.0,768.0,,,,,,
+BASE-FIXED-C2-001,MODEL-C2,Random Forest,1233954,model-specific host structure,,,200.0,10230.0,11.0,,,
+BASE-FIXED-C3-001,MODEL-C3,RBF-SVM,151013,model-specific host structure,,,,,,131.0,16768.0,
+BASE-FIXED-C4-001,MODEL-C4,MLP Classifier,265817,model-specific host structure,10534.0,,,,,,,"[128, 64, 32, 6]"

@@ -1,0 +1,14 @@
+[
+  {
+    "batch": "ALL",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 7,
+    "feature_name": "S1:EMAd_0.1",
+    "importance": 0.03971542422682927,
+    "method": "INTRINSIC_IMPURITY",
+    "model_id": "MODEL-C2",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 1
+  }
+]

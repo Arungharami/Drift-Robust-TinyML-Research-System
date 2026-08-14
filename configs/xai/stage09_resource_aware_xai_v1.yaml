@@ -1,0 +1,96 @@
+# Stage 09 — Resource-Aware Explainability. Frozen protocol; do not silently edit.
+# A new file (stage09_resource_aware_xai_v2.yaml) must be created for any protocol change.
+protocol_version: stage09_resource_aware_xai_v1
+
+# Provenance of the data these explanations run against — must match the values already
+# recorded for the source FIXED_ORIGIN baseline experiments (results/registry/experiment_registry.csv).
+dataset_manifest: data/manifests/dataset_manifest.json
+archive_sha256: 91e8f466f202e7a093d657673ce47311c3e90416f7df3057966058961c351fe4
+dataset_hash: dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6
+
+# The chronological split used by the source models is NOT modified here — Stage 09 loads the
+# already-fitted pipelines and never retrains. Recorded for provenance only.
+split_protocol: FIXED_ORIGIN
+split_hash: 5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae
+train_batches: [1]
+evaluation_batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Eligible models: every model with a saved fitted FIXED_ORIGIN artifact
+# (results/registry/experiment_registry.csv rows BASE-FIXED-C1-001..C4-001). EXPANDING_WINDOW
+# and IID_DIAGNOSTIC models were not serialized and are therefore not eligible for Stage 09.
+eligible_model_ids: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+model_display_names:
+  MODEL-C1: Logistic Regression
+  MODEL-C2: Random Forest
+  MODEL-C3: RBF-SVM
+  MODEL-C4: MLP Classifier
+model_artifact_paths:
+  MODEL-C1: artifacts/models/BASE-FIXED-C1-001.joblib
+  MODEL-C2: artifacts/models/BASE-FIXED-C2-001.joblib
+  MODEL-C3: artifacts/models/BASE-FIXED-C3-001.joblib
+  MODEL-C4: artifacts/models/BASE-FIXED-C4-001.joblib
+source_experiment_ids:
+  MODEL-C1: BASE-FIXED-C1-001
+  MODEL-C2: BASE-FIXED-C2-001
+  MODEL-C3: BASE-FIXED-C3-001
+  MODEL-C4: BASE-FIXED-C4-001
+
+random_seed: 42
+
+# Capability-detected per model at runtime — this list states intent; src/xai/intrinsic.py's
+# isinstance checks are the actual source of truth for what runs.
+explanation_methods:
+  - name: INTRINSIC_COEFFICIENT
+    scope: [global, local]
+    applicable_models: [MODEL-C1]
+    resource_class: INTRINSIC_ZERO_COST
+  - name: INTRINSIC_IMPURITY
+    scope: [global]
+    applicable_models: [MODEL-C2]
+    resource_class: INTRINSIC_ZERO_COST
+  - name: PERMUTATION_IMPORTANCE_MACRO_F1
+    scope: [global]
+    applicable_models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+    resource_class: MODEL_AGNOSTIC_MULTI_INFERENCE
+  - name: SINGLE_FEATURE_ABLATION_LOCAL
+    scope: [local]
+    applicable_models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+    resource_class: MODEL_AGNOSTIC_SINGLE_INSTANCE_MULTI_INFERENCE
+
+# SHAP/LIME policy: neither is run in this protocol version. SHAP was evaluated as an optional
+# off-device reference explainer and deliberately not added — see SHAP POLICY in
+# docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md. Permutation importance (macro-F1, already the
+# project's frozen feature-importance metric per configs/classical_baselines.yaml) serves as the
+# global reference; single-feature ablation serves as the local reference.
+shap_enabled: false
+lime_enabled: false
+
+# Matches the already-frozen feature-importance protocol in configs/classical_baselines.yaml
+# (feature_importance.method: permutation_importance_macro_f1) — extended here to all 4 models
+# and all 9 evaluation batches rather than silently changing the scoring metric.
+scoring_metric: macro_f1
+permutation_repeats: 5
+
+top_k_values: [1, 3, 5, 10]
+
+sample_policy:
+  local_sample_batches: [2, 6, 10] # early / mid / late chronological spread
+  per_class_correct: 2
+  max_misclassified: 5
+  max_near_boundary: 5
+  seed: 42
+
+reference_method:
+  global: PERMUTATION_IMPORTANCE_MACRO_F1
+  local: SINGLE_FEATURE_ABLATION_LOCAL
+
+output_paths:
+  artifact_root: artifacts/explanations
+  results_root: results/xai
+  feature_map: results/xai/stage09_feature_map.csv
+  global_importance: results/xai/stage09_global_importance.csv
+  reduced_explanations: results/xai/stage09_reduced_explanations.csv
+  local_samples: results/xai/stage09_local_samples.csv
+  local_explanations: results/xai/stage09_local_explanations.csv
+  fidelity_prep: results/xai/stage09_fidelity_prep.csv
+  manifest_csv: results/xai/stage09_manifest.csv

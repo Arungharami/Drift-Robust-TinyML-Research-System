@@ -18,20 +18,37 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
+.pytest_tmp/
+.coverage
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environments
+# Environments and local runtimes
 .env
-.venv
+.venv/
 env/
 venv/
 ENV/
+.python/
+python-installer.exe
 
-# Data and Models
-data/*
-!data/.gitkeep
+# Jupyter
+.ipynb_checkpoints/
+
+# Downloaded/generated research data
+data/raw/*
+data/processed/*
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+results/raw/*
+
+# Model and explanation artifacts
+artifacts/*
+!artifacts/models/
+!artifacts/models/*.joblib
+!artifacts/explanations/
+!artifacts/explanations/**
 models/
 *.pt
 *.pth
@@ -40,7 +57,16 @@ models/
 *.pkl
 *.model
 
-# LaTeX / generated documents
+# Secrets and credentials
+*.key
+*.pem
+kaggle.json
+.kaggle/
+access_token
+token.json
+credentials.json
+
+# LaTeX and generated documents
 *.aux
 *.bbl
 *.blg

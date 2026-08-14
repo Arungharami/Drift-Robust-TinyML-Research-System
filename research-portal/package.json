@@ -1,24 +1,28 @@
 {
   "name": "drift-robust-tinyml-research-portal",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
+  "description": "Evidence-driven research portal for Drift-Robust Explainable TinyML for Electronic-Nose Sensing.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "export-evidence": "python ../scripts/portal/export_evidence.py"
   },
   "dependencies": {
-    "next": "16.2.9",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "next": "^15.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.13.3"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "^5.5.0"
-  },
-  "engines": {
-    "node": ">=20.9.0"
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.1.0",
+    "typescript": "^5.6.3"
   }
 }

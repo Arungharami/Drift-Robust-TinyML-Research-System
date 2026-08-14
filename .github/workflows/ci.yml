@@ -1,0 +1,42 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: python -m pip install -r requirements.txt
+      - run: python -m compileall -q src
+      - run: pytest -q
+      - name: Validate configs and notebooks
+        run: |
+          python - <<'PY'
+          import pathlib, nbformat, yaml
+          for p in pathlib.Path('configs').glob('*.yaml'):
+              with p.open(encoding='utf-8') as f: yaml.safe_load(f)
+          for p in pathlib.Path('notebooks').glob('*.ipynb'): nbformat.read(p, as_version=4)
+          PY
+      - name: Validate VS Code tasks/extensions JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for p in pathlib.Path('.vscode').glob('*.json'):
+              json.loads(p.read_text(encoding='utf-8'))
+          PY
+      - name: Shell syntax check (scripts/colab, scripts/bridge — no execution; no Colab/HF/Kaggle
+          session or upload is ever started in CI)
+        run: |
+          for f in scripts/colab/*.sh scripts/bridge/*.sh; do
+            echo "bash -n $f"
+            bash -n "$f"
+          done
+      - name: Validate research_bridge config and platform metadata JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib, yaml
+          yaml.safe_load(pathlib.Path('configs/research_bridge.yaml').read_text(encoding='utf-8'))
+          for p in pathlib.Path('platforms').rglob('*.json'):
+              json.loads(p.read_text(encoding='utf-8'))
+          PY

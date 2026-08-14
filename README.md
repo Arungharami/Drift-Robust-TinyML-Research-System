@@ -2,206 +2,115 @@
 
 **Chronological Evaluation, Resource-Aware Explanations, and Reproducible Edge Deployment**
 
-Researcher: **Arun Kumar Gharami**  
-Status: **active research — results must be evidence-backed**  
-Target edge platform: **nRF52840 / Cortex-M4F**  
-Physical energy instrumentation: **Nordic PPK2**
+Publication-oriented research software for studying chronological sensor drift in the [UCI Gas Sensor Array Drift dataset](https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset). The system separates verified evidence from planned work throughout — a missing result is recorded as `NOT_EXECUTED`; it is never estimated, simulated, or filled in.
 
-## Research objective
+## Research question
 
-This project studies whether compact machine-learning models can remain useful and explainable under long-term electronic-nose sensor drift while satisfying realistic microcontroller constraints.
+> Can lightweight machine-learning models combined with resource-aware explanation strategies maintain useful predictive performance and interpretable behavior under chronological electronic-nose sensor drift, while satisfying the memory, latency, and energy constraints of TinyML-class microcontrollers?
 
-The work deliberately combines four requirements that are often evaluated separately:
+This question is not yet fully answered — see the [research portal](#research-portal-web-application) for exactly what is currently evidenced versus planned.
 
-1. **chronological drift evaluation** rather than relying only on pooled random splits;
-2. **resource-aware explainability** with fidelity and stability analysis;
-3. **reproducible model/export lineage** from experiment configuration to firmware artifact;
-4. **physical edge measurements** for memory, latency, and energy before deployment claims are made.
+## Architecture
 
-## Evidence rule
-
-> No numerical result may be presented as an experimental finding unless it comes from an executed experiment and a saved, traceable artifact.
-
-If physical hardware is unavailable, an export fails, or a measurement has not been run, the project records `NOT EXECUTED` or `FAILED` rather than estimating a favorable value.
-
-## Benchmark
-
-The primary benchmark is the **UCI Gas Sensor Array Drift Dataset at Different Concentrations** (DOI: `10.24432/C5MK6M`). UCI reports 13,910 measurements from 16 chemical sensors, six gas classes, 128 features per measurement, and ten time-ordered batches spanning approximately 36 months.
-
-Canonical source:
-
-- https://archive.ics.uci.edu/dataset/270/gas+sensor+array+drift+dataset+at+different+concentrations
-
-## End-to-end research pipeline
-
-```text
-01  Dataset acquisition + integrity manifest
-02  Frozen chronological evaluation protocol
-03  Reproducible lightweight baselines
-04  Per-batch drift robustness analysis
-05  Resource-aware explanation implementation
-06  Explanation fidelity + stability under drift
-07  Quantization / embedded export
-08  nRF52840 deployment + Flash/SRAM + latency
-09  Nordic PPK2 inference/explanation energy
-10  Accuracy–trust–resource Pareto analysis
-11  Evidence-backed figures, tables, discussion, and final paper
+```
+UCI Gas Sensor Array Drift Dataset
+  -> validation -> chronological split -> frozen preprocessing
+  -> baseline models -> chronological drift evaluation
+  -> evidence-selected models -> resource-aware XAI
+  -> fidelity + stability -> quantization/export
+  -> nRF52840 / Cortex-M4F -> Flash + SRAM -> physical latency
+  -> Nordic PPK2 energy -> Pareto analysis
+  -> saved experiment artifacts -> GitHub + Hugging Face + Kaggle
+  -> Vercel research portal -> manuscript
 ```
 
-Only evidence-supported model configurations advance into the expensive XAI and hardware stages.
+The authoritative registry currently records Stages 00–09 and Stage 21 as `EXECUTED`,
+Stages 10–20 as `NOT_EXECUTED`, and Stage 22 as `RUNNING`. See
+`configs/pipeline_stages.yaml` for the version-controlled status of all 23 stages; derived
+documentation and portal evidence must be reconciled to that registry.
 
-## System architecture
+## Repository structure
 
-```text
-UCI benchmark
-   ↓
-Google Colab experiment pipeline
-   ↓
-configs + metrics + models + explanation artifacts + manifests
-   ↓
-GitHub evidence record ───────────────→ Vercel research portal
-   ↓                                      ↑
-Hugging Face model / dataset cards ───────┘
-   ↓
-embedded export
-   ↓
-nRF52840 firmware
-   ↓
-map files + raw latency logs + PPK2 traces
-   ↓
-verified hardware tables / figures
-```
+| Path | Contents |
+|---|---|
+| `src/` | Data loading, drift metrics, model training/evaluation, Colab control plane, research-platform bridge |
+| `notebooks/` | 00–03: environment, dataset/drift audit, classical baselines, temporal adaptation |
+| `configs/` | Frozen protocol/model/pipeline-stage definitions (version-controlled, never silently changed) |
+| `results/` | Figures, tables, baseline metrics, drift metrics, experiment registry, reproducibility artifacts |
+| `artifacts/` | Trained model files (`.joblib`), embeddings, explanations, quantized exports |
+| `paper/` | Claim-evidence matrix, figure/table indices, result/discussion drafts (evidence-controlled) |
+| `platforms/` | Staged Hugging Face and Kaggle publishing assets (private by default) |
+| `scripts/colab/`, `scripts/bridge/`, `scripts/portal/` | Colab CLI control plane, GitHub/HF/Kaggle bridge, evidence-export pipeline |
+| `research-portal/` | Next.js evidence-driven research portal (see below) |
+| `docs/` | Protocol, reproducibility, Colab workflow, and platform-bridge documentation |
 
-The project separates the **public ML artifact/demo layer** from the **physical deployment evidence layer**. A Hugging Face demo does not count as proof of nRF52840 feasibility.
-
-## Public research portal
-
-A professional Next.js portal is maintained in:
-
-```text
-research-portal/
-```
-
-It is designed for Vercel deployment and exposes:
-
-- research question and evidence policy;
-- benchmark facts and chronological workflow;
-- experiment-stage status (`EXECUTED`, `IN_PROGRESS`, `PLANNED`, `NOT_EXECUTED`);
-- equations tied to intended measurements;
-- Hugging Face integration plan;
-- real-world nRF52840 telemetry contract;
-- literature/novelty map;
-- professor/advisor review workflow;
-- final-paper pathway;
-- machine-readable `/api/project-status` endpoint.
-
-For Vercel, set the project **Root Directory** to `research-portal`.
-
-## Colab role
-
-Google Colab is the experiment engine, not the final record. A professional run should export at least:
-
-- environment/package manifest;
-- random seeds and configuration;
-- dataset/source hashes and split manifest;
-- per-batch predictions and metrics;
-- trained model artifact;
-- explanation artifact;
-- quantized/exported artifact when applicable;
-- figures/tables generated from saved results.
-
-The GitHub repository should preserve the metadata required to reproduce and audit those outputs.
-
-## Hugging Face role
-
-After a candidate model passes the evidence gate, create a dedicated project model repository containing:
-
-- model card and intended use;
-- preprocessing contract;
-- chronological evaluation summary;
-- exact source Git commit;
-- model/export hashes;
-- limitations and failure modes;
-- links to the paper and this repository.
-
-For the UCI data, prefer a canonical-source dataset card/pointer plus split/preprocessing manifests until the exact republishing decision is reviewed.
-
-An optional Hugging Face Space can host a validated interactive demo, while the MCU remains the authoritative deployment target.
-
-## Real-world deployment path
-
-```text
-Gas sensor array
-   ↓
-nRF52840 / Cortex-M4F
-   ├── gas prediction
-   └── lightweight explanation
-   ↓
-USB serial or BLE gateway
-   ↓
-structured telemetry
-   ↓
-research/demo dashboard
-```
-
-The telemetry schema keeps latency and energy fields null until the relevant physical measurements exist.
-
-## Repository organization
-
-```text
-├── data/               # benchmark source/manifest structure; raw data policy applies
-├── docs/               # protocol, literature, reproducibility, deployment notes
-├── models/             # generated model outputs (normally ignored unless intentionally published)
-├── notebooks/          # Colab/Jupyter experiments
-├── paper/              # notes, figures/tables, drafts, validated final manuscript
-├── research-portal/    # Next.js/Vercel public research portal
-├── scripts/            # reproducible command-line experiment helpers
-├── src/                # data, model, XAI, export, hardware-support code
-├── tests/              # automated validation
-└── requirements.txt
-```
-
-## Literature anchors
-
-The protocol is being developed against both foundational and recent work, including:
-
-- Vergara et al. (2012), *Chemical gas sensor drift compensation using classifier ensembles*, DOI `10.1016/j.snb.2012.01.074`.
-- Rodríguez-Luján et al. (2014), *On the calibration of sensor arrays for pattern recognition using the minimal number of experiments*, DOI `10.1016/j.chemolab.2013.10.012`.
-- Disabato & Roveri (2024), *Tiny Machine Learning for Concept Drift*, DOI `10.1109/TNNLS.2022.3229897`.
-- Zhang et al. (2025), *Unsupervised Attention-Based Multisource Domain Adaptation Framework for Drift Compensation in Electronic Nose Systems*, DOI `10.1109/TIM.2025.3604131`.
-- Lin & Zhan (2026), *Sensor-Drift Compensation in Electronic-Nose-Based Gas Recognition Using Knowledge Distillation*, DOI `10.3390/informatics13010015`.
-- Dehghani et al. (2026), *Human-Centered Explainable AI for TinyML Edge Devices: A Pareto-Based Selection Framework with LLM-Guided Design*, arXiv `2608.07091`.
-
-These papers raise the novelty bar. The working contribution therefore focuses on the combined evidence chain of **chronological electronic-nose drift + lightweight explanation fidelity/stability + physically measured MCU resource cost**, rather than making a broad “TinyML + XAI” novelty claim.
-
-## Professor/advisor review workflow
-
-The Vercel preview should be used as a research-meeting artifact:
-
-1. review the problem statement and novelty boundary;
-2. review/freeze chronological splits, leakage controls, baselines, and ablations;
-3. record methodology decisions before expensive runs;
-4. execute experiments and attach traceable artifacts;
-5. review failures and physical measurement protocol;
-6. validate figures/tables before strengthening manuscript claims;
-7. agree contribution/authorship expectations explicitly before final submission.
-
-## Installation
-
-Python research environment:
+## Quick start
 
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+python -m pip install -r requirements.txt
+python scripts/download_dataset.py
+python scripts/validate_dataset.py
+python scripts/run_drift_analysis.py
+pytest -q
 ```
 
-Portal environment:
+Generated data and results are ignored by Git; manifests and result tables are retained as evidence. The downloader never silently replaces raw files.
+
+## AI-agent execution
+
+Before using DeepSeek Harness, Codex, Claude, or another coding agent, read [`AGENTS.md`](AGENTS.md).
+For the repository-specific DeepSeek Harness setup, safe prompts, current evidence boundary, and
+completion checklist, see [`docs/DEEPSEEK_HARNESS_WORKFLOW.md`](docs/DEEPSEEK_HARNESS_WORKFLOW.md).
+
+## Experimental protocol
+
+- `FIXED_ORIGIN` (primary): fit all preprocessing and models on batch 1; evaluate batches 2–10 without retraining.
+- `EXPANDING_WINDOW`: retrain using all batches strictly before the test batch.
+- `IID_DIAGNOSTIC`: stratified random split, explicitly diagnostic — never a primary result.
+
+Frozen in `configs/chronological_protocol.yaml`. See [research protocol](docs/RESEARCH_PROTOCOL.md), [reproducibility guide](docs/REPRODUCIBILITY.md), and [Colab guide](docs/COLAB_GUIDE.md).
+
+## Scientific evidence policy
+
+Every number must be produced by executed code and linked to an artifact. Experiment states are `PLANNED`, `RUNNING`, `COMPLETED`, `FAILED`, `INVALID`, `NOT_EXECUTED`, or `SUPERSEDED`. Synthetic data is limited to unit tests. Physical Flash, SRAM, MCU latency, and PPK2 energy remain `NOT_EXECUTED` until measured on real hardware. The research portal's evidence loader (`research-portal/lib/evidence.ts`) enforces this in the UI: a missing artifact renders as `NOT EXECUTED`, never a placeholder number.
+
+## Google Colab Development
+
+**Interactive (Mode A):** open a notebook, choose **Select Kernel → Colab → Auto Connect**, then run notebook 00 before other notebooks.
+
+**CLI automation (Mode B, evidence-grade):** `scripts/colab/` drives named Colab sessions from **WSL2 Ubuntu** via the real `google-colab-cli`, orchestrated through VS Code tasks. Full workflow: [`docs/COLAB_CLI_VSCODE_WORKFLOW.md`](docs/COLAB_CLI_VSCODE_WORKFLOW.md). Current verified status: [`results/reproducibility/COLAB_STATUS.md`](results/reproducibility/COLAB_STATUS.md) — treat anything not recorded there as `NOT_EXECUTED`.
+
+## GitHub / Hugging Face / Kaggle bridge
+
+GitHub is the canonical source of truth; Hugging Face and Kaggle are evidence/reproduction platforms, both private by default and never uploaded to automatically. Full policy: [`docs/RESEARCH_PLATFORM_BRIDGE.md`](docs/RESEARCH_PLATFORM_BRIDGE.md). Provenance graph: [`docs/PLATFORM_PROVENANCE.md`](docs/PLATFORM_PROVENANCE.md).
+
+## Hardware
+
+Target: Nordic nRF52840 (Cortex-M4F), instrumented with a Nordic Power Profiler Kit II. No physical measurement has occurred — Flash, SRAM, inference latency, and inference/explanation energy are all `NOT_EXECUTED`. Colab is cloud compute, never a substitute for a physical-hardware claim.
+
+## Research portal (web application)
+
+`research-portal/` is a Next.js (App Router, TypeScript) evidence-driven research portal. It reads **only** from `research-portal/data/evidence/*.json`, generated exclusively by `scripts/portal/export_evidence.py` from real repository artifacts — no page hand-types a metric.
 
 ```bash
+python scripts/portal/export_evidence.py   # regenerate research-portal/data/evidence/*.json
 cd research-portal
 npm install
-npm run dev
+npm run dev      # local development
+npm run build    # production build (also used by Vercel)
 ```
 
-## Citation
+Routes: `/`, `/research`, `/dataset`, `/methodology`, `/pipeline`, `/experiments`, `/results`, `/xai`, `/tinyml`, `/hardware`, `/huggingface`, `/reproducibility`, `/paper`, `/references`, `/professor-review`, `/about`, plus `/api/project-status`, `/api/experiments`, `/api/results`, `/api/hardware`. See `research-portal/README.md` for deployment details.
 
-A final BibTeX entry will be added only when the manuscript title, author list, venue/status, and persistent identifier are finalized. Until then, please cite the underlying UCI dataset and the relevant referenced methods directly.
+## Reproducibility
+
+Every executed artifact records: random seed, Python version, package versions, OS/runtime, Git commit, dataset SHA-256, and configuration hash. See [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) and the portal's [`/reproducibility`](research-portal/app/reproducibility/page.tsx) page.
+
+## Paper
+
+`paper/claim_evidence_matrix.csv` links every candidate manuscript claim to its experiment ID, dataset/config hash, git commit, and result artifact, with a `SUPPORTED`/`UNSUPPORTED` verdict decided by the artifact. Results and Discussion prose are intentionally undrafted until evidence supports them (`paper/RESULTS_DRAFT.md`).
+
+## Citation and license
+
+Citation metadata will be added with the publication. Licensed under the [MIT License](LICENSE). The UCI dataset retains its own terms and citation requirements (Vergara, A. (2012). *Gas Sensor Array Drift Dataset* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5RP6W).

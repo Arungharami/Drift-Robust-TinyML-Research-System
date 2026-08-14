@@ -1,0 +1,415 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "colabRunId",
+      "type": "promptString",
+      "description": "RUN_ID to download/export logs for (see terminal output of the run that produced it, or results/reproducibility/COLAB_STATUS.md 'last run id')"
+    },
+    {
+      "id": "kaggleKernelId",
+      "type": "promptString",
+      "description": "Kaggle kernel id, e.g. <username>/drift-robust-tinyml-reproduction"
+    },
+    {
+      "id": "bridgeLocalArtifact",
+      "type": "promptString",
+      "description": "Local artifact path to hash-verify"
+    },
+    {
+      "id": "bridgeRemoteArtifact",
+      "type": "promptString",
+      "description": "Path to the freshly-downloaded remote copy of that artifact"
+    },
+    {
+      "id": "bridgePlatform",
+      "type": "pickString",
+      "description": "Which platform the artifact was downloaded from",
+      "options": ["huggingface", "kaggle"]
+    },
+    {
+      "id": "bridgeRemoteIdentifier",
+      "type": "promptString",
+      "description": "Remote repo/dataset id, e.g. <namespace>/drift-robust-tinyml-research-data"
+    },
+    {
+      "id": "bridgeRemoteRevision",
+      "type": "promptString",
+      "description": "Remote revision/version",
+      "default": "main"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Colab: Bootstrap WSL",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/bootstrap_wsl.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Install/verify uv, python3, git inside WSL2 Ubuntu."
+    },
+    {
+      "label": "Colab: Verify CLI",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/verify_cli.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Install/update the real google-colab-cli via uv; print its version."
+    },
+    {
+      "label": "Colab: Authenticate",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/auth.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Explicit OAuth2 authentication against the Colab backend (interactive)."
+    },
+    {
+      "label": "Colab: Start CPU",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/start_cpu.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Create/reuse the canonical CPU session drift-tinyml-cpu."
+    },
+    {
+      "label": "Colab: Start T4",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/start_gpu.sh T4"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Create/reuse the optional GPU session with a T4 accelerator (allocation not guaranteed)."
+    },
+    {
+      "label": "Colab: Start G4",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/start_gpu.sh G4"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Create/reuse the optional GPU session with a G4 accelerator (allocation not guaranteed)."
+    },
+    {
+      "label": "Colab: Status",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/status.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "List all sessions and canonical CPU/GPU session status."
+    },
+    {
+      "label": "Colab: Smoke Test",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "colab --auth=oauth2 run scripts/colab/smoke_test.py"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "One-command ephemeral Colab job (Mode C). NOT scientific evidence."
+    },
+    {
+      "label": "Colab: Prepare Workspace",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/prepare_workspace.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Build dist/colab_workspace.tar.gz from the local repo (excludes .git, venvs, secrets, caches)."
+    },
+    {
+      "label": "Colab: Upload Workspace",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/upload_workspace.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Upload + extract the workspace bundle to /content/drift_tinyml_enose; verify required paths."
+    },
+    {
+      "label": "Colab: Install Requirements",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/install_environment.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Install requirements-colab.txt remotely; verify baseline imports."
+    },
+    {
+      "label": "Colab: Mount Drive",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/mount_drive.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Mount Google Drive; create the canonical persistent folder tree."
+    },
+    {
+      "label": "Colab: Run Notebook 00",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "RUN_ID=$(python3 -m src.colab_control.manifest new-run-id --descriptor MANUAL_NB00); echo RUN_ID=$RUN_ID; scripts/colab/run_notebook.sh notebooks/00_environment_and_reproducibility.ipynb $RUN_ID"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Execute Notebook 00 on real Colab; persist the executed copy under runs/<RUN_ID>/."
+    },
+    {
+      "label": "Colab: Run Notebook 01",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "RUN_ID=$(python3 -m src.colab_control.manifest new-run-id --descriptor MANUAL_NB01); echo RUN_ID=$RUN_ID; scripts/colab/run_notebook.sh notebooks/01_dataset_audit_and_drift_characterization.ipynb $RUN_ID"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Execute Notebook 01 on real Colab (hard dataset gate) as a standalone run."
+    },
+    {
+      "label": "Colab: Run Notebook 02",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "RUN_ID=$(python3 -m src.colab_control.manifest new-run-id --descriptor MANUAL_NB02); echo RUN_ID=$RUN_ID; scripts/colab/run_notebook.sh notebooks/02_classical_chronological_baselines.ipynb $RUN_ID"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Execute Notebook 02 on real Colab as a standalone run (only meaningful after 01 passes)."
+    },
+    {
+      "label": "Colab: Run Core Reproduction",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/run_core_repro.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Full 00 -> 01 (dataset gate) -> 02 orchestration on real Colab CPU.",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Colab: Verify CLI",
+        "Colab: Start CPU",
+        "Colab: Prepare Workspace",
+        "Colab: Upload Workspace",
+        "Colab: Install Requirements"
+      ]
+    },
+    {
+      "label": "Colab: Run Checkpoint 2",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/run_checkpoint2.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Checkpoint-2 orchestration: runtime/workspace/dataset verify -> baselines -> expanding window -> IID diagnostic -> artifacts. No deep learning.",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Colab: Verify CLI",
+        "Colab: Start CPU",
+        "Colab: Prepare Workspace",
+        "Colab: Upload Workspace",
+        "Colab: Install Requirements"
+      ]
+    },
+    {
+      "label": "Colab: Download Results",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/download_results.sh '${input:colabRunId}'"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Download small validated artifacts (metrics, manifests, logs, figures, tables, notebooks) for a RUN_ID."
+    },
+    {
+      "label": "Colab: Export Logs",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/export_logs.sh '${input:colabRunId}'"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Export session logs locally (results/reproducibility/logs/) and best-effort to Drive."
+    },
+    {
+      "label": "Colab: Open Runtime URL",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "colab --auth=oauth2 status -s \"$(python3 scripts/colab/read_config.py colab.sessions.cpu.name drift-tinyml-cpu)\""],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Print CPU session status, including its runtime URL if the installed CLI exposes one. Syntax unverified until `colab status --help` is inspected."
+    },
+    {
+      "label": "Colab: Stop Session",
+      "type": "shell",
+      "command": "wsl.exe",
+      "args": ["-d", "Ubuntu", "--cd", "${workspaceFolder}", "--", "bash", "-lc", "scripts/colab/stop.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Stop the canonical CPU session and VERIFY it actually stopped."
+    },
+    {
+      "label": "Research Bridge: Status",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/bridge/bridge_status.py"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "One-command READY/BLOCKED/NOT_CONFIGURED/NOT_EXECUTED summary: GitHub, Hugging Face, Kaggle, Colab, Drive."
+    },
+    {
+      "label": "GitHub: Verify",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/verify_github.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "gh --version, gh auth status, git remote/branch/SHA; writes github_status.json."
+    },
+    {
+      "label": "Hugging Face: Verify",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/verify_huggingface.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "hf version, hf auth whoami; writes huggingface_status.json."
+    },
+    {
+      "label": "Hugging Face: Login",
+      "type": "shell",
+      "command": "hf",
+      "args": ["auth", "login"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Interactive browser OAuth login for Hugging Face."
+    },
+    {
+      "label": "Hugging Face: Build Dataset Bundle",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/build_release_bundle.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Build + secret-scan dist/research_bridge/ (the dataset-repo upload payload)."
+    },
+    {
+      "label": "Hugging Face: Upload Dataset",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/push_hf_dataset.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Create/confirm the PRIVATE HF dataset repo and upload the release bundle + dataset card.",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Hugging Face: Verify", "Hugging Face: Build Dataset Bundle"]
+    },
+    {
+      "label": "Hugging Face: Build Model Bundle",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "echo '[bridge] No COMPLETED model bundle exists yet at this checkpoint. See docs/RESEARCH_PLATFORM_BRIDGE.md Mission 21: a model release is only prepared once a validated experiment exists. When one does, place manifest.json (status: COMPLETED) + platforms/huggingface/model/README.md alongside the model files, then run push_hf_model.sh <bundle_dir>.'"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Guidance-only until a COMPLETED, validated model experiment exists (Mission 21)."
+    },
+    {
+      "label": "Kaggle: Verify",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/verify_kaggle.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "kaggle --version, harmless auth probe; writes kaggle_status.json."
+    },
+    {
+      "label": "Kaggle: Login",
+      "type": "shell",
+      "command": "kaggle",
+      "args": ["auth", "login"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Interactive browser OAuth login for Kaggle."
+    },
+    {
+      "label": "Kaggle: Prepare Dataset",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/bridge/prepare_kaggle_dataset.py"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Stage platforms/kaggle/dataset/ (evidence copy + dataset-metadata.json, private). Does not upload."
+    },
+    {
+      "label": "Kaggle: Prepare Reproduction Notebook",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/bridge/prepare_kaggle_kernel.py"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Write platforms/kaggle/kernel/kernel-metadata.json (private, no GPU/internet by default). Does not upload."
+    },
+    {
+      "label": "Kaggle: Push Private Dataset",
+      "type": "shell",
+      "command": "kaggle",
+      "args": ["datasets", "create", "-p", "platforms/kaggle/dataset"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Upload platforms/kaggle/dataset/ as a PRIVATE Kaggle dataset (no -u/--public flag).",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Kaggle: Verify", "Kaggle: Prepare Dataset"]
+    },
+    {
+      "label": "Kaggle: Run Reproduction Notebook",
+      "type": "shell",
+      "command": "kaggle",
+      "args": ["kernels", "push", "-p", "platforms/kaggle/kernel"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Push + run the independent reproduction kernel (private, CPU only by default).",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Kaggle: Verify", "Kaggle: Prepare Reproduction Notebook"]
+    },
+    {
+      "label": "Kaggle: Download Outputs",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/pull_kaggle_outputs.sh '${input:kaggleKernelId}'"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Download a Kaggle kernel run's outputs locally for hash verification."
+    },
+    {
+      "label": "Research Bridge: Verify Hashes",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/bridge/verify_cross_platform_hashes.py",
+        "${input:bridgeLocalArtifact}",
+        "${input:bridgeRemoteArtifact}",
+        "--platform", "${input:bridgePlatform}",
+        "--remote-identifier", "${input:bridgeRemoteIdentifier}",
+        "--remote-revision", "${input:bridgeRemoteRevision}"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Compare local vs. freshly-downloaded remote SHA-256; appends to artifact_index.csv. A successful upload is never trusted alone."
+    },
+    {
+      "label": "Research Bridge: Build Release Bundle",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/build_release_bundle.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Build + secret-scan dist/research_bridge/ from small validated evidence."
+    },
+    {
+      "label": "Research Bridge: Verify All",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "scripts/bridge/verify_all.sh"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Verify GitHub + Hugging Face + Kaggle in one pass (native Windows, no WSL needed)."
+    }
+  ]
+}

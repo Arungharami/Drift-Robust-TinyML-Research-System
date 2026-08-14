@@ -1,0 +1,10 @@
+name: UCI Gas Sensor Array Drift Dataset
+uci_id: 224
+source_url: https://archive.ics.uci.edu/static/public/224/gas+sensor+array+drift+dataset.zip
+archive_name: gas_sensor_array_drift_dataset.zip
+batch_glob: "**/batch*.dat"
+integrity_expectations:
+  samples: 13910
+  features: 128
+  batches: 10
+  classes: 6

@@ -1,0 +1,88 @@
+# Google Colab CLI research control configuration.
+# Single source of truth for scripts/colab/*.sh and src/colab_control/*.
+# No secrets live here. See docs/COLAB_CLI_VSCODE_WORKFLOW.md for the full workflow.
+
+output_root: results
+github_secret_name: GITHUB_TOKEN
+seed: 42
+
+colab:
+  # Installed via `uv tool install google-colab-cli` inside WSL2 (Mission 4).
+  cli_tool: google-colab-cli
+  auth_provider: oauth2
+
+  sessions:
+    cpu:
+      name: drift-tinyml-cpu
+      role: canonical
+      accelerator: none
+      purpose: >-
+        dataset verification, baseline reproducibility, metric regeneration, small tests
+    gpu:
+      name: drift-tinyml-gpu
+      role: optional
+      accelerator: null   # set at start_gpu.sh runtime via --gpu, one of gpu_profiles below
+      purpose: >-
+        deep learning, heavy XAI, large bootstrap runs, representation learning
+
+  gpu_profiles: [T4, L4, G4, A100]
+
+  # Remote (Colab VM) workspace layout. The local Git repo remains canonical (Mission 12).
+  remote_workspace: /content/drift_tinyml_enose
+  workspace_archive: dist/colab_workspace.tar.gz
+  workspace_include:
+    - src
+    - configs
+    - notebooks
+    - scripts
+    - tests
+    - requirements-colab.txt
+    - pyproject.toml
+    - README.md
+  workspace_exclude_patterns:
+    - ".git"
+    - ".git/*"
+    - ".python"
+    - ".venv"
+    - "__pycache__"
+    - "*.pyc"
+    - ".pytest_cache"
+    - ".pytest_tmp"
+    - ".ipynb_checkpoints"
+    - "data/raw/*"
+    - "data/processed/*"
+    - "data/external/*"
+    - "artifacts/*"
+    - "results/raw/*"
+    - "*.pt"
+    - "*.pth"
+    - "*.h5"
+    - "*.pkl"
+    - "*.key"
+    - "*.pem"
+    - ".env"
+
+  # Persistent storage (Google Drive). GitHub remains canonical source-code storage (Mission 15).
+  drive_root: /content/drive/MyDrive/Drift-Robust-TinyML-Research-System
+  drive_subdirs:
+    - environment
+    - runs
+    - results
+    - artifacts
+    - executed_notebooks
+    - logs
+    - checkpoints
+
+  artifact_root: results/reproducibility
+
+  # Hard dataset gate enforced before Notebook 02 may run (Mission 19).
+  dataset_gate:
+    samples: 13910
+    features: 128
+    batches: 10
+    classes: 6
+    archive_sha256: 91e8f466f202e7a093d657673ce47311c3e90416f7df3057966058961c351fe4
+
+  # Session lifecycle policy (Mission 38).
+  stop_on_success: true
+  stop_on_failure: false   # keep the session alive so logs/artifacts can still be recovered

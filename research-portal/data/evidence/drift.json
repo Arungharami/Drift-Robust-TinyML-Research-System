@@ -1,0 +1,117 @@
+{
+  "evidence_status": "EXECUTED",
+  "global_drift_by_batch": [
+    {
+      "reference_batch": "1",
+      "comparison_batch": "2",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.5793018312508951"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "2",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.3193711317657312"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "3",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.8211496225090495"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "3",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.7600250366514965"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "4",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.9962964844064367"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "4",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.8512684021342677"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "5",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "1.1638419154234025"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "5",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "1.1512113225018894"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "6",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.5866366879593025"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "6",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.6939553144895647"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "7",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.6021474793880504"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "7",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.6877244659647412"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "8",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.6207793755355047"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "8",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.7041117041528759"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "9",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.6799827512881995"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "9",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.8614554501083489"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "10",
+      "metric": "normalized_wasserstein",
+      "median_feature_drift": "0.411565913811757"
+    },
+    {
+      "reference_batch": "1",
+      "comparison_batch": "10",
+      "metric": "standardized_mean_shift",
+      "median_feature_drift": "0.3062969097302436"
+    }
+  ],
+  "artifact_paths": [
+    "results/drift/global_drift_by_batch.csv",
+    "results/drift/feature_drift_by_batch.csv"
+  ]
+}

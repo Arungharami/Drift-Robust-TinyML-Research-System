@@ -1,0 +1,64 @@
+{
+  "github": {
+    "account": "Arungharami",
+    "authenticated": true,
+    "branch": "codex/colab-research-system",
+    "cli_version": "gh version 2.97.0 (2026-07-31)",
+    "commit": "16f3987c452a064c8f7b3acd1238b2e1e918c95d",
+    "remote": "https://github.com/Arungharami/Drift-Robust-TinyML-Research-System.git",
+    "repository": "Arungharami/Drift-Robust-TinyML-Research-System",
+    "timestamp": "2026-08-10T21:53:42Z"
+  },
+  "huggingface": {
+    "authenticated": false,
+    "cli_version": "version=1.27.0",
+    "organizations": [],
+    "timestamp": "2026-08-10T21:53:45Z",
+    "username": null
+  },
+  "kaggle": {
+    "authenticated": false,
+    "cli_version": "Kaggle CLI 2.2.4",
+    "timestamp": "2026-08-10T21:53:47Z",
+    "username": null
+  },
+  "platform_manifest": {
+    "colab": {
+      "environment": "NOT_EXECUTED",
+      "run_id": "NOT_EXECUTED",
+      "status": "NOT_EXECUTED"
+    },
+    "created_at": "2026-08-10T21:53:47Z",
+    "dataset": {
+      "archive_sha256": "91e8f466f202e7a093d657673ce47311c3e90416f7df3057966058961c351fe4",
+      "processed_hash": "NOT_EXECUTED",
+      "source": "UCI Gas Sensor Array Drift Dataset"
+    },
+    "experiment": {
+      "config_sha": "NOT_EXECUTED",
+      "experiment_id": "NOT_EXECUTED",
+      "split_sha": "NOT_EXECUTED"
+    },
+    "git_branch": "codex/colab-research-system",
+    "git_repository": "Arungharami/Drift-Robust-TinyML-Research-System",
+    "git_sha": "16f3987c452a064c8f7b3acd1238b2e1e918c95d",
+    "github": {
+      "commit": "16f3987",
+      "workflow_status": "UNKNOWN"
+    },
+    "huggingface": {
+      "dataset_repo": "NOT_CREATED",
+      "dataset_revision": "NOT_EXECUTED",
+      "model_repo": "NOT_CREATED",
+      "model_revision": "NOT_EXECUTED"
+    },
+    "kaggle": {
+      "dataset": "NOT_CREATED",
+      "dataset_version": "NOT_EXECUTED",
+      "kernel": "NOT_CREATED",
+      "kernel_version": "NOT_EXECUTED"
+    },
+    "project": "drift-robust-tinyml",
+    "status": "DRAFT"
+  }
+}

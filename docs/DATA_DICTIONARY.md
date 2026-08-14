@@ -1,0 +1,3 @@
+# Data dictionary
+
+Each `batchN.dat` file is a chronological acquisition batch. The first token is the gas class label; the remaining LIBSVM-style `index:value` tokens represent 128 numeric features. The UCI dataset description defines a 16-sensor array and eight features extracted from each sensor, so the verified mapping used for sensor aggregation is contiguous blocks of eight features: features 1–8 map to sensor 1 through features 121–128 mapping to sensor 16. Source: `https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset`. `batch` is ordered 1 through 10. Exact counts and labels are generated in the dataset validation artifacts.

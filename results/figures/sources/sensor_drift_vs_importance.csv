@@ -1,0 +1,17 @@
+sensor,drift_score,importance_score,mapping
+1,0.4980931797493121,0.0040664007650633,16 sensors × 8 contiguous features per UCI feature construction
+2,0.4824472551758922,0.0026296056684632,16 sensors × 8 contiguous features per UCI feature construction
+3,0.8478556621997861,-0.0045501318227229,16 sensors × 8 contiguous features per UCI feature construction
+4,0.9445748444423678,-0.0015463010830296,16 sensors × 8 contiguous features per UCI feature construction
+5,1.0252660699394238,-0.0001376922368679,16 sensors × 8 contiguous features per UCI feature construction
+6,0.9811479278660192,0.0006204700760794,16 sensors × 8 contiguous features per UCI feature construction
+7,1.051433726237478,0.0005963105643199,16 sensors × 8 contiguous features per UCI feature construction
+8,1.1872240699858467,-0.0011759247833462,16 sensors × 8 contiguous features per UCI feature construction
+9,0.4802829483788906,0.0005167202529653,16 sensors × 8 contiguous features per UCI feature construction
+10,0.5253517992802109,-0.0014511029055255,16 sensors × 8 contiguous features per UCI feature construction
+11,0.8295973101468215,-0.0005755423681498,16 sensors × 8 contiguous features per UCI feature construction
+12,0.8929105352574251,0.0001017016303153,16 sensors × 8 contiguous features per UCI feature construction
+13,1.1801179182036392,0.0012082383316214,16 sensors × 8 contiguous features per UCI feature construction
+14,1.058620718829577,0.0001965719160972,16 sensors × 8 contiguous features per UCI feature construction
+15,1.0627630637442966,-0.0001406033633902,16 sensors × 8 contiguous features per UCI feature construction
+16,1.1113391636710088,0.0006947412995085,16 sensors × 8 contiguous features per UCI feature construction

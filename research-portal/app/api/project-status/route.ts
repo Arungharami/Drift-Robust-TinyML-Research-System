@@ -1,13 +1,26 @@
 import { NextResponse } from "next/server";
-import { pipeline, project } from "@/lib/research";
+import { getPipeline, getPlatform, getProjectStatus } from "@/lib/evidence";
 
 export const dynamic = "force-static";
 
-export function GET() {
+export async function GET() {
+  const status = getProjectStatus();
+  const pipeline = getPipeline();
+  const platform = getPlatform();
+
   return NextResponse.json({
-    project: project.title,
-    researcher: project.author,
-    evidence_policy: "Only executed, saved, traceable measurements may be reported as results.",
-    stages: pipeline.map(({ id, title, status }) => ({ id, title, status })),
+    project: status.project,
+    repository: status.repository,
+    branch: status.branch,
+    git_commit: status.git_commit,
+    last_updated: status.last_updated,
+    pipeline_stages: pipeline.map((s) => ({ id: s.id, name: s.name, status: s.status })),
+    hardware_state: status.hardware_state,
+    paper_state: status.paper_state,
+    platform_bridge: {
+      github: platform.github?.authenticated ?? false,
+      huggingface: platform.huggingface?.authenticated ?? false,
+      kaggle: platform.kaggle?.authenticated ?? false,
+    },
   });
 }

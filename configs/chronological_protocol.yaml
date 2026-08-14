@@ -1,0 +1,11 @@
+primary: FIXED_ORIGIN
+protocols:
+  FIXED_ORIGIN:
+    train_batches: [1]
+    test_batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    preprocessing_fit: train_only
+  EXPANDING_WINDOW:
+    test_batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    preprocessing_fit: historical_only
+  IID_DIAGNOSTIC:
+    label: DIAGNOSTIC_ONLY

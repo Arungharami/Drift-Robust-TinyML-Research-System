@@ -1,0 +1,14 @@
+[
+  {
+    "batch": "2",
+    "experiment_id": "EXP-XAI-0001",
+    "feature_index": 6,
+    "feature_name": "S1:EMAd_0.01",
+    "importance": 0.014340487999871842,
+    "method": "PERMUTATION_IMPORTANCE_MACRO_F1",
+    "model_id": "MODEL-C2",
+    "rank": 1,
+    "status": "EXECUTED",
+    "top_k": 1
+  }
+]
