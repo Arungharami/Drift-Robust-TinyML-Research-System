@@ -163,6 +163,22 @@ export interface XaiTop3Row {
   features: string[];
 }
 
+export interface FidelitySummaryRow {
+  experiment_id: string;
+  source_experiment_id: string;
+  model_id: string;
+  candidate_method: string;
+  reference_method: string;
+  top_k: string;
+  n_samples: string;
+  mean_rank_overlap_at_k: string;
+  candidate_prediction_preservation_rate: string;
+  reference_prediction_preservation_rate: string;
+  mean_candidate_probability_closeness: string;
+  mean_candidate_absolute_sufficiency_gap: string;
+  mean_candidate_comprehensiveness_drop: string;
+}
+
 export interface XaiEvidence {
   evidence_status: EvidenceStatus;
   experiment_id: string | null;
@@ -178,6 +194,12 @@ export interface XaiEvidence {
   top3_by_model_method_batch: XaiTop3Row[];
   artifact_paths: string[];
   fidelity_status: EvidenceStatus;
+  fidelity_experiment_id: string | null;
+  fidelity_created_at: string | null;
+  n_fidelity_rows: number;
+  n_fidelity_summary_rows: number;
+  fidelity_summary: FidelitySummaryRow[];
+  fidelity_artifact_paths: string[];
   stability_status: EvidenceStatus;
   latency_status: EvidenceStatus;
 }

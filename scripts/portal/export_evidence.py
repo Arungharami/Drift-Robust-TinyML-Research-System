@@ -168,9 +168,12 @@ def export_xai() -> dict[str, Any]:
     local_samples = _read_csv(xai_dir / "stage09_local_samples.csv")
     reduced_rows = _read_csv(xai_dir / "stage09_reduced_explanations.csv")
     fidelity_prep_rows = _read_csv(xai_dir / "stage09_fidelity_prep.csv")
+    fidelity_summary = _read_csv(xai_dir / "stage10_fidelity_summary.csv")
 
     experiment_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-XAI-0001" / "manifest.json"
     experiment_manifest = _read_json(experiment_manifest_path)
+    fidelity_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-FID-0001" / "manifest.json"
+    fidelity_manifest = _read_json(fidelity_manifest_path)
 
     category_counts: dict[str, int] = {}
     for row in local_samples:
@@ -219,8 +222,18 @@ def export_xai() -> dict[str, Any]:
             "results/xai/stage09_feature_map.csv",
             "docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md",
         ],
-        # Explicitly not computed by Stage 09 — later stages, still NOT_EXECUTED.
-        "fidelity_status": "NOT_EXECUTED",
+        "fidelity_status": "EXECUTED" if fidelity_manifest else "NOT_EXECUTED",
+        "fidelity_experiment_id": fidelity_manifest.get("experiment_id") if fidelity_manifest else None,
+        "fidelity_created_at": fidelity_manifest.get("created_at") if fidelity_manifest else None,
+        "n_fidelity_rows": fidelity_manifest.get("n_per_sample_rows", 0) if fidelity_manifest else 0,
+        "n_fidelity_summary_rows": len(fidelity_summary),
+        "fidelity_summary": fidelity_summary,
+        "fidelity_artifact_paths": [
+            "results/xai/stage10_fidelity_per_sample.csv",
+            "results/xai/stage10_fidelity_summary.csv",
+            "artifacts/explanations/EXP-FID-0001/manifest.json",
+            "docs/experiments/STAGE10_EXPLANATION_FIDELITY.md",
+        ] if fidelity_manifest else [],
         "stability_status": "NOT_EXECUTED",
         "latency_status": "NOT_EXECUTED",
     }
