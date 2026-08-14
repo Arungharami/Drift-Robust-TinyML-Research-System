@@ -604,3 +604,24 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
   .hardware-measurement-cards { display: grid; gap: .6rem; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+/* Advisor / committee review workspace */
+.professor-review { padding-top: 2rem; padding-bottom: 3rem; }
+.professor-review section { margin: 2.4rem 0; }
+.review-tabs { display: flex; flex-wrap: wrap; gap: .5rem; position: sticky; top: .5rem; z-index: 5; padding: .65rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); }
+.review-tabs a { padding: .45rem .7rem; border-radius: 5px; color: var(--text); text-decoration: none; font-weight: 700; font-size: .86rem; }
+.review-tabs a:hover, .review-tabs a:focus-visible { background: var(--accent); color: #fff; }
+.review-statuses { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: 1rem 0; font-size: .84rem; }
+.review-statuses > span { display: inline-flex; align-items: center; gap: .35rem; }
+.review-workspace { padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); }
+.collaboration-notice { margin-top: 1rem; padding: .9rem 1rem; border: 1px solid var(--status-blocked-fg); border-radius: 6px; background: var(--status-blocked-bg); }
+.collaboration-ready { border-color: var(--status-executed-fg); background: var(--status-executed-bg); }
+.collaboration-notice p { margin: .45rem 0; }
+.collaboration-notice small { display: block; margin-top: .55rem; color: var(--text-muted); }
+.collaboration-notice button { margin-top: .25rem; padding: .45rem .65rem; border: 1px solid var(--border-strong); border-radius: 5px; color: var(--text-muted); background: var(--bg-muted); cursor: not-allowed; }
+.discussion-priorities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.discussion-priorities article { position: relative; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); }
+.discussion-priorities article > span { display: grid; place-items: center; width: 1.55rem; height: 1.55rem; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: .78rem; }
+.discussion-priorities h3 { margin: .7rem 0 .4rem; font-size: 1rem; }
+.discussion-priorities p { margin: 0; color: var(--text-muted); font-size: .88rem; }
+@media (max-width: 780px) { .review-tabs { position: static; } .discussion-priorities { grid-template-columns: 1fr; } }
