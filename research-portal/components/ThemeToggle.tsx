@@ -22,9 +22,13 @@ export function ThemeToggle() {
     setTheme(current === "dark" ? "light" : "dark");
   }
 
+  const dark = theme === "dark";
+  const label = dark ? "Switch to light mode" : "Switch to dark mode";
+
   return (
-    <button type="button" className="theme-toggle" onClick={toggle} aria-label="Toggle color theme">
-      {theme === "dark" ? "Light mode" : "Dark mode"}
+    <button type="button" className="theme-toggle" onClick={toggle} aria-label={label} title={label}>
+      <span className="theme-toggle-icon" aria-hidden="true">{dark ? "☀" : "☾"}</span>
+      <span className="theme-toggle-label">{dark ? "Light mode" : "Dark mode"}</span>
     </button>
   );
 }
