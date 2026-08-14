@@ -781,5 +781,123 @@
     "artifacts/explanations/EXP-STAB-0001/manifest.json",
     "docs/experiments/STAGE11_EXPLANATION_STABILITY.md"
   ],
-  "latency_status": "NOT_EXECUTED"
+  "latency_status": "EXECUTED",
+  "latency_experiment_id": "EXP-LAT-0001",
+  "n_latency_raw_rows": 540,
+  "latency_summary": [
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C1",
+      "method": "INTRINSIC_COEFFICIENT",
+      "n_measurements": "60",
+      "mean_latency_ms": "0.5321523499999999",
+      "std_latency_ms": "0.01764400057620297",
+      "median_latency_ms": "0.5388215",
+      "p95_latency_ms": "0.55168865",
+      "minimum_latency_ms": "0.507122",
+      "maximum_latency_ms": "0.574288"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C1",
+      "method": "PREDICT_PROBA_SINGLE",
+      "n_measurements": "60",
+      "mean_latency_ms": "0.36367456666666664",
+      "std_latency_ms": "0.02663753515431139",
+      "median_latency_ms": "0.3523615",
+      "p95_latency_ms": "0.41826379999999996",
+      "minimum_latency_ms": "0.338956",
+      "maximum_latency_ms": "0.456527"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C1",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "n_measurements": "60",
+      "mean_latency_ms": "0.8353224333333333",
+      "std_latency_ms": "0.019273271204642027",
+      "median_latency_ms": "0.834231",
+      "p95_latency_ms": "0.8695184499999999",
+      "minimum_latency_ms": "0.792588",
+      "maximum_latency_ms": "0.87867"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C2",
+      "method": "PREDICT_PROBA_SINGLE",
+      "n_measurements": "60",
+      "mean_latency_ms": "34.51813615",
+      "std_latency_ms": "0.6257907769543911",
+      "median_latency_ms": "34.5534285",
+      "p95_latency_ms": "35.3543062",
+      "minimum_latency_ms": "33.322031",
+      "maximum_latency_ms": "36.579517"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C2",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "n_measurements": "60",
+      "mean_latency_ms": "83.84656851666666",
+      "std_latency_ms": "5.49862377718355",
+      "median_latency_ms": "81.8148325",
+      "p95_latency_ms": "90.5016434",
+      "minimum_latency_ms": "67.899157",
+      "maximum_latency_ms": "91.208875"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C3",
+      "method": "PREDICT_PROBA_SINGLE",
+      "n_measurements": "60",
+      "mean_latency_ms": "0.39309435",
+      "std_latency_ms": "0.026315419695622934",
+      "median_latency_ms": "0.38332",
+      "p95_latency_ms": "0.4547135",
+      "minimum_latency_ms": "0.366168",
+      "maximum_latency_ms": "0.500961"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C3",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "n_measurements": "60",
+      "mean_latency_ms": "2.3181522833333332",
+      "std_latency_ms": "0.11740691817460056",
+      "median_latency_ms": "2.262639",
+      "p95_latency_ms": "2.55860725",
+      "minimum_latency_ms": "2.223645",
+      "maximum_latency_ms": "2.658502"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C4",
+      "method": "PREDICT_PROBA_SINGLE",
+      "n_measurements": "60",
+      "mean_latency_ms": "0.47396476666666665",
+      "std_latency_ms": "0.03333470375681779",
+      "median_latency_ms": "0.474721",
+      "p95_latency_ms": "0.50418015",
+      "minimum_latency_ms": "0.370486",
+      "maximum_latency_ms": "0.581181"
+    },
+    {
+      "experiment_id": "EXP-LAT-0001",
+      "model_id": "MODEL-C4",
+      "method": "SINGLE_FEATURE_ABLATION_LOCAL",
+      "n_measurements": "60",
+      "mean_latency_ms": "1.17121795",
+      "std_latency_ms": "0.0170641648774137",
+      "median_latency_ms": "1.16636",
+      "p95_latency_ms": "1.2057903499999998",
+      "minimum_latency_ms": "1.149217",
+      "maximum_latency_ms": "1.227384"
+    }
+  ],
+  "latency_artifact_paths": [
+    "results/xai/stage12_host_latency_raw.csv",
+    "results/xai/stage12_host_latency_summary.csv",
+    "artifacts/explanations/EXP-LAT-0001/manifest.json",
+    "docs/experiments/STAGE12_HOST_EXPLANATION_LATENCY.md"
+  ]
 }

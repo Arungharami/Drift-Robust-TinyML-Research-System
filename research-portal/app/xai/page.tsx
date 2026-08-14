@@ -193,6 +193,25 @@ export default function XaiPage() {
             </>
           )}
 
+          <h2>Stage 12 host-side latency</h2>
+          <EvidenceBadge status={xai.latency_status} />
+          {xai.latency_status === "EXECUTED" && (
+            <>
+              <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
+                Experiment <code>{xai.latency_experiment_id}</code> contains {xai.n_latency_raw_rows}
+                {" "}timings from one shared GitHub runner. These are not on-device measurements.
+              </p>
+              <div className="table-scroll"><table>
+                <thead><tr><th>Model</th><th>Method</th><th>n</th><th>Median ms</th><th>p95 ms</th></tr></thead>
+                <tbody>{xai.latency_summary.map((row) => <tr key={row.model_id + row.method}>
+                  <td>{row.model_id}</td><td><code>{row.method}</code></td><td>{row.n_measurements}</td>
+                  <td>{Number(row.median_latency_ms).toFixed(3)}</td><td>{Number(row.p95_latency_ms).toFixed(3)}</td>
+                </tr>)}</tbody>
+              </table></div>
+              <p><ArtifactLink path="docs/experiments/STAGE12_HOST_EXPLANATION_LATENCY.md" /></p>
+            </>
+          )}
+
           <h2>Stage 09 artifacts</h2>
           <ul style={{ fontSize: "0.9rem" }}>
             {xai.artifact_paths.map((path) => (
@@ -204,7 +223,7 @@ export default function XaiPage() {
 
       <h2>Downstream measurement status</h2>
       <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
-        Stages 10 and 11 are complete; latency requires its own independent run.
+        Stages 10-12 are complete on host; physical/on-device timing remains unexecuted.
       </p>
       <div className="table-scroll">
         <table>

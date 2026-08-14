@@ -170,6 +170,7 @@ def export_xai() -> dict[str, Any]:
     fidelity_prep_rows = _read_csv(xai_dir / "stage09_fidelity_prep.csv")
     fidelity_summary = _read_csv(xai_dir / "stage10_fidelity_summary.csv")
     stability_summary = _read_csv(xai_dir / "stage11_stability_summary.csv")
+    latency_summary = _read_csv(xai_dir / "stage12_host_latency_summary.csv")
 
     experiment_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-XAI-0001" / "manifest.json"
     experiment_manifest = _read_json(experiment_manifest_path)
@@ -177,6 +178,8 @@ def export_xai() -> dict[str, Any]:
     fidelity_manifest = _read_json(fidelity_manifest_path)
     stability_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-STAB-0001" / "manifest.json"
     stability_manifest = _read_json(stability_manifest_path)
+    latency_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-LAT-0001" / "manifest.json"
+    latency_manifest = _read_json(latency_manifest_path)
 
     category_counts: dict[str, int] = {}
     for row in local_samples:
@@ -248,7 +251,16 @@ def export_xai() -> dict[str, Any]:
             "artifacts/explanations/EXP-STAB-0001/manifest.json",
             "docs/experiments/STAGE11_EXPLANATION_STABILITY.md",
         ] if stability_manifest else [],
-        "latency_status": "NOT_EXECUTED",
+        "latency_status": "EXECUTED" if latency_manifest else "NOT_EXECUTED",
+        "latency_experiment_id": latency_manifest.get("experiment_id") if latency_manifest else None,
+        "n_latency_raw_rows": latency_manifest.get("n_raw_rows", 0) if latency_manifest else 0,
+        "latency_summary": latency_summary,
+        "latency_artifact_paths": [
+            "results/xai/stage12_host_latency_raw.csv",
+            "results/xai/stage12_host_latency_summary.csv",
+            "artifacts/explanations/EXP-LAT-0001/manifest.json",
+            "docs/experiments/STAGE12_HOST_EXPLANATION_LATENCY.md",
+        ] if latency_manifest else [],
     }
 
 
