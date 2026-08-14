@@ -128,5 +128,18 @@
     "figure": "",
     "git_commit": "d571b4301819db27fce1eba9485edac0eb58645d",
     "status": "SUPPORTED"
+  },
+  {
+    "claim_id": "C011",
+    "candidate_claim": "On the captured shared GitHub runner, median vectorized single-feature-ablation latency was 0.834 ms (MODEL-C1), 81.815 ms (MODEL-C2), 2.263 ms (MODEL-C3), and 1.166 ms (MODEL-C4); these are not on-device timings",
+    "experiment_id": "EXP-LAT-0001-C1\u2013C4",
+    "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
+    "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+    "config_hash": "44eace6c951d8fb2637e1ef1849b7595c8075971a4ea6378133caeaa91850c38",
+    "metric": "host_latency",
+    "result_artifact": "results/xai/stage12_host_latency_summary.csv",
+    "figure": "",
+    "git_commit": "fca7eef8424991d9ce8a8aa75400d824b619d591",
+    "status": "SUPPORTED"
   }
 ]
