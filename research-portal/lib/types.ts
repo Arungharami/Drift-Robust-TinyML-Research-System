@@ -7,10 +7,12 @@ export type EvidenceStatus =
   | "VALIDATED"
   | "PLANNED"
   | "RUNNING"
-  | "FAILED"
-  | "BLOCKED"
-  | "PROTOCOL_FROZEN"
-  | "NOT_EXECUTED";
+    | "FAILED"
+    | "BLOCKED"
+    | "BLOCKED_HARDWARE"
+    | "PROTOCOL_FROZEN"
+    | "NOT_EXECUTED"
+    | "NOT_MEASURED";
 
 export interface EmbeddedEvidence {
   gate_id: string;

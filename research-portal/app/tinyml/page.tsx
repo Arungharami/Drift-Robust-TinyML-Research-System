@@ -39,6 +39,7 @@ export default function TinyMlPage() {
     {embedded.stage15_hardware_gate && <>
       <h2>Stage 15 physical MCU port</h2>
       <p>Experiment <code>EXP-MCU-C1-FP32-PORT-001</code>: <code>BLOCKED_HARDWARE</code>. No supported physical board/debug probe was detected, so no board target was guessed and no build, flash, physical correctness, linked ROM, or linked static-RAM claim was produced.</p>
+      <p><a href="/hardware">Review the hardware blocker, planned connection, and evidence artifacts</a>.</p>
     </>}
 
     {embedded.c1_repair_summary.length > 0 && <>

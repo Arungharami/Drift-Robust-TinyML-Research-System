@@ -1,9 +1,9 @@
 {
   "project": "Drift-Robust Explainable TinyML for Electronic-Nose Sensing",
   "repository": "Arungharami/Drift-Robust-TinyML-Research-System",
-  "branch": "codex/stage09-resource-aware-xai",
-  "git_commit": "0c36424812d40d9bfd1b6ae7b02f96f7e8b02ff2",
-  "last_updated": "2026-08-12T21:14:28Z",
+  "branch": "agent/hardware-portal-blocked-state",
+  "git_commit": "4f583b73b1f20c25347c1b3307a4a5dfb0a1b37b",
+  "last_updated": "2026-08-14T19:51:42Z",
   "pipeline_stage_counts": {
     "EXECUTED": 16,
     "PROTOCOL_FROZEN": 2,
@@ -12,6 +12,6 @@
     "RUNNING": 1
   },
   "pipeline_total_stages": 27,
-  "hardware_state": "NOT_EXECUTED",
+  "hardware_state": "BLOCKED",
   "paper_state": "DRAFT_EVIDENCE_ONLY"
 }

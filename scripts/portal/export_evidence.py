@@ -391,6 +391,19 @@ def export_project_status(pipeline: list[dict[str, Any]]) -> dict[str, Any]:
     counts: dict[str, int] = {}
     for stage in pipeline:
         counts[stage["status"]] = counts.get(stage["status"], 0) + 1
+
+    # hardware_state must reflect the Stage-15 prerequisite-check artifact, not a fixed literal.
+    # It is intentionally kept to the EvidenceStatus enum (BLOCKED, not "BLOCKED_HARDWARE") so it
+    # stays type-safe; the specific reason lives in embedded.json's stage15_hardware_gate, which
+    # pages should read directly when they need the precise wording.
+    stage15_gate = _read_json(REPO_ROOT / "results" / "embedded" / "stage15_hardware_detection.json")
+    if stage15_gate is None:
+        hardware_state = "NOT_EXECUTED"
+    elif str(stage15_gate.get("scientific_execution_status", "")).startswith("BLOCKED"):
+        hardware_state = "BLOCKED"
+    else:
+        hardware_state = "EXECUTED"
+
     return {
         "project": "Drift-Robust Explainable TinyML for Electronic-Nose Sensing",
         "repository": "Arungharami/Drift-Robust-TinyML-Research-System",
@@ -399,7 +412,7 @@ def export_project_status(pipeline: list[dict[str, Any]]) -> dict[str, Any]:
         "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "pipeline_stage_counts": counts,
         "pipeline_total_stages": len(pipeline),
-        "hardware_state": "NOT_EXECUTED",
+        "hardware_state": hardware_state,
         "paper_state": "DRAFT_EVIDENCE_ONLY",
     }
 

@@ -308,7 +308,9 @@ main { min-height: 60vh; padding: 2.5rem 0 4rem; }
 .badge-RUNNING { background: var(--status-running-bg); color: var(--status-running-fg); }
 .badge-FAILED { background: var(--status-failed-bg); color: var(--status-failed-fg); }
 .badge-BLOCKED { background: var(--status-blocked-bg); color: var(--status-blocked-fg); }
+.badge-BLOCKED_HARDWARE { background: var(--status-blocked-bg); color: var(--status-blocked-fg); }
 .badge-NOT_EXECUTED { background: var(--status-not-executed-bg); color: var(--status-not-executed-fg); }
+.badge-NOT_MEASURED { background: var(--status-not-executed-bg); color: var(--status-not-executed-fg); }
 
 .section-label {
   font-size: 0.75rem;
@@ -384,3 +386,73 @@ main { min-height: 60vh; padding: 2.5rem 0 4rem; }
   z-index: 100;
 }
 .skip-link:focus { left: 1rem; top: 1rem; }
+
+/* Hardware evidence page */
+.hardware-page section { margin-bottom: 4rem; }
+.hardware-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .95fr); gap: 2rem; align-items: start; padding: 1.6rem; border: 1px solid var(--border-strong); border-left: 5px solid var(--status-blocked-fg); border-radius: 8px; background: var(--bg-raised); }
+.hardware-hero h1 { margin-top: .7rem; }
+.hardware-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.hardware-facts div { min-width: 0; padding: .8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-muted); }
+.hardware-facts div:first-child { grid-column: 1 / -1; }
+.hardware-facts span { display: block; color: var(--text-faint); font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; }
+.hardware-facts code, .hardware-facts strong { display: block; margin-top: .25rem; overflow-wrap: anywhere; font-size: .78rem; }
+.section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.section-heading p { max-width: 46ch; color: var(--text-muted); font-size: .9rem; }
+.device-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.device-card { overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); }
+.device-card figure { margin: 0; }
+.device-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 8; object-fit: contain; padding: 1.25rem; background: #fff; }
+.device-card figcaption { padding: .65rem 1rem; border-top: 1px solid var(--border); color: var(--text-faint); font-size: .72rem; }
+.device-content { padding: 1.1rem 1.25rem 1.35rem; }
+.device-content h3 { margin-top: .7rem; }
+.hardware-diagram, .workflow-figure { margin: 1rem 0; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); padding: 1rem; overflow: hidden; }
+.planned-label { display: inline-block; margin-bottom: .5rem; padding: .3rem .55rem; border: 1px solid var(--border-strong); border-radius: 4px; color: var(--status-blocked-fg); background: var(--status-blocked-bg); font-size: .72rem; font-weight: 700; letter-spacing: .05em; }
+.hardware-diagram svg { display: block; width: 100%; height: auto; color: var(--text); }
+.diagram-node > rect, .diagram-file path { fill: var(--bg-muted); stroke: var(--border-strong); stroke-width: 2; }
+.diagram-node path, .diagram-node circle { fill: none; stroke: var(--accent); stroke-width: 2; }
+.diagram-node text, .diagram-file text, .diagram-edge-label { fill: var(--text); font: 14px var(--font-sans); text-anchor: middle; }
+.diagram-node text:first-of-type { font-weight: 700; }
+.diagram-line { fill: none; stroke: var(--accent); stroke-width: 3; }
+.diagram-line.power { stroke: #9b6b20; }.diagram-line.trigger { stroke-dasharray: 7 5; }.diagram-line.trace { stroke: var(--text-muted); }
+#arrow path { fill: var(--accent); }
+.hardware-diagram figcaption, .workflow-figure figcaption { color: var(--text-muted); font-size: .82rem; }
+.hardware-diagram figcaption span { display: block; margin-top: .5rem; }
+.diagram-links { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: .75rem; font-size: .82rem; }
+.hardware-workflow { display: grid; grid-template-columns: repeat(9, minmax(6.5rem, 1fr)); gap: .5rem; padding: 0; list-style: none; }
+.workflow-step { position: relative; min-height: 8rem; padding: .7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-muted); }
+.workflow-step::after { content: "→"; position: absolute; right: -.48rem; top: 42%; z-index: 2; color: var(--text-faint); }
+.workflow-step:last-child::after { display: none; }
+.workflow-step strong, .workflow-step small { display: block; }
+.workflow-step strong { margin-top: .5rem; font-size: .78rem; line-height: 1.3; }
+.workflow-step small { margin-top: .35rem; color: var(--text-faint); font-size: .65rem; }
+.workflow-number { display: grid; place-items: center; width: 1.55rem; height: 1.55rem; border-radius: 50%; background: var(--status-blocked-bg); color: var(--status-blocked-fg); font-size: .7rem; font-weight: 700; }
+.workflow-complete { border-color: var(--status-executed-fg); }.workflow-complete .workflow-number { background: var(--status-executed-bg); color: var(--status-executed-fg); }
+.hardware-measurement-cards { display: none; }
+.measurement-card { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-raised); }
+.measurement-card strong, .measurement-card span { display: block; }.measurement-card span { color: var(--text-faint); font-size: .75rem; }
+.related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.related-grid h3 { margin-top: 0; }.related-grid li { margin-bottom: .45rem; }
+
+@media (max-width: 900px) {
+  .hardware-hero { grid-template-columns: 1fr; }
+  .hardware-workflow { grid-template-columns: repeat(3, 1fr); }
+  .workflow-step::after { display: none; }
+  .hardware-diagram svg { min-width: 0; }
+}
+@media (max-width: 640px) {
+  .hardware-page section { margin-bottom: 3rem; }
+  .hardware-hero { padding: 1rem; }
+  .hardware-facts, .device-gallery, .related-grid, .hardware-workflow { grid-template-columns: 1fr; }
+  .hardware-facts div:first-child { grid-column: auto; }
+  .section-heading { display: block; }
+  .hardware-diagram { padding: .75rem; }
+  .hardware-diagram svg { height: 690px; }
+  .diagram-node:nth-of-type(1) { transform: translate(360px, -45px); }
+  .diagram-node:nth-of-type(2) { transform: translate(-15px, 150px); }
+  .diagram-node:nth-of-type(3) { transform: translate(-390px, 345px); }
+  .diagram-line, .diagram-edge-label, .diagram-file { opacity: 0; }
+  .hardware-diagram figcaption { margin-top: .5rem; }
+  .hardware-measurement-table { display: none; }
+  .hardware-measurement-cards { display: grid; gap: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
