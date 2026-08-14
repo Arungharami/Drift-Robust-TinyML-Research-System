@@ -1,0 +1,42 @@
+gate_id: GATE-EMBED-EXPORT-001
+protocol_version: stage13_equivalence_v1
+status: FROZEN
+reference_chain: RAW_128_FEATURES_TO_FROZEN_STANDARD_SCALER_TO_FROZEN_ESTIMATOR_TO_OUTPUT
+reference_dtype: float64
+feature_order_source: results/xai/stage09_feature_map.csv
+golden_vectors: data/manifests/embedded_golden_vectors.csv
+boundary_vectors: data/manifests/embedded_boundary_vectors.csv
+levels:
+  level_1_preprocessing:
+    fp32_max_absolute_error: 2.0e-5
+    fp32_max_relative_error: 2.0e-6
+    quantized_max_absolute_error: 5.0e-3
+    report_every_feature: true
+  level_2_model_numerical:
+    fp32:
+      MODEL-C1: {score_max_absolute_error: 1.0e-4, score_max_relative_error: 1.0e-5, probability_max_absolute_error: 1.0e-5}
+      MODEL-C2: {probability_max_absolute_error: 1.0e-6, leaf_vote_semantics_must_match: true}
+      MODEL-C3: {score_max_absolute_error: 2.0e-4, score_max_relative_error: 2.0e-5, probability_max_absolute_error: 2.0e-5}
+      MODEL-C4: {score_max_absolute_error: 2.0e-4, score_max_relative_error: 2.0e-5, probability_max_absolute_error: 2.0e-5}
+    quantized_future_only:
+      score_max_absolute_error: 2.0e-2
+      probability_max_absolute_error: 2.0e-2
+      macro_f1_absolute_degradation_max: 1.0e-2
+  level_3_decision:
+    fp32_all_vector_class_agreement: 1.0
+    fp32_boundary_vector_class_agreement: 1.0
+    quantized_all_vector_class_agreement_min: 0.99
+    quantized_boundary_vector_class_agreement: 1.0
+    class_flip_reporting: PER_SAMPLE_MANDATORY
+relative_error_denominator_floor: 1.0e-8
+failure_policy:
+  - unsupported_estimator_representation
+  - preprocessing_mismatch
+  - tolerance_exceeded
+  - any_fp32_boundary_class_flip
+  - runtime_not_targetable_to_cortex_m4f
+  - analytical_memory_exceeds_physical_capacity
+  - dependency_or_license_not_reproducibly_freezable
+  - algorithm_changed_by_conversion
+quantization_status: NOT_EXECUTED
+

@@ -24,10 +24,10 @@ UCI Gas Sensor Array Drift Dataset
   -> Vercel research portal -> manuscript
 ```
 
-The authoritative registry currently records Stages 00–09 and Stage 21 as `EXECUTED`,
-Stages 10–20 as `NOT_EXECUTED`, and Stage 22 as `RUNNING`. See
-`configs/pipeline_stages.yaml` for the version-controlled status of all 23 stages; derived
-documentation and portal evidence must be reconciled to that registry.
+Everything through Stage 09 resource-aware explanation generation is executed. Fidelity,
+stability, explanation cost, embedded export, and physical-hardware stages remain unexecuted or
+blocked. Generated normalized registries under `results/registry/` are the result-level source of
+truth; `configs/pipeline_stages.yaml` is the stage-level source of truth.
 
 ## Repository structure
 
@@ -57,12 +57,6 @@ pytest -q
 
 Generated data and results are ignored by Git; manifests and result tables are retained as evidence. The downloader never silently replaces raw files.
 
-## AI-agent execution
-
-Before using DeepSeek Harness, Codex, Claude, or another coding agent, read [`AGENTS.md`](AGENTS.md).
-For the repository-specific DeepSeek Harness setup, safe prompts, current evidence boundary, and
-completion checklist, see [`docs/DEEPSEEK_HARNESS_WORKFLOW.md`](docs/DEEPSEEK_HARNESS_WORKFLOW.md).
-
 ## Experimental protocol
 
 - `FIXED_ORIGIN` (primary): fit all preprocessing and models on batch 1; evaluate batches 2–10 without retraining.
@@ -73,7 +67,7 @@ Frozen in `configs/chronological_protocol.yaml`. See [research protocol](docs/RE
 
 ## Scientific evidence policy
 
-Every number must be produced by executed code and linked to an artifact. Experiment states are `PLANNED`, `RUNNING`, `COMPLETED`, `FAILED`, `INVALID`, `NOT_EXECUTED`, or `SUPERSEDED`. Synthetic data is limited to unit tests. Physical Flash, SRAM, MCU latency, and PPK2 energy remain `NOT_EXECUTED` until measured on real hardware. The research portal's evidence loader (`research-portal/lib/evidence.ts`) enforces this in the UI: a missing artifact renders as `NOT EXECUTED`, never a placeholder number.
+Every number must be produced by executed code and linked to an artifact. Public evidence states are `MEASURED`, `DERIVED`, `EXECUTED`, `PLANNED`, `BLOCKED`, `FAILED`, and `NOT_APPLICABLE`. Synthetic data is limited to unit tests. Physical Flash, SRAM, MCU latency, and PPK2 energy remain `BLOCKED` until measured on real hardware. The research portal's evidence loader (`research-portal/lib/evidence.ts`) enforces this in the UI: a missing artifact never becomes a placeholder number.
 
 ## Google Colab Development
 

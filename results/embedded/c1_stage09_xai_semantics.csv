@@ -1,0 +1,7 @@
+property,confirmed_value,evidence
+explained_class,frozen pipeline predicted class,CoefficientExplainer._explain_local argmax(predict_proba) and stage09 sample registry
+contribution,"signed coef[class,i]*StandardScaler.transform(x)[i]",src/xai/intrinsic.py
+ranking,descending absolute contribution,src/xai/run_stage09.py
+tie_handling,ascending feature index (stable),src/xai/schema.py rank_from_importance
+intercept,not emitted as a feature attribution,Stage09 local explanation schema
+top_k,"Stage09 configured 1,3,5,10; experiment additionally evaluates 20 by identical frozen ranking rule",configs/xai/stage09_resource_aware_xai_v1.yaml and frozen XAI protocol

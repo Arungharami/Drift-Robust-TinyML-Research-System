@@ -7,9 +7,46 @@ export type EvidenceStatus =
   | "VALIDATED"
   | "PLANNED"
   | "RUNNING"
-  | "FAILED"
-  | "BLOCKED"
-  | "NOT_EXECUTED";
+    | "FAILED"
+    | "BLOCKED"
+    | "BLOCKED_HARDWARE"
+    | "PROTOCOL_FROZEN"
+    | "NOT_EXECUTED"
+    | "NOT_MEASURED";
+
+export interface EmbeddedEvidence {
+  gate_id: string;
+  protocol_status: "PROTOCOL_FROZEN";
+  target: { mcu: string; core: string; clock_hz: number; physical_flash_bytes: number; physical_sram_bytes: number };
+  model_inventory: Record<string, string>[];
+  candidates: Record<string, string>[];
+  analytical_memory: Record<string, string>[];
+  decision: Record<string, string>[];
+  fp32_summary: {
+    experiment_id: string;
+    scientific_execution_status: string;
+    scientific_outcome: string;
+    candidates: Record<string, { status: string; max_preprocessing_absolute_error: number; max_preprocessing_relative_error: number; max_score_absolute_error: number; max_probability_absolute_error: number; golden_agreement: number; boundary_agreement: number }>;
+    c1_xai_status: string;
+  } | null;
+  fp32_claims: Record<string, string>[];
+  fp32_storage: Record<string, string>[];
+  fp32_manifest: Record<string, string>[];
+  c1_repair_summary: Record<string, string>[];
+  c1_repair_selection: Record<string, string>[];
+  c1_repair_claims: Record<string, string>[];
+  c1_fused_gate: Record<string, string> | null;
+  c1_fused_operations: Record<string, string>[];
+  c1_fused_storage: Record<string, string>[];
+    c1_fused_claims: Record<string, string>[];
+    c1_fused_execution: Record<string, string>[];
+    c1_fused_execution_claims: Record<string, string>[];
+    c1_fused_xai_summary: Record<string, string>[];
+    c1_fused_xai_claims: Record<string, string>[];
+    stage15_hardware_gate: Record<string, unknown> | null;
+  statuses: Record<string, string>;
+  artifact_paths: string[];
+}
 
 export interface PipelineStage {
   id: string;
@@ -163,46 +200,6 @@ export interface XaiTop3Row {
   features: string[];
 }
 
-export interface FidelitySummaryRow {
-  experiment_id: string;
-  source_experiment_id: string;
-  model_id: string;
-  candidate_method: string;
-  reference_method: string;
-  top_k: string;
-  n_samples: string;
-  mean_rank_overlap_at_k: string;
-  candidate_prediction_preservation_rate: string;
-  reference_prediction_preservation_rate: string;
-  mean_candidate_probability_closeness: string;
-  mean_candidate_absolute_sufficiency_gap: string;
-  mean_candidate_comprehensiveness_drop: string;
-}
-
-export interface StabilitySummaryRow {
-  experiment_id: string;
-  source_experiment_id: string;
-  model_id: string;
-  method: string;
-  n_reference_comparisons: string;
-  n_adjacent_comparisons: string;
-  mean_reference_spearman: string;
-  minimum_reference_spearman: string;
-  mean_adjacent_spearman: string;
-  mean_reference_cosine: string;
-  mean_reference_top_10_jaccard: string;
-  mean_reference_top_1_jaccard: string;
-}
-
-export interface LatencySummaryRow {
-  experiment_id: string;
-  model_id: string;
-  method: string;
-  n_measurements: string;
-  median_latency_ms: string;
-  p95_latency_ms: string;
-}
-
 export interface XaiEvidence {
   evidence_status: EvidenceStatus;
   experiment_id: string | null;
@@ -219,22 +216,24 @@ export interface XaiEvidence {
   artifact_paths: string[];
   fidelity_status: EvidenceStatus;
   fidelity_experiment_id: string | null;
-  fidelity_created_at: string | null;
-  n_fidelity_rows: number;
-  n_fidelity_summary_rows: number;
-  fidelity_summary: FidelitySummaryRow[];
+  fidelity_summary: Record<string, string>[];
+  fidelity_ci_count: number;
   fidelity_artifact_paths: string[];
   stability_status: EvidenceStatus;
   stability_experiment_id: string | null;
-  stability_created_at: string | null;
-  n_stability_pairwise_rows: number;
-  stability_summary: StabilitySummaryRow[];
+  stability_summary: Record<string, string>[];
+  stability_ci_count: number;
   stability_artifact_paths: string[];
+  stability_local_category_summary: Array<{ model_id: string; category: string; n: number; mean_explanation_distance: number; mean_jaccard_at_10: number }>;
+  fidelity_stability_link: Record<string, string>[];
   latency_status: EvidenceStatus;
   latency_experiment_id: string | null;
-  n_latency_raw_rows: number;
-  latency_summary: LatencySummaryRow[];
+  latency_summary: Record<string, string>[];
+  latency_tradeoff: Record<string, string>[];
+  latency_claims: Record<string, string>[];
+  latency_environment: Record<string, unknown> | null;
   latency_artifact_paths: string[];
+  mcu_cost_status: "NOT_MEASURED";
 }
 
 export interface ProjectStatus {
@@ -247,4 +246,14 @@ export interface ProjectStatus {
   pipeline_total_stages: number;
   hardware_state: EvidenceStatus;
   paper_state: string;
+}
+
+export interface ResearchIntelligence {
+  evidence_status: EvidenceStatus;
+  registries: { experiments: Record<string, string>[]; measurements: Record<string, string>[]; artifacts: Record<string, string>[]; claims: Record<string, string>[]; decisions: Record<string, string>[] };
+  feature_structure: { physical_sensors: number; features_per_sensor: number | null; feature_count: number; metadata_artifact: string };
+  failure_rows: Record<string, string>[];
+  class_failure_rows: Record<string, string>[];
+  hardware_blocker: string;
+  next_experiment: string;
 }

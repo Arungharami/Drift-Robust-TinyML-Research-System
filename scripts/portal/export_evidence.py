@@ -169,17 +169,25 @@ def export_xai() -> dict[str, Any]:
     reduced_rows = _read_csv(xai_dir / "stage09_reduced_explanations.csv")
     fidelity_prep_rows = _read_csv(xai_dir / "stage09_fidelity_prep.csv")
     fidelity_summary = _read_csv(xai_dir / "stage10_fidelity_summary.csv")
+    fidelity_ci = _read_csv(xai_dir / "stage10_bootstrap_ci.csv")
+    fidelity_manifest = _read_csv(xai_dir / "stage10_manifest.csv")
     stability_summary = _read_csv(xai_dir / "stage11_stability_summary.csv")
-    latency_summary = _read_csv(xai_dir / "stage12_host_latency_summary.csv")
+    stability_ci = _read_csv(xai_dir / "stage11_bootstrap_ci.csv")
+    stability_manifest = _read_csv(xai_dir / "stage11_manifest.csv")
+    stability_local = _read_csv(xai_dir / "stage11_local_neighbor_stability.csv")
+    fidelity_stability_link = _read_csv(xai_dir / "stage11_fidelity_stability_link.csv")
+    latency_summary = _read_csv(xai_dir / "stage12_latency_summary.csv")
+    latency_manifest = _read_csv(xai_dir / "stage12_manifest.csv")
+    latency_tradeoff = _read_csv(xai_dir / "stage12_fidelity_stability_cost.csv")
+    latency_claims = _read_csv(xai_dir / "stage12_claim_evaluation.csv")
+    host_environment = _read_json(xai_dir / "stage12_host_environment.json")
+    local_groups: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for row in stability_local:
+        local_groups.setdefault((row["model_id"], row["category"]), []).append(row)
+    local_category_summary = [{"model_id": key[0], "category": key[1], "n": len(group), "mean_explanation_distance": sum(float(r["explanation_distance"]) for r in group)/len(group), "mean_jaccard_at_10": sum(float(r["jaccard_at_10"]) for r in group)/len(group)} for key, group in sorted(local_groups.items())]
 
     experiment_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-XAI-0001" / "manifest.json"
     experiment_manifest = _read_json(experiment_manifest_path)
-    fidelity_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-FID-0001" / "manifest.json"
-    fidelity_manifest = _read_json(fidelity_manifest_path)
-    stability_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-STAB-0001" / "manifest.json"
-    stability_manifest = _read_json(stability_manifest_path)
-    latency_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-LAT-0001" / "manifest.json"
-    latency_manifest = _read_json(latency_manifest_path)
 
     category_counts: dict[str, int] = {}
     for row in local_samples:
@@ -228,39 +236,27 @@ def export_xai() -> dict[str, Any]:
             "results/xai/stage09_feature_map.csv",
             "docs/experiments/STAGE09_RESOURCE_AWARE_XAI.md",
         ],
+        # Explicitly not computed by Stage 09 — later stages, still NOT_EXECUTED.
         "fidelity_status": "EXECUTED" if fidelity_manifest else "NOT_EXECUTED",
-        "fidelity_experiment_id": fidelity_manifest.get("experiment_id") if fidelity_manifest else None,
-        "fidelity_created_at": fidelity_manifest.get("created_at") if fidelity_manifest else None,
-        "n_fidelity_rows": fidelity_manifest.get("n_per_sample_rows", 0) if fidelity_manifest else 0,
-        "n_fidelity_summary_rows": len(fidelity_summary),
+        "fidelity_experiment_id": "EXP-XAI-FIDELITY-001" if fidelity_manifest else None,
         "fidelity_summary": fidelity_summary,
-        "fidelity_artifact_paths": [
-            "results/xai/stage10_fidelity_per_sample.csv",
-            "results/xai/stage10_fidelity_summary.csv",
-            "artifacts/explanations/EXP-FID-0001/manifest.json",
-            "docs/experiments/STAGE10_EXPLANATION_FIDELITY.md",
-        ] if fidelity_manifest else [],
+        "fidelity_ci_count": len(fidelity_ci),
+        "fidelity_artifact_paths": [row["artifact_path"] for row in fidelity_manifest],
         "stability_status": "EXECUTED" if stability_manifest else "NOT_EXECUTED",
-        "stability_experiment_id": stability_manifest.get("experiment_id") if stability_manifest else None,
-        "stability_created_at": stability_manifest.get("created_at") if stability_manifest else None,
-        "n_stability_pairwise_rows": stability_manifest.get("n_pairwise_rows", 0) if stability_manifest else 0,
+        "stability_experiment_id": "EXP-XAI-STABILITY-001" if stability_manifest else None,
         "stability_summary": stability_summary,
-        "stability_artifact_paths": [
-            "results/xai/stage11_stability_pairwise.csv",
-            "results/xai/stage11_stability_summary.csv",
-            "artifacts/explanations/EXP-STAB-0001/manifest.json",
-            "docs/experiments/STAGE11_EXPLANATION_STABILITY.md",
-        ] if stability_manifest else [],
+        "stability_ci_count": len(stability_ci),
+        "stability_artifact_paths": [row["artifact_path"] for row in stability_manifest],
+        "stability_local_category_summary": local_category_summary,
+        "fidelity_stability_link": fidelity_stability_link,
         "latency_status": "EXECUTED" if latency_manifest else "NOT_EXECUTED",
-        "latency_experiment_id": latency_manifest.get("experiment_id") if latency_manifest else None,
-        "n_latency_raw_rows": latency_manifest.get("n_raw_rows", 0) if latency_manifest else 0,
+        "latency_experiment_id": "EXP-XAI-LATENCY-001" if latency_manifest else None,
         "latency_summary": latency_summary,
-        "latency_artifact_paths": [
-            "results/xai/stage12_host_latency_raw.csv",
-            "results/xai/stage12_host_latency_summary.csv",
-            "artifacts/explanations/EXP-LAT-0001/manifest.json",
-            "docs/experiments/STAGE12_HOST_EXPLANATION_LATENCY.md",
-        ] if latency_manifest else [],
+        "latency_tradeoff": latency_tradeoff,
+        "latency_claims": latency_claims,
+        "latency_environment": host_environment,
+        "latency_artifact_paths": [row["artifact_path"] for row in latency_manifest],
+        "mcu_cost_status": "NOT_MEASURED",
     }
 
 
@@ -331,6 +327,63 @@ def export_environment() -> dict[str, Any] | None:
     return _read_json(REPO_ROOT / "results" / "reproducibility" / "environment.json")
 
 
+def export_embedded() -> dict[str, Any]:
+    embedded = REPO_ROOT / "results" / "embedded"
+    budget = yaml.safe_load((REPO_ROOT / "configs/nrf52840_resource_budget.yaml").read_text(encoding="utf-8"))
+    decision = _read_csv(embedded / "stage13_decision.csv")
+    stage14_summary = _read_json(embedded / "stage14_summary.json")
+    stage14r_summary = _read_csv(embedded / "stage14r_candidate_summary.csv")
+    return {
+        "gate_id": "GATE-EMBED-EXPORT-001",
+        "protocol_status": "PROTOCOL_FROZEN" if decision else "NOT_EXECUTED",
+        "target": budget["target"],
+        "model_inventory": _read_csv(embedded / "stage13_model_inventory.csv"),
+        "candidates": _read_csv(embedded / "stage13_candidate_matrix.csv"),
+        "analytical_memory": _read_csv(embedded / "stage13_analytical_memory.csv"),
+        "decision": decision,
+        "fp32_summary": stage14_summary,
+        "fp32_claims": _read_csv(embedded / "stage14_claim_evaluation.csv"),
+        "fp32_storage": _read_csv(embedded / "stage14_export_storage.csv"),
+        "fp32_manifest": _read_csv(embedded / "stage14_manifest.csv"),
+        "c1_repair_summary": stage14r_summary,
+        "c1_repair_selection": _read_csv(embedded / "stage14r_candidate_selection.csv"),
+        "c1_repair_claims": _read_csv(embedded / "stage14r_claim_evaluation.csv"),
+        "c1_fused_gate": (_read_csv(embedded / "c1_fused_gate_decision.csv") or [None])[0],
+        "c1_fused_operations": _read_csv(embedded / "c1_fused_operation_analysis.csv"),
+        "c1_fused_storage": _read_csv(embedded / "c1_fused_storage_analysis.csv"),
+        "c1_fused_claims": _read_csv(embedded / "c1_fused_claim_registry.csv"),
+        "c1_fused_execution": _read_csv(embedded / "c1_fused_error_summary.csv"),
+        "c1_fused_execution_claims": _read_csv(embedded / "c1_fused_claim_evaluation.csv"),
+        "c1_fused_xai_summary": _read_csv(embedded / "c1_fused_xai_vector_summary.csv"),
+        "c1_fused_xai_claims": _read_csv(embedded / "c1_fused_xai_claim_evaluation.csv"),
+        "stage15_hardware_gate": _read_json(embedded / "stage15_hardware_detection.json"),
+        "statuses": {"model_export": "HOST_EXECUTED", "quantization": "NOT_EXECUTED", "firmware": "NOT_EXECUTED", "compiled_flash": "NOT_MEASURED", "sram": "NOT_MEASURED", "mcu_latency": "NOT_MEASURED", "energy": "NOT_MEASURED"},
+        "artifact_paths": ["docs/embedded/STAGE13_EMBEDDED_EXPORT_PROTOCOL.md", "configs/embedded_equivalence_protocol.yaml", "results/embedded/stage13_candidate_matrix.csv", "data/manifests/embedded_golden_vectors.csv", "docs/embedded/STAGE14_FP32_EXPORT_EQUIVALENCE.md", "results/embedded/stage14_summary.json", "results/embedded/stage14_manifest.csv", "docs/embedded/STAGE14R_C1_PREPROCESSING_REPAIR.md", "results/embedded/stage14r_candidate_summary.csv", "results/embedded/stage14r_manifest.csv", "docs/embedded/C1_FUSED_PREPROCESSING_ARCHITECTURE.md", "configs/c1_fused_equivalence.yaml", "results/embedded/c1_fused_gate_decision.csv", "docs/embedded/EXP_EMBED_C1_FUSED_EQUIV_001.md", "results/embedded/c1_fused_golden_equivalence.csv", "results/embedded/c1_fused_boundary_equivalence.csv", "results/embedded/c1_fused_manifest.csv", "docs/embedded/EXP_EMBED_C1_FUSED_XAI_EQUIV_001.md", "results/embedded/c1_fused_xai_attribution_equivalence.csv", "results/embedded/c1_fused_xai_manifest.csv", "docs/embedded/EXP_MCU_C1_FP32_PORT_001.md", "results/embedded/stage15_hardware_detection.json", "results/embedded/stage15_manifest.csv"],
+    }
+
+
+def export_research_intelligence() -> dict[str, Any]:
+    """Copy only generated/registered evidence into cockpit-facing JSON."""
+    registry = REPO_ROOT / "results" / "registry"
+    feature_rows = _read_csv(REPO_ROOT / "research" / "feature_metadata.csv")
+    decisions = _read_csv(REPO_ROOT / "results" / "decisions" / "research_decisions.csv")
+    experiments = _read_csv(registry / "experiments.csv")
+    measurements = _read_csv(registry / "measurements.csv")
+    artifacts = _read_csv(registry / "artifacts.csv")
+    claims = _read_csv(registry / "claims.csv")
+    fixed = _read_csv(REPO_ROOT / "results" / "baselines" / "fixed_origin_metrics.csv")
+    class_perf = _read_csv(REPO_ROOT / "results" / "baselines" / "class_performance_by_batch.csv")
+    return {
+        "evidence_status": "EXECUTED" if experiments and artifacts else "BLOCKED",
+        "registries": {"experiments": experiments, "measurements": measurements, "artifacts": artifacts, "claims": claims, "decisions": decisions},
+        "feature_structure": {"physical_sensors": len({r.get('sensor_id') for r in feature_rows}), "features_per_sensor": 8 if len(feature_rows) == 128 else None, "feature_count": len(feature_rows), "metadata_artifact": "research/feature_metadata.csv"},
+        "failure_rows": fixed,
+        "class_failure_rows": class_perf,
+        "hardware_blocker": "No nRF52840 firmware measurement or PPK2 trace is registered.",
+        "next_experiment": "EMBEDDED_EXPORT_PROTOCOL_PREREGISTRATION" if (REPO_ROOT / "results/xai/stage12_manifest.csv").exists() else "EXP-XAI-LATENCY-001" if (REPO_ROOT / "results/xai/stage11_manifest.csv").exists() else "EXP-XAI-STABILITY-001" if (REPO_ROOT / "results/xai/stage10_manifest.csv").exists() else "EXP-XAI-FIDELITY-001",
+    }
+
+
 # --- project status rollup (feeds /api/project-status) ---------------------------------------------
 
 
@@ -338,6 +391,19 @@ def export_project_status(pipeline: list[dict[str, Any]]) -> dict[str, Any]:
     counts: dict[str, int] = {}
     for stage in pipeline:
         counts[stage["status"]] = counts.get(stage["status"], 0) + 1
+
+    # hardware_state must reflect the Stage-15 prerequisite-check artifact, not a fixed literal.
+    # It is intentionally kept to the EvidenceStatus enum (BLOCKED, not "BLOCKED_HARDWARE") so it
+    # stays type-safe; the specific reason lives in embedded.json's stage15_hardware_gate, which
+    # pages should read directly when they need the precise wording.
+    stage15_gate = _read_json(REPO_ROOT / "results" / "embedded" / "stage15_hardware_detection.json")
+    if stage15_gate is None:
+        hardware_state = "NOT_EXECUTED"
+    elif str(stage15_gate.get("scientific_execution_status", "")).startswith("BLOCKED"):
+        hardware_state = "BLOCKED"
+    else:
+        hardware_state = "EXECUTED"
+
     return {
         "project": "Drift-Robust Explainable TinyML for Electronic-Nose Sensing",
         "repository": "Arungharami/Drift-Robust-TinyML-Research-System",
@@ -346,7 +412,7 @@ def export_project_status(pipeline: list[dict[str, Any]]) -> dict[str, Any]:
         "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "pipeline_stage_counts": counts,
         "pipeline_total_stages": len(pipeline),
-        "hardware_state": "NOT_EXECUTED",
+        "hardware_state": hardware_state,
         "paper_state": "DRAFT_EVIDENCE_ONLY",
     }
 
@@ -365,6 +431,8 @@ def main() -> int:
     platform = export_platform()
     environment = export_environment()
     project_status = export_project_status(pipeline)
+    intelligence = export_research_intelligence()
+    embedded = export_embedded()
 
     _write("dataset.json", dataset)
     _write("experiments.json", experiments)
@@ -379,6 +447,8 @@ def main() -> int:
     _write("platform.json", platform)
     _write("environment.json", environment)
     _write("project-status.json", project_status)
+    _write("research-intelligence.json", intelligence)
+    _write("embedded.json", embedded)
 
     print(f"\nExported {len(list(OUT_DIR.glob('*.json')))} evidence files to {OUT_DIR.relative_to(REPO_ROOT)}")
     return 0

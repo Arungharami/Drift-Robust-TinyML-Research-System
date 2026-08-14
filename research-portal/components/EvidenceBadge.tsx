@@ -7,7 +7,10 @@ const LABELS: Record<EvidenceStatus, string> = {
   RUNNING: "Running",
   FAILED: "Failed",
   BLOCKED: "Blocked",
+  BLOCKED_HARDWARE: "Hardware blocked",
+  PROTOCOL_FROZEN: "Protocol frozen",
   NOT_EXECUTED: "Not executed",
+  NOT_MEASURED: "Not measured",
 };
 
 export function EvidenceBadge({ status }: { status: EvidenceStatus | string }) {

@@ -1,0 +1,2 @@
+decision_id,timestamp,research_question,experiment_id,observation,evidence_artifacts,interpretation,limitations,decision,next_experiment,git_commit
+DEC-0001,2026-08-11T00:00:00Z,RQ5,EXP-XAI-0001,Stage 09 explanation artifacts exist,results/xai/stage09_manifest.csv,Explanation generation is executed but fidelity and stability are not established,No Stage 10-12 metrics exist,Register Stage 09 and retain later claims as planned,EXP-XAI-FIDELITY-001,48160ce8612d1c818cdf69a503bdb99123855e76

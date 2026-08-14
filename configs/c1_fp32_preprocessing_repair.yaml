@@ -1,0 +1,53 @@
+experiment_id: EXP-EMBED-C1-PREPROC-REPAIR-001
+protocol_version: stage14r_c1_preprocessing_repair_v1
+status: FROZEN_BEFORE_CANDIDATE_EXECUTION
+candidate_order: [C1-PREPROC-P0-BASELINE, C1-PREPROC-P1-RECIPROCAL, C1-PREPROC-P2-AFFINE, C1-PREPROC-P3-SPLIT_MEAN, C1-PREPROC-P4-COMPENSATED]
+candidates:
+  C1-PREPROC-P0-BASELINE:
+    constants: [mean_fp32, scale_fp32]
+    operation: z = (x - mean) / scale
+  C1-PREPROC-P1-RECIPROCAL:
+    constants: [mean_fp32, inverse_scale_fp32_from_float64_reference]
+    operation: z = (x - mean) * inverse_scale
+  C1-PREPROC-P2-AFFINE:
+    constants: [a_fp32_from_1_over_reference_scale, b_fp32_from_negative_reference_mean_over_reference_scale]
+    operation: z = x * a + b
+  C1-PREPROC-P3-SPLIT_MEAN:
+    constants: [mean_hi_fp32, mean_lo_fp32_from_reference_residual, scale_fp32]
+    operation: delta = (x - mean_hi) - mean_lo; z = delta / scale
+  C1-PREPROC-P4-COMPENSATED:
+    constants: [mean_hi_fp32, mean_lo_fp32_from_reference_residual, inverse_scale_hi_fp32, inverse_scale_lo_fp32_from_reference_residual]
+    operation: delta = (x - mean_hi) - mean_lo; z = delta * inverse_scale_hi + delta * inverse_scale_lo
+compiler:
+  command: python -m ziglang cc
+  version: 0.16.0
+  architecture: x86_64-windows-host
+  flags: [-O2, -std=c11, -fno-fast-math, -ffp-contract=off]
+  fp_policy: FP32_CONSTANTS_AND_FP32_RUNTIME_ONLY_NO_FAST_MATH_NO_CONTRACTION
+input_dtype: float32
+output_dtype: float32
+reference_dtype: float64
+datasets: [data/manifests/embedded_golden_vectors.csv, data/manifests/embedded_boundary_vectors.csv]
+tolerances:
+  preprocessing: {max_absolute_error: 2.0e-5, max_relative_error: 2.0e-6, relative_denominator_floor: 1.0e-8}
+  score_max_absolute_error: 1.0e-4
+  probability_max_absolute_error: 1.0e-5
+  probability_normalization_absolute_error: 2.0e-6
+  golden_class_agreement: 1.0
+  boundary_class_agreement: 1.0
+  xai: {attribution_max_absolute_error: 2.0e-4, attribution_max_relative_error: 2.0e-5, sign_reference_zero_threshold: 2.0e-4, top_k: [1, 3, 5, 10, 20], required_top_k_set_overlap: 1.0}
+diagnostics:
+  reference_magnitude_bins: [0, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1, .inf]
+  cancellation_indicator: abs_reference_x_minus_mean_divided_by_max_abs_x_or_mean
+  ulp_error: absolute_error_divided_by_spacing_of_fp32_candidate_value
+  retain_all_rows: true
+selection_rule:
+  eligibility: pass every preprocessing, score, probability, normalization, golden-decision, boundary-decision, determinism, lineage, and XAI condition
+  lexicographic_preferences: [lowest_representation_complexity_rank, lowest_constant_bytes, lowest_total_runtime_operations, candidate_order]
+  no_passing_candidate: STRICT_FP32_EXPLICIT_STANDARDIZATION_REPAIR_NOT_DEMONSTRATED
+complexity_rank: {C1-PREPROC-P0-BASELINE: 0, C1-PREPROC-P1-RECIPROCAL: 1, C1-PREPROC-P2-AFFINE: 1, C1-PREPROC-P3-SPLIT_MEAN: 2, C1-PREPROC-P4-COMPENSATED: 3}
+candidate_claims:
+  C-EMBED-C1-REPAIR-01: {initial_status: UNSUPPORTED, acceptance: at_least_one_candidate_passes_all_mandatory_conditions}
+  C-EMBED-C1-REPAIR-XAI-01: {initial_status: UNSUPPORTED, acceptance: selected_candidate_passes_all_frozen_xai_conditions}
+hard_stops: [tolerance_changes, fp64_runtime, quantization, c4_modification, c2_export, c3_export, mcu_measurement, hardware_claims]
+

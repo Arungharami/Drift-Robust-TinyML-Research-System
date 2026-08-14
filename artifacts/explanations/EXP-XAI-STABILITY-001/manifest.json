@@ -1,0 +1,113 @@
+{
+  "experiment_id": "EXP-XAI-STABILITY-001",
+  "scientific_execution_status": "EXECUTED",
+  "public_deployment_status": "BLOCKED_CREDENTIALS",
+  "created_at": "2026-08-11T21:35:13.049764+00:00",
+  "outputs": [
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_global_rank_stability.csv",
+      "sha256": "dd4af02e0a5fc7e2a7e4475d5c709e4595e4d71b011b2cc86944d56ce85a68a2",
+      "rows": 64,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_global_magnitude_stability.csv",
+      "sha256": "366e7f3c83f763dc61dc151e71f3816b29bf388735e557b30ee9989d16048a4c",
+      "rows": 64,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_direction_stability.csv",
+      "sha256": "6e749a730b9f4d2fe5de2acb37ba98ddf3210a860223a7703467927b01ec3beb",
+      "rows": 462,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_sensor_stability.csv",
+      "sha256": "759f07d94b7518402219597c5b14bebe392c6a57e0231e9f0f6573f2204840e7",
+      "rows": 64,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_feature_family_stability.csv",
+      "sha256": "c75727d3c511a26d0f1b9b8c7309995ae04712e47605c0143061fa439357bc68",
+      "rows": 64,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_local_neighbor_stability.csv",
+      "sha256": "0a16ab9f6922c49cf5a9fdb940d8cdadcd8ac72856ba89b67a6360cde0bc775e",
+      "rows": 458,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_cross_batch_matches.csv",
+      "sha256": "3308003ee4a8255b4404a6829af1c4ca208bf413d9c088491d915a700ecaa166",
+      "rows": 163,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_cross_batch_stability.csv",
+      "sha256": "ad85859a9d07852cbb1640866e71514952c3989097a323b6fedec2420b2c1a05",
+      "rows": 163,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_relative_stability.csv",
+      "sha256": "acedaaac754bdb28c7a3e82bf91fecf972f7f287e1fa3d8a864244688eb2a4cd",
+      "rows": 192,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_fidelity_stability_link.csv",
+      "sha256": "f85e0e72f31d21a7517ec6c13314465ca3440ecb5edd72eaa779a17253e8ad8a",
+      "rows": 9,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_bootstrap_ci.csv",
+      "sha256": "c68cfae3888795e370ee94a9d959bd5c38c122de1aa5257d47e9267108e95580",
+      "rows": 106,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_stability_summary.csv",
+      "sha256": "1c4a27d9a9974a56a0e89dfa6a6c74ce2670702c3a5b5e3398681be063c1af23",
+      "rows": 22,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_bootstrap_ci.csv",
+      "sha256": "c68cfae3888795e370ee94a9d959bd5c38c122de1aa5257d47e9267108e95580",
+      "rows": 106,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_stability_summary.csv",
+      "sha256": "1c4a27d9a9974a56a0e89dfa6a6c74ce2670702c3a5b5e3398681be063c1af23",
+      "rows": 22,
+      "status": "EXECUTED"
+    },
+    {
+      "experiment_id": "EXP-XAI-STABILITY-001",
+      "artifact_path": "results/xai/stage11_input_manifest.csv",
+      "sha256": "36a41d4e7a007201d3b42ad5daf1f16dbee041c6dcfc0fef4c07b8b005bbbb07",
+      "rows": 32,
+      "status": "EXECUTED"
+    }
+  ]
+}

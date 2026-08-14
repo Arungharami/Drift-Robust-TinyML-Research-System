@@ -1,0 +1,12 @@
+schema_version: 1
+criteria:
+  - {id: AC1, rq: RQ1, required: [per_batch_macro_f1, worst_batch_macro_f1, drift_metric, uncertainty_interval], state: INCOMPLETE, missing: [uncertainty_interval]}
+  - {id: AC2, rq: RQ2, required: [paired_protocol_gap, effect_size, confidence_interval], state: INCOMPLETE, missing: [effect_size, confidence_interval]}
+  - {id: AC3, rq: RQ3, required: [causal_protocol, paired_batch_comparison, effect_size, confidence_interval], state: INCOMPLETE, missing: [effect_size, confidence_interval]}
+  - {id: AC4, rq: RQ4, required: [canonical_feature_map, sensor_drift, family_drift, controlled_group_ablation], state: INCOMPLETE, missing: [family_drift, controlled_group_ablation]}
+  - {id: AC5, rq: RQ5, required: [method_specific_fidelity, confidence_interval, raw_results], state: COMPLETE, evidence: [results/xai/stage10_fidelity_global.csv, results/xai/stage10_fidelity_local.csv, results/xai/stage10_bootstrap_ci.csv]}
+  - {id: AC6, rq: RQ6, required: [within_context_neighbor, adjacent_batch, earliest_anchor_to_future, correct_vs_error, method_specific_analysis], state: COMPLETE, evidence: [results/xai/stage11_global_rank_stability.csv, results/xai/stage11_local_neighbor_stability.csv, results/xai/stage11_cross_batch_stability.csv, results/xai/stage11_bootstrap_ci.csv]}
+  - {id: AC7, rq: RQ7, required: [temporal_trajectory, lead_lag_analysis, uncertainty, noncausal_wording], state: PLANNED}
+  - {id: AC8, rq: RQ8, required: [ECE, Brier, NLL, risk_coverage, causal_calibration], state: PLANNED}
+  - {id: AC9, rq: RQ9, required: [frozen_export_protocol, accuracy, macro_f1, calibration, parameter_bytes, quantized_bytes], state: BLOCKED, blocker: No frozen embedded inference/export protocol has executed.}
+  - {id: AC10, rq: RQ10, required: [physical_flash, physical_sram, physical_latency, physical_energy, pareto_frontier], state: BLOCKED, blocker: nRF52840 deployment and PPK2 traces do not exist.}

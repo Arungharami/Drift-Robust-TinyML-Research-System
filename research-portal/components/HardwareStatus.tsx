@@ -1,8 +1,8 @@
 import { EvidenceBadge } from "./EvidenceBadge";
 
-const ROWS: { label: string; unit: string }[] = [
-  { label: "Flash", unit: "KB" },
-  { label: "SRAM", unit: "KB" },
+const ROWS = [
+  { label: "Linked ROM / Flash", unit: "KB" },
+  { label: "Static / peak SRAM", unit: "KB" },
   { label: "MCU inference latency", unit: "ms" },
   { label: "MCU explanation latency", unit: "ms" },
   { label: "PPK2 inference energy", unit: "µJ" },
@@ -12,13 +12,13 @@ const ROWS: { label: string; unit: string }[] = [
 /** Always renders NOT_EXECUTED until real PPK2/MCU artifacts exist — never a placeholder number. */
 export function HardwareStatus() {
   return (
-    <div className="table-scroll">
-      <table>
+    <div className="hardware-measurements" aria-label="Hardware measurement status">
+      <div className="hardware-measurement-table table-scroll"><table>
         <thead>
           <tr>
             <th>Measurement</th>
             <th>Unit</th>
-            <th>Status</th>
+            <th>Current state</th>
           </tr>
         </thead>
         <tbody>
@@ -27,12 +27,15 @@ export function HardwareStatus() {
               <td>{row.label}</td>
               <td>{row.unit}</td>
               <td>
-                <EvidenceBadge status="NOT_EXECUTED" />
+                <EvidenceBadge status="NOT_MEASURED" />
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
+      <div className="hardware-measurement-cards">
+        {ROWS.map((row) => <article className="measurement-card" key={row.label}><div><strong>{row.label}</strong><span>{row.unit}</span></div><EvidenceBadge status="NOT_MEASURED" /></article>)}
+      </div>
     </div>
   );
 }

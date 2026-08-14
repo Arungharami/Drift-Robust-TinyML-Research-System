@@ -1,0 +1,3 @@
+component,reference_semantics,raw_domain_equivalent,incorrect_conflation,baseline_offset_semantics,intercept_semantics,future_scope,status
+FEATURE_CONTRIBUTION,"coefficient[c,i]*((x_i-mean_i)/scale_i)","w_raw[c,i]*(x_i-mean_i)","w_raw[c,i]*x_i","-w_raw[c,i]*mean_i belongs to centered feature contribution",fused bias contains intercept plus aggregate centering offset for prediction; do not assign full fused bias to any feature,SEPARATE_XAI_EXPERIMENT,SPECIFIED_NOT_EXECUTED
+DEPENDENCY_ORDER,prediction and explanation are separate claims,validate fused inference first,fused inference pass implies XAI pass,means retained separately if XAI is later implemented,preserve original baseline decomposition,A_INFERENCE_FIRST_WITHOUT_XAI,FROZEN

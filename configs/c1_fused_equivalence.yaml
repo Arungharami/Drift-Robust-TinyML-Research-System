@@ -1,0 +1,76 @@
+gate_id: GATE-C1-FUSED-PREPROC-001
+future_experiment_id: EXP-EMBED-C1-FUSED-EQUIV-001
+protocol_version: c1_fused_equivalence_v1
+gate_status: FROZEN
+execution_status: NOT_EXECUTED
+candidate:
+  id: C1-FUSED-F0
+  count: 1
+  source_pipeline: frozen StandardScaler then MODEL-C1 LogisticRegression
+  representation: raw-input affine classifier
+parameter_generation:
+  source_dtype: FLOAT64
+  derivation_dtype: FLOAT64
+  stored_dtype: FLOAT32
+  runtime_dtype: FLOAT32
+  cast_policy: derive complete fused constants in float64 offline then cast each final constant exactly once
+  hand_copying: FORBIDDEN
+raw_input:
+  primary_dtype: FLOAT32
+  preserve_float64_source_value: true
+  record_raw_cast_error: true
+references:
+  primary_scientific: FLOAT64_RAW_TO_FROZEN_FLOAT64_SCALER_TO_FROZEN_MODEL
+  secondary_diagnostic: FLOAT32_CAST_RAW_TO_SCIENTIFIC_PIPELINE
+  secondary_may_replace_primary: false
+mathematics:
+  fused_weight: w_raw[c,i] = coefficient[c,i] / scale[i]
+  fused_bias: b_raw[c] = intercept[c] - sum_i(coefficient[c,i] * mean[i] / scale[i])
+  score: score_raw[c] = b_raw[c] + sum_i(w_raw[c,i] * raw_fp32[i])
+  probability: stable float32 softmax after subtracting maximum score
+  prediction: classes[argmax(score)]
+dimensions: {inputs: 128, classes: 6, fused_weight_shape: [6, 128], fused_bias_shape: [6]}
+class_order: [1, 2, 3, 4, 5, 6]
+equivalence_levels:
+  - PARAMETER_DERIVATION_INTEGRITY
+  - RAW_INPUT_SCORE_EQUIVALENCE
+  - PROBABILITY_EQUIVALENCE
+  - DECISION_EQUIVALENCE
+  - BOUNDARY_STRESS_EQUIVALENCE
+  # Explicit transformed-feature equivalence is deliberately absent because F0 does not materialize z.
+tolerances:
+  score:
+    max_absolute_error: 2.0e-3
+    justification: conservative frozen-golden FP32 bound 1.588e-3 from gamma_129 accumulation plus input/constant casts, rounded upward before execution
+    relative_error: REPORT_DIAGNOSTIC_ONLY_WHEN_ABS_REFERENCE_SCORE_GE_1E_3
+    relative_denominator_floor: 1.0e-3
+  probability:
+    max_absolute_error: 1.0e-3
+    max_vector_l1_distance: 4.0e-3
+    normalization_max_absolute_error: 2.0e-6
+  decision: {golden_class_agreement: 1.0, boundary_class_agreement: 1.0, retain_every_flip: true}
+  parameter_derivation:
+    exact_element_count: 774
+    generated_float64_formula_recomputation_required: true
+    stored_float32_hash_required: true
+floating_point_policy:
+  language_standard: C11
+  feature_accumulation_order: ascending_0_through_127_per_class
+  optimization: -O2
+  fast_math: FORBIDDEN
+  compiler_flags: [-fno-fast-math, -ffp-contract=off]
+  fp_contract: OFF
+  runtime_fp64: FORBIDDEN
+test_sets: {golden: data/manifests/embedded_golden_vectors.csv, boundary: data/manifests/embedded_boundary_vectors.csv}
+margin_diagnostics: [reference_top_score, reference_second_score, reference_margin, fused_top_score, fused_second_score, fused_margin, margin_absolute_error, prediction_agreement]
+xai_dependency:
+  selected_scope: A_INFERENCE_FIRST_WITHOUT_XAI
+  fused_inference_pass_does_not_establish_xai: true
+  future_xai_requires_separate_experiment: true
+  baseline_preserving_formula: contribution[c,i] = w_raw[c,i] * (x_i - mean_i)
+  forbidden_formula: contribution[c,i] = w_raw[c,i] * x_i
+failure_taxonomy: [FUSED_PARAMETER_DERIVATION_ERROR, RAW_INPUT_CAST_SENSITIVITY, SCORE_TOLERANCE_FAILURE, PROBABILITY_TOLERANCE_FAILURE, GOLDEN_DECISION_MISMATCH, BOUNDARY_DECISION_MISMATCH, SOFTMAX_MISMATCH, CLASS_ORDER_MISMATCH, ACCUMULATION_ORDER_SENSITIVITY, NONDETERMINISTIC_GENERATION, NONDETERMINISTIC_EXECUTION]
+future_claims: [C-EMBED-C1-FUSED-01, C-EMBED-C1-FUSED-02, C-EMBED-C1-FUSED-XAI-01]
+hardware: {compiled_flash: NOT_MEASURED, mcu_sram: NOT_MEASURED, mcu_latency: NOT_MEASURED, mcu_xai_latency: NOT_MEASURED, energy: NOT_MEASURED}
+hard_stop: [generate_fused_c, execute_fused_equivalence, quantization, c4_repair, c2_export, c3_export, nrf52840_cross_compile, firmware, hardware_measurement]
+

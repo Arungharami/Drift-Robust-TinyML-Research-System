@@ -1,0 +1,29 @@
+gate_id: GATE-EMBED-EXPORT-001
+status: PROVISIONAL_POLICY_FROZEN
+target:
+  board: Nordic nRF52840 development target, exact board TBD_BEFORE_COMPILE
+  mcu: nRF52840
+  core: Arm Cortex-M4F
+  clock_hz: 64000000
+  physical_flash_bytes: 1048576
+  physical_sram_bytes: 262144
+budget_policy:
+  rule: physical capacity is not an application budget; no candidate may reserve unallocated capacity
+  firmware_code: TBD_BEFORE_COMPILE
+  model_parameters: TBD_BEFORE_COMPILE
+  preprocessing_constants: TBD_BEFORE_COMPILE
+  XAI_constants: TBD_BEFORE_COMPILE
+  runtime_tensor_or_working_buffers: TBD_BEFORE_COMPILE
+  sensor_input_buffer: TBD_BEFORE_COMPILE
+  output_buffer: TBD_BEFORE_COMPILE
+  stack: TBD_BEFORE_COMPILE
+  heap: TBD_BEFORE_COMPILE
+  measurement_logging_buffer: TBD_BEFORE_COMPILE
+  safety_margin:
+    policy: reserve_at_least_20_percent_of_physical_flash_and_sram_until_map_and_peak_memory_evidence_exists
+    flash_bytes_min: 209716
+    sram_bytes_min: 52429
+    status: PROVISIONAL_HARD_FLOOR_NOT_MEASURED_USAGE
+compiled_flash: NOT_MEASURED
+compiled_sram: NOT_MEASURED
+

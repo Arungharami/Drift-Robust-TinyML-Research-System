@@ -1,0 +1,9 @@
+component,elements,bytes_fp32,required_for_prediction,required_for_future_xai,evidence_state
+fused_weights,768,3072,True,True,DERIVED_FROM_ARCHITECTURE
+fused_biases,6,24,True,False,DERIVED_FROM_ARCHITECTURE
+scaler_means,128,512,False,True,DERIVED_FROM_ARCHITECTURE
+scaler_scales,128,512,False,False,DERIVED_FROM_ARCHITECTURE
+raw_input_buffer,128,512,True,True,DERIVED_FROM_ARCHITECTURE
+transformed_feature_buffer,0,0,False,False,DERIVED_BUFFER_REDUCTION
+score_buffer,6,24,True,True,DERIVED_FROM_ARCHITECTURE
+probability_buffer,6,24,True,False,DERIVED_FROM_ARCHITECTURE

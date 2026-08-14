@@ -1,0 +1,71 @@
+protocol_version: stage11_xai_stability_v1
+experiment_id: EXP-XAI-STABILITY-001
+source_explanation_experiment: EXP-XAI-0001
+source_fidelity_experiment: EXP-XAI-FIDELITY-001
+models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+global_methods:
+  PERMUTATION_IMPORTANCE_MACRO_F1:
+    models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+    supports: [rank, magnitude, global_importance]
+    does_not_support: [direction, local_contribution]
+  INTRINSIC_COEFFICIENT:
+    models: [MODEL-C1]
+    supports: [rank, magnitude]
+    chronological_global_status: NOT_APPLICABLE
+    reason: Stage 09 contains only an ALL-batches intrinsic vector
+  INTRINSIC_IMPURITY:
+    models: [MODEL-C2]
+    supports: [rank, magnitude]
+    chronological_global_status: NOT_APPLICABLE
+    reason: Stage 09 contains only an ALL-batches intrinsic vector
+local_methods:
+  INTRINSIC_COEFFICIENT: {models: [MODEL-C1], supports: [rank, magnitude, sign, local_contribution]}
+  SINGLE_FEATURE_ABLATION_LOCAL: {models: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4], supports: [rank, magnitude, sign, local_contribution], interpretation: ablation_consistency_representation}
+eligible_global_batches: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+anchor_rule: earliest valid batch per model and method
+comparison_families:
+  adjacent: [[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]]
+  anchor_to_future: [[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10]]
+top_k_features: [5, 10, 20]
+top_k_sensors: [1, 3, 5]
+rank_metrics: [spearman, kendall_tau_b, top_k_jaccard]
+magnitude:
+  normalization: absolute_vector_l1_per_explanation
+  metrics: [cosine_similarity, normalized_l1_distance]
+direction:
+  metrics: [sign_agreement, top_k_sign_agreement, sign_flip_frequency]
+  zero_tolerance: 1.0e-12
+  global_permutation_status: NOT_APPLICABLE
+sensor_aggregation: sum_absolute_feature_importance_within_16_fixed_groups
+feature_family_aggregation: sum_absolute_feature_importance_using_research_feature_metadata
+input_change:
+  source: results/drift/global_drift_by_batch.csv
+  metric: absolute_change_in_batch1_referenced_normalized_wasserstein_trajectory
+  limitation: not a direct pairwise Wasserstein distance
+model_behavior_change:
+  metrics: [absolute_macro_f1_change, mean_probability_distribution_l1_distance]
+relative_stability: {epsilon: 1.0e-6, sensitivity_epsilons: [1.0e-8, 1.0e-6, 1.0e-4]}
+local_neighbors:
+  count: 3
+  constraints: [same_model, same_batch, same_true_class, same_predicted_class]
+  distance: euclidean_in_saved_batch1_standardized_space_divided_by_sqrt_128
+  candidate_pool: frozen_stage09_local_samples_only
+cross_batch_matching:
+  pairs: [[2,6],[6,10],[2,10]]
+  algorithm: one_to_one_hungarian_minimum_standardized_euclidean_distance_within_true_class
+  repeated_reuse: forbidden_within_each_model_method_batch_pair
+  interpretation: CROSS_SECTIONAL_MATCHED_ANALYSIS_NOT_LONGITUDINAL
+bootstrap: {repetitions: 1000, confidence_level: 0.95, seed: 1142, global_unit: chronological_batch_pair, local_unit: natural_neighbor_or_matched_pair}
+minimum_n: 3
+correlations: {method: spearman, bootstrap_unit: matched_rows, no_causal_interpretation: true}
+fidelity_linkage: match_model_method_batch_then_average_stage10_k_values
+missing_data: record_NOT_APPLICABLE_or_UNMATCHED_never_zero_fill
+seed: 42
+software_environment: artifacts/explanations/EXP-XAI-0001/environment.json
+candidate_claim_acceptance:
+  C-XAI-STAB-01: adjacent_minus_anchor_far_jaccard_ci_low_gt_0
+  C-XAI-STAB-02: explanation_distance_vs_input_change_spearman_ci_low_gt_0
+  C-XAI-STAB-03: correct_minus_misclassified_stability_ci_excludes_0
+  C-XAI-STAB-04: sensor_distance_vs_input_change_spearman_ci_low_gt_0
+  C-XAI-STAB-05: fidelity_vs_stability_spearman_ci_low_gt_0
+expected_outputs: [stage11_global_rank_stability.csv, stage11_global_magnitude_stability.csv, stage11_direction_stability.csv, stage11_sensor_stability.csv, stage11_feature_family_stability.csv, stage11_local_neighbor_stability.csv, stage11_cross_batch_matches.csv, stage11_cross_batch_stability.csv, stage11_relative_stability.csv, stage11_fidelity_stability_link.csv, stage11_bootstrap_ci.csv, stage11_stability_summary.csv, stage11_input_manifest.csv, stage11_manifest.csv]

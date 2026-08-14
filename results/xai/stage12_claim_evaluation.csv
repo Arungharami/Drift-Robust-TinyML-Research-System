@@ -1,0 +1,5 @@
+experiment_id,claim_id,status,evidence_summary,acceptance_source
+EXP-XAI-LATENCY-001,C-XAI-COST-01,SUPPORTED,At least one matched local-method overhead ratio differs by >=2x: True.,configs/xai_latency_protocol.yaml
+EXP-XAI-LATENCY-001,C-XAI-COST-02,UNRESOLVED,"Additional-call criterion=True; model-level Spearman rho=1.000, but positive bootstrap CI is not established with N=4 models.",configs/xai_latency_protocol.yaml
+EXP-XAI-LATENCY-001,C-XAI-COST-03,SUPPORTED,Intrinsic extraction is below permutation p05 for both applicable models: True.,configs/xai_latency_protocol.yaml
+EXP-XAI-LATENCY-001,C-XAI-COST-04,UNRESOLVED,Stage-10/11 method coverage is incomplete for a fully matched dominance test; no universal composite score was constructed.,configs/xai_latency_protocol.yaml

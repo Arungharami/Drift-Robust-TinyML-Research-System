@@ -168,15 +168,22 @@
     "notebook": null,
     "script": "src/xai/run_stage10.py",
     "artifact_paths": [
-      "artifacts/explanations/EXP-FID-0001",
-      "results/xai/stage10_fidelity_per_sample.csv",
-      "results/xai/stage10_fidelity_summary.csv"
+      "results/xai/stage10_fidelity_global.csv",
+      "results/xai/stage10_fidelity_local.csv",
+      "results/xai/stage10_fidelity_sensor_groups.csv",
+      "results/xai/stage10_fidelity_feature_families.csv",
+      "results/xai/stage10_random_controls.csv",
+      "results/xai/stage10_bootstrap_ci.csv",
+      "results/xai/stage10_fidelity_summary.csv",
+      "results/xai/stage10_input_manifest.csv",
+      "results/xai/stage10_manifest.csv",
+      "artifacts/explanations/EXP-XAI-FIDELITY-001"
     ],
-    "git_commit": "54ab3e7711324187d99a476ff25958ac9f2e6996",
+    "git_commit": "WORKTREE",
     "depends_on": [
       "09"
     ],
-    "notes": "EXP-FID-0001 evaluated 880 frozen Stage 09 model/sample/top-k combinations and produced 16 model/top-k summaries. Metrics are descriptive: rank overlap, prediction preservation, target-probability closeness, absolute sufficiency gap, and comprehensiveness drop. MODEL-C1 compares intrinsic coefficients with the ablation reference; MODEL-C2-C4 reuse the ablation ranking, so their identity is not independent corroboration. No pass/fail fidelity threshold was preregistered. See docs/experiments/STAGE10_EXPLANATION_FIDELITY.md."
+    "notes": "EXP-XAI-FIDELITY-001; method-specific global, local, sensor-group, family, matched-random, and bootstrap evidence. Local ablation is labelled ABLATION_CONSISTENCY because its perturbation evaluation is partly circular."
   },
   {
     "id": "11",
@@ -185,76 +192,182 @@
     "notebook": null,
     "script": "src/xai/run_stage11.py",
     "artifact_paths": [
-      "artifacts/explanations/EXP-STAB-0001",
-      "results/xai/stage11_stability_pairwise.csv",
-      "results/xai/stage11_stability_summary.csv"
+      "results/xai/stage11_global_rank_stability.csv",
+      "results/xai/stage11_global_magnitude_stability.csv",
+      "results/xai/stage11_direction_stability.csv",
+      "results/xai/stage11_sensor_stability.csv",
+      "results/xai/stage11_feature_family_stability.csv",
+      "results/xai/stage11_local_neighbor_stability.csv",
+      "results/xai/stage11_cross_batch_matches.csv",
+      "results/xai/stage11_cross_batch_stability.csv",
+      "results/xai/stage11_relative_stability.csv",
+      "results/xai/stage11_fidelity_stability_link.csv",
+      "results/xai/stage11_bootstrap_ci.csv",
+      "results/xai/stage11_stability_summary.csv",
+      "results/xai/stage11_input_manifest.csv",
+      "results/xai/stage11_manifest.csv",
+      "artifacts/explanations/EXP-XAI-STABILITY-001"
     ],
-    "git_commit": "d571b4301819db27fce1eba9485edac0eb58645d",
+    "git_commit": "WORKTREE",
     "depends_on": [
       "09"
     ],
-    "notes": "EXP-STAB-0001 compared global permutation-importance explanations across batches 2-10: 36 batch-2 reference comparisons (including 4 self-checks) plus 32 adjacent comparisons. Across batches 3-10, mean Spearman correlation to batch 2 ranged 0.027-0.322 by model, and every model had zero top-1 Jaccard overlap with batch 2. Descriptive only; no stability threshold was preregistered. See docs/experiments/STAGE11_EXPLANATION_STABILITY.md."
+    "notes": "EXP-XAI-STABILITY-001; global chronological, physical sensor/family, natural-neighbor, matched cross-sectional, relative, and fidelity-linkage evidence. No universal stability score."
   },
   {
     "id": "12",
-    "name": "Explanation latency",
+    "name": "Controlled host-side XAI computational cost",
     "status": "EXECUTED",
     "notebook": null,
     "script": "src/xai/run_stage12.py",
     "artifact_paths": [
-      "artifacts/explanations/EXP-LAT-0001",
-      "results/xai/stage12_host_latency_raw.csv",
-      "results/xai/stage12_host_latency_summary.csv"
+      "results/xai/stage12_raw_timings.csv",
+      "results/xai/stage12_latency_summary.csv",
+      "results/xai/stage12_operation_counts.csv",
+      "results/xai/stage12_manifest.csv",
+      "artifacts/explanations/EXP-XAI-LATENCY-001"
     ],
-    "git_commit": "fca7eef8424991d9ce8a8aa75400d824b619d591",
+    "git_commit": "WORKTREE",
     "depends_on": [
-      "09"
+      "09",
+      "10",
+      "11"
     ],
-    "notes": "EXP-LAT-0001 records 540 host-side timings on one captured shared GitHub runner. Median vectorized local-ablation latency was 0.834 ms (C1), 81.815 ms (C2), 2.263 ms (C3), and 1.166 ms (C4). These are comparative host measurements, not nRF52840/on-device timing; physical latency remains Stage 17."
+    "notes": "EXP-XAI-LATENCY-001 measured controlled single-thread workstation cost with raw nanosecond timings and hardware-independent operation counts. Global and local scopes remain separate. Host latency is not an estimate of nRF52840 latency or energy; MCU latency, physical energy, Flash, and SRAM remain NOT_MEASURED/BLOCKED. Stage 13 did not execute."
   },
   {
     "id": "13",
-    "name": "Quantization",
-    "status": "NOT_EXECUTED",
+    "name": "Embedded architecture and export protocol freeze",
+    "status": "PROTOCOL_FROZEN",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
-    "depends_on": [
-      "08"
+    "script": "scripts/freeze_stage13_protocol.py",
+    "artifact_paths": [
+      "results/embedded/stage13_model_inventory.csv",
+      "results/embedded/stage13_candidate_matrix.csv",
+      "results/embedded/stage13_decision.csv",
+      "data/manifests/embedded_golden_vectors.csv",
+      "configs/embedded_equivalence_protocol.yaml"
     ],
-    "notes": "No deep model exists yet to quantize; classical models would need a separate export path."
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "09",
+      "10",
+      "11",
+      "12"
+    ],
+    "notes": "GATE-EMBED-EXPORT-001 architecture and numerical-equivalence protocol frozen. This is not an executed model export or performance experiment. Export, quantization, firmware, compiled Flash/SRAM, MCU timing, and energy remain NOT_EXECUTED/NOT_MEASURED."
   },
   {
     "id": "14",
-    "name": "Embedded export",
-    "status": "NOT_EXECUTED",
+    "name": "Standalone FP32 export equivalence",
+    "status": "FAILED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
+    "script": "scripts/run_stage14_fp32_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1",
+      "embedded/generated/c4",
+      "results/embedded/stage14_summary.json",
+      "results/embedded/stage14_manifest.csv",
+      "results/embedded/stage14_preprocessing_equivalence.csv"
+    ],
+    "git_commit": "WORKTREE",
     "depends_on": [
       "13"
     ],
-    "notes": "Requires stage 13."
+    "notes": "EXP-EMBED-FP32-EQUIV-001 completed with scientific outcome FAILED. C1 and C4 passed score, probability, normalization, golden decision, and boundary decision checks but failed frozen preprocessing criteria. Host-compiled validation only; quantization and MCU work remain unexecuted."
+  },
+  {
+    "id": "14R",
+    "name": "C1 explicit FP32 preprocessing repair",
+    "status": "FAILED",
+    "notebook": null,
+    "script": "scripts/run_stage14r_c1_repair.py",
+    "artifact_paths": [
+      "results/embedded/stage14r_candidate_summary.csv",
+      "results/embedded/stage14r_error_decomposition.csv",
+      "results/embedded/stage14r_candidate_selection.csv",
+      "results/embedded/stage14r_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14"
+    ],
+    "notes": "EXP-EMBED-C1-PREPROC-REPAIR-001 completed with outcome FAILED. P0 baseline reproduced; P1-P4 all failed unchanged universal preprocessing criteria. C4 remained frozen failed, and quantization, firmware, MCU measurement, and hardware resource claims remain unexecuted."
+  },
+  {
+    "id": "14F-GATE",
+    "name": "C1 fused preprocessing architecture protocol",
+    "status": "PROTOCOL_FROZEN",
+    "notebook": null,
+    "script": "scripts/freeze_c1_fused_protocol.py",
+    "artifact_paths": [
+      "configs/c1_fused_equivalence.yaml",
+      "results/embedded/c1_fused_protocol_manifest.csv",
+      "results/embedded/c1_fused_gate_decision.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14R"
+    ],
+    "notes": "GATE-C1-FUSED-PREPROC-001 frozen. No fused implementation or equivalence output was generated. Future EXP-EMBED-C1-FUSED-EQUIV-001 is authorized separately; quantization and hardware work remain prohibited."
+  },
+  {
+    "id": "14F-EXEC",
+    "name": "C1 fused FP32 host equivalence",
+    "status": "EXECUTED",
+    "notebook": null,
+    "script": "scripts/run_c1_fused_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1_fused",
+      "results/embedded/c1_fused_golden_equivalence.csv",
+      "results/embedded/c1_fused_boundary_equivalence.csv",
+      "results/embedded/c1_fused_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14F-GATE"
+    ],
+    "notes": "EXP-EMBED-C1-FUSED-EQUIV-001 PASSED prospectively frozen score, probability, normalization, deterministic-generation/execution, golden-decision, and boundary-decision criteria on the host. Fused XAI, quantization, MCU compilation, and hardware measurements remain NOT_EXECUTED/NOT_MEASURED."
+  },
+  {
+    "id": "14F-XAI",
+    "name": "C1 fused local-XAI host equivalence",
+    "status": "EXECUTED",
+    "notebook": null,
+    "script": "scripts/run_c1_fused_xai_equivalence.py",
+    "artifact_paths": [
+      "embedded/generated/c1_fused/xai_c1_fused.c",
+      "results/embedded/c1_fused_xai_attribution_equivalence.csv",
+      "results/embedded/c1_fused_xai_topk_equivalence.csv",
+      "results/embedded/c1_fused_xai_manifest.csv"
+    ],
+    "git_commit": "WORKTREE",
+    "depends_on": [
+      "14F-EXEC"
+    ],
+    "notes": "EXP-EMBED-C1-FUSED-XAI-EQUIV-001 PASSED all prospectively frozen local attribution, vector, sign, Top-K, additivity, semantic, determinism, and lineage criteria on the host. Quantization, MCU execution, and hardware measurements remain unexecuted."
   },
   {
     "id": "15",
     "name": "nRF52840 deployment",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
+    "script": "scripts/check_stage15_mcu_prerequisites.py",
+    "artifact_paths": [
+      "results/embedded/stage15_hardware_detection.json",
+      "results/embedded/stage15_toolchain_inventory.csv",
+      "results/embedded/stage15_manifest.csv"
+    ],
     "git_commit": null,
     "depends_on": [
       "14"
     ],
-    "notes": "Physical hardware not yet programmed. Hardware itself not confirmed available."
+    "notes": "EXP-MCU-C1-FP32-PORT-001 is BLOCKED_HARDWARE. No physical Nordic/J-Link/CMSIS-DAP device was detected, so no target was guessed, no toolchain was changed, and no build, flash, physical correctness, linked ROM, or linked static-RAM evidence was produced."
   },
   {
     "id": "16",
     "name": "Flash/SRAM measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -267,7 +380,7 @@
   {
     "id": "17",
     "name": "Physical inference latency",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -280,7 +393,7 @@
   {
     "id": "18",
     "name": "PPK2 energy measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -293,7 +406,7 @@
   {
     "id": "19",
     "name": "Explanation-energy measurement",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],
@@ -307,7 +420,7 @@
   {
     "id": "20",
     "name": "Pareto analysis",
-    "status": "NOT_EXECUTED",
+    "status": "BLOCKED",
     "notebook": null,
     "script": null,
     "artifact_paths": [],

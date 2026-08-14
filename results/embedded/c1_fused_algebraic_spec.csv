@@ -1,0 +1,7 @@
+gate_id,component,equation,shape,source,future_runtime
+GATE-C1-FUSED-PREPROC-001,REFERENCE_STANDARDIZATION,z_i=(x_i-mean_i)/scale_i,128,frozen StandardScaler,NOT_MATERIALIZED_BY_F0
+GATE-C1-FUSED-PREPROC-001,REFERENCE_SCORE,"score_c=intercept_c+sum_i(coefficient[c,i]*z_i)",6,frozen LogisticRegression,REPLACED_ALGEBRAICALLY
+GATE-C1-FUSED-PREPROC-001,FUSED_WEIGHT,"w_raw[c,i]=coefficient[c,i]/scale_i",6x128,offline float64 frozen parameters,FLOAT32_CONSTANT
+GATE-C1-FUSED-PREPROC-001,FUSED_BIAS,"b_raw[c]=intercept[c]-sum_i(coefficient[c,i]*mean_i/scale_i)",6,offline float64 frozen parameters,FLOAT32_CONSTANT
+GATE-C1-FUSED-PREPROC-001,FUSED_SCORE,"score_raw[c]=b_raw[c]+sum_i(w_raw[c,i]*raw_fp32[i])",6,C1-FUSED-F0,FLOAT32_ASCENDING_FEATURE_ORDER
+GATE-C1-FUSED-PREPROC-001,PROBABILITY,stable_softmax(score_raw),6,confirmed multinomial semantics,FLOAT32

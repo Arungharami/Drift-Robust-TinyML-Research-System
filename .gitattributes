@@ -1,0 +1,34 @@
+# Scientific artifacts are byte-hashed.  The registered hashes were generated
+# from CRLF text artifacts, so every checkout must preserve that representation
+# rather than silently normalizing it differently by operating system.
+* text=auto eol=crlf
+
+# Keep binary export artifacts byte-for-byte unchanged.
+*.exe binary
+*.pdb binary
+*.png binary
+*.sh text eol=lf
+
+# These frozen source, protocol, and documentation inputs were registered
+# against LF bytes.  They intentionally override the artifact default above.
+configs/c1_fp32_preprocessing_repair.yaml text eol=lf
+configs/c1_fused_equivalence.yaml text eol=lf
+configs/c1_fused_xai_equivalence.yaml text eol=lf
+configs/embedded_equivalence_protocol.yaml text eol=lf
+configs/fp32_export_equivalence.yaml text eol=lf
+configs/nrf52840_resource_budget.yaml text eol=lf
+docs/embedded/** text eol=lf
+docs/embedded/C1_FUSED_PREPROCESSING_INFERENCE_PROPOSAL.md text eol=crlf
+embedded/experimental/** text eol=lf
+embedded/experimental/c1_preprocessing_repair/*.csv text eol=crlf
+embedded/generated/** text eol=lf
+embedded/generated/c1_fused/*.csv text eol=crlf
+embedded/preprocessing_spec.yaml text eol=lf
+src/xai/intrinsic.py text eol=lf
+src/xai/run_stage09.py text eol=lf
+src/xai/schema.py text eol=lf
+
+# These rules must come after directory-specific text rules above.
+*.exe binary
+*.pdb binary
+*.png binary

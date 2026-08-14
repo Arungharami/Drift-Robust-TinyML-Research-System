@@ -6,6 +6,9 @@ export const metadata: Metadata = { title: "Experiments" };
 
 export default function ExperimentsPage() {
   const experiments = getExperiments();
+  const families = [...new Set(experiments.map((experiment) =>
+    experiment.experiment_id.startsWith("EXP-XAI") ? "XAI" : experiment.experiment_id.split("-")[0]
+  ))];
 
   return (
     <div className="container">
@@ -13,9 +16,7 @@ export default function ExperimentsPage() {
       <h1>Experiments</h1>
       <p className="lede">
         Machine-readable registry of every executed experiment — {experiments.length} entries,
-        sourced directly from <code>results/registry/experiment_registry.csv</code>. Deep
-        learning, XAI, quantization, and hardware experiments are not yet registered because they
-        have not been executed.
+        sourced from the generated evidence registry. Registered experiment families: {families.join(", ")}.
       </p>
       {experiments.length === 0 ? (
         <div className="empty-state">No experiments recorded yet.</div>

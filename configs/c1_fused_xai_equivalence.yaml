@@ -1,0 +1,24 @@
+experiment_id: EXP-EMBED-C1-FUSED-XAI-EQUIV-001
+protocol_version: c1_fused_xai_equivalence_v1
+status: FROZEN_BEFORE_EXECUTION
+samples: ALL_ELIGIBLE_FROZEN_MODEL_C1_STAGE09_LOCAL_AUDIT_SAMPLES
+class_selection: PREDICTED_CLASS_FROM_FROZEN_STAGE09_SAMPLE_REGISTRY
+attribution_formula: contribution_i = fused_weight[class_index,i] * (raw_fp32_i - mean_fp32_i)
+reference: FROZEN_STAGE09_INTRINSIC_COEFFICIENT_LOCAL
+ranking: DESCENDING_ABSOLUTE_CONTRIBUTION_THEN_ASCENDING_FEATURE_INDEX
+top_k: [1, 3, 5, 10, 20]
+tolerances:
+  attribution_max_absolute_error: 2.0e-5
+  vector_max_l1_error: 5.0e-4
+  additivity_max_absolute_error: 2.0e-4
+  relative_error_denominator_floor: 1.0e-5
+  sign_reference_minimum_magnitude: 1.0e-6
+  sign_agreement: 1.0
+  top_k_set_agreement: 1.0
+near_zero: RETAIN_ALL_ROWS_RELATIVE_ERROR_DIAGNOSTIC_ONLY
+tie_handling: STABLE_ASCENDING_FEATURE_INDEX
+runtime: {raw_dtype: FLOAT32, weight_dtype: FLOAT32, mean_dtype: FLOAT32, attribution_dtype: FLOAT32, fp64: FORBIDDEN}
+compiler: {language: C11, optimization: -O2, fast_math: FORBIDDEN, fp_contract: OFF, flags: [-fno-fast-math, -ffp-contract=off]}
+accumulation_order: ASCENDING_0_THROUGH_127
+failure_taxonomy: [INPUT_INTEGRITY_MISMATCH, XAI_SEMANTICS_AMBIGUITY, XAI_CLASS_SEMANTIC_FAILURE, FEATURE_ORDER_MISMATCH, ATTRIBUTION_TOLERANCE_FAILURE, VECTOR_L1_FAILURE, SIGN_EQUIVALENCE_FAILURE, TOPK_EQUIVALENCE_FAILURE, ADDITIVITY_FAILURE, NONDETERMINISTIC_XAI_GENERATION, NONDETERMINISTIC_XAI_EXECUTION, BUILD_FAILURE]
+hardware: {nrf52840: NOT_EXECUTED, flash: NOT_MEASURED, sram: NOT_MEASURED, inference_latency: NOT_MEASURED, xai_latency: NOT_MEASURED, energy: NOT_MEASURED, quantization: NOT_EXECUTED}

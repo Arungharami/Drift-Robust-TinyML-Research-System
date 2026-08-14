@@ -1,0 +1,17 @@
+gate_id,model_id,model_type,numeric_type,structural_scalar_equivalents,analytical_parameter_bytes,preprocessing_constant_bytes,measurement_type,compiled_flash,compiled_sram,caveat
+GATE-EMBED-EXPORT-001,MODEL-C1,LogisticRegression,FP64,774,6192,2048,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C1,LogisticRegression,FP32,774,3096,1024,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C1,LogisticRegression,INT16,774,1548,512,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C1,LogisticRegression,INT8,774,774,256,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C2,RandomForestClassifier,FP64,102300,818400,2048,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C2,RandomForestClassifier,FP32,102300,409200,1024,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C2,RandomForestClassifier,INT16,102300,NOT_APPLICABLE,NOT_APPLICABLE,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C2,RandomForestClassifier,INT8,102300,NOT_APPLICABLE,NOT_APPLICABLE,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C3,SVC,FP64,17468,139744,2048,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C3,SVC,FP32,17468,69872,1024,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C3,SVC,INT16,17468,34936,512,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C3,SVC,INT8,17468,17468,256,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C4,MLPClassifier,FP64,10534,84272,2048,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C4,MLPClassifier,FP32,10534,42136,1024,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C4,MLPClassifier,INT16,10534,21068,512,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
+GATE-EMBED-EXPORT-001,MODEL-C4,MLPClassifier,INT8,10534,10534,256,DERIVED_ANALYTICAL,NOT_MEASURED,NOT_MEASURED,Raw scalar-equivalent storage only; tree representation/runtime metadata may differ.
