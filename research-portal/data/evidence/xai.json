@@ -814,15 +814,15 @@
       "model_id": "MODEL-C1",
       "category": "CORRECT_REPRESENTATIVE",
       "n": 64,
-      "mean_explanation_distance": 0.20801397240867192,
-      "mean_jaccard_at_10": 0.5089431793911283
+      "mean_explanation_distance": 0.20801397240867184,
+      "mean_jaccard_at_10": 0.5089431793911279
     },
     {
       "model_id": "MODEL-C1",
       "category": "MISCLASSIFIED",
       "n": 70,
-      "mean_explanation_distance": 0.15076092747280176,
-      "mean_jaccard_at_10": 0.6827969759858304
+      "mean_explanation_distance": 0.1507609274728018,
+      "mean_jaccard_at_10": 0.6827969759858301
     },
     {
       "model_id": "MODEL-C1",
@@ -836,20 +836,20 @@
       "category": "NEAR_DECISION_BOUNDARY",
       "n": 56,
       "mean_explanation_distance": 0.23114788505787537,
-      "mean_jaccard_at_10": 0.4806943817890302
+      "mean_jaccard_at_10": 0.48069438178903
     },
     {
       "model_id": "MODEL-C2",
       "category": "CORRECT_REPRESENTATIVE",
       "n": 28,
-      "mean_explanation_distance": 0.28947211558398467,
+      "mean_explanation_distance": 0.2894721155839845,
       "mean_jaccard_at_10": 0.5842741218681068
     },
     {
       "model_id": "MODEL-C2",
       "category": "MISCLASSIFIED",
       "n": 41,
-      "mean_explanation_distance": 0.3245008877556401,
+      "mean_explanation_distance": 0.32450088775563996,
       "mean_jaccard_at_10": 0.5328954859650321
     },
     {
@@ -863,36 +863,36 @@
       "model_id": "MODEL-C2",
       "category": "NEAR_DECISION_BOUNDARY",
       "n": 25,
-      "mean_explanation_distance": 0.21271042080424835,
-      "mean_jaccard_at_10": 0.6942508471920238
+      "mean_explanation_distance": 0.21271042080424832,
+      "mean_jaccard_at_10": 0.6942508471920236
     },
     {
       "model_id": "MODEL-C3",
       "category": "CORRECT_REPRESENTATIVE",
       "n": 32,
-      "mean_explanation_distance": 0.23747456659001753,
-      "mean_jaccard_at_10": 0.4803071187068865
+      "mean_explanation_distance": 0.23747456659001756,
+      "mean_jaccard_at_10": 0.4803071187068866
     },
     {
       "model_id": "MODEL-C3",
       "category": "MISCLASSIFIED",
       "n": 33,
       "mean_explanation_distance": 0.15992970769096435,
-      "mean_jaccard_at_10": 0.6565379560031968
+      "mean_jaccard_at_10": 0.6565379560031964
     },
     {
       "model_id": "MODEL-C3",
       "category": "NEAR_DECISION_BOUNDARY",
       "n": 25,
       "mean_explanation_distance": 0.19130264157091634,
-      "mean_jaccard_at_10": 0.5386664316076081
+      "mean_jaccard_at_10": 0.538666431607608
     },
     {
       "model_id": "MODEL-C4",
       "category": "CORRECT_REPRESENTATIVE",
       "n": 32,
-      "mean_explanation_distance": 0.2814595957096294,
-      "mean_jaccard_at_10": 0.4375298763843655
+      "mean_explanation_distance": 0.28145959570962953,
+      "mean_jaccard_at_10": 0.43752987638436563
     },
     {
       "model_id": "MODEL-C4",
