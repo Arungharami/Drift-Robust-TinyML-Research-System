@@ -14,6 +14,7 @@
     "REFERENCE_TO_BATCH_2",
     "ADJACENT_BATCH"
   ],
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
   "eligible_model_ids": [
     "MODEL-C1",
     "MODEL-C2",
@@ -46,6 +47,8 @@
   "random_seed": 42,
   "reference_batch": 2,
   "source_experiment_id": "EXP-XAI-0001",
+  "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+  "split_protocol": "FIXED_ORIGIN",
   "top_k_values": [
     1,
     3,
