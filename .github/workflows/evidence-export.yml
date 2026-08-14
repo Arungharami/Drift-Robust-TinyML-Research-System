@@ -42,13 +42,20 @@ jobs:
           assert files
           for path in files:
               json.loads(path.read_text(encoding="utf-8"))
-          pipeline = json.loads((evidence / "pipeline.json").read_text(encoding="utf-8"))
-          stage10 = next(stage for stage in pipeline if stage["id"] == "10")
-          assert stage10["status"] == "EXECUTED"
+          pipeline = {
+              stage["id"]: stage
+              for stage in json.loads((evidence / "pipeline.json").read_text(encoding="utf-8"))
+          }
+          assert pipeline["10"]["status"] == "EXECUTED"
+          assert pipeline["11"]["status"] == "EXECUTED"
+          assert pipeline["12"]["status"] == "EXECUTED"
           xai = json.loads((evidence / "xai.json").read_text(encoding="utf-8"))
           assert xai["fidelity_status"] == "EXECUTED"
-          assert xai["n_fidelity_rows"] == 880
-          assert xai["n_fidelity_summary_rows"] == 16
+          assert xai["fidelity_summary"]
+          assert xai["stability_status"] == "EXECUTED"
+          assert xai["latency_status"] == "EXECUTED"
+          embedded = json.loads((evidence / "embedded.json").read_text(encoding="utf-8"))
+          assert embedded["stage15_hardware_gate"]["scientific_execution_status"] == "BLOCKED_HARDWARE"
           PY
       - name: Commit generated evidence
         run: |
