@@ -178,12 +178,12 @@ question, deferred to Stage 10).
 - Local sampling covers 3 of 9 evaluation batches (2, 6, 10), not all 9 — a disclosed scope
   decision to bound compute, not a hidden limitation.
 - No fidelity, stability, latency, quantization, or hardware conclusion is drawn by Stage 09.
-  Stage 10 has since executed fidelity independently; stability, latency, quantization, and
-  hardware measurements remain `NOT_EXECUTED` until their own stages run.
+  Stages 10 and 11 have since executed fidelity and global stability independently; latency,
+  quantization, and hardware measurements remain `NOT_EXECUTED` until their own stages run.
 
 ## Downstream status
 
 **Stage 10 — Explanation fidelity is EXECUTED.** It consumed
 `results/xai/stage09_fidelity_prep.csv` without recomputing Stage 09 explanations; see
-`docs/experiments/STAGE10_EXPLANATION_FIDELITY.md`. The next explanation experiment is
-**Stage 11 — stability across drift**, which remains `NOT_EXECUTED`.
+`docs/experiments/STAGE10_EXPLANATION_FIDELITY.md`. **Stage 11 — stability across drift is
+also EXECUTED**; see `docs/experiments/STAGE11_EXPLANATION_STABILITY.md`. Stage 12 latency is next.

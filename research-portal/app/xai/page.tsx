@@ -150,6 +150,49 @@ export default function XaiPage() {
             </>
           )}
 
+          <h2>Stage 11 chronological stability</h2>
+          <div style={{ marginBottom: "0.75rem" }}>
+            <EvidenceBadge status={xai.stability_status} />
+          </div>
+          {xai.stability_status === "EXECUTED" && (
+            <>
+              <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
+                Experiment <code>{xai.stability_experiment_id}</code> contains{" "}
+                {xai.n_stability_pairwise_rows} chronological comparisons. No stability
+                threshold was preregistered; the table reports distribution-specific
+                observations only.
+              </p>
+              <div className="table-scroll">
+                <table>
+                  <thead><tr><th>Model</th><th>Mean Spearman vs B2</th><th>Minimum vs B2</th><th>Mean adjacent</th><th>Cosine vs B2</th><th>Top-10 Jaccard</th><th>Top-1 Jaccard</th></tr></thead>
+                  <tbody>
+                    {xai.stability_summary.map((row) => (
+                      <tr key={row.model_id}>
+                        <td>{row.model_id}</td>
+                        <td>{Number(row.mean_reference_spearman).toFixed(3)}</td>
+                        <td>{Number(row.minimum_reference_spearman).toFixed(3)}</td>
+                        <td>{Number(row.mean_adjacent_spearman).toFixed(3)}</td>
+                        <td>{Number(row.mean_reference_cosine).toFixed(3)}</td>
+                        <td>{formatPercent(row.mean_reference_top_10_jaccard)}</td>
+                        <td>{formatPercent(row.mean_reference_top_1_jaccard)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ fontSize: "0.85rem" }}>
+                Protocol, exact aggregates, and limitations:{" "}
+                <ArtifactLink path="docs/experiments/STAGE11_EXPLANATION_STABILITY.md" />.
+              </p>
+              <h3>Stage 11 artifacts</h3>
+              <ul style={{ fontSize: "0.9rem" }}>
+                {xai.stability_artifact_paths.map((path) => (
+                  <li key={path}><ArtifactLink path={path} /></li>
+                ))}
+              </ul>
+            </>
+          )}
+
           <h2>Stage 09 artifacts</h2>
           <ul style={{ fontSize: "0.9rem" }}>
             {xai.artifact_paths.map((path) => (
@@ -161,7 +204,7 @@ export default function XaiPage() {
 
       <h2>Downstream measurement status</h2>
       <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
-        Stage 10 is complete; stability and latency require their own independent runs.
+        Stages 10 and 11 are complete; latency requires its own independent run.
       </p>
       <div className="table-scroll">
         <table>

@@ -169,11 +169,14 @@ def export_xai() -> dict[str, Any]:
     reduced_rows = _read_csv(xai_dir / "stage09_reduced_explanations.csv")
     fidelity_prep_rows = _read_csv(xai_dir / "stage09_fidelity_prep.csv")
     fidelity_summary = _read_csv(xai_dir / "stage10_fidelity_summary.csv")
+    stability_summary = _read_csv(xai_dir / "stage11_stability_summary.csv")
 
     experiment_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-XAI-0001" / "manifest.json"
     experiment_manifest = _read_json(experiment_manifest_path)
     fidelity_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-FID-0001" / "manifest.json"
     fidelity_manifest = _read_json(fidelity_manifest_path)
+    stability_manifest_path = REPO_ROOT / "artifacts" / "explanations" / "EXP-STAB-0001" / "manifest.json"
+    stability_manifest = _read_json(stability_manifest_path)
 
     category_counts: dict[str, int] = {}
     for row in local_samples:
@@ -234,7 +237,17 @@ def export_xai() -> dict[str, Any]:
             "artifacts/explanations/EXP-FID-0001/manifest.json",
             "docs/experiments/STAGE10_EXPLANATION_FIDELITY.md",
         ] if fidelity_manifest else [],
-        "stability_status": "NOT_EXECUTED",
+        "stability_status": "EXECUTED" if stability_manifest else "NOT_EXECUTED",
+        "stability_experiment_id": stability_manifest.get("experiment_id") if stability_manifest else None,
+        "stability_created_at": stability_manifest.get("created_at") if stability_manifest else None,
+        "n_stability_pairwise_rows": stability_manifest.get("n_pairwise_rows", 0) if stability_manifest else 0,
+        "stability_summary": stability_summary,
+        "stability_artifact_paths": [
+            "results/xai/stage11_stability_pairwise.csv",
+            "results/xai/stage11_stability_summary.csv",
+            "artifacts/explanations/EXP-STAB-0001/manifest.json",
+            "docs/experiments/STAGE11_EXPLANATION_STABILITY.md",
+        ] if stability_manifest else [],
         "latency_status": "NOT_EXECUTED",
     }
 
