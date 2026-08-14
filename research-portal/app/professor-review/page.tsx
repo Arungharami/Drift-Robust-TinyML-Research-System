@@ -1,126 +1,74 @@
 import type { Metadata } from "next";
 import { ArtifactLink } from "@/components/ArtifactLink";
 import { EvidenceBadge } from "@/components/EvidenceBadge";
+import { HardwareConnectionDiagram } from "@/components/HardwareConnectionDiagram";
+import { HardwareStatus } from "@/components/HardwareStatus";
+import { HardwareWorkflow } from "@/components/HardwareWorkflow";
+import { ProfessorReviewTabs } from "@/components/ProfessorReviewTabs";
 import { getPipeline, getProjectStatus } from "@/lib/evidence";
 
-export const metadata: Metadata = { title: "Professor Review" };
+export const metadata: Metadata = { title: "Advisor / Committee Review" };
 
-const QUESTIONS = [
-  "Is the chronological protocol (train Batch 1, evaluate 2-10 without retraining) defensible as the primary evaluation, with EXPANDING_WINDOW and IID_DIAGNOSTIC as secondary/diagnostic only?",
-  "Which model families should remain in scope — is Logistic Regression / Random Forest / RBF-SVM / MLP sufficient, or is a compact deep model required before the XAI stage?",
-  "Is the planned explanation-fidelity design (perturbation-based agreement with a reference explainer) appropriate, or is a different fidelity definition expected for this venue?",
-  "Is the planned drift-stability definition (rank correlation / top-k overlap of explanations across batches) publishable, or does it need a stronger theoretical grounding?",
-  "Which experiments are strictly required before manuscript submission — is physical PPK2 energy measurement mandatory, or can quantized-model estimates suffice for a first submission?",
-  "Which venue best matches this work — a TinyML/embedded systems venue, an XAI venue, or a sensors/analytical-chemistry venue?",
-  "Should real iSENSE/e-nose physical measurements be added, or is the UCI dataset sufficient for the intended contribution?",
-];
+const priorities = [
+  ["Evaluation hierarchy and model scope", "Whether FIXED_ORIGIN should remain primary, EXPANDING_WINDOW secondary, IID_DIAGNOSTIC diagnostic only, and whether a compact deep model is scientifically necessary."],
+  ["Interpretation of explanation evidence", "Stages 10–11 were executed but their tested candidate claims were unsupported. Guidance is requested on whether this reflects weak explanation behaviour, definitions requiring refinement, or a need for sensitivity analysis."],
+  ["Publication evidence bar", "Advice is requested on venue positioning, physical nRF52840/PPK2 requirements, an additional e-nose dataset, and whether a systems contribution is sufficient without a new algorithm."],
+] as const;
 
 export default function ProfessorReviewPage() {
   const status = getProjectStatus();
   const pipeline = getPipeline();
-  const executed = pipeline.filter((s) => s.status === "EXECUTED");
-  const pending = pipeline.filter((s) => s.status !== "EXECUTED");
+  const stage = (id: string) => pipeline.find((item) => item.id === id);
 
-  return (
-    <div className="container">
-      <div className="section-label">For advisor / committee review</div>
-      <h1>Professor review summary</h1>
-      <p className="lede">
-        A faculty-oriented summary of this project&apos;s current state, suitable for bringing
-        to a research meeting. Nothing below overstates completed work.
-      </p>
+  const brief = <>
+    <div className="section-label">Advisor / Committee Review</div>
+    <h1>Evidence-driven review brief</h1>
+    <p className="lede">This review brief summarizes the project&apos;s current evidence, unresolved scientific decisions, and immediate execution constraints for advisor and committee discussion. It distinguishes completed experiments, unsupported candidate claims, retained failed outcomes, frozen protocols, blocked hardware work, and proposed contributions.</p>
 
-      <h2>Research problem</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        Electronic-nose (chemical sensor array) readings drift over time due to sensor aging,
-        contamination, and environmental variation, degrading naive ML classifier performance.
-        Standard practice often evaluates such models with random train/test splits, which mixes
-        future-batch characteristics into training and overstates real-world performance.
-      </p>
+    <section>
+      <h2>Research problem and provisional gap</h2>
+      <p>Electronic-nose sensors drift through aging, contamination, and environmental variation. Chronological evaluation tests future-batch degradation directly; random splits can mix future characteristics into training and give an overly favourable deployment estimate.</p>
+      <p>The literature reviewed so far has not identified a study that unifies chronological e-nose drift evaluation, quantitatively assessed explanation fidelity and stability, and physically measured TinyML deployment cost in one traceable evidence chain. This remains a provisional literature finding rather than a claim of exhaustive novelty.</p>
+    </section>
 
-      <h2>Research gap</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        Prior concept-drift and TinyML literature (see <a href="/references">References</a>)
-        addresses drift adaptation, general explainability, or embedded deployment constraints
-        largely in isolation. No identified prior work combines chronological e-nose drift
-        evaluation, resource-aware explainability with measured fidelity/stability, and physical
-        TinyML deployment evidence (Flash/SRAM/latency/energy via PPK2) in one evidence chain.
-      </p>
+    <section>
+      <h2>Research design</h2>
+      <p><code>FIXED_ORIGIN</code> is the primary prospective protocol; <code>EXPANDING_WINDOW</code> is secondary adaptation analysis; <code>IID_DIAGNOSTIC</code> is diagnostic only. Preprocessing is training-only and four frozen model families underpin the current results. <ArtifactLink path="configs/chronological_protocol.yaml" /></p>
+    </section>
 
-      <h2>Research question</h2>
-      <p style={{ maxWidth: "68ch" }}>See the full framing on the <a href="/research">Research</a> page.</p>
+    <section>
+      <h2>Current evidence</h2>
+      <div className="review-statuses">{Object.entries(status.pipeline_stage_counts).map(([name, count]) => <span key={name}><EvidenceBadge status={name} /> {count}</span>)}</div>
+      <p>Counts are derived from the declared pipeline registry, not a progress percentage. Negative outcomes remain distinct from unexecuted work.</p>
+      <div className="table-scroll"><table><thead><tr><th>Area</th><th>Status</th><th>Boundary</th></tr></thead><tbody>
+        {["10", "11", "12", "13", "14", "14R", "15"].map((id) => {
+          const item = stage(id);
+          return item && <tr key={id}><td>{item.id} — {item.name}</td><td><EvidenceBadge status={id === "15" ? "BLOCKED_HARDWARE" : item.status} /></td><td>{item.notes}</td></tr>;
+        })}
+      </tbody></table></div>
+    </section>
 
-      <h2>Methodology</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        Frozen chronological protocols (<code>FIXED_ORIGIN</code>, <code>EXPANDING_WINDOW</code>,{" "}
-        <code>IID_DIAGNOSTIC</code>) defined in{" "}
-        <ArtifactLink path="configs/chronological_protocol.yaml" />; see{" "}
-        <a href="/methodology">Methodology</a> for full detail.
-      </p>
+    <section>
+      <h2>Findings requiring interpretation</h2>
+      <p>Stage 10 fidelity and Stage 11 stability experiments were executed, but their tested candidate claims were unsupported. These retained results may indicate weak explanation behaviour, limitations in the tested definitions, or both; this branch does not alter metrics or rerun experiments. <ArtifactLink path="results/xai/stage10_fidelity_summary.csv" /> <ArtifactLink path="results/xai/stage11_stability_summary.csv" /></p>
+      <p>Stages 14 and 14R retain failed export/preprocessing outcomes; later host equivalence does not establish physical deployment.</p>
+    </section>
 
-      <h2>Current evidence ({executed.length} / {status.pipeline_total_stages} pipeline stages executed)</h2>
-      <ul style={{ fontSize: "0.9rem" }}>
-        {executed.map((s) => (
-          <li key={s.id}>
-            <strong>{s.name}</strong> — {s.notes}
-          </li>
-        ))}
-      </ul>
+    <section>
+      <h2>Hardware constraint</h2>
+      <p>Prerequisite detection was executed, but no supported nRF52840 board or debug interface was detected. Board identity was not guessed. Physical deployment, Flash/SRAM, MCU latency, and PPK2 energy remain unmeasured.</p>
+      <HardwareConnectionDiagram />
+      <HardwareWorkflow />
+      <HardwareStatus />
+      <p><a href="/hardware">Hardware record</a> · <a href="/tinyml">TinyML record</a> · <ArtifactLink path="results/embedded/stage15_hardware_detection.json" /></p>
+    </section>
 
-      <h2>Pending experiments</h2>
-      <div className="table-scroll">
-        <table>
-          <thead><tr><th>Stage</th><th>Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            {pending.map((s) => (
-              <tr key={s.id}>
-                <td>{s.id} — {s.name}</td>
-                <td><EvidenceBadge status={s.status} /></td>
-                <td style={{ fontSize: "0.85rem" }}>{s.notes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <section><h2>Proposed systems contribution</h2><p>A reproducible systems-level study connecting chronological drift evaluation, resource-aware explanation analysis, numerical equivalence, and physical deployment cost. It is not necessarily a new learning algorithm, and final scope depends on remaining hardware work.</p></section>
 
-      <h2>Known novelty threats</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        See the novelty matrix on the <a href="/references">References</a> page. The clearest
-        threat: individually, chronological evaluation, SHAP/LIME-style explainability, and
-        TinyML deployment surveys each exist; the combination with measured fidelity/stability
-        under drift and physical PPK2 energy has not been located in the literature reviewed so
-        far, but that search has not been exhaustive.
-      </p>
+    <section><h2>Discussion priorities</h2><div className="discussion-priorities">{priorities.map(([title, text], index) => <article key={title}><span>{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
 
-      <h2>Hardware plan</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        Target: Nordic nRF52840 (Cortex-M4F) for inference/explanation deployment, Nordic PPK2
-        for physical energy measurement. No physical measurement has occurred —{" "}
-        <a href="/hardware">Hardware</a> and <a href="/tinyml">TinyML</a> pages record this
-        honestly as <code>NOT EXECUTED</code>.
-      </p>
+    <section><h2>Evidence and collaboration notices</h2><p>Evidence last exported {status.last_updated} from commit <code>{status.git_commit.slice(0, 12)}</code> on <code>{status.branch}</code>. Reviewer uploads and comments are collaborative material, not validated scientific evidence, unless separately reviewed and registered through the evidence pipeline.</p></section>
+  </>;
 
-      <h2>Expected publication contribution</h2>
-      <p style={{ maxWidth: "68ch" }}>
-        A systems-level contribution combining chronological e-nose drift evaluation with
-        resource-aware, fidelity/stability-measured explanations and physically measured TinyML
-        deployment cost — not a single novel algorithm.
-      </p>
-
-      <h2>Questions for advisor</h2>
-      <ol style={{ maxWidth: "68ch" }}>
-        {QUESTIONS.map((q) => (
-          <li key={q} style={{ marginBottom: "0.5rem" }}>{q}</li>
-        ))}
-      </ol>
-
-      <h2>Ways the professor can contribute</h2>
-      <ul style={{ maxWidth: "68ch" }}>
-        <li>Confirm the chronological protocol and model scope before further experiments are locked in.</li>
-        <li>Advise on fidelity/stability metric choice before stage 09-11 are implemented.</li>
-        <li>Help identify whether physical hardware (nRF52840 dev kit, PPK2) is accessible through the lab.</li>
-        <li>Suggest a target venue so the manuscript structure and required evidence bar can be set now.</li>
-      </ul>
-    </div>
-  );
+  return <main className="container professor-review"><ProfessorReviewTabs brief={brief} /></main>;
 }
