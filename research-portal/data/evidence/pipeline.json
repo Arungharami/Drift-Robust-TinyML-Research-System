@@ -181,15 +181,19 @@
   {
     "id": "11",
     "name": "Explanation stability evaluation",
-    "status": "NOT_EXECUTED",
+    "status": "EXECUTED",
     "notebook": null,
-    "script": null,
-    "artifact_paths": [],
-    "git_commit": null,
+    "script": "src/xai/run_stage11.py",
+    "artifact_paths": [
+      "artifacts/explanations/EXP-STAB-0001",
+      "results/xai/stage11_stability_pairwise.csv",
+      "results/xai/stage11_stability_summary.csv"
+    ],
+    "git_commit": "d571b4301819db27fce1eba9485edac0eb58645d",
     "depends_on": [
       "09"
     ],
-    "notes": "Requires stage 09."
+    "notes": "EXP-STAB-0001 compared global permutation-importance explanations across batches 2-10: 36 batch-2 reference comparisons (including 4 self-checks) plus 32 adjacent comparisons. Across batches 3-10, mean Spearman correlation to batch 2 ranged 0.027-0.322 by model, and every model had zero top-1 Jaccard overlap with batch 2. Descriptive only; no stability threshold was preregistered. See docs/experiments/STAGE11_EXPLANATION_STABILITY.md."
   },
   {
     "id": "12",

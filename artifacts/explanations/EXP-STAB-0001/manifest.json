@@ -10,10 +10,11 @@
     9,
     10
   ],
-  "config_hash": "434460da0972f8c0a6e002994707814f6f440ddcfed08db71e9aab7a6ce6e410",
-  "created_at": "2026-08-14T03:53:58.363103+00:00",
+  "config_hash": "f9b02fc305dfd41b275a06df079212ed8b1abfa02944d9851fd521e00d0b26a0",
+  "created_at": "2026-08-14T03:55:30.775955+00:00",
+  "dataset_hash": "dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6",
   "experiment_id": "EXP-STAB-0001",
-  "git_commit": "73762e7692fb110c17ee001edeb702dca7767346",
+  "git_commit": "d571b4301819db27fce1eba9485edac0eb58645d",
   "input_artifacts": {
     "results/xai/stage09_global_importance.csv": "aada90323871291056bc7e73fe98ce65be935cde8eb12e995d63da7c1c39dcf5"
   },
@@ -34,6 +35,8 @@
   "protocol_version": "stage11_stability_v1",
   "reference_batch": 2,
   "source_experiment_id": "EXP-XAI-0001",
+  "split_hash": "5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae",
+  "split_protocol": "FIXED_ORIGIN",
   "stage": "11",
   "status": "EXECUTED",
   "top_k_values": [

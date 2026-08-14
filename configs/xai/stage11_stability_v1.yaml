@@ -2,6 +2,9 @@
 protocol_version: stage11_stability_v1
 experiment_id: EXP-STAB-0001
 source_experiment_id: EXP-XAI-0001
+dataset_hash: dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6
+split_protocol: FIXED_ORIGIN
+split_hash: 5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae
 method: PERMUTATION_IMPORTANCE_MACRO_F1
 
 eligible_model_ids: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]

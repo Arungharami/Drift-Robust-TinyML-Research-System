@@ -179,6 +179,21 @@ export interface FidelitySummaryRow {
   mean_candidate_comprehensiveness_drop: string;
 }
 
+export interface StabilitySummaryRow {
+  experiment_id: string;
+  source_experiment_id: string;
+  model_id: string;
+  method: string;
+  n_reference_comparisons: string;
+  n_adjacent_comparisons: string;
+  mean_reference_spearman: string;
+  minimum_reference_spearman: string;
+  mean_adjacent_spearman: string;
+  mean_reference_cosine: string;
+  mean_reference_top_10_jaccard: string;
+  mean_reference_top_1_jaccard: string;
+}
+
 export interface XaiEvidence {
   evidence_status: EvidenceStatus;
   experiment_id: string | null;
@@ -201,6 +216,11 @@ export interface XaiEvidence {
   fidelity_summary: FidelitySummaryRow[];
   fidelity_artifact_paths: string[];
   stability_status: EvidenceStatus;
+  stability_experiment_id: string | null;
+  stability_created_at: string | null;
+  n_stability_pairwise_rows: number;
+  stability_summary: StabilitySummaryRow[];
+  stability_artifact_paths: string[];
   latency_status: EvidenceStatus;
 }
 

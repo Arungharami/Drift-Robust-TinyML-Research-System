@@ -93,4 +93,5 @@ establish embedded feasibility, on-device latency, memory use, or energy consump
 
 ## Next experiment
 
-Stage 11 — explanation stability across chronological drift. It remains `NOT_EXECUTED`.
+Stage 11 — explanation stability across chronological drift is now `EXECUTED`; see
+`docs/experiments/STAGE11_EXPLANATION_STABILITY.md`. Stage 12 host-side explanation latency is next.
