@@ -1,0 +1,5 @@
+[MODEL-C1] loaded artifacts/models/BASE-FIXED-C1-001.joblib
+[MODEL-C2] loaded artifacts/models/BASE-FIXED-C2-001.joblib
+[MODEL-C3] loaded artifacts/models/BASE-FIXED-C3-001.joblib
+[MODEL-C4] loaded artifacts/models/BASE-FIXED-C4-001.joblib
+[stage10] evaluated_rows=880
