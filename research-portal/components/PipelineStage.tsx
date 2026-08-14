@@ -4,8 +4,8 @@ import type { PipelineStage as PipelineStageT } from "@/lib/types";
 
 export function PipelineStageCard({ stage }: { stage: PipelineStageT }) {
   return (
-    <div className="card" style={{ marginBottom: "0.75rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
+    <div className="card card-stack">
+      <div className="card-heading-row">
         <div>
           <div className="section-label">Stage {stage.id}</div>
           <h3 style={{ margin: "0.1rem 0 0.4rem" }}>{stage.name}</h3>
