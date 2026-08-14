@@ -1,0 +1,24 @@
+protocol_version: stage12_host_latency_v1
+experiment_id: EXP-LAT-0001
+source_experiment_id: EXP-XAI-0001
+dataset_hash: dc9dbcfc4c8eedceae4418d8f2096605ccb2b3bd554a3134f84c46d22b0615e6
+split_hash: 5f3ceed0e1c14ff404d9167517b124493d2df882f179fa953c67d5483246a8ae
+random_seed: 42
+eligible_model_ids: [MODEL-C1, MODEL-C2, MODEL-C3, MODEL-C4]
+model_artifact_paths:
+  MODEL-C1: artifacts/models/BASE-FIXED-C1-001.joblib
+  MODEL-C2: artifacts/models/BASE-FIXED-C2-001.joblib
+  MODEL-C3: artifacts/models/BASE-FIXED-C3-001.joblib
+  MODEL-C4: artifacts/models/BASE-FIXED-C4-001.joblib
+sample_path: results/xai/stage09_local_samples.csv
+samples_per_model: 12
+warmups: 2
+repeats_per_sample: 5
+host_policy: GITHUB_HOSTED_UBUNTU_SHARED_RUNNER
+interpretation: Host-side descriptive timing only; never label these measurements on-device.
+output_paths:
+  artifact_dir: artifacts/explanations/EXP-LAT-0001
+  raw: results/xai/stage12_host_latency_raw.csv
+  summary: results/xai/stage12_host_latency_summary.csv
+expected_raw_rows: 540
+expected_summary_rows: 9
