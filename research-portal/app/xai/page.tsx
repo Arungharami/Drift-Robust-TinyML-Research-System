@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArtifactLink } from "@/components/ArtifactLink";
 import { EvidenceBadge } from "@/components/EvidenceBadge";
-import { getXai } from "@/lib/evidence";
+import { formatPercent, getXai } from "@/lib/evidence";
 import type { EvidenceStatus } from "@/lib/types";
 
 export const metadata: Metadata = { title: "XAI" };
@@ -21,9 +21,8 @@ export default function XaiPage() {
           <>
             Experiment <code>{xai.experiment_id}</code> — explanations generated for the four
             evidence-selected FIXED_ORIGIN models, loaded from their frozen artifacts with no
-            retraining. This stage prepares evidence for Stages 10-12; it does not itself report
-            fidelity, stability, or latency conclusions (see below — all three remain{" "}
-            <code>NOT EXECUTED</code>).
+            retraining. Stage 10 has now evaluated behavioral fidelity from these saved
+            explanations; stability and latency remain <code>NOT EXECUTED</code>.
           </>
         ) : (
           "Explanation strategies suitable for constrained inference — evaluated for cost and fidelity, not assumed reliable."
@@ -106,7 +105,52 @@ export default function XaiPage() {
             ))}
           </div>
 
-          <h2>Artifacts</h2>
+          <h2>Stage 10 behavioral fidelity</h2>
+          <div style={{ marginBottom: "0.75rem" }}>
+            <EvidenceBadge status={xai.fidelity_status} />
+          </div>
+          {xai.fidelity_status === "EXECUTED" && (
+            <>
+              <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
+                Experiment <code>{xai.fidelity_experiment_id}</code> evaluated{" "}
+                {xai.n_fidelity_rows.toLocaleString()} model/sample/top-k cases. No pass/fail
+                threshold was preregistered. MODEL-C2-C4 use the ablation ranking as both
+                candidate and reference, so their perfect overlap is identity rather than
+                independent validation.
+              </p>
+              <div className="table-scroll">
+                <table>
+                  <thead><tr><th>Model</th><th>Candidate</th><th>k</th><th>Overlap</th><th>Preserved</th><th>Closeness</th><th>Abs. sufficiency gap</th><th>Comprehensiveness</th></tr></thead>
+                  <tbody>
+                    {xai.fidelity_summary.map((row, i) => (
+                      <tr key={i}>
+                        <td>{row.model_id}</td>
+                        <td><code style={{ fontSize: "0.72rem" }}>{row.candidate_method}</code></td>
+                        <td>{row.top_k}</td>
+                        <td>{formatPercent(row.mean_rank_overlap_at_k)}</td>
+                        <td>{formatPercent(row.candidate_prediction_preservation_rate)}</td>
+                        <td>{formatPercent(row.mean_candidate_probability_closeness)}</td>
+                        <td>{formatPercent(row.mean_candidate_absolute_sufficiency_gap)}</td>
+                        <td>{formatPercent(row.mean_candidate_comprehensiveness_drop)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ fontSize: "0.85rem" }}>
+                Protocol, selected results, hashes, and limitations:{" "}
+                <ArtifactLink path="docs/experiments/STAGE10_EXPLANATION_FIDELITY.md" />.
+              </p>
+              <h3>Stage 10 artifacts</h3>
+              <ul style={{ fontSize: "0.9rem" }}>
+                {xai.fidelity_artifact_paths.map((path) => (
+                  <li key={path}><ArtifactLink path={path} /></li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <h2>Stage 09 artifacts</h2>
           <ul style={{ fontSize: "0.9rem" }}>
             {xai.artifact_paths.map((path) => (
               <li key={path}><ArtifactLink path={path} /></li>
@@ -115,9 +159,9 @@ export default function XaiPage() {
         </>
       )}
 
-      <h2>Not yet executed</h2>
+      <h2>Downstream measurement status</h2>
       <p style={{ fontSize: "0.88rem", color: "var(--text-muted)" }}>
-        Stage 09 prepares evidence; it does not itself compute these.
+        Stage 10 is complete; stability and latency require their own independent runs.
       </p>
       <div className="table-scroll">
         <table>

@@ -123,13 +123,21 @@ stages:
 
   - id: "10"
     name: Fidelity evaluation
-    status: NOT_EXECUTED
+    status: EXECUTED
     notebook: null
-    script: null
-    artifact_paths: []
-    git_commit: null
+    script: src/xai/run_stage10.py
+    artifact_paths:
+      [artifacts/explanations/EXP-FID-0001, results/xai/stage10_fidelity_per_sample.csv,
+       results/xai/stage10_fidelity_summary.csv]
+    git_commit: 54ab3e7711324187d99a476ff25958ac9f2e6996
     depends_on: ["09"]
-    notes: Requires stage 09.
+    notes: >-
+      EXP-FID-0001 evaluated 880 frozen Stage 09 model/sample/top-k combinations and produced
+      16 model/top-k summaries. Metrics are descriptive: rank overlap, prediction preservation,
+      target-probability closeness, absolute sufficiency gap, and comprehensiveness drop.
+      MODEL-C1 compares intrinsic coefficients with the ablation reference; MODEL-C2-C4 reuse
+      the ablation ranking, so their identity is not independent corroboration. No pass/fail
+      fidelity threshold was preregistered. See docs/experiments/STAGE10_EXPLANATION_FIDELITY.md.
 
   - id: "11"
     name: Explanation stability evaluation
