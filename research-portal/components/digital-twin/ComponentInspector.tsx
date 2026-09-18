@@ -17,10 +17,29 @@ export function ComponentInspector({ component }: { component: TwinComponent | n
 
   return (
     <aside className="twin-inspector" aria-live="polite">
-      <div className="section-label">Component</div>
+      <div className="section-label">Component{component.category ? ` · ${component.category}` : ""}</div>
       <h3>{component.name}</h3>
-      <EvidenceBadge status={component.status} />
+      {component.hardwareStatus ? (
+        <div className="twin-inspector-badges">
+          <span>
+            <span className="twin-inspector-badge-label">Implementation status</span>
+            <EvidenceBadge status={component.status} />
+          </span>
+          <span>
+            <span className="twin-inspector-badge-label">Hardware status</span>
+            <EvidenceBadge status={component.hardwareStatus} />
+          </span>
+        </div>
+      ) : (
+        <EvidenceBadge status={component.status} />
+      )}
       <dl className="twin-inspector-facts">
+        {component.researchPurpose && (
+          <div>
+            <dt>Research purpose</dt>
+            <dd>{component.researchPurpose}</dd>
+          </div>
+        )}
         <div>
           <dt>Role</dt>
           <dd>{component.role}</dd>
@@ -43,6 +62,32 @@ export function ComponentInspector({ component }: { component: TwinComponent | n
             </li>
           ))}
         </ul>
+      )}
+      {(component.relatedModels?.length || component.relatedExperiments?.length) && (
+        <dl className="twin-inspector-facts">
+          {component.relatedModels && component.relatedModels.length > 0 && (
+            <div>
+              <dt>Related model(s)</dt>
+              <dd>{component.relatedModels.map((m) => <code key={m}>{m}</code>)}</dd>
+            </div>
+          )}
+          {component.relatedExperiments && component.relatedExperiments.length > 0 && (
+            <div>
+              <dt>Related experiment(s)</dt>
+              <dd>{component.relatedExperiments.map((m) => <code key={m}>{m}</code>)}</dd>
+            </div>
+          )}
+        </dl>
+      )}
+      {component.limitations && component.limitations.length > 0 && (
+        <>
+          <div className="section-label">Limitations</div>
+          <ul className="twin-inspector-links">
+            {component.limitations.map((limitation) => (
+              <li key={limitation}>{limitation}</li>
+            ))}
+          </ul>
+        </>
       )}
       {component.portalHref && (
         <p>

@@ -22,6 +22,14 @@ export default function DigitalTwinPage() {
         claim about hardware, models, or measurements; it visualizes the ones already documented on
         the <Link href="/pipeline">pipeline</Link> and <Link href="/hardware">hardware</Link> pages.
       </p>
+      <p className="btn-row" style={{ margin: "0 0 1.5rem" }}>
+        <Link className="btn" href="/digital-twin/device">
+          View device internals →
+        </Link>
+        <Link className="btn" href="/system-map">
+          Explore full system architecture →
+        </Link>
+      </p>
       <DigitalTwinLoader components={components} />
     </div>
   );

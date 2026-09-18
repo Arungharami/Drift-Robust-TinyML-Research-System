@@ -11,6 +11,7 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/dataset", label: "Dataset" },
   { href: "/methodology", label: "Methodology" },
   { href: "/pipeline", label: "Pipeline" },
+  { href: "/system-map", label: "System Map" },
   { href: "/digital-twin", label: "Digital Twin" },
   { href: "/experiments", label: "Experiments" },
   { href: "/results", label: "Results" },
