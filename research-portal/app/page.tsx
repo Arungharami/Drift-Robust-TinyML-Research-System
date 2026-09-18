@@ -28,6 +28,7 @@ export default function HomePage() {
 
       <div className="btn-row">
         <a className="btn btn-primary" href="/methodology">Explore Methodology</a>
+        <a className="btn" href="/digital-twin">Explore Digital Twin</a>
         <a className="btn" href="/experiments">View Experiments</a>
         <a className="btn" href="/reproducibility">Reproduce Research</a>
         <a className="btn" href={`https://github.com/${status.repository}`} target="_blank" rel="noreferrer">View Source</a>
