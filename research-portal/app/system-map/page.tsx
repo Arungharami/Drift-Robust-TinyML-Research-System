@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import { SystemMapExplorer } from "@/components/system-map/SystemMapExplorer";
 import { buildSystemComponents } from "@/lib/digital-twin/system-components";
 
 export const metadata: Metadata = { title: "System Map" };
 
-export default function SystemMapPage() {
+interface SystemMapPageProps {
+  searchParams: Promise<{ stage?: string }>;
+}
+
+export default async function SystemMapPage({ searchParams }: SystemMapPageProps) {
   const components = buildSystemComponents();
+  const { stage } = await searchParams;
 
   return (
     <div className="container digital-twin-page">
@@ -33,9 +37,7 @@ export default function SystemMapPage() {
         </Link>
       </p>
 
-      <Suspense fallback={<p className="twin-canvas-fallback">Loading system map…</p>}>
-        <SystemMapExplorer components={components} />
-      </Suspense>
+      <SystemMapExplorer components={components} initialStage={stage ?? null} />
     </div>
   );
 }

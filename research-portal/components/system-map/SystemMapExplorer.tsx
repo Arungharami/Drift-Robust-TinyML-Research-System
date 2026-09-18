@@ -1,18 +1,23 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { EvidenceBadge } from "@/components/EvidenceBadge";
 import type { SystemComponent } from "@/lib/digital-twin/system-components";
 import { SystemMapGraph } from "./SystemMapGraph";
 import { SystemMapInspector } from "./SystemMapInspector";
 
+interface SystemMapExplorerProps {
+  components: SystemComponent[];
+  /** Read server-side from the page's `searchParams` prop, not useSearchParams() — this keeps
+   * the page fully server-rendered (no CSR bailout) since nothing here needs the browser. */
+  initialStage: string | null;
+}
+
 /** Client root for /system-map: plain HTML/CSS graph + inspector, with `?stage=<id>` deep linking. No 3D, no dynamic import needed. */
-export function SystemMapExplorer({ components }: { components: SystemComponent[] }) {
+export function SystemMapExplorer({ components, initialStage }: SystemMapExplorerProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const initialStage = searchParams.get("stage");
 
   const byId = useMemo(() => new Map(components.map((c) => [c.id, c])), [components]);
   const [selectedId, setSelectedId] = useState<string | null>(
@@ -23,15 +28,11 @@ export function SystemMapExplorer({ components }: { components: SystemComponent[
     (id: string) => {
       setSelectedId((current) => {
         const next = current === id ? null : id;
-        const params = new URLSearchParams(searchParams.toString());
-        if (next) params.set("stage", next);
-        else params.delete("stage");
-        const query = params.toString();
-        router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+        router.replace(next ? `${pathname}?stage=${next}` : pathname, { scroll: false });
         return next;
       });
     },
-    [pathname, router, searchParams],
+    [pathname, router],
   );
 
   const selectedComponent = selectedId ? (byId.get(selectedId) ?? null) : null;
