@@ -59,8 +59,8 @@ export function DigitalTwinScene({
       <LabEnvironment dark={dark} />
       <CameraController controlsRef={controlsRef} />
       <DataFlow points={orderedPositions} active={showDataFlow} reducedMotion={reducedMotion} />
-      {components.map((component, i) => {
-        const position = orderedPositions[i];
+      {components.map((component) => {
+        const position = effectivePosition(component, exploded);
         const common = {
           component,
           position,
