@@ -14,6 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/pipeline", label: "Pipeline" },
   { href: "/system-map", label: "System Map" },
   { href: "/digital-twin", label: "Digital Twin" },
+  { href: "/digital-twin/gallery", label: "3D Gallery" },
   { href: "/experiments", label: "Experiments" },
   { href: "/results", label: "Results" },
   { href: "/xai", label: "XAI" },

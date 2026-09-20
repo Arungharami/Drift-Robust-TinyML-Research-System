@@ -29,6 +29,9 @@ export default function DigitalTwinPage() {
         <Link className="btn" href="/system-map">
           Explore full system architecture →
         </Link>
+        <Link className="btn" href="/digital-twin/gallery">
+          View 3D concept gallery →
+        </Link>
       </p>
       <DigitalTwinLoader components={components} />
     </div>
