@@ -502,7 +502,7 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
   .btn-row { display: grid; grid-template-columns: 1fr; }
   .btn { justify-content: center; text-align: center; }
   .card-heading-row { flex-direction: column; gap: 0.55rem; }
-  .diagram-flow { display: grid; gap: 0.2rem; }
+  .diagram-flow { display: grid; grid-template-columns: 1fr; gap: 0.2rem; }
   .diagram-node { display: grid; justify-items: center; gap: 0.2rem; }
   .diagram-step {
     width: 100%;
@@ -595,9 +595,9 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
   .section-heading { display: block; }
   .hardware-diagram { padding: .75rem; }
   .hardware-diagram svg { height: 690px; }
-  .diagram-node:nth-of-type(1) { transform: translate(360px, -45px); }
-  .diagram-node:nth-of-type(2) { transform: translate(-15px, 150px); }
-  .diagram-node:nth-of-type(3) { transform: translate(-390px, 345px); }
+  .hardware-diagram .diagram-node:nth-of-type(1) { transform: translate(360px, -45px); }
+  .hardware-diagram .diagram-node:nth-of-type(2) { transform: translate(-15px, 150px); }
+  .hardware-diagram .diagram-node:nth-of-type(3) { transform: translate(-390px, 345px); }
   .diagram-line, .diagram-edge-label, .diagram-file { opacity: 0; }
   .hardware-diagram figcaption { margin-top: .5rem; }
   .hardware-measurement-table { display: none; }
