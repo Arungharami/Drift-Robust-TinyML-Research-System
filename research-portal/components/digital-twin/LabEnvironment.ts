@@ -1,7 +1,8 @@
 // Plain three.js ground grid + lighting, added directly to a scene. Replaces the former drei
 // <Grid>/<ambientLight>/<directionalLight> JSX after removing @react-three/drei (see
 // twinNodeGeometry.ts for why). THREE.GridHelper has no infinite-fade shader like drei's Grid —
-// a fixed-size grid plane is an honest, simpler substitute for this restrained-academic scene.
+// a fixed-size, single-tone grid plane is an honest, simpler substitute for this restrained
+// scene, and lets theme changes recolor it in place (no vertex-color material to fight).
 
 import * as THREE from "three";
 
@@ -14,10 +15,7 @@ export interface LabEnvironment {
   dispose: () => void;
 }
 
-const GRID_COLORS = {
-  light: { cell: 0xddd8ce, section: 0xb9b2a2 },
-  dark: { cell: 0x34321f, section: 0x4c492f },
-};
+const GRID_COLOR = { light: 0xb9b2a2, dark: 0x4c492f };
 
 export function addLabEnvironment(scene: THREE.Scene, dark: boolean): LabEnvironment {
   const ambient = new THREE.AmbientLight(0xffffff, dark ? 0.55 : 0.75);
@@ -26,10 +24,11 @@ export function addLabEnvironment(scene: THREE.Scene, dark: boolean): LabEnviron
   const directionalFill = new THREE.DirectionalLight(0xffffff, 0.35);
   directionalFill.position.set(-6, 4, -4);
 
-  const colors = dark ? GRID_COLORS.dark : GRID_COLORS.light;
-  const grid = new THREE.GridHelper(40, 40, colors.section, colors.cell);
+  const grid = new THREE.GridHelper(40, 40, GRID_COLOR.light, GRID_COLOR.light);
   grid.position.y = -1.05;
-  const gridMaterial = grid.material as THREE.Material & { opacity: number; transparent: boolean };
+  const gridMaterial = grid.material as THREE.LineBasicMaterial;
+  gridMaterial.vertexColors = false;
+  gridMaterial.color.set(dark ? GRID_COLOR.dark : GRID_COLOR.light);
   gridMaterial.transparent = true;
   gridMaterial.opacity = 0.6;
 
@@ -43,15 +42,11 @@ export function addLabEnvironment(scene: THREE.Scene, dark: boolean): LabEnviron
     setDark: (nextDark: boolean) => {
       ambient.intensity = nextDark ? 0.55 : 0.75;
       directionalKey.intensity = nextDark ? 0.9 : 1.1;
-      const next = nextDark ? GRID_COLORS.dark : GRID_COLORS.light;
-      (grid.material as THREE.Material[] | THREE.Material) instanceof Array
-        ? undefined
-        : undefined;
-      grid.material = new THREE.LineBasicMaterial({ color: next.section, transparent: true, opacity: 0.6 });
+      gridMaterial.color.set(nextDark ? GRID_COLOR.dark : GRID_COLOR.light);
     },
     dispose: () => {
       grid.geometry.dispose();
-      (Array.isArray(grid.material) ? grid.material : [grid.material]).forEach((m) => m.dispose());
+      gridMaterial.dispose();
     },
   };
 }

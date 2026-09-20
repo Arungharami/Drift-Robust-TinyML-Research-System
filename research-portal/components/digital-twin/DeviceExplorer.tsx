@@ -1,8 +1,6 @@
 "use client";
 
-import { OrbitControls } from "@react-three/drei";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { ElementRef } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ComponentInspector } from "./ComponentInspector";
 import { DeviceHUD } from "./DeviceHUD";
@@ -46,7 +44,7 @@ export function DeviceExplorer({ layers }: { layers: TwinComponent[] }) {
   const [dark, setDark] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [webglOk] = useState(() => (typeof window === "undefined" ? true : supportsWebGL()));
-  const controlsRef = useRef<ElementRef<typeof OrbitControls>>(null);
+  const controlsRef = useRef<{ reset: () => void } | null>(null);
 
   useEffect(() => {
     setDark(computeDark());
