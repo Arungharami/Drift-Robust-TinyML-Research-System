@@ -31,6 +31,7 @@ export default function HomePage() {
 
       <div className="btn-row">
         <a className="btn btn-primary" href="/process">See How It Works</a>
+        <a className="btn" href="/3mt">3-Minute Thesis</a>
         <a className="btn" href="/digital-twin">Explore Digital Twin</a>
         <a className="btn" href="/methodology">Explore Methodology</a>
         <a className="btn" href="/experiments">View Experiments</a>

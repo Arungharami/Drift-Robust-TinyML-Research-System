@@ -6,6 +6,7 @@ export interface NavItem {
 // Every route here actually exists — the mission rule "only enable destinations that exist"
 // applies to internal nav too, not just homepage CTA buttons.
 export const NAV_ITEMS: NavItem[] = [
+  { href: "/3mt", label: "3MT" },
   { href: "/cockpit", label: "Cockpit" },
   { href: "/process", label: "How It Works" },
   { href: "/research", label: "Research" },

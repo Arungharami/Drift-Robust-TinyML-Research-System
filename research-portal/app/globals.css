@@ -747,3 +747,48 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
   .process-canvas-wrap { height: 300px; }
   .process-detail-heading { flex-direction: column; }
 }
+
+/* 3-Minute Thesis page */
+.threemt-page section { margin: 2.75rem 0; }
+.threemt-start-list { display: grid; gap: .5rem; padding: 0; margin: 1rem 0 0; list-style: none; max-width: 42rem; }
+.threemt-start-list li { display: flex; align-items: center; gap: .75rem; padding: .6rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-raised); }
+.threemt-start-index { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; flex-shrink: 0; border-radius: 50%; background: var(--bg-muted); color: var(--text-faint); font-size: .75rem; font-weight: 700; }
+
+.threemt-speech { max-width: 62ch; margin-top: 1.5rem; }
+.threemt-speech p { margin-bottom: .9rem; }
+.threemt-speech-source { font-size: .82rem; color: var(--text-faint); margin-top: 1.25rem; }
+
+.threemt-slide { margin: 1.5rem 0 2rem; }
+.threemt-slide-card { padding: 1.75rem; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg-raised); text-align: center; }
+.threemt-slide-title { margin: 0 0 .35rem; font-size: 1.3rem; letter-spacing: .02em; }
+.threemt-slide-subtitle { margin: 0 0 1.5rem; color: var(--text-muted); }
+.threemt-slide-panels { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin: 0 auto 1.25rem; max-width: 44rem; }
+.threemt-slide-panel { display: flex; flex-direction: column; gap: .25rem; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-muted); }
+.threemt-slide-panel-label { font-size: .72rem; letter-spacing: .06em; color: var(--text-faint); }
+.threemt-slide-panel-stat { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--accent); }
+.threemt-slide-panel-caption { font-size: .8rem; color: var(--text-muted); }
+.threemt-slide-drift { display: flex; flex-direction: column; align-items: center; gap: .15rem; }
+.threemt-slide-arrow { font-size: 1.5rem; color: var(--text-faint); }
+.threemt-slide-drift-label { font-size: .72rem; font-weight: 700; letter-spacing: .05em; }
+.threemt-slide-drift-caption { font-size: .74rem; color: var(--text-faint); line-height: 1.3; }
+.threemt-slide-stat-line { font-weight: 600; margin: 0 0 .35rem; }
+.threemt-slide-goal-line { color: var(--text-muted); margin: 0 0 1rem; }
+.threemt-slide-attribution { font-size: .78rem; color: var(--text-faint); margin: 0; }
+.threemt-slide figcaption { margin-top: .85rem; font-size: .82rem; color: var(--text-muted); text-align: center; }
+
+.threemt-journey { margin-top: 1.25rem; }
+.threemt-journey-controls { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+.threemt-journey-batch-btn { padding: .45rem .75rem; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--bg-raised); color: var(--text); font-size: .84rem; cursor: pointer; }
+.threemt-journey-batch-btn:hover, .threemt-journey-batch-btn:focus-visible { border-color: var(--accent); }
+.threemt-journey-batch-btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.threemt-journey-readout { display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 1.5rem; }
+.threemt-journey-readout > div { padding: .8rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-muted); }
+.threemt-journey-readout .k { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--text-faint); margin-bottom: .3rem; }
+.threemt-journey-readout .v { display: block; font-family: var(--font-mono); font-size: 1.15rem; color: var(--text); }
+
+@media (max-width: 720px) {
+  .threemt-slide-panels { grid-template-columns: 1fr; }
+  .threemt-slide-drift { flex-direction: row; justify-content: center; gap: .6rem; }
+  .threemt-slide-arrow { transform: rotate(90deg); }
+  .threemt-journey-readout { grid-template-columns: 1fr; }
+}
