@@ -7,6 +7,7 @@ export interface NavItem {
 // applies to internal nav too, not just homepage CTA buttons.
 export const NAV_ITEMS: NavItem[] = [
   { href: "/cockpit", label: "Cockpit" },
+  { href: "/process", label: "How It Works" },
   { href: "/research", label: "Research" },
   { href: "/dataset", label: "Dataset" },
   { href: "/methodology", label: "Methodology" },

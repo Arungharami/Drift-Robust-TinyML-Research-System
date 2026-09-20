@@ -91,3 +91,4 @@ research-portal/.vercel/
 # OS
 .DS_Store
 Thumbs.db
+!research-portal/lib/

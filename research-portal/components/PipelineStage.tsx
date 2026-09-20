@@ -4,7 +4,7 @@ import type { PipelineStage as PipelineStageT } from "@/lib/types";
 
 export function PipelineStageCard({ stage }: { stage: PipelineStageT }) {
   return (
-    <div className="card card-stack">
+    <div className="card card-stack" id={`stage-${stage.id}`}>
       <div className="card-heading-row">
         <div>
           <div className="section-label">Stage {stage.id}</div>
