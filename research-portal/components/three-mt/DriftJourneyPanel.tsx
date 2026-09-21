@@ -19,7 +19,7 @@ const MODELS = ["MODEL-C1", "MODEL-C2", "MODEL-C3", "MODEL-C4"];
 /**
  * Real-data "move between chronological batches" interaction for the 3MT page. Every number
  * shown is read from research-portal/data/evidence/{drift,baselines}.json (generated from
- * results/drift/global_drift_by_batch.csv and results/baselines/fixed_origin_by_batch.csv) —
+ * results/drift/global_drift_by_batch.csv and results/baselines/fixed_origin_metrics.csv) —
  * nothing here is a conceptual placeholder. The always-rendered table below the controls is
  * the full non-JS/screen-reader-equivalent of the interactive readout.
  */

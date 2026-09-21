@@ -2,6 +2,13 @@
 
 Audit date: 2026-08-11. Scope: repository, generated portal evidence, and attempted public deployment inspection. The configured public URL `https://drift-robust-tinyml.vercel.app` could not be independently retrieved, so deployed website/repository agreement remains unverified.
 
+> **Stale as of `configs/pipeline_stages.yaml`'s current state (reconciled 2026-09-21).** This
+> document is a point-in-time audit snapshot and is preserved as-is below, but its "Next
+> scientific experiment" call (Stage 10 / `EXP-XAI-FIDELITY-001`) has since executed, along with
+> Stage 11 (`EXP-XAI-STABILITY-001`) and Stage 12 (`EXP-XAI-LATENCY-001`) — with fidelity/stability
+> claims predominantly `UNSUPPORTED` (see `paper/claim_evidence_matrix.csv`). For current status,
+> `configs/pipeline_stages.yaml` and `docs/EXPERIMENT_STATUS.md` are authoritative, not this file.
+
 ## Executive finding
 
 Genuine baseline, drift, adaptation, and Stage 09 explanation-generation artifacts exist. Stage 10–12 validation results, quantized exports, firmware measurements, and PPK2 traces do not. Stage 09 already had four rows in the legacy experiment registry; stale README/reviewer prose caused the reported inconsistency. The deeper defect was duplicated state across prose, YAML, CSV, and portal JSON.
