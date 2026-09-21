@@ -11,6 +11,7 @@ const LABELS: Record<EvidenceStatus, string> = {
   PROTOCOL_FROZEN: "Protocol frozen",
   NOT_EXECUTED: "Not executed",
   NOT_MEASURED: "Not measured",
+  HOST_EXECUTED: "Host-executed",
 };
 
 export function EvidenceBadge({ status }: { status: EvidenceStatus | string }) {

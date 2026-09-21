@@ -3,18 +3,28 @@ import Link from "next/link";
 import { ArtifactLink } from "@/components/ArtifactLink";
 import { EvidenceBadge } from "@/components/EvidenceBadge";
 import { MetricCard } from "@/components/MetricCard";
-import { DigitalTwinLoader } from "@/components/digital-twin/DigitalTwinLoader";
 import { buildTwinComponents } from "@/components/digital-twin/twin-data";
+import { AccuracyCollapse } from "@/components/three-mt/AccuracyCollapse";
+import { ApplicationExplorer } from "@/components/three-mt/ApplicationExplorer";
+import { DigitalTwinPreview } from "@/components/three-mt/DigitalTwinPreview";
 import { DriftJourneyPanel, type BatchJourneyRow } from "@/components/three-mt/DriftJourneyPanel";
+import { EvidenceStatusBar } from "@/components/three-mt/EvidenceStatusBar";
+import { ExplainabilityView } from "@/components/three-mt/ExplainabilityView";
+import { FinalStatement } from "@/components/three-mt/FinalStatement";
+import { NoMagicSection } from "@/components/three-mt/NoMagicSection";
+import { ThreeMTHero } from "@/components/three-mt/ThreeMTHero";
 import { ThreeMTSlide } from "@/components/three-mt/ThreeMTSlide";
 import { ThreeMTSpeech } from "@/components/three-mt/ThreeMTSpeech";
+import { TimeAxis } from "@/components/three-mt/TimeAxis";
+import { TinyMLTransition } from "@/components/three-mt/TinyMLTransition";
+import { TrustFramework } from "@/components/three-mt/TrustFramework";
 import { getBaselines, getDataset, getDrift, getEmbedded, getPlatform, getProjectStatus, getXai } from "@/lib/evidence";
 import { SLIDE_ASSET_PATH, SPEECH_SOURCE_PATH } from "@/lib/three-mt/content";
 
 export const metadata: Metadata = {
   title: "3-Minute Thesis",
   description:
-    "A three-minute explanation of drift-robust explainable TinyML for electronic-nose sensing, linked directly to the underlying evidence.",
+    "When AI loses its sense of smell: a three-minute, evidence-linked explanation of drift-robust explainable TinyML for electronic-nose sensing.",
 };
 
 function pivotByBatch(rows: Record<string, string>[], metric: string) {
@@ -52,7 +62,7 @@ function buildJourneyRows(): BatchJourneyRow[] {
 }
 
 const START_HERE = [
-  { href: "/3mt#speech", label: "This page: the 3-minute version" },
+  { href: "#speech", label: "The original 3MT speech and slide, verbatim" },
   { href: "/process", label: "How it works, step by step" },
   { href: "/digital-twin", label: "The interactive digital twin" },
   { href: "/system-map", label: "The full system architecture" },
@@ -62,26 +72,18 @@ const START_HERE = [
   { href: "/reproducibility", label: "How to reproduce this" },
 ];
 
-const NEW_DOORS = [
+const COLLABORATION_ITEMS = [
   {
-    title: "Reliable environmental sensing",
-    body: "Chronological-drift-aware evaluation is directly applicable to any long-lived environmental sensor network (air quality, water quality) where recalibration is expensive or impossible.",
+    title: "Experimental review",
+    body: "A second opinion on the chronological protocol, the resource-aware explanation methodology, or the fidelity/stability evaluation design.",
   },
   {
-    title: "Industrial gas and process monitoring",
-    body: "Industrial electronic-nose deployments run for years without replacement — a drift-honest evaluation protocol could inform maintenance/recalibration scheduling.",
+    title: "nRF52840 hardware access",
+    body: "A physical nRF52840 development kit and debug probe would unblock Stages 15–20 (the entire physical measurement chain), architecturally ready and blocked on hardware access since Stage 13.",
   },
   {
-    title: "Food quality assessment",
-    body: "Spoilage and freshness detection is a natural electronic-nose application; this work's chronological protocol could validate whether a food-safety model still holds after sensor aging.",
-  },
-  {
-    title: "Portable diagnostics research",
-    body: "Breath- or odor-based diagnostic research faces the same sensor-drift risk; resource-aware explainability could support clinician trust in a constrained device.",
-  },
-  {
-    title: "Edge AI under distribution shift, broadly",
-    body: "The chronological-evaluation and resource-aware-explanation methodology is not electronic-nose-specific — it generalizes to any TinyML system where the sensor or input distribution changes after deployment.",
+    title: "Measurement guidance",
+    body: "Experience with Nordic Power Profiler Kit II energy-measurement methodology, or with INT8 quantization-aware export for Cortex-M4F.",
   },
 ];
 
@@ -101,39 +103,44 @@ export default function ThreeMinuteThesisPage() {
 
   return (
     <div className="container threemt-page">
-      {/* ---------- Hero ---------- */}
-      <section aria-labelledby="threemt-hero-title">
-        <div className="section-label">Three-Minute Thesis</div>
-        <h1 id="threemt-hero-title">Drift-Robust Explainable TinyML for Electronic-Nose Sensing</h1>
-        <p className="lede">
-          Can lightweight models retain useful predictive performance and interpretable behavior
-          under chronological sensor drift while fitting resource-constrained TinyML hardware?
-        </p>
+      <ThreeMTHero rows={journeyRows} />
+
+      <TimeAxis />
+
+      <AccuracyCollapse rows={journeyRows} />
+
+      {/* ---------- Watch the sensor drift ---------- */}
+      <section aria-labelledby="threemt-drift-title">
+        <h2 id="threemt-drift-title">Watch the Sensor Drift</h2>
         <p style={{ maxWidth: "68ch" }}>
-          Electronic-nose sensors age and drift — a model trained on early sensor readings loses
-          accuracy as time passes, even though nothing about the underlying chemistry changed. This
-          project evaluates that decay honestly (in real chronological order, never shuffled),
-          studies whether explanations of a model&apos;s predictions stay stable as sensors drift,
-          and works toward a resource-aware path to a physical nRF52840 microcontroller — while
-          reporting plainly what has and has not yet been executed.
+          Select a chronological test batch to see its real drift score relative to Batch 1, and
+          the lightest baseline model&apos;s real accuracy at that point in time — the same
+          numbers behind the 81.4%→37.4% figure above, drawn directly from{" "}
+          <ArtifactLink path="results/drift/global_drift_by_batch.csv" label="results/drift/global_drift_by_batch.csv" /> and{" "}
+          <ArtifactLink path="results/baselines/fixed_origin_metrics.csv" label="results/baselines/fixed_origin_metrics.csv" />.
+          Nothing here is simulated or estimated.
         </p>
-        <p className="btn-row">
-          <Link className="btn btn-primary" href="/system-map">
-            Explore the Research →
-          </Link>
-          <Link className="btn" href="/digital-twin">
-            Explore the Digital Twin
-          </Link>
-          <a className="btn" href="#evidence">
-            See What&apos;s Verified
-          </a>
-        </p>
+        <DriftJourneyPanel rows={journeyRows} chartData={accuracyChartData} />
       </section>
 
-      {/* ---------- Start here ---------- */}
+      <ExplainabilityView xai={xai} />
+
+      <TinyMLTransition embedded={embedded} />
+
+      <TrustFramework accuracyStatus={baselines.evidence_status} explanationStatus={xai.evidence_status} deployabilityStatus={hardwareStatus} />
+
+      <DigitalTwinPreview components={twinComponents} />
+
+      <EvidenceStatusBar project={project} />
+
+      <ApplicationExplorer />
+
+      <NoMagicSection />
+
+      {/* ---------- Start here / verbatim source materials ---------- */}
       <section aria-labelledby="threemt-start-title">
-        <h2 id="threemt-start-title">New to the project? Start here.</h2>
-        <p style={{ maxWidth: "62ch" }}>A recommended reading order, in roughly three minutes to three hours:</p>
+        <h2 id="threemt-start-title">Go Deeper: 3 Minutes → 15 Minutes → Full Research</h2>
+        <p style={{ maxWidth: "62ch" }}>The story above is the three-minute version. A recommended reading order beyond it:</p>
         <ol className="threemt-start-list">
           {START_HERE.map((item, i) => (
             <li key={item.href}>
@@ -144,7 +151,6 @@ export default function ThreeMinuteThesisPage() {
         </ol>
       </section>
 
-      {/* ---------- 3MT speech + slide ---------- */}
       <section id="speech" aria-labelledby="threemt-speech-title">
         <h2 id="threemt-speech-title">The 3MT Speech and Slide</h2>
         <p style={{ maxWidth: "62ch" }}>
@@ -213,7 +219,8 @@ export default function ThreeMinuteThesisPage() {
         <p style={{ maxWidth: "68ch" }}>
           Host-compiled (x86-64) numerical-equivalence export exists for two model candidates; the
           first two export attempts <strong>failed</strong> their preprocessing-equivalence
-          criteria before a fused-architecture variant passed on host only. INT8 quantization has{" "}
+          criteria before a fused-architecture variant passed on host only. A weights-only INT8
+          quantization protocol is frozen; INT8 quantization itself has{" "}
           <strong>not been executed</strong> at any tier. See <Link href="/tinyml">/tinyml</Link>.
         </p>
 
@@ -234,64 +241,19 @@ export default function ThreeMinuteThesisPage() {
         </p>
       </section>
 
-      {/* ---------- Interactive research view ---------- */}
-      <section aria-labelledby="threemt-interactive-title">
-        <h2 id="threemt-interactive-title">Interactive Research View</h2>
-        <p style={{ maxWidth: "68ch" }}>
-          The conceptual 3D pipeline below is the same evidence-driven digital twin used on{" "}
-          <Link href="/digital-twin">/digital-twin</Link> — sample chamber → sensor array → drift
-          detector → classical model → explanation → nRF52840 (currently hardware-blocked) →
-          gateway → evidence registry. Every status shown is real; nothing here is a fabricated
-          measurement.
-        </p>
-        <DigitalTwinLoader components={twinComponents} />
-
-        <h3>Move between chronological batches</h3>
-        <p style={{ maxWidth: "68ch" }}>
-          Select a test batch to see its real drift score (relative to Batch 1) and the lightest
-          baseline model&apos;s real accuracy at that point in time — the same numbers behind the
-          3MT slide&apos;s 81%→37% figure, drawn directly from{" "}
-          <ArtifactLink path="results/drift/global_drift_by_batch.csv" label="results/drift/global_drift_by_batch.csv" /> and{" "}
-          <ArtifactLink path="results/baselines/fixed_origin_metrics.csv" label="results/baselines/fixed_origin_metrics.csv" />.
-        </p>
-        <DriftJourneyPanel rows={journeyRows} chartData={accuracyChartData} />
-      </section>
-
-      {/* ---------- New doors ---------- */}
-      <section aria-labelledby="threemt-doors-title">
-        <h2 id="threemt-doors-title">New Doors This Work Could Open</h2>
-        <p style={{ maxWidth: "68ch" }}>
-          These are potential application directions that this methodology could inform — they are
-          not demonstrated outcomes, and each would require its own domain-specific validation.
-        </p>
-        <div className="card-grid">
-          {NEW_DOORS.map((door) => (
-            <div className="card" key={door.title}>
-              <h3 style={{ marginTop: 0 }}>{door.title}</h3>
-              <p style={{ fontSize: "0.9rem" }}>{door.body}</p>
-            </div>
-          ))}
-        </div>
-
-        <h3>Collaboration</h3>
+      {/* ---------- Collaboration ---------- */}
+      <section aria-labelledby="threemt-collab-title">
+        <h2 id="threemt-collab-title">Collaboration</h2>
         <p style={{ maxWidth: "68ch" }}>
           This research is at a stage where specific kinds of help would directly unblock the next
           experiments:
         </p>
         <ul style={{ maxWidth: "62ch" }}>
-          <li>
-            <strong>Experimental review</strong> — a second opinion on the chronological protocol,
-            the resource-aware explanation methodology, or the fidelity/stability evaluation design.
-          </li>
-          <li>
-            <strong>nRF52840 hardware access</strong> — a physical nRF52840 development kit and
-            debug probe would unblock Stages 15–20 (the entire physical measurement chain), which
-            have been architecturally ready and blocked on hardware access since Stage 13.
-          </li>
-          <li>
-            <strong>Measurement guidance</strong> — experience with Nordic Power Profiler Kit II
-            energy-measurement methodology, or with INT8 quantization-aware export for Cortex-M4F.
-          </li>
+          {COLLABORATION_ITEMS.map((item) => (
+            <li key={item.title}>
+              <strong>{item.title}</strong> — {item.body}
+            </li>
+          ))}
         </ul>
         <p style={{ fontSize: "0.9rem" }}>
           Reach out via the <a href={`https://github.com/${project.repository}`} target="_blank" rel="noreferrer">GitHub repository</a>{" "}
@@ -299,9 +261,9 @@ export default function ThreeMinuteThesisPage() {
         </p>
       </section>
 
-      {/* ---------- Evidence and status ---------- */}
+      {/* ---------- Evidence and status (full accounting) ---------- */}
       <section id="evidence" aria-labelledby="threemt-evidence-title">
-        <h2 id="threemt-evidence-title">Evidence and Status</h2>
+        <h2 id="threemt-evidence-title">Evidence and Status, in Full</h2>
         <p style={{ maxWidth: "68ch" }}>
           Every status below comes from the same evidence registry as the rest of this portal (
           <ArtifactLink path="configs/pipeline_stages.yaml" />) — nothing on this page is a separate
@@ -324,7 +286,11 @@ export default function ThreeMinuteThesisPage() {
             <div className="v"><EvidenceBadge status={xai.evidence_status} /></div>
           </div>
           <div className="kv-item">
-            <div className="k">TinyML export / quantization</div>
+            <div className="k">TinyML export</div>
+            <div className="v"><EvidenceBadge status="HOST_EXECUTED" /></div>
+          </div>
+          <div className="kv-item">
+            <div className="k">Quantization</div>
             <div className="v"><EvidenceBadge status="NOT_EXECUTED" /></div>
           </div>
           <div className="kv-item">
@@ -366,6 +332,8 @@ export default function ThreeMinuteThesisPage() {
           <ArtifactLink path="research-portal/public/3mt/Arun_Gharami_FAU_3MT_2026_Single_Slide.pptx" label="original slide (PPTX)" />
         </p>
       </section>
+
+      <FinalStatement />
     </div>
   );
 }
