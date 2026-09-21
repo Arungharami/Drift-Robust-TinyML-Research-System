@@ -49,7 +49,7 @@ const PHASE_DEFINITIONS: ProcessPhaseDefinition[] = [
     shortLabel: "Embed",
     description:
       "Freeze a numerical-equivalence protocol and attempt host-side FP32 export toward the MCU target.",
-    stageIds: ["13", "14", "14R", "14F-GATE", "14F-EXEC", "14F-XAI"],
+    stageIds: ["13", "14", "14R", "14F-GATE", "14F-EXEC", "14F-XAI", "14Q-GATE"],
   },
   {
     id: "hardware",
