@@ -12,7 +12,8 @@ export type EvidenceStatus =
     | "BLOCKED_HARDWARE"
     | "PROTOCOL_FROZEN"
     | "NOT_EXECUTED"
-    | "NOT_MEASURED";
+    | "NOT_MEASURED"
+    | "HOST_EXECUTED";
 
 export interface EmbeddedEvidence {
   gate_id: string;
