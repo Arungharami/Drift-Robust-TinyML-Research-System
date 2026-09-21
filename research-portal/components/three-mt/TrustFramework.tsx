@@ -18,9 +18,9 @@ export function TrustFramework({
 }: {
   accuracyStatus: EvidenceStatus;
   explanationStatus: EvidenceStatus;
-  deployabilityStatus: EvidenceStatus;
+  deployabilityStatus: EvidenceStatus | string;
 }) {
-  const statusById: Record<(typeof DIMENSIONS)[number]["id"], EvidenceStatus> = {
+  const statusById: Record<(typeof DIMENSIONS)[number]["id"], EvidenceStatus | string> = {
     accuracy: accuracyStatus,
     explanation: explanationStatus,
     deployability: deployabilityStatus,
