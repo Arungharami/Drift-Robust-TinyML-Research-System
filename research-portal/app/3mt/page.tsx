@@ -252,7 +252,7 @@ export default function ThreeMinuteThesisPage() {
           baseline model&apos;s real accuracy at that point in time — the same numbers behind the
           3MT slide&apos;s 81%→37% figure, drawn directly from{" "}
           <ArtifactLink path="results/drift/global_drift_by_batch.csv" label="results/drift/global_drift_by_batch.csv" /> and{" "}
-          <ArtifactLink path="results/baselines/fixed_origin_by_batch.csv" label="results/baselines/fixed_origin_by_batch.csv" />.
+          <ArtifactLink path="results/baselines/fixed_origin_metrics.csv" label="results/baselines/fixed_origin_metrics.csv" />.
         </p>
         <DriftJourneyPanel rows={journeyRows} chartData={accuracyChartData} />
       </section>
