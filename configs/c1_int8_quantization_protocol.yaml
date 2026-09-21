@@ -1,0 +1,58 @@
+# GATE-C1-INT8-QUANT-001 — frozen protocol for the C1 weights-only INT8 quantization tier.
+#
+# This file is a DECLARATION, not an executor. It authorizes exactly one future experiment
+# (EXP-TINYML-QUANT-001) to run against exactly one scheme. It does not itself quantize,
+# execute, or measure anything. See scripts/freeze_c1_int8_quantization_protocol.py for the
+# script that verifies upstream integrity and writes the DERIVED-only specification/byte-count
+# artifacts under results/embedded/c1_int8_quant_*.csv, and
+# docs/embedded/C1_INT8_QUANTIZATION_PROTOCOL.md for the human-readable rationale.
+
+gate_id: GATE-C1-INT8-QUANT-001
+depends_on_gate: GATE-C1-FUSED-PREPROC-001
+base_architecture: C1-FUSED-F0
+future_experiment_id: EXP-TINYML-QUANT-001
+research_question: RQ9
+status: PROTOCOL_FROZEN
+
+scope:
+  authorized_tier: WEIGHTS_ONLY_INT8_PER_TENSOR_SYMMETRIC
+  quantized_tensors:
+    - C1_FUSED_WEIGHT
+  retained_float32_tensors:
+    - C1_FUSED_BIAS
+    - RAW_INPUT
+    - ALL_ACTIVATIONS
+  not_authorized:
+    - FULL_ACTIVATION_QUANTIZATION
+    - INT16_QUANTIZATION
+    - QUANTIZATION_AWARE_TRAINING  # only permitted later, per docs/TINYML_CANDIDATE_DEVELOPMENT_PROTOCOL.md, if PTQ degradation exceeds a predefined threshold
+
+quantization_mapping:
+  dtype: INT8
+  granularity: PER_TENSOR
+  symmetric: true
+  zero_point: 0
+  scale_formula: "max(abs(w_raw)) / 127"
+  note: >
+    This is a mapping specification only. Applying it to produce a quantized tensor and
+    measuring the resulting error is the scope of EXP-TINYML-QUANT-001, not this freeze.
+
+# Inherited verbatim from the single source of truth for numerical tolerances — never
+# re-declared with different numbers. See configs/embedded_equivalence_protocol.yaml.
+inherited_tolerance_source: configs/embedded_equivalence_protocol.yaml
+inherited_tolerance_fields:
+  - levels.level_2_model_numerical.quantized_future_only.score_max_absolute_error
+  - levels.level_2_model_numerical.quantized_future_only.probability_max_absolute_error
+  - levels.level_2_model_numerical.quantized_future_only.macro_f1_absolute_degradation_max
+  - levels.level_3_decision.quantized_all_vector_class_agreement_min
+  - levels.level_3_decision.quantized_boundary_vector_class_agreement
+
+execution_status:
+  quantization: NOT_EXECUTED
+  mcu_execution: NOT_EXECUTED
+  compiled_flash: NOT_MEASURED
+  mcu_sram: NOT_MEASURED
+  mcu_latency: NOT_MEASURED
+  energy: NOT_MEASURED
+
+resource_budget_reference: configs/nrf52840_resource_budget.yaml

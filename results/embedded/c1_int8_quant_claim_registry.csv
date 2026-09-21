@@ -1,0 +1,4 @@
+claim_id,future_experiment_id,claim,initial_status,required_evidence
+C-EMBED-C1-QUANT-01,EXP-TINYML-QUANT-001,INT8 weights-only quantized C1-FUSED-F0 satisfies the Stage-13 quantized numerical tolerances.,UNSUPPORTED,quantized inference run against golden/boundary vectors
+C-EMBED-C1-QUANT-02,EXP-TINYML-QUANT-001,INT8 weights-only quantized C1-FUSED-F0 preserves class decisions within the Stage-13 quantized agreement thresholds.,UNSUPPORTED,decision agreement vs. FP32 fused reference
+C-EMBED-C1-QUANT-03,EXP-TINYML-QUANT-001,INT8 weights-only quantization reduces stored parameter bytes relative to the FP32 fused representation.,UNSUPPORTED,"compiled artifact size, not the analytical estimate in this gate"

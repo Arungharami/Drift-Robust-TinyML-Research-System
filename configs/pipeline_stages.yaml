@@ -269,6 +269,26 @@ stages:
       vector, sign, Top-K, additivity, semantic, determinism, and lineage criteria on the host.
       Quantization, MCU execution, and hardware measurements remain unexecuted.
 
+  - id: "14Q-GATE"
+    name: C1 weights-only INT8 quantization protocol
+    status: PROTOCOL_FROZEN
+    notebook: null
+    script: scripts/freeze_c1_int8_quantization_protocol.py
+    artifact_paths:
+      [configs/c1_int8_quantization_protocol.yaml,
+       results/embedded/c1_int8_quant_scheme_spec.csv,
+       results/embedded/c1_int8_quant_storage_analysis.csv,
+       results/embedded/c1_int8_quant_gate_decision.csv,
+       results/embedded/c1_int8_quant_protocol_manifest.csv]
+    git_commit: WORKTREE
+    depends_on: ["14F-EXEC", "14F-XAI"]
+    notes: >-
+      GATE-C1-INT8-QUANT-001 frozen. Fixes a weights-only, per-tensor symmetric INT8 mapping
+      specification and a byte-counting storage estimate for the C1-FUSED-F0 weight tensor;
+      bias and all activations remain FLOAT32. No quantization, dequantization, or model
+      execution was performed. Future EXP-TINYML-QUANT-001 (RQ9) is authorized separately;
+      full activation quantization, QAT, and hardware work remain prohibited under this gate.
+
   - id: "15"
     name: nRF52840 deployment
     status: BLOCKED

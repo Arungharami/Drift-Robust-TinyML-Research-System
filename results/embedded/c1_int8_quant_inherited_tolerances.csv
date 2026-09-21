@@ -1,0 +1,2 @@
+gate_id,source_file,source_gate_id,score_max_absolute_error,probability_max_absolute_error,macro_f1_absolute_degradation_max,all_vector_class_agreement_min,boundary_vector_class_agreement
+GATE-C1-INT8-QUANT-001,configs/embedded_equivalence_protocol.yaml,GATE-EMBED-EXPORT-001,0.02,0.02,0.01,0.99,1.0

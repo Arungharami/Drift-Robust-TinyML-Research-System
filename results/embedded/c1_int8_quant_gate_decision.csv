@@ -1,0 +1,2 @@
+gate_id,timestamp,gate_status,scope,base_architecture,performance_experiment_status,future_experiment_id,decision,quantization,mcu_execution,compiled_flash,mcu_sram,mcu_latency,energy
+GATE-C1-INT8-QUANT-001,2026-09-21T05:21:30.576174+00:00,FROZEN,WEIGHTS_ONLY_INT8_PER_TENSOR_SYMMETRIC,C1-FUSED-F0,NOT_EXECUTED,EXP-TINYML-QUANT-001,AUTHORIZE EXP-TINYML-QUANT-001 (weights-only INT8 tier only; full activation quantization NOT_AUTHORIZED),NOT_EXECUTED,NOT_EXECUTED,NOT_MEASURED,NOT_MEASURED,NOT_MEASURED,NOT_MEASURED
