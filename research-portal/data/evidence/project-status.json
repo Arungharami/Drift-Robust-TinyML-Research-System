@@ -1,9 +1,9 @@
 {
   "project": "Drift-Robust Explainable TinyML for Electronic-Nose Sensing",
   "repository": "Arungharami/Drift-Robust-TinyML-Research-System",
-  "branch": "docs/reconcile-stale-experiment-status",
-  "git_commit": "80609efb45a00bc21db1a16f19cd7113d4cb4fb9",
-  "last_updated": "2026-09-21T05:26:50Z",
+  "branch": "research/freeze-c1-int8-quantization-protocol",
+  "git_commit": "a63d2a6903769500c355b823705fe394a2f13ac1",
+  "last_updated": "2026-09-21T05:37:49Z",
   "pipeline_stage_counts": {
     "EXECUTED": 16,
     "PROTOCOL_FROZEN": 3,
