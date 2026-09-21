@@ -21,22 +21,30 @@ export function ExplainabilityView({ xai }: { xai: XaiEvidence }) {
 
   return (
     <section className="threemt-xai" aria-labelledby="threemt-xai-title">
-      <h2 id="threemt-xai-title">Why did the model decide this?</h2>
+      <div className="threemt-section-heading-row">
+        <h2 id="threemt-xai-title">Why did the model decide this?</h2>
+        <span className="threemt-real-data-tag">EVIDENCE LINKED</span>
+      </div>
 
       <div className="threemt-xai-flow">
         <div className="threemt-xai-flow-step">
-          <span className="section-label">Sensor features</span>
+          <span className="section-label">Sensor signal</span>
           <p>128 features — 16 chemical sensors × 8 response characteristics per reading.</p>
         </div>
         <div className="threemt-xai-flow-arrow" aria-hidden="true">→</div>
         <div className="threemt-xai-flow-step">
-          <span className="section-label">Important signal characteristics</span>
+          <span className="section-label">Relevant features</span>
           <p>Resource-aware attribution methods rank which of those 128 features drove a prediction.</p>
         </div>
         <div className="threemt-xai-flow-arrow" aria-hidden="true">→</div>
         <div className="threemt-xai-flow-step">
           <span className="section-label">Model decision</span>
-          <p>One of six gas classes, with the attribution behind it — evaluated for fidelity and stability.</p>
+          <p>One of six gas classes, with the attribution behind it.</p>
+        </div>
+        <div className="threemt-xai-flow-arrow" aria-hidden="true">→</div>
+        <div className="threemt-xai-flow-step">
+          <span className="section-label">Human interpretation</span>
+          <p>Evaluated for fidelity and stability — whether that attribution is trustworthy, not just plausible.</p>
         </div>
       </div>
 

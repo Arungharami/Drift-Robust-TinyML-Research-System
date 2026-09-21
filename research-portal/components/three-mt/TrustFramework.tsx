@@ -28,7 +28,10 @@ export function TrustFramework({
 
   return (
     <section className="threemt-trust" aria-labelledby="threemt-trust-title">
-      <h2 id="threemt-trust-title">Accuracy Is Not Enough.</h2>
+      <div className="threemt-section-heading-row">
+        <h2 id="threemt-trust-title">Accuracy Is Not Enough.</h2>
+        <span className="threemt-real-data-tag">EVIDENCE LINKED</span>
+      </div>
       <div className="card-grid">
         {DIMENSIONS.map((d) => (
           <div className="card" key={d.id}>

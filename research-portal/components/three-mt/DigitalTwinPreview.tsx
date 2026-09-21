@@ -5,8 +5,9 @@ import type { TwinComponent } from "@/components/digital-twin/types";
 const PIPELINE = [
   { label: "Real World", detail: "Sensor" },
   { label: "Digital Twin", detail: "Chronological data" },
-  { label: "AI", detail: "Prediction" },
-  { label: "XAI", detail: "Explanation" },
+  { label: "Drift", detail: "Measured, non-monotonic shift" },
+  { label: "Model", detail: "Prediction" },
+  { label: "Explanation", detail: "Attribution + fidelity/stability" },
   { label: "Edge", detail: "nRF52840 target" },
   { label: "Evidence", detail: "Reproducible experiment record" },
 ];
