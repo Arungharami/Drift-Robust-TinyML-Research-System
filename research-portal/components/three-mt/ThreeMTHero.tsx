@@ -111,11 +111,11 @@ export function ThreeMTHero({ rows }: { rows: BatchJourneyRow[] }) {
                 className="threemt-hero-slider"
               />
               <div className="threemt-hero-timeline-ticks">
-                <span>{isFirst ? "" : "BATCH_" + String(usable[0].batch).padStart(2, "0")}</span>
+                <span>{isFirst || !usable[0] ? "" : "BATCH_" + String(usable[0].batch).padStart(2, "0")}</span>
                 <span className="threemt-hero-timeline-current">
                   BATCH_{String(current.batch).padStart(2, "0")}
                 </span>
-                <span>{isLast ? "" : "BATCH_" + String(usable[usable.length - 1].batch).padStart(2, "0")}</span>
+                <span>{isLast || !usable[usable.length - 1] ? "" : "BATCH_" + String(usable[usable.length - 1]!.batch).padStart(2, "0")}</span>
               </div>
             </div>
             <p className="threemt-hero-visual-caption">
