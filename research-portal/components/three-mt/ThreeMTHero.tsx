@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { EvidenceBadge } from "@/components/EvidenceBadge";
+import type { EvidenceStatus } from "@/lib/types";
 import type { BatchJourneyRow } from "./DriftJourneyPanel";
 
 /**
@@ -11,10 +13,20 @@ import type { BatchJourneyRow } from "./DriftJourneyPanel";
  * results/drift/global_drift_by_batch.csv and results/baselines/fixed_origin_metrics.csv).
  * Nothing here is a stock photo or a fabricated confidence curve.
  */
-export function ThreeMTHero({ rows }: { rows: BatchJourneyRow[] }) {
+export function ThreeMTHero({ rows, baselinesStatus }: { rows: BatchJourneyRow[]; baselinesStatus: EvidenceStatus }) {
   const usable = useMemo(() => rows.filter((r) => r.driftWasserstein !== null && r.modelC1Accuracy !== null), [rows]);
   const [index, setIndex] = useState(0);
   const current = usable[index] ?? usable[0];
+  const baseline = usable[0] ?? null;
+
+  const interpretation = useMemo(() => {
+    if (!current || !baseline?.modelC1Accuracy) return null;
+    const ratio = current.modelC1Accuracy! / baseline.modelC1Accuracy;
+    if (current.batch === baseline.batch) return "This is the earliest batch shown — the reference point for everything else.";
+    if (ratio >= 0.9) return "Accuracy stays close to the earliest-batch baseline.";
+    if (ratio >= 0.5) return "Accuracy shows moderate degradation from the earliest-batch baseline.";
+    return "Accuracy shows substantial degradation from the earliest-batch baseline.";
+  }, [current, baseline]);
 
   const driftValues = usable.map((r) => r.driftWasserstein as number);
   const maxDrift = Math.max(...driftValues, 1);
@@ -48,15 +60,13 @@ export function ThreeMTHero({ rows }: { rows: BatchJourneyRow[] }) {
   return (
     <section className="threemt-hero" aria-labelledby="threemt-hero-title">
       <div className="threemt-hero-copy">
-        <div className="section-label">Three-Minute Thesis · FAU 2026</div>
+        <div className="threemt-hero-eyebrow">FAU 3MT RESEARCH · TINYML · TRUSTWORTHY AI</div>
         <h1 id="threemt-hero-title" className="threemt-hero-title">
           When AI Loses Its Sense of Smell
         </h1>
         <p className="threemt-hero-subhead">Drift-Robust Explainable TinyML for Electronic-Nose Sensing</p>
-        <p className="threemt-hero-copy-text">
-          Electronic noses can recognize chemical patterns. But their sensors change over time.
-          This research asks whether lightweight AI can remain trustworthy as the world it senses
-          slowly shifts.
+        <p className="threemt-hero-statement">
+          Sensors change. Models assume stability. This research explores what happens in between.
         </p>
         <p className="btn-row">
           <Link className="btn btn-primary" href="/system-map">
@@ -77,10 +87,15 @@ export function ThreeMTHero({ rows }: { rows: BatchJourneyRow[] }) {
       <div className="threemt-hero-visual" aria-hidden={usable.length === 0}>
         {current ? (
           <>
-            <svg viewBox="0 0 560 140" className="threemt-hero-waveform" role="img" aria-label="Sensor signal shape, distorting as chronological drift increases">
+            <div className="threemt-hero-visual-heading">
+              <span className="section-label">Sensor · Time · Drift</span>
+              <span className="threemt-real-data-tag">REAL DATA</span>
+            </div>
+            <svg viewBox="0 0 560 140" className="threemt-hero-waveform" role="img" aria-label="Sensor signal shape, changing as chronological sensor behavior changes">
               <polyline points={points} fill="none" strokeWidth="2.5" className="threemt-hero-waveform-line" />
               <line x1="0" y1="70" x2="560" y2="70" className="threemt-hero-waveform-baseline" strokeDasharray="2 6" />
             </svg>
+            <p className="threemt-hero-visual-note">Sensor behavior changes over time — not a steady, one-direction climb.</p>
 
             <div className="threemt-hero-readout">
               <div>
@@ -98,7 +113,12 @@ export function ThreeMTHero({ rows }: { rows: BatchJourneyRow[] }) {
                 <span className="k">MODEL-C1 accuracy</span>
                 <span className="v mono">{(current.modelC1Accuracy! * 100).toFixed(1)}%</span>
               </div>
+              <div>
+                <span className="k">Status</span>
+                <span className="v"><EvidenceBadge status={baselinesStatus} /></span>
+              </div>
             </div>
+            {interpretation ? <p className="threemt-hero-interpretation">{interpretation}</p> : null}
 
             <div className="threemt-hero-timeline">
               <input

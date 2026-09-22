@@ -19,7 +19,10 @@ export function AccuracyCollapse({ rows }: { rows: BatchJourneyRow[] }) {
 
   return (
     <RevealOnView as="section" className="threemt-collapse">
-      <div className="section-label">The clearest finding</div>
+      <div className="threemt-collapse-heading">
+        <div className="section-label">The clearest finding</div>
+        <span className="threemt-real-data-tag">EVIDENCE LINKED</span>
+      </div>
       <div className="threemt-collapse-grid">
         <div className="threemt-collapse-figure threemt-collapse-before">
           <span className="k">BATCH_02 · early sensor data</span>
@@ -34,7 +37,7 @@ export function AccuracyCollapse({ rows }: { rows: BatchJourneyRow[] }) {
         </div>
       </div>
 
-      <p className="threemt-collapse-message">Same baseline model. Later sensor data.</p>
+      <p className="threemt-collapse-message">Same baseline model. Later chronological data.</p>
 
       <p className="threemt-collapse-note">
         Drift relative to Batch 1 (normalized Wasserstein) is <strong>{fmtDrift(driftBefore)}</strong> at

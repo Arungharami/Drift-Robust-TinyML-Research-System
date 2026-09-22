@@ -11,7 +11,9 @@ import { DriftJourneyPanel, type BatchJourneyRow } from "@/components/three-mt/D
 import { EvidenceStatusBar } from "@/components/three-mt/EvidenceStatusBar";
 import { ExplainabilityView } from "@/components/three-mt/ExplainabilityView";
 import { FinalStatement } from "@/components/three-mt/FinalStatement";
+import { JudgeMode } from "@/components/three-mt/JudgeMode";
 import { NoMagicSection } from "@/components/three-mt/NoMagicSection";
+import { ThinkAboutThis } from "@/components/three-mt/ThinkAboutThis";
 import { ThreeMTHero } from "@/components/three-mt/ThreeMTHero";
 import { ThreeMTSlide } from "@/components/three-mt/ThreeMTSlide";
 import { ThreeMTSpeech } from "@/components/three-mt/ThreeMTSpeech";
@@ -103,11 +105,15 @@ export default function ThreeMinuteThesisPage() {
 
   return (
     <div className="container threemt-page">
-      <ThreeMTHero rows={journeyRows} />
+      <ThreeMTHero rows={journeyRows} baselinesStatus={baselines.evidence_status} />
+
+      <JudgeMode rows={journeyRows} hardwareStatus={hardwareStatus} />
 
       <TimeAxis />
 
       <AccuracyCollapse rows={journeyRows} />
+
+      <ThinkAboutThis />
 
       {/* ---------- Watch the sensor drift ---------- */}
       <section aria-labelledby="threemt-drift-title">

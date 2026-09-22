@@ -37,30 +37,40 @@ export function TinyMLTransition({ embedded }: { embedded: EmbeddedEvidence }) {
 
       <p className="threemt-tinyml-thesis">Less memory. Less compute. Less energy.</p>
 
-      <div className="kv-grid">
-        <div className="kv-item">
-          <div className="k">Target Flash budget</div>
-          <div className="v">{flashBytes.toLocaleString()} bytes (nRF52840, physical limit)</div>
+      <div className="threemt-tinyml-split">
+        <div className="threemt-tinyml-split-col">
+          <h3 className="threemt-tinyml-split-title">What we have measured</h3>
+          <div className="kv-grid">
+            <div className="kv-item">
+              <div className="k">Host FP32 numerical equivalence</div>
+              <div className="v"><EvidenceBadge status="HOST_EXECUTED" /></div>
+            </div>
+            <div className="kv-item">
+              <div className="k">FLASH TARGET (nRF52840 physical limit)</div>
+              <div className="v">{flashBytes.toLocaleString()} bytes</div>
+            </div>
+            <div className="kv-item">
+              <div className="k">SRAM TARGET (nRF52840 physical limit)</div>
+              <div className="v">{sramBytes.toLocaleString()} bytes</div>
+            </div>
+          </div>
         </div>
-        <div className="kv-item">
-          <div className="k">Target SRAM budget</div>
-          <div className="v">{sramBytes.toLocaleString()} bytes (nRF52840, physical limit)</div>
-        </div>
-        <div className="kv-item">
-          <div className="k">Host FP32 numerical equivalence</div>
-          <div className="v"><EvidenceBadge status="HOST_EXECUTED" /></div>
-        </div>
-        <div className="kv-item">
-          <div className="k">INT8 quantization</div>
-          <div className="v"><EvidenceBadge status="NOT_EXECUTED" /></div>
-        </div>
-        <div className="kv-item">
-          <div className="k">Compiled Flash / SRAM usage</div>
-          <div className="v"><EvidenceBadge status="NOT_MEASURED" /></div>
-        </div>
-        <div className="kv-item">
-          <div className="k">On-device latency / PPK2 energy</div>
-          <div className="v"><EvidenceBadge status="NOT_MEASURED" /></div>
+        <div className="threemt-tinyml-split-col">
+          <h3 className="threemt-tinyml-split-title">What still requires hardware</h3>
+          <div className="kv-grid">
+            <div className="kv-item">
+              <div className="k">INT8 quantization</div>
+              <div className="v"><EvidenceBadge status="NOT_EXECUTED" /></div>
+            </div>
+            <div className="kv-item">
+              <div className="k">FLASH / SRAM usage (compiled, on real hardware)</div>
+              <div className="v"><EvidenceBadge status="NOT_MEASURED" /></div>
+            </div>
+            <div className="kv-item">
+              <div className="k">On-device latency / PPK2 energy</div>
+              <div className="v"><EvidenceBadge status="NOT_MEASURED" /></div>
+            </div>
+          </div>
         </div>
       </div>
       <p style={{ fontSize: "0.85rem", color: "var(--text-faint)" }}>

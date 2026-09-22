@@ -813,12 +813,19 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
 .threemt-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .95fr); gap: 2.5rem; align-items: start; margin: 1rem 0 3rem; }
 .threemt-hero-title { font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1.08; margin: 0.3rem 0 0.75rem; }
 .threemt-hero-subhead { font-size: 1.1rem; font-weight: 600; color: var(--text-muted); margin: 0 0 0.9rem; }
-.threemt-hero-copy-text { max-width: 56ch; font-size: 1.02rem; color: var(--text-muted); }
+.threemt-hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-electric); margin-bottom: 0.6rem; }
+.threemt-hero-statement { max-width: 52ch; font-size: 1.08rem; font-style: italic; color: var(--text-muted); border-left: 3px solid var(--border-strong); padding-left: 0.9rem; }
 .threemt-hero-visual { padding: 1.25rem 1.4rem 1.5rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-raised); }
 .threemt-hero-waveform { width: 100%; height: auto; display: block; }
 .threemt-hero-waveform-line { stroke: var(--accent-electric); }
 .threemt-hero-waveform-baseline { stroke: var(--border-strong); }
-.threemt-hero-readout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 0.9rem 0; }
+.threemt-hero-visual-heading { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem; }
+.threemt-real-data-tag { display: inline-flex; align-items: center; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 999px; border: 1px solid var(--accent-electric); color: var(--accent-electric); white-space: nowrap; }
+.threemt-hero-visual-note { font-size: 0.8rem; color: var(--text-muted); margin: 0.3rem 0 0.9rem; }
+.threemt-hero-interpretation { font-size: 0.85rem; color: var(--text-muted); margin: 0.6rem 0 0; font-style: italic; }
+.threemt-hero-readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.75rem; margin: 0.9rem 0; }
+.threemt-section-heading-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.threemt-collapse-heading { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.5rem; }
 .threemt-hero-readout > div { padding: 0.6rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-muted); }
 .threemt-hero-readout .k { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-faint); margin-bottom: 0.25rem; }
 .threemt-hero-readout .v { display: block; font-size: 1rem; color: var(--text); }
@@ -904,11 +911,37 @@ main { min-height: 60vh; padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw,
 .threemt-final-subline { font-size: 1.05rem; color: var(--text-muted); margin: 1.25rem 0 1.5rem; }
 .threemt-final-stages { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem; list-style: none; padding: 0; margin: 0 0 1.5rem; font-family: var(--font-mono); font-size: 0.95rem; }
 .threemt-final-caveat { max-width: 56ch; margin: 0 auto; font-size: 0.82rem; color: var(--text-faint); }
+.threemt-final-meta { margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--text-faint); }
+
+/* Think-about-this bridge */
+.threemt-think { text-align: center; padding: clamp(2.5rem, 6vw, 4rem) 1rem; }
+.threemt-think-line { font-family: var(--font-serif); font-size: clamp(1.3rem, 3.2vw, 1.8rem); margin: 0 0 0.5rem; color: var(--text-muted); }
+.threemt-think-line-question { color: var(--text); font-weight: 600; margin-top: 1rem; }
+
+/* TinyML measured/blocked split */
+.threemt-tinyml-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 1.25rem 0; }
+.threemt-tinyml-split-col { padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-raised); }
+.threemt-tinyml-split-title { margin: 0 0 0.75rem; font-size: 0.95rem; }
+
+/* Speech presentation mode */
+.threemt-speech-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.threemt-speech-presentation { max-width: 68ch; margin: 0 auto; }
+.threemt-speech-presentation p { font-size: 1.25rem; line-height: 1.75; }
+
+/* Slide controls */
+.threemt-slide-controls { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+.threemt-slide-card:fullscreen { display: flex; flex-direction: column; justify-content: center; background: var(--bg-raised); }
+
+/* Judge mode */
+.threemt-judge { margin: 1.5rem 0; }
+.threemt-judge-panel { display: grid; gap: 1rem; margin-top: 1rem; padding: 1.25rem; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--bg-raised); }
+.threemt-judge-item p { margin: 0.3rem 0 0; }
 
 @media (max-width: 900px) {
   .threemt-hero { grid-template-columns: 1fr; }
   .threemt-collapse-grid { grid-template-columns: 1fr; }
   .threemt-collapse-arrow { transform: rotate(90deg); }
+  .threemt-tinyml-split { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .threemt-hero-readout { grid-template-columns: 1fr; }

@@ -1,15 +1,39 @@
+"use client";
+
+import { useRef } from "react";
 import { SLIDE_ASSET_PATH, SLIDE_CONTENT, SLIDE_SOURCE_PATH } from "@/lib/three-mt/content";
 
 /**
  * Accessible HTML/CSS recreation of the actual single-slide PPTX, using its exact text content
  * (see lib/three-mt/content.ts). This is a recreation for the web, not a pixel copy of the
- * original design — the authoritative file is linked below for download.
+ * original design — the authoritative file is linked below for download. The slide's own text
+ * content is never touched by the fullscreen control below.
  */
 export function ThreeMTSlide() {
   const { title, subtitle, panelA, panelB, driftLabel, driftCaption, statLine, goalLine, attribution } = SLIDE_CONTENT;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  function handleFullscreen() {
+    const el = cardRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      el.requestFullscreen?.();
+    }
+  }
+
   return (
     <figure className="threemt-slide">
-      <div className="threemt-slide-card">
+      <div className="threemt-slide-controls">
+        <button type="button" className="btn" onClick={handleFullscreen}>
+          Fullscreen
+        </button>
+        <a className="btn" href={SLIDE_ASSET_PATH} download>
+          Download
+        </a>
+      </div>
+      <div className="threemt-slide-card" ref={cardRef}>
         <h3 className="threemt-slide-title">{title}</h3>
         <p className="threemt-slide-subtitle">{subtitle}</p>
         <div className="threemt-slide-panels">
