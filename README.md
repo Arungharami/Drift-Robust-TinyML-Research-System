@@ -24,9 +24,13 @@ UCI Gas Sensor Array Drift Dataset
   -> Vercel research portal -> manuscript
 ```
 
-Everything through Stage 09 resource-aware explanation generation is executed. Fidelity,
-stability, explanation cost, embedded export, and physical-hardware stages remain unexecuted or
-blocked. Generated normalized registries under `results/registry/` are the result-level source of
+The stage registry records execution through Stage 12 (fidelity, stability, and host-side
+explanation cost). The original standalone FP32 export and preprocessing repair failed their
+frozen criteria; the later C1 fused FP32 inference and local-XAI host-equivalence experiments
+passed their separately frozen protocols. The INT8 protocol is frozen but its experiment is
+not executed. Physical MCU deployment, latency, memory, and energy remain blocked.
+These are pipeline-recorded outcomes, not new independent measurements.
+Generated normalized registries under `results/registry/` are the result-level source of
 truth; `configs/pipeline_stages.yaml` is the stage-level source of truth.
 
 ## Repository structure
@@ -48,6 +52,7 @@ truth; `configs/pipeline_stages.yaml` is the stage-level source of truth.
 
 ```bash
 python -m venv .venv
+source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python scripts/download_dataset.py
 python scripts/validate_dataset.py
@@ -108,3 +113,7 @@ Every executed artifact records: random seed, Python version, package versions, 
 ## Citation and license
 
 Citation metadata will be added with the publication. Licensed under the [MIT License](LICENSE). The UCI dataset retains its own terms and citation requirements (Vergara, A. (2012). *Gas Sensor Array Drift Dataset* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5RP6W).
+
+## Engineering review
+
+See [the October 4 correctness review](docs/ENGINEERING_REVIEW_2026-10-04.md) for repairs, exact verification results, and the next implementation work.
