@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 type Stage = { id: string; name: string; status: string };
 const slides = [
@@ -49,7 +50,7 @@ export function ClassPresentation({ baselines, stages, commit }: { baselines: Re
   }
   return <div className="class-deck" ref={root}>
     <div className="deck-toolbar">
-      <a href="/">Research portal</a>
+      <Link href="/">Research portal</Link>
       <button onClick={() => setNotes(v => !v)} aria-pressed={notes}>Speaker notes</button>
       <button onClick={() => setAll(v => !v)} aria-pressed={all}>All slides</button>
       <button onClick={fullscreen}>Fullscreen</button>
