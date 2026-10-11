@@ -1,41 +1,25 @@
-Imagine opening your refrigerator and smelling milk that has gone bad.
+Imagine a nose that never sleeps. It could sit in a home, a factory, beside a highway, or inside a future smart city. But this nose is not biological. It is an electronic nose: chemical sensors connected to a tiny AI model.
 
-Before you read the date, your nose warns you.
+The idea is simple. Air reaches the sensors. The sensors create a chemical fingerprint. The AI recognizes the pattern and can produce a warning.
 
-Now imagine giving that ability to a machine.
+But there is a hidden problem. Sensors change. As they age, heat, humidity, contamination, and time can slowly alter the signals they produce.
 
-An electronic nose uses chemical sensors and artificial intelligence to recognize patterns in gases. These systems could help monitor food, detect hazardous chemicals, and support environmental or health applications.
+Think of a piano drifting out of tune. The song has not changed, but the instrument has. An AI model trained on the old sound may still answer with confidence, even when its senses are no longer reliable.
 
-But there is a hidden problem.
+That is exactly what I see in my chronological experiments. One compact baseline model was about 81 percent accurate on an early test batch. On much later sensor data, the same frozen model fell to about 37 percent.
 
-The nose changes.
+The model did not forget its mathematics. Its world changed.
 
-Electronic sensors age. Temperature and humidity affect them. Their signals slowly shift, even when the chemical being measured has not changed. Scientists call this sensor drift.
+My research asks a simple question: how can we build a small AI system that notices this change, explains what it is using, and remains trustworthy enough to run beside the sensor on a low-power device?
 
-And when the sensor changes, an AI model trained yesterday may not understand the world tomorrow.
+Why does that matter?
 
-In this research, use an electronic-nose dataset collected over three years. Trained four baseline AI models on the earliest sensor readings and tested them as time moved forward.
+For people, an electronic nose could help monitor indoor air and flag unusual chemical exposure. In factories, it could support earlier detection of leaks or changes in process conditions.
 
-The result was striking.
+For the environment, networks of small sensors could watch for pollution or toxic releases close to where they happen. And in the future, the same idea could give smart buildings, robots, farms, and cities a dependable sense of smell.
 
-Between Month 3 and Month 36, every model lost roughly 35 to 49 percentage points of accuracy. In one lightweight model, accuracy fell from about 81 percent to 37 percent.
+My goal is not simply to make a machine that can smell on day one. I want to build one that can recognize when its own sense of smell is changing—and tell us when we should no longer trust it.
 
-That means an AI system can look excellent when it is first built—and become unreliable simply because its sensors grow older.
+Because trustworthy AI is not just AI that gives an answer. It is AI that knows when the world has changed.
 
-So my research asks a different question:
-
-Can we build small AI systems that remain trustworthy when their sensors and environment change?
-
-Developing a drift-aware, explainable TinyML research pipeline. Instead of randomly mixing old and new sensor data, I evaluate models in chronological order, the way they would experience the real world. I examine not only whether a prediction is correct, but also whether the reasons behind that prediction stay stable as the sensors drift. Then I study which lightweight models are realistic candidates for resource-constrained embedded devices.
-
-This matters because the future of AI is not only in giant data centers.
-
-It is moving into factories, farms, wearable devices, environmental monitors, and small sensors that may operate for months or years.
-
-For trustworthy AI, high accuracy on day one is not enough.
-
-We need confidence that the system will still deserve our trust on day one thousand.
-
-An electronic nose how to recognize when its world has changed.
-
-Because when AI gains a sense of smell, it should not forget how to use it.
+And that is the future I am working toward: tiny, explainable intelligence that can keep watching over people and the environment, even as its sensors grow old.
