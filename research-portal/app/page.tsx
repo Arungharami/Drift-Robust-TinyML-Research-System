@@ -30,6 +30,7 @@ export default function HomePage() {
       </p>
 
       <div className="btn-row">
+        <a className="btn btn-primary" href="/presentation">Final Class Presentation</a>
         <a className="btn btn-primary" href="/process">See How It Works</a>
         <a className="btn" href="/3mt">3-Minute Thesis</a>
         <a className="btn" href="/digital-twin">Explore Digital Twin</a>
