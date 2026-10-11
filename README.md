@@ -1,5 +1,11 @@
 # Drift-Robust Explainable TinyML for Electronic-Nose Sensing
 
+## Start here
+
+Begin with the [research protocol](docs/RESEARCH_PROTOCOL.md), [reproducibility guide](docs/REPRODUCIBILITY.md), and [claim-evidence matrix](paper/claim_evidence_matrix.csv). Host equivalence is documented; physical MCU measurements remain blocked.
+
+**Help improve this project:** [Contribution guide](CONTRIBUTING.md) · [Issues](https://github.com/Arungharami/Drift-Robust-TinyML-Research-System/issues)
+
 **Chronological Evaluation, Resource-Aware Explanations, and Reproducible Edge Deployment**
 
 Publication-oriented research software for studying chronological sensor drift in the [UCI Gas Sensor Array Drift dataset](https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset). The system separates verified evidence from planned work throughout — a missing result is recorded as `NOT_EXECUTED`; it is never estimated, simulated, or filled in.
