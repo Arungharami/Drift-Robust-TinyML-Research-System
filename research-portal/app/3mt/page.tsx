@@ -21,12 +21,12 @@ import { TimeAxis } from "@/components/three-mt/TimeAxis";
 import { TinyMLTransition } from "@/components/three-mt/TinyMLTransition";
 import { TrustFramework } from "@/components/three-mt/TrustFramework";
 import { getBaselines, getDataset, getDrift, getEmbedded, getPlatform, getProjectStatus, getXai } from "@/lib/evidence";
-import { SLIDE_ASSET_PATH, SPEECH_SOURCE_PATH } from "@/lib/three-mt/content";
+import { SLIDE_ASSET_PATH, SLIDE_SOURCE_PATH, SPEECH_SOURCE_PATH } from "@/lib/three-mt/content";
 
 export const metadata: Metadata = {
   title: "3-Minute Thesis",
   description:
-    "When AI loses its sense of smell: a three-minute, evidence-linked explanation of drift-robust explainable TinyML for electronic-nose sensing.",
+    "A Tiny Electronic Nose for Safer Spaces: the latest FAU 3MT slide and author-provided speech for drift-robust explainable TinyML.",
 };
 
 function pivotByBatch(rows: Record<string, string>[], metric: string) {
@@ -64,7 +64,7 @@ function buildJourneyRows(): BatchJourneyRow[] {
 }
 
 const START_HERE = [
-  { href: "#speech", label: "The original 3MT speech and slide, verbatim" },
+  { href: "#speech", label: "Latest 3MT speech and slide" },
   { href: "/process", label: "How it works, step by step" },
   { href: "/digital-twin", label: "The interactive digital twin" },
   { href: "/system-map", label: "The full system architecture" },
@@ -160,8 +160,8 @@ export default function ThreeMinuteThesisPage() {
       <section id="speech" aria-labelledby="threemt-speech-title">
         <h2 id="threemt-speech-title">The 3MT Speech and Slide</h2>
         <p style={{ maxWidth: "62ch" }}>
-          The actual speech and single slide submitted for the FAU 2026 Three Minute Thesis
-          competition, reproduced verbatim — not a paraphrase.
+          The latest single-slide PowerPoint (October 2, 2026) and Arun’s speech supplied on October 11,
+          2026, reproduced verbatim. Software experiments are recorded; physical on-device validation remains blocked.
         </p>
         <ThreeMTSlide />
         <ThreeMTSpeech />
@@ -335,7 +335,7 @@ export default function ThreeMinuteThesisPage() {
         </p>
         <p style={{ fontSize: "0.82rem", color: "var(--text-faint)" }}>
           3MT source materials: <ArtifactLink path={SPEECH_SOURCE_PATH} label="speech transcript" /> ·{" "}
-          <ArtifactLink path="research-portal/public/3mt/Arun_Gharami_FAU_3MT_2026_Single_Slide.pptx" label="original slide (PPTX)" />
+          <ArtifactLink path={SLIDE_SOURCE_PATH} label="latest slide (PPTX)" />
         </p>
       </section>
 

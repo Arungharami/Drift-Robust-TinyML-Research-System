@@ -62,7 +62,7 @@ export function ThreeMTHero({ rows, baselinesStatus }: { rows: BatchJourneyRow[]
       <div className="threemt-hero-copy">
         <div className="threemt-hero-eyebrow">FAU 3MT RESEARCH · TINYML · TRUSTWORTHY AI</div>
         <h1 id="threemt-hero-title" className="threemt-hero-title">
-          When AI Loses Its Sense of Smell
+          A Tiny Electronic Nose for Safer Spaces
         </h1>
         <p className="threemt-hero-subhead">Drift-Robust Explainable TinyML for Electronic-Nose Sensing</p>
         <p className="threemt-hero-statement">

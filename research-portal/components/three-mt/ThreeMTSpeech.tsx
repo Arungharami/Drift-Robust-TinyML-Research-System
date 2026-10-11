@@ -2,19 +2,20 @@
 
 import { useState } from "react";
 import { ArtifactLink } from "@/components/ArtifactLink";
-import { SPEECH_PARAGRAPHS, SPEECH_SOURCE_PATH } from "@/lib/three-mt/content";
+import { SPEECH_ASSET_PATH, SPEECH_PARAGRAPHS, SPEECH_SOURCE_PATH } from "@/lib/three-mt/content";
 
 /**
- * Renders the actual submitted 3MT speech verbatim — see lib/three-mt/content.ts for provenance.
+ * Renders the author-provided 3MT speech verbatim — see lib/three-mt/content.ts for provenance.
  * "Presentation mode" only changes typography (larger text, narrower measure) via a CSS class —
- * it never touches SPEECH_PARAGRAPHS, which stays word-for-word what was submitted.
+ * it never touches SPEECH_PARAGRAPHS, which stays word-for-word what the author supplied.
  */
 export function ThreeMTSpeech() {
   const [presentationMode, setPresentationMode] = useState(false);
   return (
     <div className={`threemt-speech${presentationMode ? " threemt-speech-presentation" : ""}`}>
       <div className="threemt-speech-toolbar">
-        <div className="section-label">Verbatim transcript</div>
+        <div className="section-label">Final speech · October 11, 2026</div>
+        <a className="btn" href={SPEECH_ASSET_PATH} download>Download speech</a>
         <button
           type="button"
           className="btn"
